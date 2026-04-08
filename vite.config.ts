@@ -7,6 +7,12 @@ import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 
 export default defineConfig({
+  fmt: {
+    ignorePatterns: ["src/routeTree.gen.ts"],
+  },
+  test: {
+    passWithNoTests: true,
+  },
   lint: {
     plugins: ["oxc", "typescript", "unicorn", "react"],
     categories: {
@@ -120,6 +126,7 @@ export default defineConfig({
     tailwindcss(),
     tanstackStart(),
     nitro({
+      serverDir: "server",
       rollupConfig: {
         external: [/^better-auth/, /^@better-auth/, "better-call"],
       },
