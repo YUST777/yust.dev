@@ -9,34 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WallRouteImport } from './routes/wall'
 import { Route as TokenUsageRouteImport } from './routes/token-usage'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
-import { Route as ApiGuestbookRouteImport } from './routes/api/guestbook'
 import { Route as MainTalksRouteImport } from './routes/_main/talks'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
-import { Route as MainLoginRouteImport } from './routes/_main/login'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
-import { Route as MainGuestbookRouteImport } from './routes/_main/guestbook'
 import { Route as MainExperienceRouteImport } from './routes/_main/experience'
 import { Route as MainBlogRouteImport } from './routes/_main/blog'
 import { Route as MainArchiveRouteImport } from './routes/_main/archive'
 import { Route as MainSplatRouteImport } from './routes/_main/$'
 import { Route as MainThoughtsIndexRouteImport } from './routes/_main/thoughts/index'
-import { Route as ApiSignatureUploadRouteImport } from './routes/api/signature/upload'
-import { Route as ApiGuestbookSignRouteImport } from './routes/api/guestbook/sign'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as MainThoughtsSplatRouteImport } from './routes/_main/thoughts/$'
 import { Route as MainPostsSplatRouteImport } from './routes/_main/posts/$'
 
-const WallRoute = WallRouteImport.update({
-  id: '/wall',
-  path: '/wall',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TokenUsageRoute = TokenUsageRouteImport.update({
   id: '/token-usage',
   path: '/token-usage',
@@ -61,11 +49,6 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRoute,
 } as any)
-const ApiGuestbookRoute = ApiGuestbookRouteImport.update({
-  id: '/api/guestbook',
-  path: '/api/guestbook',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MainTalksRoute = MainTalksRouteImport.update({
   id: '/talks',
   path: '/talks',
@@ -76,19 +59,9 @@ const MainProjectsRoute = MainProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => MainRoute,
 } as any)
-const MainLoginRoute = MainLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => MainRoute,
-} as any)
 const MainHacksRoute = MainHacksRouteImport.update({
   id: '/hacks',
   path: '/hacks',
-  getParentRoute: () => MainRoute,
-} as any)
-const MainGuestbookRoute = MainGuestbookRouteImport.update({
-  id: '/guestbook',
-  path: '/guestbook',
   getParentRoute: () => MainRoute,
 } as any)
 const MainExperienceRoute = MainExperienceRouteImport.update({
@@ -116,21 +89,6 @@ const MainThoughtsIndexRoute = MainThoughtsIndexRouteImport.update({
   path: '/thoughts/',
   getParentRoute: () => MainRoute,
 } as any)
-const ApiSignatureUploadRoute = ApiSignatureUploadRouteImport.update({
-  id: '/api/signature/upload',
-  path: '/api/signature/upload',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiGuestbookSignRoute = ApiGuestbookSignRouteImport.update({
-  id: '/sign',
-  path: '/sign',
-  getParentRoute: () => ApiGuestbookRoute,
-} as any)
-const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MainThoughtsSplatRoute = MainThoughtsSplatRouteImport.update({
   id: '/thoughts/$',
   path: '/thoughts/$',
@@ -147,45 +105,31 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
-  '/wall': typeof WallRoute
   '/$': typeof MainSplatRoute
   '/archive': typeof MainArchiveRoute
   '/blog': typeof MainBlogRoute
   '/experience': typeof MainExperienceRoute
-  '/guestbook': typeof MainGuestbookRoute
   '/hacks': typeof MainHacksRoute
-  '/login': typeof MainLoginRoute
   '/projects': typeof MainProjectsRoute
   '/talks': typeof MainTalksRoute
-  '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/posts/$': typeof MainPostsSplatRoute
   '/thoughts/$': typeof MainThoughtsSplatRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/guestbook/sign': typeof ApiGuestbookSignRoute
-  '/api/signature/upload': typeof ApiSignatureUploadRoute
   '/thoughts/': typeof MainThoughtsIndexRoute
 }
 export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
-  '/wall': typeof WallRoute
   '/$': typeof MainSplatRoute
   '/archive': typeof MainArchiveRoute
   '/blog': typeof MainBlogRoute
   '/experience': typeof MainExperienceRoute
-  '/guestbook': typeof MainGuestbookRoute
   '/hacks': typeof MainHacksRoute
-  '/login': typeof MainLoginRoute
   '/projects': typeof MainProjectsRoute
   '/talks': typeof MainTalksRoute
-  '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/': typeof MainIndexRoute
   '/posts/$': typeof MainPostsSplatRoute
   '/thoughts/$': typeof MainThoughtsSplatRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/guestbook/sign': typeof ApiGuestbookSignRoute
-  '/api/signature/upload': typeof ApiSignatureUploadRoute
   '/thoughts': typeof MainThoughtsIndexRoute
 }
 export interface FileRoutesById {
@@ -194,23 +138,16 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
-  '/wall': typeof WallRoute
   '/_main/$': typeof MainSplatRoute
   '/_main/archive': typeof MainArchiveRoute
   '/_main/blog': typeof MainBlogRoute
   '/_main/experience': typeof MainExperienceRoute
-  '/_main/guestbook': typeof MainGuestbookRoute
   '/_main/hacks': typeof MainHacksRoute
-  '/_main/login': typeof MainLoginRoute
   '/_main/projects': typeof MainProjectsRoute
   '/_main/talks': typeof MainTalksRoute
-  '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/_main/': typeof MainIndexRoute
   '/_main/posts/$': typeof MainPostsSplatRoute
   '/_main/thoughts/$': typeof MainThoughtsSplatRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/guestbook/sign': typeof ApiGuestbookSignRoute
-  '/api/signature/upload': typeof ApiSignatureUploadRoute
   '/_main/thoughts/': typeof MainThoughtsIndexRoute
 }
 export interface FileRouteTypes {
@@ -220,45 +157,31 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
-    | '/wall'
     | '/$'
     | '/archive'
     | '/blog'
     | '/experience'
-    | '/guestbook'
     | '/hacks'
-    | '/login'
     | '/projects'
     | '/talks'
-    | '/api/guestbook'
     | '/posts/$'
     | '/thoughts/$'
-    | '/api/auth/$'
-    | '/api/guestbook/sign'
-    | '/api/signature/upload'
     | '/thoughts/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
-    | '/wall'
     | '/$'
     | '/archive'
     | '/blog'
     | '/experience'
-    | '/guestbook'
     | '/hacks'
-    | '/login'
     | '/projects'
     | '/talks'
-    | '/api/guestbook'
     | '/'
     | '/posts/$'
     | '/thoughts/$'
-    | '/api/auth/$'
-    | '/api/guestbook/sign'
-    | '/api/signature/upload'
     | '/thoughts'
   id:
     | '__root__'
@@ -266,23 +189,16 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
-    | '/wall'
     | '/_main/$'
     | '/_main/archive'
     | '/_main/blog'
     | '/_main/experience'
-    | '/_main/guestbook'
     | '/_main/hacks'
-    | '/_main/login'
     | '/_main/projects'
     | '/_main/talks'
-    | '/api/guestbook'
     | '/_main/'
     | '/_main/posts/$'
     | '/_main/thoughts/$'
-    | '/api/auth/$'
-    | '/api/guestbook/sign'
-    | '/api/signature/upload'
     | '/_main/thoughts/'
   fileRoutesById: FileRoutesById
 }
@@ -291,21 +207,10 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TokenUsageRoute: typeof TokenUsageRoute
-  WallRoute: typeof WallRoute
-  ApiGuestbookRoute: typeof ApiGuestbookRouteWithChildren
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
-  ApiSignatureUploadRoute: typeof ApiSignatureUploadRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/wall': {
-      id: '/wall'
-      path: '/wall'
-      fullPath: '/wall'
-      preLoaderRoute: typeof WallRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/token-usage': {
       id: '/token-usage'
       path: '/token-usage'
@@ -341,13 +246,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/api/guestbook': {
-      id: '/api/guestbook'
-      path: '/api/guestbook'
-      fullPath: '/api/guestbook'
-      preLoaderRoute: typeof ApiGuestbookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_main/talks': {
       id: '/_main/talks'
       path: '/talks'
@@ -362,25 +260,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProjectsRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/login': {
-      id: '/_main/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof MainLoginRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/hacks': {
       id: '/_main/hacks'
       path: '/hacks'
       fullPath: '/hacks'
       preLoaderRoute: typeof MainHacksRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/guestbook': {
-      id: '/_main/guestbook'
-      path: '/guestbook'
-      fullPath: '/guestbook'
-      preLoaderRoute: typeof MainGuestbookRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/experience': {
@@ -418,27 +302,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainThoughtsIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/api/signature/upload': {
-      id: '/api/signature/upload'
-      path: '/api/signature/upload'
-      fullPath: '/api/signature/upload'
-      preLoaderRoute: typeof ApiSignatureUploadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/guestbook/sign': {
-      id: '/api/guestbook/sign'
-      path: '/sign'
-      fullPath: '/api/guestbook/sign'
-      preLoaderRoute: typeof ApiGuestbookSignRouteImport
-      parentRoute: typeof ApiGuestbookRoute
-    }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_main/thoughts/$': {
       id: '/_main/thoughts/$'
       path: '/thoughts/$'
@@ -461,9 +324,7 @@ interface MainRouteChildren {
   MainArchiveRoute: typeof MainArchiveRoute
   MainBlogRoute: typeof MainBlogRoute
   MainExperienceRoute: typeof MainExperienceRoute
-  MainGuestbookRoute: typeof MainGuestbookRoute
   MainHacksRoute: typeof MainHacksRoute
-  MainLoginRoute: typeof MainLoginRoute
   MainProjectsRoute: typeof MainProjectsRoute
   MainTalksRoute: typeof MainTalksRoute
   MainIndexRoute: typeof MainIndexRoute
@@ -477,9 +338,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainArchiveRoute: MainArchiveRoute,
   MainBlogRoute: MainBlogRoute,
   MainExperienceRoute: MainExperienceRoute,
-  MainGuestbookRoute: MainGuestbookRoute,
   MainHacksRoute: MainHacksRoute,
-  MainLoginRoute: MainLoginRoute,
   MainProjectsRoute: MainProjectsRoute,
   MainTalksRoute: MainTalksRoute,
   MainIndexRoute: MainIndexRoute,
@@ -490,27 +349,11 @@ const MainRouteChildren: MainRouteChildren = {
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
-interface ApiGuestbookRouteChildren {
-  ApiGuestbookSignRoute: typeof ApiGuestbookSignRoute
-}
-
-const ApiGuestbookRouteChildren: ApiGuestbookRouteChildren = {
-  ApiGuestbookSignRoute: ApiGuestbookSignRoute,
-}
-
-const ApiGuestbookRouteWithChildren = ApiGuestbookRoute._addFileChildren(
-  ApiGuestbookRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TokenUsageRoute: TokenUsageRoute,
-  WallRoute: WallRoute,
-  ApiGuestbookRoute: ApiGuestbookRouteWithChildren,
-  ApiAuthSplatRoute: ApiAuthSplatRoute,
-  ApiSignatureUploadRoute: ApiSignatureUploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
