@@ -5,18 +5,19 @@ import { AppThemeProvider } from "@/components/mode-toggle";
 import { QueryProvider } from "@/lib/query/providers";
 import { Agentation } from "agentation";
 import { Toaster } from "sonner";
+import { Navbar } from "../components/navbar";
 
 import globalsCss from "@/src/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
-const SITE_URL = "https://ephraimduncan.com";
-const SITE_NAME = "Ephraim Duncan";
+const SITE_URL = "https://yousefdev.xyz";
+const SITE_NAME = "Yousef";
 const SITE_DESCRIPTION =
-  "Software engineer and open-source developer building polished web experiences. Passionate about TypeScript, Go, and creating beautiful, functional software.";
-const SITE_TITLE = `${SITE_NAME} — Software Engineer & Open Source Developer`;
+  "Level 2 AI & Cybersecurity student and Full-Stack Developer.";
+const SITE_TITLE = `${SITE_NAME} — Full-Stack Developer`;
 const SITE_SUMMARY =
-  "Software engineer and open-source developer building polished web experiences.";
+  "Level 2 AI & Cybersecurity student and Full-Stack Developer.";
 const SOCIAL_IMAGE_PATH = "/static/images/card.png";
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -98,7 +99,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico" },
     ],
@@ -109,6 +110,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
+      <Navbar />
       <Outlet />
     </RootDocument>
   );
@@ -124,7 +126,16 @@ function RootDocument({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="antialiased bg-grey-50 dark:bg-grey-950 text-grey-800 dark:text-grey-100">
+      <body className="antialiased bg-[#0c0c0c] text-zinc-400 font-mono min-h-screen relative">
+        {/* Global Noise Grain Overlay */}
+        <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]">
+          <svg style={{ width: '100%', height: '100%' }}>
+            <filter id="noiseFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+          </svg>
+        </div>
         <RootProviders>{children}</RootProviders>
         {import.meta.env.PROD && (
           <script

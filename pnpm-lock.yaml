@@ -69,9 +69,18 @@ importers:
       drizzle-orm:
         specifier: ^0.45.1
         version: 0.45.1(@libsql/client@0.15.15)(kysely@0.28.14)
+      framer-motion:
+        specifier: ^12.38.0
+        version: 12.38.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       geist:
         specifier: ^1.0.0
         version: 1.7.0(next@16.2.1(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
+      lenis:
+        specifier: ^1.3.21
+        version: 1.3.21(react@19.2.4)
       lucide-react:
         specifier: ^0.460.0
         version: 0.460.0(react@19.2.4)
@@ -96,9 +105,15 @@ importers:
       react-dom:
         specifier: ^19.2.0
         version: 19.2.4(react@19.2.4)
+      react-github-calendar:
+        specifier: ^5.0.6
+        version: 5.0.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-intersection-observer:
         specifier: ^9.13.1
         version: 9.16.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react-tooltip:
+        specifier: ^5.30.1
+        version: 5.30.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       rehype-katex:
         specifier: ^7.0.0
         version: 7.0.1
@@ -682,6 +697,12 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
+
+  '@floating-ui/react@0.27.19':
+    resolution: {integrity: sha512-31B8h5mm8YxotlE7/AU/PhNAl8eWxAmjL/v2QOxroDNkTFLk3Uu82u63N3b6TXa4EGJeeZLVcd/9AlNlVqzeog==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
@@ -2164,6 +2185,9 @@ packages:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
 
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
@@ -2225,6 +2249,9 @@ packages:
   date-fns@2.30.0:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   db0@0.3.4:
     resolution: {integrity: sha512-RiXXi4WaNzPTHEOu8UPQKMooIbqOEyqA1t7Z6MsdxSCeb8iUC9ko3LcmsLmeUt2SM5bctfArZKkRQggKZz7JNw==}
@@ -2535,6 +2562,20 @@ packages:
       react-dom:
         optional: true
 
+  framer-motion@12.38.0:
+    resolution: {integrity: sha512-rFYkY/pigbcswl1XQSb7q424kSTQ8q6eAC+YUsSKooHQYuLdzdHjrt6uxUC+PRAO++q5IS7+TamgIw1AphxR+g==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -2565,6 +2606,9 @@ packages:
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
+
+  gsap@3.15.0:
+    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   h3@2.0.1-rc.16:
     resolution: {integrity: sha512-h+pjvyujdo9way8qj6FUbhaQcHlR8FEq65EhTX9ViT5pK8aLj68uFl4hBkF+hsTJAH+H1END2Yv6hTIsabGfag==}
@@ -2725,6 +2769,20 @@ packages:
   kysely@0.28.14:
     resolution: {integrity: sha512-SU3lgh0rPvq7upc6vvdVrCsSMUG1h3ChvHVOY7wJ2fw4C9QEB7X3d5eyYEyULUX7UQtxZJtZXGuT6U2US72UYA==}
     engines: {node: '>=20.0.0'}
+
+  lenis@1.3.21:
+    resolution: {integrity: sha512-RXWTYm7KQE4Kv8ezxL6wvK0Oiv7aRr6FDo+eNaaniTeu7pLdHokqMIJ5CXO4x5ezvd+9ONdpSFkprLpXsVWmEw==}
+    peerDependencies:
+      '@nuxt/kit': '>=3.0.0'
+      react: '>=17.0.0'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+      react:
+        optional: true
+      vue:
+        optional: true
 
   libsql@0.5.28:
     resolution: {integrity: sha512-wKqx9FgtPcKHdPfR/Kfm0gejsnbuf8zV+ESPmltFvsq5uXwdeN9fsWn611DmqrdXj1e94NkARcMA2f1syiAqOg==}
@@ -2989,8 +3047,14 @@ packages:
   motion-dom@11.18.1:
     resolution: {integrity: sha512-g76KvA001z+atjfxczdRtw/RXOM3OMSdd1f4DL77qCTF/+avrRJiawSG4yDibEQ215sr9kpinSlX2pCTJ9zbhw==}
 
+  motion-dom@12.38.0:
+    resolution: {integrity: sha512-pdkHLD8QYRp8VfiNLb8xIBJis1byQ9gPT3Jnh2jqfFtAsWUA3dEepDlsWe/xMpO8McV+VdpKVcp+E+TGJEtOoA==}
+
   motion-utils@11.18.1:
     resolution: {integrity: sha512-49Kt+HKjtbJKLtgO/LKj9Ld+6vw9BjH5d9sc40R/kVyH8GLAXgT42M2NnuPcJNuA3s9ZfZBUcwIgpmZWGEE+hA==}
+
+  motion-utils@12.36.0:
+    resolution: {integrity: sha512-eHWisygbiwVvf6PZ1vhaHCLamvkSbPIeAYxWUuL3a2PD/TROgE7FvfHWTIH4vMl798QLfMw15nRqIaRDXTlYRg==}
 
   motion@11.18.2:
     resolution: {integrity: sha512-JLjvFDuFr42NFtcVoMAyC2sEjnpA8xpy6qWPyzQvCloznAyQ8FIXioxWfHiLtgYhoVpfUqSWpn1h9++skj9+Wg==}
@@ -3218,10 +3282,20 @@ packages:
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
+  react-activity-calendar@3.1.2:
+    resolution: {integrity: sha512-tKJZ4aU+WVp4exBKmeji+umiElnvfiZc39Tq3c9SI9j+Qzplri5hIAedMjBRFMkwUSL7BrsG4gUx9n/o1EtMzQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   react-dom@19.2.4:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
       react: ^19.2.4
+
+  react-github-calendar@5.0.6:
+    resolution: {integrity: sha512-BXgk1blzmkXjzc3CJRtSxscNuL0y/pHHVihmY+H+8bak0Syg2G/7gCM4Ja6CzE5wtABDv6N97kKSufWqMazq/g==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
 
   react-intersection-observer@9.16.0:
     resolution: {integrity: sha512-w9nJSEp+DrW9KmQmeWHQyfaP6b03v+TdXynaoA964Wxt7mdR3An11z4NNCQgL4gKSK7y1ver2Fq+JKH6CWEzUA==}
@@ -3231,6 +3305,12 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react-tooltip@5.30.1:
+    resolution: {integrity: sha512-1lSPLQXuVooePxadUpmcwLgOsF1mIty7UZTJ9XnyfX4drOzStYs4JMXnazcDLguQr41W5OUZddOp9kfvArdpEQ==}
+    peerDependencies:
+      react: '>=16.14.0'
+      react-dom: '>=16.14.0'
 
   react@19.2.4:
     resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
@@ -4145,6 +4225,14 @@ snapshots:
       react-dom: 19.2.4(react@19.2.4)
 
   '@floating-ui/react@0.26.28(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+    dependencies:
+      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@floating-ui/utils': 0.2.11
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+      tabbable: 6.4.0
+
+  '@floating-ui/react@0.27.19(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@floating-ui/react-dom': 2.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@floating-ui/utils': 0.2.11
@@ -5348,6 +5436,8 @@ snapshots:
     dependencies:
       readdirp: 4.1.2
 
+  classnames@2.5.1: {}
+
   client-only@0.0.1: {}
 
   clsx@2.1.1: {}
@@ -5393,6 +5483,8 @@ snapshots:
   date-fns@2.30.0:
     dependencies:
       '@babel/runtime': 7.29.2
+
+  date-fns@4.1.0: {}
 
   db0@0.3.4(@libsql/client@0.15.15)(drizzle-orm@0.45.1(@libsql/client@0.15.15)(kysely@0.28.14)):
     optionalDependencies:
@@ -5629,6 +5721,15 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
+  framer-motion@12.38.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      motion-dom: 12.38.0
+      motion-utils: 12.36.0
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
   fsevents@2.3.3:
     optional: true
 
@@ -5656,6 +5757,8 @@ snapshots:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+
+  gsap@3.15.0: {}
 
   h3@2.0.1-rc.16(crossws@0.4.4(srvx@0.11.12)):
     dependencies:
@@ -5853,6 +5956,10 @@ snapshots:
   kind-of@6.0.3: {}
 
   kysely@0.28.14: {}
+
+  lenis@1.3.21(react@19.2.4):
+    optionalDependencies:
+      react: 19.2.4
 
   libsql@0.5.28:
     dependencies:
@@ -6311,7 +6418,13 @@ snapshots:
     dependencies:
       motion-utils: 11.18.1
 
+  motion-dom@12.38.0:
+    dependencies:
+      motion-utils: 12.36.0
+
   motion-utils@11.18.1: {}
+
+  motion-utils@12.36.0: {}
 
   motion@11.18.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
@@ -6574,15 +6687,37 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
+  react-activity-calendar@3.1.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@floating-ui/react': 0.27.19(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      date-fns: 4.1.0
+      react: 19.2.4
+    transitivePeerDependencies:
+      - react-dom
+
   react-dom@19.2.4(react@19.2.4):
     dependencies:
       react: 19.2.4
       scheduler: 0.27.0
 
+  react-github-calendar@5.0.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-activity-calendar: 3.1.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+    transitivePeerDependencies:
+      - react-dom
+
   react-intersection-observer@9.16.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       react: 19.2.4
     optionalDependencies:
+      react-dom: 19.2.4(react@19.2.4)
+
+  react-tooltip@5.30.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      classnames: 2.5.1
+      react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
   react@19.2.4: {}

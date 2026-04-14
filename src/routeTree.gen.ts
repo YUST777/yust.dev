@@ -17,8 +17,11 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as ApiGuestbookRouteImport } from './routes/api/guestbook'
 import { Route as MainTalksRouteImport } from './routes/_main/talks'
+import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainLoginRouteImport } from './routes/_main/login'
+import { Route as MainHacksRouteImport } from './routes/_main/hacks'
 import { Route as MainGuestbookRouteImport } from './routes/_main/guestbook'
+import { Route as MainExperienceRouteImport } from './routes/_main/experience'
 import { Route as MainBlogRouteImport } from './routes/_main/blog'
 import { Route as MainArchiveRouteImport } from './routes/_main/archive'
 import { Route as MainSplatRouteImport } from './routes/_main/$'
@@ -68,14 +71,29 @@ const MainTalksRoute = MainTalksRouteImport.update({
   path: '/talks',
   getParentRoute: () => MainRoute,
 } as any)
+const MainProjectsRoute = MainProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainLoginRoute = MainLoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => MainRoute,
 } as any)
+const MainHacksRoute = MainHacksRouteImport.update({
+  id: '/hacks',
+  path: '/hacks',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainGuestbookRoute = MainGuestbookRouteImport.update({
   id: '/guestbook',
   path: '/guestbook',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainExperienceRoute = MainExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
   getParentRoute: () => MainRoute,
 } as any)
 const MainBlogRoute = MainBlogRouteImport.update({
@@ -133,8 +151,11 @@ export interface FileRoutesByFullPath {
   '/$': typeof MainSplatRoute
   '/archive': typeof MainArchiveRoute
   '/blog': typeof MainBlogRoute
+  '/experience': typeof MainExperienceRoute
   '/guestbook': typeof MainGuestbookRoute
+  '/hacks': typeof MainHacksRoute
   '/login': typeof MainLoginRoute
+  '/projects': typeof MainProjectsRoute
   '/talks': typeof MainTalksRoute
   '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/posts/$': typeof MainPostsSplatRoute
@@ -152,8 +173,11 @@ export interface FileRoutesByTo {
   '/$': typeof MainSplatRoute
   '/archive': typeof MainArchiveRoute
   '/blog': typeof MainBlogRoute
+  '/experience': typeof MainExperienceRoute
   '/guestbook': typeof MainGuestbookRoute
+  '/hacks': typeof MainHacksRoute
   '/login': typeof MainLoginRoute
+  '/projects': typeof MainProjectsRoute
   '/talks': typeof MainTalksRoute
   '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/': typeof MainIndexRoute
@@ -174,8 +198,11 @@ export interface FileRoutesById {
   '/_main/$': typeof MainSplatRoute
   '/_main/archive': typeof MainArchiveRoute
   '/_main/blog': typeof MainBlogRoute
+  '/_main/experience': typeof MainExperienceRoute
   '/_main/guestbook': typeof MainGuestbookRoute
+  '/_main/hacks': typeof MainHacksRoute
   '/_main/login': typeof MainLoginRoute
+  '/_main/projects': typeof MainProjectsRoute
   '/_main/talks': typeof MainTalksRoute
   '/api/guestbook': typeof ApiGuestbookRouteWithChildren
   '/_main/': typeof MainIndexRoute
@@ -197,8 +224,11 @@ export interface FileRouteTypes {
     | '/$'
     | '/archive'
     | '/blog'
+    | '/experience'
     | '/guestbook'
+    | '/hacks'
     | '/login'
+    | '/projects'
     | '/talks'
     | '/api/guestbook'
     | '/posts/$'
@@ -216,8 +246,11 @@ export interface FileRouteTypes {
     | '/$'
     | '/archive'
     | '/blog'
+    | '/experience'
     | '/guestbook'
+    | '/hacks'
     | '/login'
+    | '/projects'
     | '/talks'
     | '/api/guestbook'
     | '/'
@@ -237,8 +270,11 @@ export interface FileRouteTypes {
     | '/_main/$'
     | '/_main/archive'
     | '/_main/blog'
+    | '/_main/experience'
     | '/_main/guestbook'
+    | '/_main/hacks'
     | '/_main/login'
+    | '/_main/projects'
     | '/_main/talks'
     | '/api/guestbook'
     | '/_main/'
@@ -319,6 +355,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainTalksRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/projects': {
+      id: '/_main/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof MainProjectsRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/login': {
       id: '/_main/login'
       path: '/login'
@@ -326,11 +369,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainLoginRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/hacks': {
+      id: '/_main/hacks'
+      path: '/hacks'
+      fullPath: '/hacks'
+      preLoaderRoute: typeof MainHacksRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/guestbook': {
       id: '/_main/guestbook'
       path: '/guestbook'
       fullPath: '/guestbook'
       preLoaderRoute: typeof MainGuestbookRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/experience': {
+      id: '/_main/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof MainExperienceRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/blog': {
@@ -403,8 +460,11 @@ interface MainRouteChildren {
   MainSplatRoute: typeof MainSplatRoute
   MainArchiveRoute: typeof MainArchiveRoute
   MainBlogRoute: typeof MainBlogRoute
+  MainExperienceRoute: typeof MainExperienceRoute
   MainGuestbookRoute: typeof MainGuestbookRoute
+  MainHacksRoute: typeof MainHacksRoute
   MainLoginRoute: typeof MainLoginRoute
+  MainProjectsRoute: typeof MainProjectsRoute
   MainTalksRoute: typeof MainTalksRoute
   MainIndexRoute: typeof MainIndexRoute
   MainPostsSplatRoute: typeof MainPostsSplatRoute
@@ -416,8 +476,11 @@ const MainRouteChildren: MainRouteChildren = {
   MainSplatRoute: MainSplatRoute,
   MainArchiveRoute: MainArchiveRoute,
   MainBlogRoute: MainBlogRoute,
+  MainExperienceRoute: MainExperienceRoute,
   MainGuestbookRoute: MainGuestbookRoute,
+  MainHacksRoute: MainHacksRoute,
   MainLoginRoute: MainLoginRoute,
+  MainProjectsRoute: MainProjectsRoute,
   MainTalksRoute: MainTalksRoute,
   MainIndexRoute: MainIndexRoute,
   MainPostsSplatRoute: MainPostsSplatRoute,

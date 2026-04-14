@@ -1,146 +1,149 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { AppThemeSwitcher } from "@/components/mode-toggle";
-import * as FadeIn from "@/components/motion";
-import { Arrow } from "@/components/ui/Arrow";
-import { ExternalLink } from "@/components/ui/ExternalLink";
-
-const PROJECTS = [
-  {
-    name: "Blocks",
-    description: "Clean, modern shadcn/ui blocks you can copy and paste.",
-    href: "https://blocks.so?ref=duncan.land",
-  },
-  {
-    name: "Formbase",
-    description: "Backend for HTML forms with uploads, alerts, and integrations.",
-    href: "https://formbase.dev?ref=duncan.land",
-  },
-  {
-    name: "Minimal",
-    description: "Simple, fast bookmark manager with private collections.",
-    href: "https://minimal.so?ref=duncan.land",
-  },
-  {
-    name: "Refine",
-    description: "AI humanizer that rewrites drafts into natural writing.",
-    href: "https://refine.so?ref=duncan.land",
-  },
-  {
-    name: "Weekday",
-    description: "Open-source, privacy-first calendar with AI scheduling.",
-    href: "https://weekday.so?ref=duncan.land",
-  },
-  {
-    name: "Writer",
-    description: "All-in-one AI writing workspace for research, drafting, and edits.",
-    href: "https://writer.so?ref=duncan.land",
-  },
-] as const;
+import { createFileRoute } from "@tanstack/react-router";
+import { Github, Send, Linkedin, Mail, Star, Undo2 } from "lucide-react";
+import { GitHubCalendar } from "react-github-calendar";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import React, { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/_main/")({
-  component: Home,
-  head: () => ({
-    meta: [
-      {
-        title: "Ephraim Duncan — Software Engineer & Open Source Developer",
-      },
-    ],
-  }),
+  component: AboutPage,
 });
 
-function Home() {
+function AboutPage() {
+  const [stars, setStars] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/YUST777/repos?per_page=100")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const totalStars = data.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
+          setStars(totalStars);
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   return (
-    <FadeIn.Container>
-      <FadeIn.Item>
-        <div className="mb-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl">Ephraim Duncan</h1>
-            <div className="hidden sm:block">
-              <AppThemeSwitcher />
+    <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <header>
+        <p className="font-mono text-zinc-500 mb-2">Hola I'm</p>
+        <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">YOUSEF</h1>
+        <p className="text-sm md:text-base text-zinc-400 max-w-2xl uppercase tracking-wider font-mono">
+          Level 2 AI & Cybersecurity student and Full-Stack Developer
+        </p>
+        
+        <div className="flex items-center gap-3 mt-8">
+          <a href="#" className="flex items-center px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800 transition-all text-sm text-zinc-300 font-mono tracking-tight">
+            Verdict.run
+          </a>
+          
+          <div className="flex items-center gap-2 text-zinc-500 pointer-events-none select-none ml-2">
+            <Undo2 size={36} strokeWidth={1} className="opacity-60 text-zinc-500 transform rotate-12 relative top-2" />
+            <div className="font-mono text-[11px] sm:text-xs tracking-tight opacity-70 transform -rotate-3 mt-4 leading-tight">
+              try this cool<br/>project
             </div>
           </div>
-          <h3 className="text-grey-400 text-lg mt-1">
-            Software Engineer at{" "}
-            <a
-              href="http://documenso.com/?ref=ephraimduncan.com"
-              className="hover:underline cursor-pointer"
-            >
-              Documenso
-            </a>
-          </h3>
-          <div className="mt-3 sm:hidden">
-            <AppThemeSwitcher />
+        </div>
+      </header>
+
+      <section>
+        <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
+        <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
+          <p>
+            I'm Yousef, a Level 2 AI & Cybersecurity student based in Egypt and a passionate Full-Stack Developer. 
+            Since June 2024, I've been building real projects to sharpen my skills — from an award-winning security suite to Telegram bots and full-stack platforms.
+          </p>
+          <p>
+            I love learning by doing, and I'm always exploring new technologies to solve interesting problems.
+          </p>
+        </div>
+
+        <div className="mt-12">
+          <p className="text-zinc-500 text-sm mb-4 font-mono">My <strong className="text-white">social links</strong> if you wish to connect with me</p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { icon: <Send size={14} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
+              { icon: <Github size={14} />, label: "Github", url: "https://github.com/YUST777" },
+              { icon: <Linkedin size={14} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
+              { icon: <Mail size={14} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
+            ].map((link) => (
+              <a key={link.label} href={link.url || "#"} className="flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
+                {link.icon} {link.label}
+              </a>
+            ))}
           </div>
         </div>
-      </FadeIn.Item>
+      </section>
 
-      <FadeIn.Item>
-        <p className="mb-2">
-          I&apos;m a software engineer and open-source developer building polished web experiences
-          with magical, unique, and delightful details. As a full-stack developer, I aim to create
-          beautiful and functional software that is both intuitive and enjoyable for users.
-        </p>
-        <p>
-          I have a passion for learning, and I am constantly seeking to improve my skills mostly
-          through <span className="inline-link">reading</span> and{" "}
-          <Link to="/blog">
-            <span className="inline-link">writing</span>
-          </Link>
-          . I&apos;m interested in
-          <em> TypeScript</em> and <em> Go</em>, and at the same time, I&apos;m also experimenting
-          with native apps with <em> Swift</em>.
-        </p>
-      </FadeIn.Item>
-      <FadeIn.Item>
-        <section className="mt-10">
-          <h2 className="text-sm text-grey-400 text-balance">Projects</h2>
-          <ul className="mt-3 flex flex-col gap-3">
-            {PROJECTS.map((project) => (
-              <li key={project.name}>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex w-full min-w-0 flex-col sm:flex-row sm:items-center gap-1 sm:gap-3"
-                >
-                  <div className="flex min-w-0 items-center gap-0.5">
-                    <span className="truncate text-base font-medium text-grey-900 dark:text-grey-100 group-hover:underline underline-offset-2">
-                      {project.name}
-                    </span>
-                    <span className="text-grey-400 dark:text-grey-500">
-                      <Arrow size={14} />
-                    </span>
-                  </div>
-                  <span className="text-pretty text-sm text-grey-500 dark:text-grey-400 sm:truncate sm:flex-1">
-                    {project.description}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </FadeIn.Item>
-      <FadeIn.Item>
-        <svg
-          aria-hidden="true"
-          width="80"
-          height="16"
-          viewBox="0 0 432 38"
-          fill="none"
-          className="mt-10 mb-2 dark:text-grey-100 text-grey-800"
-        >
-          <path
-            d="M402.74 37.5899C390.193 37.5899 374.767 21.3129 374.111 20.6249C367.068 12.4335 359.943 5.14795 349.463 5.14795C337.975 5.14795 324.479 20.406 324.338 20.558L323.17 21.8313C315.729 29.9329 308.701 37.5893 296.186 37.5893C283.639 37.5893 268.213 21.3123 267.557 20.6243C260.514 12.4329 253.389 5.14734 242.909 5.14734C231.421 5.14734 217.925 20.4053 217.784 20.5573L216.683 21.7175C208.186 30.5847 201.48 37.5885 189.636 37.5885C177.085 37.5885 161.656 21.3115 161.007 20.6235C153.96 12.4321 146.831 5.14655 136.359 5.14655C124.871 5.14655 111.375 20.4045 111.234 20.5565L110.054 21.8417C102.62 29.9394 95.5889 37.5837 83.0769 37.5837C70.5259 37.5837 55.0969 21.3067 54.4479 20.6187C47.401 12.4273 40.2719 5.14175 29.7999 5.14175C19.3699 5.14175 9.86587 10.8722 4.98787 20.0987C4.3824 21.2549 2.94488 21.6964 1.78478 21.087C0.628579 20.4698 0.187069 19.0401 0.800389 17.8839C6.50349 7.10691 17.6124 0.403931 29.7964 0.403931C42.2694 0.403931 50.5504 8.82583 57.9644 17.4469C61.941 21.6774 74.3554 32.8419 83.0734 32.8419C93.5074 32.8419 99.2644 26.5724 106.557 18.6349L107.702 17.3888C108.268 16.7404 122.733 0.404816 136.35 0.404816C148.823 0.404816 157.104 8.82671 164.518 17.4478C168.494 21.6783 180.909 32.8428 189.627 32.8428C199.447 32.8428 204.943 27.1123 213.256 18.4368L214.295 17.3509C214.83 16.7337 229.295 0.401917 242.908 0.401917C255.388 0.401917 263.67 8.82382 271.076 17.4449C275.053 21.6676 287.467 32.8359 296.185 32.8359C306.623 32.8359 312.388 26.5625 319.685 18.6129L320.822 17.3785C321.388 16.7301 335.853 0.394531 349.463 0.394531C361.943 0.394531 370.225 8.81643 377.631 17.4375C381.607 21.6602 394.022 32.8285 402.74 32.8285C412.744 32.8285 422.06 27.4379 427.064 18.7625C427.716 17.6258 429.161 17.2313 430.302 17.8914C431.435 18.5438 431.822 19.993 431.173 21.1258C425.321 31.2898 414.427 37.5908 402.739 37.5908L402.74 37.5899Z"
-            fill="currentColor"
+      <section className="font-mono mt-16 pb-4">
+        <div className="overflow-hidden w-full flex justify-center">
+          <GitHubCalendar 
+            username="YUST777" 
+            colorScheme="dark"
+            theme={{
+              dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
+            }}
+            style={{
+              color: '#71717a',
+              margin: '0 auto'
+            }}
+            blockSize={14}
+            blockMargin={4}
+            fontSize={13}
+            labels={{
+              totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
+            }}
+            renderBlock={(block, activity) =>
+              React.cloneElement(block as React.ReactElement, {
+                'data-tooltip-id': 'github-tooltip',
+                'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
+              })
+            }
           />
-        </svg>
+        </div>
+        <Tooltip id="github-tooltip" className="!bg-zinc-900 !border !border-white/10 !rounded-md" />
+      </section>
 
-        <ExternalLink text="follow me on x" href="https://twitter.com/ephraimduncan" />
+      <section>
+        <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">Notable achievements</h2>
+        <div className="space-y-6">
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Tanta National Summit. </strong>
+              Won <span className="text-white">1st place</span> in my very first semester, outperforming senior-level (Level 4 & 5) university competitors.
+            </p>
+          </div>
+          
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">3x Hackathon Winner. </strong>
+              Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including <span className="text-white">sast.tech</span>—an automated secure code generator.
+            </p>
+          </div>
 
-        <ExternalLink text="let's collaborate on github" href="https://github.com/ephraimduncan" />
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Verdict.run. </strong>
+              Engineered and launched a developer platform that went viral, generating <span className="text-white">120k+ organic impressions</span> on LinkedIn from a single early post.
+            </p>
+          </div>
 
-        <ExternalLink text="love to talk?" href="https://cal.com/ephraimduncan/30min" />
-      </FadeIn.Item>
-    </FadeIn.Container>
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">The01studio on TON. </strong>
+              Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts, @collectablekit) driving <span className="text-white">2,000+ daily active users</span>.
+            </p>
+          </div>
+
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">ICPC Egypt Lead. </strong>
+              Built and scaled <a href="https://icpchue.com" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">icpchue.com</a>—a gamified LeetCode-style training platform housing <span className="text-white">650+ curated algorithms</span> to prepare students nationwide for the ECPC.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
