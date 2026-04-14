@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { AppThemeProvider } from "@/components/mode-toggle";
 import { QueryProvider } from "@/lib/query/providers";
-import { Agentation } from "agentation";
+
 import { Toaster } from "sonner";
 import { Navbar } from "../components/navbar";
 import { Analytics } from "@vercel/analytics/react";
@@ -152,7 +152,6 @@ function RootProviders({ children }: { children: ReactNode }) {
       <QueryProvider>
         <AppThemeProvider>
           {children}
-          {import.meta.env.DEV ? <Agentation endpoint="http://localhost:4747" /> : null}
         </AppThemeProvider>
       </QueryProvider>
     </>
