@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { allPosts, allThoughts, allPages } from "content-collections";
 
-const BASE_URL = "https://ephraimduncan.com";
+const BASE_URL = "https://yousefdev.xyz";
 
 function buildSitemapXml(): string {
   const urls: { loc: string; lastmod: string; changefreq: string; priority: number }[] = [];

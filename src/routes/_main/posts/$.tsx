@@ -13,10 +13,10 @@ export const Route = createFileRoute("/_main/posts/$")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) return {};
-    const url = `https://ephraimduncan.com${loaderData.slug}`;
+    const url = `https://yousefdev.xyz${loaderData.slug}`;
     return {
       meta: [
-        { title: `${loaderData.title} | Ephraim Duncan` },
+        { title: `${loaderData.title} | Yousef` },
         { name: "description", content: loaderData.description ?? "" },
         { property: "og:title", content: loaderData.title },
         {
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/_main/posts/$")({
           property: "article:published_time",
           content: new Date(loaderData.date).toISOString(),
         },
-        { property: "article:author", content: "Ephraim Duncan" },
+        { property: "article:author", content: "Yousef" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: loaderData.title },
         {

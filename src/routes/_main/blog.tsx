@@ -5,7 +5,7 @@ import { Posts } from "@/components/posts";
 export const Route = createFileRoute("/_main/blog")({
   component: BlogPage,
   head: () => ({
-    meta: [{ title: "Blog | Ephraim Duncan" }],
+    meta: [{ title: "Blog | Yousef" }],
   }),
 });
 

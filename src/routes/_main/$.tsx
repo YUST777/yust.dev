@@ -12,10 +12,10 @@ export const Route = createFileRoute("/_main/$")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) return {};
-    const url = `https://ephraimduncan.com${loaderData.slug}`;
+    const url = `https://yousefdev.xyz${loaderData.slug}`;
     return {
       meta: [
-        { title: `${loaderData.title} | Ephraim Duncan` },
+        { title: `${loaderData.title} | Yousef` },
         {
           name: "description",
           content: loaderData.description ?? "",

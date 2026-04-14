@@ -5,7 +5,7 @@ import { Posts } from "@/components/posts";
 export const Route = createFileRoute("/_main/thoughts/")({
   component: ThoughtsPage,
   head: () => ({
-    meta: [{ title: "Thoughts | Ephraim Duncan" }],
+    meta: [{ title: "Thoughts | Yousef" }],
   }),
 });
 

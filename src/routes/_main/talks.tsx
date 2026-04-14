@@ -20,7 +20,7 @@ const TALKS = [
 export const Route = createFileRoute("/_main/talks")({
   component: TalksPage,
   head: () => ({
-    meta: [{ title: "Talks | Ephraim Duncan" }],
+    meta: [{ title: "Talks | Yousef" }],
   }),
 });
 

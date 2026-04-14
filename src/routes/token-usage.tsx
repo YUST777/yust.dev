@@ -10,7 +10,7 @@ const loadUsageData = createServerFn({ method: "GET" }).handler(() => {
 export const Route = createFileRoute("/token-usage")({
   loader: () => loadUsageData(),
   head: () => ({
-    meta: [{ title: "Token Usage | Ephraim Duncan" }],
+    meta: [{ title: "Token Usage | Yousef" }],
   }),
   component: TokenUsagePage,
   errorComponent: ({ error }) => (
