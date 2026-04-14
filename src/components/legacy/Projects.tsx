@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import BentoTilt from './BentoTilt'
 import ProjectModal from './ProjectModal'
 import ScopedSmoothScroll from './ScopedSmoothScroll'
@@ -15,16 +15,23 @@ gsap.registerPlugin(ScrollTrigger)
 
 const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }: { video: string, title?: string, shouldAutoPlay?: boolean, isHovered?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(containerRef, { once: true, margin: "200px" })
 
   useEffect(() => {
-    if (shouldAutoPlay) return
+    if (!videoRef.current || !isInView) return
+
+    if (shouldAutoPlay) {
+      videoRef.current.play().catch(() => { })
+      return
+    }
 
     if (isHovered) {
-      videoRef.current?.play().catch(() => { })
+      videoRef.current.play().catch(() => { })
     } else {
-      videoRef.current?.pause()
+      videoRef.current.pause()
     }
-  }, [isHovered, shouldAutoPlay])
+  }, [isHovered, shouldAutoPlay, isInView])
 
   // Use onLoadedData to set the initial frame safely
   const handleLoadedData = () => {
@@ -34,19 +41,21 @@ const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }
   }
 
   return (
-    <div className="absolute inset-0 w-full h-full bg-[#0c0c0c] group-hover:scale-105 transition-transform duration-700 ease-out">
-      <video
-        ref={videoRef}
-        src={video}
-        preload="auto"
-        autoPlay={shouldAutoPlay}
-        loop
-        muted
-        playsInline
-        onLoadedData={handleLoadedData}
-        className="absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none"
-        title={title}
-      />
+    <div ref={containerRef} className="absolute inset-0 w-full h-full bg-[#0c0c0c] group-hover:scale-105 transition-transform duration-700 ease-out">
+      {isInView && (
+        <video
+          ref={videoRef}
+          src={video}
+          preload="auto"
+          autoPlay={shouldAutoPlay}
+          loop
+          muted
+          playsInline
+          onLoadedData={handleLoadedData}
+          className="absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none"
+          title={title}
+        />
+      )}
     </div>
   )
 }
