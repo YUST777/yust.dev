@@ -6,6 +6,7 @@ import { QueryProvider } from "@/lib/query/providers";
 import { Agentation } from "agentation";
 import { Toaster } from "sonner";
 import { Navbar } from "../components/navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 import globalsCss from "@/src/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
@@ -137,13 +138,7 @@ function RootDocument({ children }: { children: ReactNode }) {
           </svg>
         </div>
         <RootProviders>{children}</RootProviders>
-        {import.meta.env.PROD && (
-          <script
-            async
-            src="https://analytics.duncan.land/script.js"
-            data-website-id="48972d0a-03c2-4a49-b638-d3a0ad8da3e0"
-          />
-        )}
+        <Analytics />
         <Scripts />
       </body>
     </html>
