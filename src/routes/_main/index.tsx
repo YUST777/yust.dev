@@ -76,8 +76,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="font-mono mt-16 pb-4">
-        <div className="overflow-hidden w-full flex justify-center">
+      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
+        <div className="w-full flex justify-center">
           <GitHubCalendar 
             username="YUST777" 
             colorScheme="dark"
