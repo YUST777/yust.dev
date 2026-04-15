@@ -69,29 +69,32 @@ function AboutPage() {
             I love learning by doing, and I'm always exploring new technologies to solve interesting problems.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4 pt-4 border-t border-white/5 opacity-80">
-            <span className="text-zinc-500 font-bold uppercase tracking-widest text-[12px] sm:text-[13px]">CORE STACK :</span>
-            <div className="flex items-center gap-5 text-zinc-400">
-              <SiReact className="w-[1.25em] h-[1.25em]" />
-              <SiNextdotjs className="w-[1.25em] h-[1.25em]" />
-              <SiSupabase className="w-[1.25em] h-[1.25em]" />
-              <SiTailwindcss className="w-[1.25em] h-[1.25em]" />
-              <SiPython className="w-[1.25em] h-[1.25em]" />
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5 opacity-80">
+            <span className="text-zinc-500 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">CORE STACK :</span>
+            <div className="flex flex-wrap items-center gap-6 text-zinc-400">
+              <SiReact className="w-5 h-5 transition-colors hover:text-[#61DAFB]" />
+              <SiNextdotjs className="w-5 h-5 transition-colors hover:text-white" />
+              <SiSupabase className="w-5 h-5 transition-colors hover:text-[#3ECF8E]" />
+              <SiTailwindcss className="w-5 h-5 transition-colors hover:text-[#06B6D4]" />
+              <SiPython className="w-5 h-5 transition-colors hover:text-[#3776AB]" />
             </div>
           </div>
         </div>
 
-        <div className="mt-12">
-          <p className="text-zinc-500 text-sm mb-4 font-mono">My <strong className="text-white">social links</strong> if you wish to connect with me</p>
-          <div className="flex flex-wrap gap-3">
+        <div className="mt-16">
+          <p className="text-zinc-500 text-[13px] mb-6 font-mono uppercase tracking-widest">Connect with me</p>
+          <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
             {[
-              { icon: <RiTelegramFill size={16} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
-              { icon: <RiGithubFill size={16} />, label: "Github", url: "https://github.com/YUST777" },
-              { icon: <RiLinkedinBoxFill size={16} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
-              { icon: <RiMailFill size={16} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
+              { icon: <RiTelegramFill size={18} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
+              { icon: <RiGithubFill size={18} />, label: "Github", url: "https://github.com/YUST777" },
+              { icon: <RiLinkedinBoxFill size={18} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
+              { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
             ].map((link) => (
-              <a key={link.label} href={link.url || "#"} className="flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
-                {link.icon} {link.label}
+              <a key={link.label} href={link.url || "#"} className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 sm:py-2.5 rounded-lg bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[13px] sm:text-sm text-zinc-300 font-mono group">
+                <span className="text-zinc-500 group-hover:text-white transition-colors">
+                  {link.icon}
+                </span>
+                {link.label}
               </a>
             ))}
           </div>
