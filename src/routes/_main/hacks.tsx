@@ -13,7 +13,11 @@ const hacks = [
     desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. Co-developed a comprehensive Pentesting AI Agent designed to secure rapidly generated code by performing static analysis and utilizing Playwright for dynamic browser testing. The agent autonomously patches vulnerabilities and provides actionable reports. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
     tech: "Next.js • Playwright • Google Cloud • AI Agents",
     linkText: "Project Waitlist: sast.tech",
-    linkUrl: "https://sast.tech"
+    linkUrl: "https://sast.tech",
+    proofs: [
+      { label: "Official Post 1", url: "https://www.facebook.com/share/p/1BGCYoPpDT/" },
+      { label: "Official Post 2", url: "https://www.facebook.com/share/p/1J1uzVockT/?mibextid=wwXIfr" }
+    ]
   },
   {
     rank: "3RD PLACE",
@@ -23,7 +27,10 @@ const hacks = [
     desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, architecting and shipping a competitive AI-centric solution under strict hackathon constraints.",
     tech: "Artificial Intelligence • Software Engineering • Data Science",
     linkText: "",
-    linkUrl: ""
+    linkUrl: "",
+    proofs: [
+      { label: "Ministry of Higher Education Coverage (2:53)", url: "https://www.facebook.com/reel/1254422980142263/?rdid=00XQLwjArSKK7907&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F18bpjNiiwF%2F#" }
+    ]
   },
   {
     rank: "3RD PLACE",
@@ -33,7 +40,12 @@ const hacks = [
     desc: "Secured 3rd Place nationwide, competing as a Freshman against Level 4 & 5 Engineering seniors from 20 universities. Built Zero Threat, an integrated security ecosystem providing real-time protection and vulnerability assessment. Engineered universal file scanners for hidden malware signatures and an OWASP-inspired vulnerability scanner. Officially commended by the Dean of Computer Science.",
     tech: "Next.js • React • GSAP • YARA Protocol • Cybersecurity",
     linkText: "",
-    linkUrl: ""
+    linkUrl: "",
+    proofs: [
+      { label: "Horus University Official Post", url: "https://www.facebook.com/hue.eg/posts/pfbid0y73xcQuLyVuA5DroyFuMLtT51GDCifxroNXo7JJkXPtrqhcGJ6szkB3ugaSqPqr6l?rdid=AwkKSPyjydzamHLK#" },
+      { label: "Tanta University Official Post", url: "https://www.facebook.com/TantaUniversity.Official/posts/pfbid0RAC9wx52FyNeyUoS1maGC8PpuNxqhn5FaEwqJzcu7CB6onWBGcreFTrRX1wajZCsl?rdid=zgwCzVlm77LP7m3M#" },
+      { label: "Award Ceremony Video (2:13)", url: "https://www.facebook.com/reel/710000655405770" }
+    ]
   }
 ];
 
@@ -65,11 +77,24 @@ function HacksPage() {
             <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
               {hack.tech}
             </div>
-            {hack.linkText && (
-              <a href={hack.linkUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 mt-1 self-start">
-                {hack.linkText}
-              </a>
-            )}
+            
+            <div className="flex flex-col gap-2 mt-1">
+              {hack.linkText && (
+                <a href={hack.linkUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start">
+                  {hack.linkText}
+                </a>
+              )}
+              {hack.proofs && hack.proofs.length > 0 && (
+                <div className="flex flex-wrap gap-4 mt-1">
+                  {hack.proofs.map((proof, idx) => (
+                    <a key={idx} href={proof.url} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group">
+                      <svg className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                      <span className="underline decoration-zinc-800 underline-offset-4">{proof.label}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
