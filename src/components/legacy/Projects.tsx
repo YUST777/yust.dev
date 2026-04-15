@@ -93,19 +93,7 @@ export default function Projects() {
   const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null)
   const [typewriterText, setTypewriterText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
-  // Card stagger animation variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.08,
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    })
-  }
+  // No static cardVariants needed now
 
   // Typewriter animation effect
   useEffect(() => {
@@ -284,11 +272,11 @@ export default function Projects() {
               return (
                 <motion.div
                   key={project.id}
-                  custom={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
                   className={project.span}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                 <BentoTilt
                   className={`rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'} h-full`}
@@ -349,11 +337,11 @@ export default function Projects() {
               return (
                 <motion.div
                   key={project.id}
-                  custom={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
                   className={project.span}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                 <BentoTilt
                   className={`rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300 h-full`}
@@ -421,11 +409,11 @@ export default function Projects() {
             return (
               <motion.div
                 key={project.id}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
                 className={project.span}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               >
               <BentoTilt
                 className={`rounded-2xl overflow-hidden relative group cursor-pointer h-full`}
