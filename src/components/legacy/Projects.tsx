@@ -40,7 +40,7 @@ const VideoPlayer = memo(({ video, title, shouldAutoPlay = false, isHovered = fa
         <video
           ref={videoRef}
           src={video}
-          preload="none"
+          preload={shouldAutoPlay ? "auto" : "metadata"}
           autoPlay={shouldAutoPlay}
           loop
           muted
