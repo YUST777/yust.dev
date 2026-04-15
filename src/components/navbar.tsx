@@ -1,20 +1,24 @@
 import { Link } from "@tanstack/react-router";
-import { Home3D, Folder3D, Briefcase3D, Star3D, Moon3D } from "./icons3d";
+import HouseIcon from "./icons/house";
+import SparklesIcon from "./icons/sparkles";
+import BriefcaseIcon from "./icons/briefcase";
+import StarSparkleIcon from "./icons/star-sparkle";
+import MoonIcon from "./icons/moon";
 
 export function Navbar() {
   return (
     <nav className="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-[999] w-auto max-w-[95vw]">
       <div className="flex items-center gap-0.5 sm:gap-1.5 p-1 sm:p-1.5 bg-[#0e0e0e]/70 backdrop-blur-2xl border border-white/[0.08] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)]">
         
-        <NavLink to="/" icon={<Home3D width="18" height="18" />} label="About" />
-        <NavLink to="/projects" icon={<Folder3D width="18" height="18" />} label="Projects" />
-        <NavLink to="/experience" icon={<Briefcase3D width="18" height="18" />} label="Experience" />
-        <NavLink to="/hacks" icon={<Star3D width="18" height="18" />} label="Hacks" />
+        <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
+        <NavLink to="/projects" icon={<SparklesIcon width="18" height="18" />} label="Projects" />
+        <NavLink to="/experience" icon={<BriefcaseIcon width="18" height="18" />} label="Experience" />
+        <NavLink to="/hacks" icon={<StarSparkleIcon width="18" height="18" />} label="Hacks" />
         
         <div className="w-[1px] h-6 bg-white/10 mx-1 sm:mx-2" />
         
         <button className="p-2 sm:p-2.5 rounded-full text-zinc-400 hover:text-white transition-colors cursor-pointer" aria-label="Toggle Theme">
-          <Moon3D width="18" height="18" />
+          <MoonIcon width="18" height="18" />
         </button>
       </div>
     </nav>

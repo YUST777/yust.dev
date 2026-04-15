@@ -109,6 +109,9 @@ export default defineConfig({
     },
   },
   server: { port: 3000 },
+  optimizeDeps: {
+    exclude: ["content-collections", ".content-collections"],
+  },
   resolve: {
     tsconfigPaths: true,
     alias: {
