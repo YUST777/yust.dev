@@ -85,7 +85,7 @@ function AboutPage() {
         </div>
         {/* Desktop: full calendar */}
         <div className="hidden sm:block w-full overflow-x-auto overflow-y-visible">
-          <div className="w-fit mx-auto pr-4 pt-4">
+          <div className="w-fit mx-auto px-4 pt-4">
             <GitHubCalendar 
               username="YUST777" 
               colorScheme="dark"
@@ -96,9 +96,9 @@ function AboutPage() {
                 color: '#71717a',
                 margin: '0 auto'
               }}
-              blockSize={14}
-              blockMargin={4}
-              fontSize={13}
+              blockSize={12}
+              blockMargin={3}
+              fontSize={12}
               labels={{
                 totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
               }}
@@ -107,7 +107,8 @@ function AboutPage() {
                 if (padData.length === 0) return padData;
                 const lastDateStr = padData[padData.length - 1].date;
                 const lastDate = new Date(lastDateStr);
-                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0); // Last day of month
+                // Pad to end of NEXT month so the current month always gets a label
+                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 2, 0);
                 
                 let curr = new Date(lastDate);
                 curr.setDate(curr.getDate() + 1);
