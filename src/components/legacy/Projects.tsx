@@ -288,9 +288,10 @@ export default function Projects() {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
+                  className={project.span}
                 >
                 <BentoTilt
-                  className={`${project.span} rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'} h-full`}
+                  className={`rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'} h-full`}
                 >
                   <motion.div
                     className="w-full h-full relative"
@@ -352,9 +353,10 @@ export default function Projects() {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
+                  className={project.span}
                 >
                 <BentoTilt
-                  className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300 h-full`}
+                  className={`rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300 h-full`}
                 >
                   <motion.div
                     className="w-full h-full relative"
@@ -423,9 +425,10 @@ export default function Projects() {
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
+                className={project.span}
               >
               <BentoTilt
-                className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer h-full`}
+                className={`rounded-2xl overflow-hidden relative group cursor-pointer h-full`}
               >
                 <motion.div
                   className="w-full h-full relative"
