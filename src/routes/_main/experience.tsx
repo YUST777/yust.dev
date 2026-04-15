@@ -11,10 +11,11 @@ const experience = [
     date: "January 2026 - Present",
     location: "Egypt",
     responsibilities: [
-      "Founded a competitive programming platform scaling to 44,000+ developers, generating 88k+ impressions on launch.",
-      "Engineered an isolated Code Execution Engine integrating Judge0 within an air-gapped Docker sandbox.",
-      "Developed an official Chrome extension ('Verdict Helper') to naturally sync Codeforces data with the unified IDE.",
-      "Self-hosted the entire Linux infrastructure, heavily managing Docker networking, Nginx reverse proxies, and CI/CD."
+      "Founded a viral Competitive Programming 'Mirror Tool' that transforms the Codeforces UI into a sleek LeetCode-style IDE simply by changing the TLD to '.run'.",
+      "Generated 120k+ impressions on LinkedIn with the launch video, scaling to 500+ registered users and 100+ Daily Active Users (DAU) in early release.",
+      "Engineered an integration suite featuring AI-powered problem solving (MCP), automated video explanations, and a Chrome extension for seamless server-side account rendering.",
+      "Self-hosted the entire high-availability infrastructure on OVH using an air-gapped Docker-integrated Code Execution Engine (Judge0).",
+      "Drafting and executing plans to scale the platform to serve the entire competitive programming community across Egypt."
     ],
     tech: ["Next.js", "React", "Docker", "Judge0", "Chrome API", "Linux"]
   },
