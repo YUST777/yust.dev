@@ -10,9 +10,9 @@ const hacks = [
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "LUXSAI AI HACKTHON • MAR 3, 2026 • LUXOR UNIVERSITY",
-    title: "sast.tech (Horus University AI Delegation)",
+    title: "sast.tech (Pentesting/IDE AI Agent)",
     desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, competing with sast.tech—an autonomous Pentesting AI Agent. We enhanced and shipped a highly competitive iteration of the solution under strict hackathon constraints, enabling dynamic vulnerability patching and actionable reporting.",
-    tech: "Artificial Intelligence • Software Engineering • Data Science",
+    tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
@@ -24,14 +24,14 @@ const hacks = [
     rank: "2ND PLACE",
     color: "text-white hover:text-[#9ab8d6] transition-colors duration-300",
     event: "GDG DELTA HACKATHON • FEB 18, 2026 • GOOGLE DEVELOPER GROUPS",
-    title: "sast.tech (Pentesting AI Agent)",
+    title: "sast.tech (Pentesting/IDE AI Agent)",
     desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. This marked the inception of sast.tech, where we co-developed the comprehensive Pentesting AI Agent to secure rapidly generated code using static analysis and Playwright. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
-    tech: "Next.js • Playwright • Google Cloud • AI Agents",
+    tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
-      { label: "Official Post 1", url: "https://www.facebook.com/share/p/1BGCYoPpDT/" },
-      { label: "Official Post 2", url: "https://www.facebook.com/share/p/1J1uzVockT/?mibextid=wwXIfr" }
+      { label: "GDG DELTA", url: "https://www.facebook.com/share/p/1BGCYoPpDT/" },
+      { label: "AI FACULTY HORUS", url: "https://www.facebook.com/share/p/1J1uzVockT/?mibextid=wwXIfr" }
     ]
   },
 

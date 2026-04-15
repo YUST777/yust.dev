@@ -27,17 +27,17 @@ function AboutPage() {
   return (
     <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <header>
-        <p className="font-mono text-zinc-500 mb-2">Hola I'm</p>
+        <p className="font-mono text-zinc-500 mb-2">Hi I'm 👋</p>
         <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">YOUSEF</h1>
         <p className="text-sm md:text-base text-zinc-400 max-w-2xl uppercase tracking-wider font-mono">
           Level 2 AI & Cybersecurity student and Full-Stack Developer
         </p>
-        
+
         <div className="flex items-center gap-3 mt-8">
           <a href="#" className="flex items-center px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800 transition-all text-sm text-zinc-300 font-mono tracking-tight">
             Verdict.run
           </a>
-          
+
           <div className="relative -ml-1 flex items-center mt-2">
             <svg
               className="pointer-events-none size-8 shrink-0 rotate-[190deg] text-zinc-500 opacity-60"
@@ -60,7 +60,7 @@ function AboutPage() {
         <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
         <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
           <p>
-            I'm Yousef, a Level 2 AI & Cybersecurity student based in Egypt and a passionate Full-Stack Developer. 
+            I'm Yousef, a Level 2 AI & Cybersecurity student based in Egypt and a passionate Full-Stack Developer.
             Since June 2024, I've been building real projects to sharpen my skills — from an award-winning security suite to Telegram bots and full-stack platforms.
           </p>
           <p>
@@ -87,8 +87,8 @@ function AboutPage() {
 
       <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
         <div className="w-full overflow-x-auto">
-          <GitHubCalendar 
-            username="YUST777" 
+          <GitHubCalendar
+            username="YUST777"
             colorScheme="dark"
             theme={{
               dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
@@ -140,7 +140,7 @@ function AboutPage() {
               Built and scaled <a href="https://icpchue.com" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">icpchue.com</a>—a gamified LeetCode-style training platform housing <span className="text-white">650+ curated algorithms</span> to prepare students nationwide for the ECPC.
             </p>
           </div>
-          
+
           <div className="border-l border-zinc-800 pl-4 py-1">
             <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
               <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">3x Hackathon Winner. </strong>
