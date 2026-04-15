@@ -1,22 +1,17 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, useInView } from 'framer-motion'
 import BentoTilt from './BentoTilt'
 import ProjectModal from './ProjectModal'
 import ScopedSmoothScroll from './ScopedSmoothScroll'
-// Icons will use FontAwesome classes instead
-
-gsap.registerPlugin(ScrollTrigger)
 
 
-const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }: { video: string, title?: string, shouldAutoPlay?: boolean, isHovered?: boolean }) => {
+const VideoPlayer = memo(({ video, title, shouldAutoPlay = false, isHovered = false }: { video: string, title?: string, shouldAutoPlay?: boolean, isHovered?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "200px" })
+  const isInView = useInView(containerRef, { once: true, margin: "100px" })
 
   useEffect(() => {
     if (!videoRef.current || !isInView) return
@@ -33,7 +28,6 @@ const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }
     }
   }, [isHovered, shouldAutoPlay, isInView])
 
-  // Use onLoadedData to set the initial frame safely
   const handleLoadedData = () => {
     if (videoRef.current && !shouldAutoPlay && videoRef.current.currentTime === 0) {
       videoRef.current.currentTime = 0.001
@@ -42,11 +36,11 @@ const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }
 
   return (
     <div ref={containerRef} className="absolute inset-0 w-full h-full bg-[#0c0c0c] group-hover:scale-105 transition-transform duration-700 ease-out">
-      {isInView && (
+      {isInView ? (
         <video
           ref={videoRef}
           src={video}
-          preload="auto"
+          preload="none"
           autoPlay={shouldAutoPlay}
           loop
           muted
@@ -55,14 +49,15 @@ const VideoPlayer = ({ video, title, shouldAutoPlay = false, isHovered = false }
           className="absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none"
           title={title}
         />
+      ) : (
+        <div className="absolute inset-0 w-full h-full bg-zinc-900/50 rounded-2xl" />
       )}
     </div>
   )
-}
+})
 
 export default function Projects() {
   const navigate = useNavigate()
-  const revealRefs = useRef<(HTMLDivElement | null)[]>([])
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   type Project = {
@@ -98,11 +93,19 @@ export default function Projects() {
   const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null)
   const [typewriterText, setTypewriterText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
-  const [hasMounted, setHasMounted] = useState(false)
-
-  useEffect(() => {
-    setHasMounted(true)
-  }, [])
+  // Card stagger animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.08,
+        duration: 0.4,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    })
+  }
 
   // Typewriter animation effect
   useEffect(() => {
@@ -275,17 +278,21 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
-          {hasMounted && projectsData.map((project, index) => {
+          {projectsData.map((project, index) => {
             // --- Large Card (e.g. YousefDev) ---
             if (project.isLarge) {
               return (
-                <BentoTilt
+                <motion.div
                   key={project.id}
-                  className={`${project.span} rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'}`}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  {/* Clickable overlay for mobile touch */}
+                <BentoTilt
+                  className={`${project.span} rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'} h-full`}
+                >
                   <motion.div
-                    ref={el => { revealRefs.current[index + 1] = el }}
                     className="w-full h-full relative"
                     initial="idle"
                     whileHover="hover"
@@ -327,30 +334,35 @@ export default function Projects() {
                       )}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
                       {project.video && project.video !== '/videos/yousefdev.webm' ? (
-                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm group-hover:bg-transparent group-hover:backdrop-blur-none transition-all duration-500 pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-all duration-500 pointer-events-none"></div>
                       ) : null}
                     </div>
                   </motion.div>
                 </BentoTilt>
+                </motion.div>
               )
             }
 
             // --- Minimal Card (e.g. Archive) ---
             if (project.isMinimal) {
               return (
-                <BentoTilt
+                <motion.div
                   key={project.id}
-                  className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300`}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                <BentoTilt
+                  className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300 h-full`}
                 >
                   <motion.div
-                    ref={el => { revealRefs.current[index + 1] = el }}
                     className="w-full h-full relative"
                     initial="idle"
                     whileHover="hover"
                     onMouseEnter={() => setHoveredVideoId(project.id)}
                     onMouseLeave={() => setHoveredVideoId(null)}
                   >
-                    {/* Clickable overlay for mobile touch */}
                     <button
                       onClick={() => {
                         if (project.isArchive) {
@@ -386,7 +398,7 @@ export default function Projects() {
                             isHovered={hoveredVideoId === project.id}
                           />
                           {project.video !== '/videos/moreprojects.webm' ? (
-                            <div className="absolute inset-0 bg-black/20 backdrop-blur-sm group-hover:bg-transparent group-hover:backdrop-blur-none transition-all duration-500 pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-all duration-500 pointer-events-none"></div>
                           ) : null}
                         </>
                       ) : (
@@ -399,18 +411,23 @@ export default function Projects() {
                     </div>
                   </motion.div>
                 </BentoTilt>
+                </motion.div>
               )
             }
 
             // --- Standard Card (e.g. RetroOS, ICPCHUE) ---
             return (
-              <BentoTilt
+              <motion.div
                 key={project.id}
-                className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer`}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
               >
-                {/* Clickable overlay for mobile touch */}
+              <BentoTilt
+                className={`${project.span} rounded-2xl overflow-hidden relative group cursor-pointer h-full`}
+              >
                 <motion.div
-                  ref={el => { revealRefs.current[index + 1] = el }}
                   className="w-full h-full relative"
                   initial="idle"
                   whileHover="hover"
@@ -463,7 +480,7 @@ export default function Projects() {
                   >
                     <i className="fas fa-arrow-right -rotate-45 text-xl"></i>
                   </motion.div>
-                  <div className="w-full h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
+                  <div className="w-full h-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
                     {project.video ? (
                       <VideoPlayer
                         video={project.video}
@@ -476,7 +493,7 @@ export default function Projects() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
                     {project.video ? (
-                      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm group-hover:bg-transparent group-hover:backdrop-blur-none transition-all duration-500 pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-all duration-500 pointer-events-none"></div>
                     ) : null}
                   </div>
                   <div className="absolute inset-0 bg-transparent group-hover:bg-transparent transition-all duration-500 p-6 md:p-8 flex flex-col justify-between pointer-events-none">
@@ -492,6 +509,7 @@ export default function Projects() {
                   </div>
                 </motion.div>
               </BentoTilt>
+              </motion.div>
             )
           })}
         </div>
