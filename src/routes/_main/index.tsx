@@ -96,8 +96,8 @@ function AboutPage() {
                 color: '#71717a',
                 margin: '0 auto'
               }}
-              blockSize={11}
-              blockMargin={3}
+              blockSize={10}
+              blockMargin={2}
               fontSize={12}
               labels={{
                 totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
