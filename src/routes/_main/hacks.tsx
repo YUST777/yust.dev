@@ -22,12 +22,12 @@ const hacks = [
   {
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "LUXSAI AI HACKTHON • LUXOR UNIVERSITY",
-    title: "Horus University AI Delegation",
+    event: "LUXSAI AI HACKTHON • FEB 29 - MAR 3 • LUXOR UNIVERSITY",
+    title: "sast.tech (Horus University AI Delegation)",
     desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, architecting and shipping a competitive AI-centric solution under strict hackathon constraints.",
     tech: "Artificial Intelligence • Software Engineering • Data Science",
-    linkText: "",
-    linkUrl: "",
+    linkText: "Project Waitlist: sast.tech",
+    linkUrl: "https://sast.tech",
     proofs: [
       { label: "Ministry of Higher Education Coverage (2:53)", url: "https://www.facebook.com/reel/1254422980142263/?rdid=00XQLwjArSKK7907&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F18bpjNiiwF%2F#" }
     ]
