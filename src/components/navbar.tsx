@@ -3,7 +3,7 @@ import { Home3D, Folder3D, Briefcase3D, Star3D, Moon3D } from "./icons3d";
 
 export function Navbar() {
   return (
-    <nav className="fixed top-4 sm:top-8 left-1/2 -translate-x-1/2 z-[999] w-auto max-w-[95vw]">
+    <nav className="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-[999] w-auto max-w-[95vw]">
       <div className="flex items-center gap-0.5 sm:gap-1.5 p-1 sm:p-1.5 bg-[#0e0e0e]/70 backdrop-blur-2xl border border-white/[0.08] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)]">
         
         <NavLink to="/" icon={<Home3D width="18" height="18" />} label="About" />
@@ -25,7 +25,7 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
   return (
     <Link
       to={to}
-      className="flex items-center gap-0 sm:gap-2.5 px-2.5 sm:px-4 py-2 rounded-full text-[13px] font-semibold transition-all duration-300 relative group"
+      className="flex flex-col items-center justify-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-[1.25rem] transition-all duration-300 relative group"
       activeProps={{
         className: "bg-[#252528]/90 text-white shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] ring-1 ring-white/10",
       }}
@@ -34,10 +34,10 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
       }}
     >
       {/* Icon Wrapper for 3D effect */}
-      <span className="relative z-10 flex items-center justify-center transform group-hover:scale-105 transition-transform">
+      <span className="relative z-10 flex items-center justify-center transform group-hover:-translate-y-1 transition-transform duration-300">
         {icon}
       </span>
-      <span className="relative z-10 tracking-wide hidden sm:inline">{label}</span>
+      <span className="relative z-10 text-[10px] sm:text-xs font-semibold tracking-wide">{label}</span>
     </Link>
   );
 }
