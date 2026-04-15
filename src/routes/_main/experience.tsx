@@ -25,10 +25,11 @@ const experience = [
     date: "November 2025 - Present",
     location: "Horus University (Hybrid)",
     responsibilities: [
-      "Architected a gamified Competitive Programming training platform scaling to 300+ students and 15,000+ page views.",
-      "Engineered a proprietary Online Judge providing real-time code grading inside secure Alpine Linux Docker containers.",
-      "Achieved a 1,395ms average computational load time with AES-256 encryption and ML-KEM post-quantum readiness.",
-      "Led community training sessions for Horus University students to significantly enhance their competitive edge."
+      "Architected a unified training ecosystem solving the fragmented CP experience by integrating an IDE, 650+ curated problems, and live session-streaming into a single platform.",
+      "Implemented a high-engagement gamification layer featuring persistent achievements and real-world rewards (stickers, custom Rank-1 T-shirts) via a global leaderboard.",
+      "Engineered a proprietary Online Judge providing millisecond-accurate code grading inside secure Alpine Linux Docker containers.",
+      "Successfully scaled to 300+ active Horus University students, generating 15,000+ page views during intensive regional training sessions.",
+      "Directly led technical workshops to bridge the gap between academic theory and competitive proficiency."
     ],
     tech: ["Next.js 16", "Node.js", "PostgreSQL 16", "Docker", "TypeScript"]
   },
