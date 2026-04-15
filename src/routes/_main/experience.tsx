@@ -73,14 +73,6 @@ function ExperiencePage() {
                   </li>
                 ))}
               </ul>
-
-              <div className="flex flex-wrap gap-2.5">
-                {job.tech.map(t => (
-                  <span key={t} className="text-[10px] sm:text-[11px] font-mono text-zinc-500 tracking-wide uppercase px-2 py-1 rounded bg-zinc-900 border border-zinc-800 transition-colors group-hover:border-zinc-700">
-                    {t}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         ))}
