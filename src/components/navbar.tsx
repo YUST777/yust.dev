@@ -7,7 +7,7 @@ import MoonIcon from "./icons/moon";
 
 export function Navbar() {
   return (
-    <nav className="fixed top-4 sm:top-auto sm:bottom-8 left-1/2 -translate-x-1/2 z-[999] w-auto max-w-[95vw]">
+    <nav className="fixed bottom-4 sm:bottom-auto sm:top-8 left-1/2 -translate-x-1/2 z-[999] w-auto max-w-[95vw]">
       <div className="flex items-center gap-0.5 sm:gap-1.5 p-1 sm:p-1.5 bg-[#0e0e0e]/70 backdrop-blur-2xl border border-white/[0.08] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)]">
         
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
