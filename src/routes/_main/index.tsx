@@ -117,20 +117,6 @@ function AboutPage() {
         <div className="space-y-6">
           <div className="border-l border-zinc-800 pl-4 py-1">
             <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Tanta National Summit. </strong>
-              Won <span className="text-white">1st place</span> in my very first semester, outperforming senior-level (Level 4 & 5) university competitors.
-            </p>
-          </div>
-          
-          <div className="border-l border-zinc-800 pl-4 py-1">
-            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">3x Hackathon Winner. </strong>
-              Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including <span className="text-white">sast.tech</span>—an automated secure code generator.
-            </p>
-          </div>
-
-          <div className="border-l border-zinc-800 pl-4 py-1">
-            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
               <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Verdict.run. </strong>
               Engineered and launched a developer platform that went viral, generating <span className="text-white">120k+ organic impressions</span> on LinkedIn from a single early post.
             </p>
@@ -147,6 +133,20 @@ function AboutPage() {
             <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
               <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">ICPC Egypt Lead. </strong>
               Built and scaled <a href="https://icpchue.com" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">icpchue.com</a>—a gamified LeetCode-style training platform housing <span className="text-white">650+ curated algorithms</span> to prepare students nationwide for the ECPC.
+            </p>
+          </div>
+          
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">3x Hackathon Winner. </strong>
+              Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including <span className="text-white">sast.tech</span>—an automated secure code generator.
+            </p>
+          </div>
+
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Tanta National Summit. </strong>
+              Won <span className="text-white">1st place</span> in my very first semester, outperforming senior-level (Level 4 & 5) university competitors.
             </p>
           </div>
         </div>
