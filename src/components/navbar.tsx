@@ -25,7 +25,7 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
   return (
     <Link
       to={to}
-      className="flex flex-col items-center justify-center gap-1 sm:gap-1.5 px-3 sm:px-5 py-2 sm:py-2.5 rounded-[1.25rem] transition-all duration-300 relative group"
+      className="flex flex-col items-center justify-center gap-0.5 sm:gap-1.5 px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-[1rem] sm:rounded-[1.25rem] transition-all duration-300 relative group min-w-[50px] sm:min-w-auto"
       activeProps={{
         className: "bg-[#252528]/90 text-white shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] ring-1 ring-white/10",
       }}
@@ -37,7 +37,7 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
       <span className="relative z-10 flex items-center justify-center transform group-hover:-translate-y-1 transition-transform duration-300">
         {icon}
       </span>
-      <span className="relative z-10 text-[10px] sm:text-xs font-semibold tracking-wide">{label}</span>
+      <span className="relative z-10 text-[9px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">{label}</span>
     </Link>
   );
 }

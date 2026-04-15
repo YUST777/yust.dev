@@ -86,7 +86,8 @@ function AboutPage() {
             }}
             style={{
               color: '#71717a',
-              width: '100%'
+              minWidth: '750px',
+              margin: '0 auto'
             }}
             blockSize={11}
             blockMargin={3}
