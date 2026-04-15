@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_main/projects")({
 
 function ProjectsPage() {
   return (
-    <div className="bg-transparent min-h-screen text-white w-full max-w-full overflow-hidden pt-0 sm:pt-[45px]">
+    <div className="bg-transparent text-white pt-0 sm:pt-[45px]">
       <Projects />
     </div>
   );
