@@ -77,14 +77,7 @@ function AboutPage() {
       </section>
 
       <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
-        {/* Mobile: compact version */}
-        <div className="sm:hidden text-center py-6">
-          <a href="https://github.com/YUST777" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
-            <Github size={14} /> {stars !== null ? `${stars} ★` : '...'} • View GitHub Contributions
-          </a>
-        </div>
-        {/* Desktop: full calendar */}
-        <div className="hidden sm:block w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto">
           <GitHubCalendar 
             username="YUST777" 
             colorScheme="dark"
