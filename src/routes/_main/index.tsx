@@ -76,7 +76,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none] relative w-screen left-1/2 -translate-x-1/2">
+      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
         {/* Mobile: compact version */}
         <div className="sm:hidden text-center py-6">
           <a href="https://github.com/YUST777" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
@@ -84,53 +84,33 @@ function AboutPage() {
           </a>
         </div>
         {/* Desktop: full calendar */}
-        <div className="hidden sm:block w-full overflow-x-auto overflow-y-visible">
-          <div className="w-fit mx-auto px-8 pt-4">
-            <GitHubCalendar 
-              username="YUST777" 
-              colorScheme="dark"
-              theme={{
-                dark: ['#222222', '#333333', '#555555', '#777777', '#aaaaaa']
-              }}
-              style={{
-                color: '#71717a',
-                margin: '0 auto'
-              }}
-              blockSize={13}
-              blockMargin={3}
-              fontSize={13}
-              labels={{
-                totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
-              }}
-              transformData={(contributions) => {
-                const padData = [...contributions];
-                if (padData.length === 0) return padData;
-                const lastDateStr = padData[padData.length - 1].date;
-                const lastDate = new Date(lastDateStr);
-                // Pad 3 months ahead so current month label is never clipped
-                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 3, 0);
-                
-                let curr = new Date(lastDate);
-                curr.setDate(curr.getDate() + 1);
-                
-                while (curr <= endDate) {
-                  padData.push({
-                    date: curr.toISOString().split('T')[0],
-                    count: 0,
-                    level: 0
-                  });
-                  curr.setDate(curr.getDate() + 1);
-                }
-                return padData;
-              }}
-              renderBlock={(block, activity) =>
-                React.cloneElement(block as React.ReactElement, {
-                  'data-tooltip-id': 'github-tooltip',
-                  'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
-                })
-              }
-            />
-          </div>
+        <div className="hidden sm:flex w-full justify-center overflow-x-auto">
+          <GitHubCalendar 
+            username="YUST777" 
+            colorScheme="dark"
+            transformData={(data) =>
+              data.filter((activity) => new Date(activity.date) >= new Date('2025-10-01'))
+            }
+            theme={{
+              dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
+            }}
+            style={{
+              color: '#71717a',
+              margin: '0 auto'
+            }}
+            blockSize={14}
+            blockMargin={4}
+            fontSize={13}
+            labels={{
+              totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
+            }}
+            renderBlock={(block, activity) =>
+              React.cloneElement(block as React.ReactElement, {
+                'data-tooltip-id': 'github-tooltip',
+                'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
+              })
+            }
+          />
         </div>
         <Tooltip id="github-tooltip" className="!bg-zinc-900 !border !border-white/10 !rounded-md" />
       </section>
