@@ -40,8 +40,15 @@
   }
 
   html {
-    /* Safe 80% scale that doesn't break Framer Motion bounding boxes */
-    font-size: 12.8px;
+    /* Standard base on mobile for readability */
+    font-size: 16px;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      /* Safe 80% scale on desktop that doesn't break Framer Motion bounding boxes */
+      font-size: 12.8px;
+    }
   }
 
   body {

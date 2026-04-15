@@ -83,7 +83,7 @@ function ExperiencePage() {
               </div>
               
               <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-3">
-                <h3 className="text-2xl font-bold text-white font-mono tracking-tight group-hover:text-zinc-200 transition-colors">{job.role}</h3>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white font-mono tracking-tight group-hover:text-zinc-200 transition-colors leading-snug">{job.role}</h3>
                 <div className="text-xs tracking-widest uppercase text-zinc-500 font-mono mt-2 md:mt-0">
                   {job.date}
                 </div>

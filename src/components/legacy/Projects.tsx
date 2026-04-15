@@ -547,9 +547,9 @@ export default function Projects() {
             onClick={() => setOpenDrawer(null)}
           />
           <div
-            className="fixed inset-x-0 bottom-0 z-50 bg-[#0c0c0c] border-t border-white/20 rounded-t-3xl px-6 md:px-10 pb-10 pt-6 transition-transform duration-500 shadow-2xl max-h-[90vh] overflow-hidden flex flex-col translate-y-0"
+            className="fixed inset-x-0 bottom-0 z-50 bg-[#0c0c0c] border-t border-white/20 rounded-t-3xl px-4 sm:px-6 md:px-10 pb-6 sm:pb-10 pt-4 sm:pt-6 transition-transform duration-500 shadow-2xl max-h-[90vh] overflow-hidden flex flex-col translate-y-0"
           >
-            <div className="flex items-center justify-between mb-6 flex-shrink-0">
+            <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
                   {openDrawer === 'zerothreat' ? 'Zero Threat' :
@@ -565,7 +565,7 @@ export default function Projects() {
                             openDrawer === 'fazzah' ? 'Fazzah' :
                               openDrawer === 'verdict' ? 'Verdict' : ''}
                 </p>
-                <h3 className="text-2xl md:text-4xl font-display font-black text-white">
+                <h3 className="text-lg sm:text-2xl md:text-4xl font-display font-black text-white leading-tight">
                   {openDrawer === 'zerothreat' ? 'Zero Threat - Cybersecurity Website Project' :
                     openDrawer === 'giftsCharts' ? 'Gifts Charts - Telegram Analytics Bot' :
                       openDrawer === 'ICPCHUE' ? 'ICPCHUE - Creative Web Project' :

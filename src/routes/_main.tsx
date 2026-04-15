@@ -10,10 +10,10 @@ function MainLayout() {
   const isProjects = location.pathname.includes("/projects");
   return (
     <>
-      <main className={`mx-auto pt-32 pb-20 min-h-[calc(100vh-100px)] ${isProjects ? "px-0 w-full" : "max-w-5xl px-6"}`}>
+      <main className={`mx-auto pt-24 sm:pt-32 pb-20 min-h-[calc(100vh-100px)] ${isProjects ? "px-0 w-full" : "max-w-5xl px-4 sm:px-6"}`}>
         <Outlet />
       </main>
-      <footer className="max-w-5xl mx-auto pb-8 px-6 text-xs text-zinc-600 flex justify-between font-mono">
+      <footer className="max-w-5xl mx-auto pb-8 px-4 sm:px-6 text-xs text-zinc-600 flex justify-between font-mono">
         <div>
           <p>{new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
           <p className="flex items-center gap-1.5"><MapPin size={12} className="text-zinc-500" /> DT, EG</p>
