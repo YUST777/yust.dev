@@ -8,7 +8,7 @@ const hacks = [
   {
     rank: "2ND PLACE",
     color: "text-white hover:text-[#9ab8d6] transition-colors duration-300",
-    event: "GDG DELTA HACKATHON • FEBRUARY 2026 • GOOGLE DEVELOPER GROUPS",
+    event: "GDG DELTA HACKATHON • FEB 18, 2026 • GOOGLE DEVELOPER GROUPS",
     title: "sast.tech (Pentesting AI Agent)",
     desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. Co-developed a comprehensive Pentesting AI Agent designed to secure rapidly generated code by performing static analysis and utilizing Playwright for dynamic browser testing. The agent autonomously patches vulnerabilities and provides actionable reports. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
     tech: "Next.js • Playwright • Google Cloud • AI Agents",
