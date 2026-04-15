@@ -273,10 +273,6 @@ export default function Projects() {
                 <motion.div
                   key={project.id}
                   className={project.span}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                 <BentoTilt
                   className={`rounded-2xl overflow-hidden relative group ${project.video === '/videos/yousefdev.webm' ? 'cursor-default' : 'cursor-pointer'} h-full`}
@@ -338,10 +334,6 @@ export default function Projects() {
                 <motion.div
                   key={project.id}
                   className={project.span}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                 <BentoTilt
                   className={`rounded-2xl overflow-hidden relative group cursor-pointer bg-[#0c0c0c] border border-white/10 hover:border-white/30 shadow-2xl transition-all duration-300 h-full`}
@@ -410,10 +402,6 @@ export default function Projects() {
               <motion.div
                 key={project.id}
                 className={project.span}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
               >
               <BentoTilt
                 className={`rounded-2xl overflow-hidden relative group cursor-pointer h-full`}
