@@ -76,7 +76,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
+      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none] relative w-screen left-1/2 -translate-x-1/2">
         {/* Mobile: compact version */}
         <div className="sm:hidden text-center py-6">
           <a href="https://github.com/YUST777" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
@@ -85,7 +85,7 @@ function AboutPage() {
         </div>
         {/* Desktop: full calendar */}
         <div className="hidden sm:block w-full overflow-x-auto overflow-y-visible">
-          <div className="w-fit mx-auto px-4 pt-4">
+          <div className="w-fit mx-auto px-8 pt-4">
             <GitHubCalendar 
               username="YUST777" 
               colorScheme="dark"
@@ -96,9 +96,9 @@ function AboutPage() {
                 color: '#71717a',
                 margin: '0 auto'
               }}
-              blockSize={10}
-              blockMargin={2}
-              fontSize={12}
+              blockSize={13}
+              blockMargin={3}
+              fontSize={13}
               labels={{
                 totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
               }}
