@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Github, Send, Linkedin, Mail, Star, Undo2 } from "lucide-react";
+import { Star, Undo2 } from "lucide-react";
 import { GitHubCalendar } from "react-github-calendar";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import React, { useState, useEffect } from "react";
-import { SiReact, SiNextdotjs, SiPostgresql, SiPython, SiTailwindcss } from "react-icons/si";
+import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
+import { RiTelegramFill, RiGithubFill, RiLinkedinBoxFill, RiMailFill } from "react-icons/ri";
 
 export const Route = createFileRoute("/_main/")({
   component: AboutPage,
@@ -73,9 +74,9 @@ function AboutPage() {
             <div className="flex items-center gap-5 text-zinc-400">
               <SiReact className="w-[1.25em] h-[1.25em]" />
               <SiNextdotjs className="w-[1.25em] h-[1.25em]" />
-              <SiPostgresql className="w-[1.25em] h-[1.25em]" />
-              <SiPython className="w-[1.25em] h-[1.25em]" />
+              <SiSupabase className="w-[1.25em] h-[1.25em]" />
               <SiTailwindcss className="w-[1.25em] h-[1.25em]" />
+              <SiPython className="w-[1.25em] h-[1.25em]" />
             </div>
           </div>
         </div>
@@ -84,10 +85,10 @@ function AboutPage() {
           <p className="text-zinc-500 text-sm mb-4 font-mono">My <strong className="text-white">social links</strong> if you wish to connect with me</p>
           <div className="flex flex-wrap gap-3">
             {[
-              { icon: <Send size={14} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
-              { icon: <Github size={14} />, label: "Github", url: "https://github.com/YUST777" },
-              { icon: <Linkedin size={14} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
-              { icon: <Mail size={14} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
+              { icon: <RiTelegramFill size={16} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
+              { icon: <RiGithubFill size={16} />, label: "Github", url: "https://github.com/YUST777" },
+              { icon: <RiLinkedinBoxFill size={16} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
+              { icon: <RiMailFill size={16} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
             ].map((link) => (
               <a key={link.label} href={link.url || "#"} className="flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm text-zinc-300 font-mono">
                 {link.icon} {link.label}
