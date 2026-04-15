@@ -96,7 +96,7 @@ function AboutPage() {
                 color: '#71717a',
                 margin: '0 auto'
               }}
-              blockSize={12}
+              blockSize={11}
               blockMargin={3}
               fontSize={12}
               labels={{
@@ -107,8 +107,8 @@ function AboutPage() {
                 if (padData.length === 0) return padData;
                 const lastDateStr = padData[padData.length - 1].date;
                 const lastDate = new Date(lastDateStr);
-                // Pad to end of NEXT month so the current month always gets a label
-                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 2, 0);
+                // Pad 3 months ahead so current month label is never clipped
+                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 3, 0);
                 
                 let curr = new Date(lastDate);
                 curr.setDate(curr.getDate() + 1);
