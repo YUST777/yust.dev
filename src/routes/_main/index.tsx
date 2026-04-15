@@ -89,7 +89,7 @@ function AboutPage() {
             username="YUST777" 
             colorScheme="dark"
             theme={{
-              dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
+              dark: ['#222222', '#333333', '#555555', '#777777', '#aaaaaa']
             }}
             style={{
               color: '#71717a',
