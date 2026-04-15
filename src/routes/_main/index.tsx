@@ -84,7 +84,7 @@ function AboutPage() {
           </a>
         </div>
         {/* Desktop: full calendar */}
-        <div className="hidden sm:flex w-full justify-center overflow-x-auto">
+        <div className="hidden sm:block w-full overflow-x-auto">
           <GitHubCalendar 
             username="YUST777" 
             colorScheme="dark"
@@ -93,7 +93,7 @@ function AboutPage() {
             }}
             style={{
               color: '#71717a',
-              margin: '0 auto'
+              width: '100%'
             }}
             blockSize={11}
             blockMargin={3}
