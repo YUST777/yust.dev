@@ -88,9 +88,6 @@ function AboutPage() {
           <GitHubCalendar 
             username="YUST777" 
             colorScheme="dark"
-            transformData={(data) =>
-              data.filter((activity) => new Date(activity.date) >= new Date('2025-10-01'))
-            }
             theme={{
               dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
             }}
@@ -98,9 +95,9 @@ function AboutPage() {
               color: '#71717a',
               margin: '0 auto'
             }}
-            blockSize={14}
-            blockMargin={4}
-            fontSize={13}
+            blockSize={11}
+            blockMargin={3}
+            fontSize={12}
             labels={{
               totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
             }}
