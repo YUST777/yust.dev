@@ -120,7 +120,9 @@ function AboutPage() {
         <div className="space-y-6">
           <div className="border-l border-zinc-800 pl-4 py-1">
             <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">Verdict.run. </strong>
+              <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+                <a href="https://verdict.run" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">Verdict.run</a>.{" "}
+              </strong>
               Engineered and launched a developer platform that went viral, generating <span className="text-white">120k+ organic impressions</span> on LinkedIn from a single early post.
             </p>
           </div>
