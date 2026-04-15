@@ -5,12 +5,27 @@ export const Route = createFileRoute("/_main/hacks")({
 });
 
 const hacks = [
+
+  {
+    rank: "3RD PLACE",
+    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
+    event: "LUXSAI AI HACKTHON • MAR 3, 2026 • LUXOR UNIVERSITY",
+    title: "sast.tech (Horus University AI Delegation)",
+    desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, competing with sast.tech—an autonomous Pentesting AI Agent. We enhanced and shipped a highly competitive iteration of the solution under strict hackathon constraints, enabling dynamic vulnerability patching and actionable reporting.",
+    tech: "Artificial Intelligence • Software Engineering • Data Science",
+    linkText: "Project Waitlist: sast.tech",
+    linkUrl: "https://sast.tech",
+    proofs: [
+      { label: "Ministry of Higher Education Coverage (2:53)", url: "https://www.facebook.com/reel/1254422980142263/?rdid=00XQLwjArSKK7907&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F18bpjNiiwF%2F#" }
+    ]
+  },
+
   {
     rank: "2ND PLACE",
     color: "text-white hover:text-[#9ab8d6] transition-colors duration-300",
     event: "GDG DELTA HACKATHON • FEB 18, 2026 • GOOGLE DEVELOPER GROUPS",
     title: "sast.tech (Pentesting AI Agent)",
-    desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. Co-developed a comprehensive Pentesting AI Agent designed to secure rapidly generated code by performing static analysis and utilizing Playwright for dynamic browser testing. The agent autonomously patches vulnerabilities and provides actionable reports. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
+    desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. This marked the inception of sast.tech, where we co-developed the comprehensive Pentesting AI Agent to secure rapidly generated code using static analysis and Playwright. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
     tech: "Next.js • Playwright • Google Cloud • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
@@ -19,19 +34,7 @@ const hacks = [
       { label: "Official Post 2", url: "https://www.facebook.com/share/p/1J1uzVockT/?mibextid=wwXIfr" }
     ]
   },
-  {
-    rank: "3RD PLACE",
-    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "LUXSAI AI HACKTHON • FEB 29 - MAR 3 • LUXOR UNIVERSITY",
-    title: "sast.tech (Horus University AI Delegation)",
-    desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, architecting and shipping a competitive AI-centric solution under strict hackathon constraints.",
-    tech: "Artificial Intelligence • Software Engineering • Data Science",
-    linkText: "Project Waitlist: sast.tech",
-    linkUrl: "https://sast.tech",
-    proofs: [
-      { label: "Ministry of Higher Education Coverage (2:53)", url: "https://www.facebook.com/reel/1254422980142263/?rdid=00XQLwjArSKK7907&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F18bpjNiiwF%2F#" }
-    ]
-  },
+
   {
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
@@ -77,7 +80,7 @@ function HacksPage() {
             <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
               {hack.tech}
             </div>
-            
+
             <div className="flex flex-col gap-2 mt-1">
               {hack.linkText && (
                 <a href={hack.linkUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start">
