@@ -102,6 +102,26 @@ function AboutPage() {
               labels={{
                 totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
               }}
+              transformData={(contributions) => {
+                const padData = [...contributions];
+                if (padData.length === 0) return padData;
+                const lastDateStr = padData[padData.length - 1].date;
+                const lastDate = new Date(lastDateStr);
+                const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth() + 1, 0); // Last day of month
+                
+                let curr = new Date(lastDate);
+                curr.setDate(curr.getDate() + 1);
+                
+                while (curr <= endDate) {
+                  padData.push({
+                    date: curr.toISOString().split('T')[0],
+                    count: 0,
+                    level: 0
+                  });
+                  curr.setDate(curr.getDate() + 1);
+                }
+                return padData;
+              }}
               renderBlock={(block, activity) =>
                 React.cloneElement(block as React.ReactElement, {
                   'data-tooltip-id': 'github-tooltip',
