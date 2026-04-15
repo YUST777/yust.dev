@@ -144,7 +144,7 @@ function AboutPage() {
           <div className="border-l border-zinc-800 pl-4 py-1">
             <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
               <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">3x Hackathon Winner. </strong>
-              Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including <span className="text-white">sast.tech</span>—an automated secure code generator.
+              Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including <a href="https://sast.tech" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">sast.tech</a>—an automated secure code generator.
             </p>
           </div>
 
