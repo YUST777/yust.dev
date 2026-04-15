@@ -1,8 +1,8 @@
 import { Outlet, createFileRoute, useLocation } from "@tanstack/react-router";
 
-import LocationIcon from "@/components/icons/location";
-import BoltIcon from "@/components/icons/bolt";
-import CloudSunIcon from "@/components/icons/cloud-sun";
+import LocationIcon from "../components/icons/location";
+import BoltIcon from "../components/icons/bolt";
+import CloudSunIcon from "../components/icons/cloud-sun";
 
 export const Route = createFileRoute("/_main")({
   component: MainLayout,
