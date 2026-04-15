@@ -25,7 +25,7 @@ function AboutPage() {
   }, []);
 
   return (
-    <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <header>
         <p className="font-mono text-zinc-500 mb-2">Hi I'm 👋</p>
         <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">YOUSEF</h1>

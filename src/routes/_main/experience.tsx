@@ -61,7 +61,7 @@ const experience = [
 
 function ExperiencePage() {
   return (
-    <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div className="mb-12">
         <h1 className="text-4xl md:text-5xl font-pixel text-white mb-6">EXPERIENCE</h1>
         <p className="text-zinc-500 font-mono text-sm max-w-xl leading-relaxed">

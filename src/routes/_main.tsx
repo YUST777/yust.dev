@@ -9,11 +9,9 @@ export const Route = createFileRoute("/_main")({
 });
 
 function MainLayout() {
-  const location = useLocation();
-  const isProjects = location.pathname.includes("/projects");
   return (
     <>
-      <main className={`mx-auto pb-32 sm:pb-20 min-h-[calc(100vh-100px)] ${isProjects ? "px-0 w-full" : "pt-8 sm:pt-32 max-w-5xl px-4 sm:px-6"}`}>
+      <main className="w-full pb-32 sm:pb-20 min-h-[calc(100vh-100px)]">
         <Outlet />
       </main>
       <footer className="max-w-5xl mx-auto pb-28 sm:pb-8 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-500 flex flex-col font-mono mt-12 gap-1.5 opacity-80">
