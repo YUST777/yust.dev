@@ -84,30 +84,32 @@ function AboutPage() {
           </a>
         </div>
         {/* Desktop: full calendar */}
-        <div className="hidden sm:flex w-full justify-center overflow-x-auto">
-          <GitHubCalendar 
-            username="YUST777" 
-            colorScheme="dark"
-            theme={{
-              dark: ['#222222', '#333333', '#555555', '#777777', '#aaaaaa']
-            }}
-            style={{
-              color: '#71717a',
-              margin: '0 auto'
-            }}
-            blockSize={14}
-            blockMargin={4}
-            fontSize={13}
-            labels={{
-              totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
-            }}
-            renderBlock={(block, activity) =>
-              React.cloneElement(block as React.ReactElement, {
-                'data-tooltip-id': 'github-tooltip',
-                'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
-              })
-            }
-          />
+        <div className="hidden sm:flex w-full overflow-x-auto">
+          <div className="w-fit mx-auto pr-4">
+            <GitHubCalendar 
+              username="YUST777" 
+              colorScheme="dark"
+              theme={{
+                dark: ['#222222', '#333333', '#555555', '#777777', '#aaaaaa']
+              }}
+              style={{
+                color: '#71717a',
+                margin: '0 auto'
+              }}
+              blockSize={14}
+              blockMargin={4}
+              fontSize={13}
+              labels={{
+                totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
+              }}
+              renderBlock={(block, activity) =>
+                React.cloneElement(block as React.ReactElement, {
+                  'data-tooltip-id': 'github-tooltip',
+                  'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
+                })
+              }
+            />
+          </div>
         </div>
         <Tooltip id="github-tooltip" className="!bg-zinc-900 !border !border-white/10 !rounded-md" />
       </section>
