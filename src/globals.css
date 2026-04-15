@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('/fonts/silkscreen-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('/fonts/silkscreen-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
