@@ -87,20 +87,20 @@ function AboutPage() {
 
       <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
         <div className="w-full overflow-x-auto">
-          <div className="min-w-[750px] w-full [&>article]:w-full [&>article>svg]:w-full [&>article>svg]:h-auto">
-            <GitHubCalendar 
-              username="YUST777" 
-              colorScheme="dark"
-              theme={{
-                dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
-              }}
-              style={{
-                color: '#71717a',
-                width: '100%'
-              }}
-              blockSize={14}
-              blockMargin={4}
-              fontSize={12}
+          <GitHubCalendar 
+            username="YUST777" 
+            colorScheme="dark"
+            theme={{
+              dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
+            }}
+            style={{
+              color: '#71717a',
+              minWidth: '750px',
+              margin: '0 auto'
+            }}
+            blockSize={11}
+            blockMargin={3}
+            fontSize={12}
             labels={{
               totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
             }}
@@ -111,7 +111,6 @@ function AboutPage() {
               })
             }
           />
-          </div>
         </div>
         <Tooltip id="github-tooltip" className="!bg-zinc-900 !border !border-white/10 !rounded-md" />
       </section>
