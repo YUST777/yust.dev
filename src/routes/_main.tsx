@@ -30,10 +30,10 @@ function LiveClock() {
 function MainLayout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-1 w-full pb-16 sm:pb-20">
+      <main className="flex-1 w-full pb-8">
         <Outlet />
       </main>
-      <footer className="w-full max-w-5xl mx-auto pb-24 sm:pb-12 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-500 flex flex-col font-mono mt-auto gap-2 opacity-70">
+      <footer className="w-full max-w-5xl mx-auto pb-12 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-500 flex flex-col font-mono mt-auto gap-2 opacity-70">
         <div className="border-t border-white/5 pt-8 space-y-2">
           <p className="mb-1">
             <LiveClock />
