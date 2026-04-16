@@ -3,7 +3,7 @@ import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
 import BriefcaseIcon from "./icons/briefcase";
 import StarSparkleIcon from "./icons/star-sparkle";
-import MoonIcon from "./icons/moon";
+import { DesktopGoose } from "./desktop-goose";
 
 export function Navbar() {
   return (
@@ -17,9 +17,7 @@ export function Navbar() {
         
         <div className="w-[1px] h-6 bg-white/10 mx-1 sm:mx-2" />
         
-        <button className="p-2 sm:p-2.5 rounded-full text-zinc-400 hover:text-white transition-colors cursor-pointer" aria-label="Toggle Theme">
-          <MoonIcon width="18" height="18" />
-        </button>
+        <DesktopGoose />
       </div>
     </nav>
   );
