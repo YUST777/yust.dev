@@ -13,12 +13,12 @@ import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
 const SITE_URL = "https://yousefdev.xyz";
-const SITE_NAME = "Yousef";
+const SITE_NAME = "Yousef Mohammed Salah (Yüst)";
 const SITE_DESCRIPTION =
-  "Level 2 AI & Cybersecurity student and Full-Stack Developer.";
-const SITE_TITLE = `${SITE_NAME} — Full-Stack Developer`;
+  "Yousef Mohammed Salah (businessduck/yust777) — AI & Cybersecurity student and Full-Stack Developer. Founder of Verdict.run and ICPC HUE Lead.";
+const SITE_TITLE = "Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
 const SITE_SUMMARY =
-  "Level 2 AI & Cybersecurity student and Full-Stack Developer.";
+  "Full-Stack Developer, Level 2 AI & Cybersecurity student, and founder of projects like Verdict.run, ICPC HUE, and GiftsChart.";
 const SOCIAL_IMAGE_PATH = "/static/images/metadata.jpg";
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -33,10 +33,13 @@ const structuredData = {
       url: SITE_URL,
       jobTitle: "Software Engineer",
       description: SITE_SUMMARY,
+      alternateName: ["Yüst", "businessduck", "yust777", "Yousef Mohammed", "Yousef Horus"],
       sameAs: [
         "https://github.com/YUST777",
         "https://www.linkedin.com/in/yousefmsm1/",
         "https://t.me/yousefmsm1",
+        "https://verdict.run",
+        "https://icpchue.com",
       ],
       image: `${SITE_URL}/static/images/metadata.png`,
     },
@@ -63,7 +66,7 @@ export const Route = createRootRoute({
       {
         name: "keywords",
         content:
-          "software engineer, software developer, open source developer, full stack developer, web developer, TypeScript, Go, React, Next.js",
+          "yousef mohammed salah, yousef dev, yust, businessduck, yust777, yousef horus, yousef icpchue, yousef verdict, verdict, verdict.run, icpchue, gifts chart, giftschart, software engineer, full stack dev, cybersecurity student, AI student, Horus University",
       },
       { name: "author", content: SITE_NAME },
       { name: "creator", content: SITE_NAME },
