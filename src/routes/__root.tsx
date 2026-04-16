@@ -19,7 +19,7 @@ const SITE_DESCRIPTION =
 const SITE_TITLE = `${SITE_NAME} — Full-Stack Developer`;
 const SITE_SUMMARY =
   "Level 2 AI & Cybersecurity student and Full-Stack Developer.";
-const SOCIAL_IMAGE_PATH = "/static/images/card.png";
+const SOCIAL_IMAGE_PATH = "/static/images/metadata.jpg";
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
@@ -38,7 +38,7 @@ const structuredData = {
         "https://www.linkedin.com/in/yousefmsm1/",
         "https://t.me/yousefmsm1",
       ],
-      image: `${SITE_URL}/static/images/avatar.jpeg`,
+      image: `${SITE_URL}/static/images/metadata.png`,
     },
     {
       "@type": "WebSite",
@@ -106,7 +106,7 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
-      { rel: "icon", href: "/favicon.ico" },
+      { rel: "icon", href: "/static/images/metadata.png" },
     ],
   }),
   component: RootComponent,
