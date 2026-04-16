@@ -11,12 +11,6 @@ const GITHUB_THEME = {
   dark: ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a"],
 };
 
-const GITHUB_STYLE = {
-  color: "#71717a",
-  minWidth: "750px",
-  margin: "0 auto",
-};
-
 const SOCIAL_LINKS = [
   { icon: <RiTelegramFill size={18} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
   { icon: <RiGithubFill size={18} />, label: "Github", url: "https://github.com/YUST777" },
@@ -113,26 +107,31 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="font-mono mt-16 pb-4 [&_*::-webkit-scrollbar]:hidden [&_*]:[-ms-overflow-style:none] [&_*]:[scrollbar-width:none]">
-        <div className="w-full overflow-x-auto">
-          <GitHubCalendar
-            username="YUST777"
-            colorScheme="dark"
-            theme={GITHUB_THEME}
-            style={GITHUB_STYLE}
-            blockSize={11}
-            blockMargin={3}
-            fontSize={12}
-            labels={{
-              totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
-            }}
-            renderBlock={(block, activity) =>
-              React.cloneElement(block as React.ReactElement, {
-                'data-tooltip-id': 'github-tooltip',
-                'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
-              })
-            }
-          />
+      <section className="font-mono mt-16 pb-4">
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-zinc-500 text-[10px] sm:text-[13px] uppercase tracking-widest">Contributions</p>
+          <span className="text-[9px] text-zinc-600 sm:hidden lowercase">Swipe to see more →</span>
+        </div>
+        <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
+          <div className="min-w-[800px] lg:min-w-0">
+            <GitHubCalendar
+              username="YUST777"
+              colorScheme="dark"
+              theme={GITHUB_THEME}
+              blockSize={12}
+              blockMargin={4}
+              fontSize={12}
+              labels={{
+                totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : '...'}`
+              }}
+              renderBlock={(block, activity) =>
+                React.cloneElement(block as React.ReactElement, {
+                  'data-tooltip-id': 'github-tooltip',
+                  'data-tooltip-html': `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
+                })
+              }
+            />
+          </div>
         </div>
         <Tooltip id="github-tooltip" className="!bg-zinc-900 !border !border-white/10 !rounded-md" />
       </section>
