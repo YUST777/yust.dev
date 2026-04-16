@@ -28,7 +28,6 @@ function LiveClock() {
 }
 
 function MainLayout() {
-function MainLayout() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 w-full pb-16 sm:pb-20">

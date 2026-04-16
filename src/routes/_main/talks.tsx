@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import * as FadeIn from "@/components/motion";
-import { Microphone } from "@/components/ui/Mic";
+import { Mic } from "lucide-react";
 import { RelativeTime } from "./-relative-time";
 
 const TALKS = [
@@ -30,7 +30,7 @@ function TalksPage() {
       <FadeIn.Item>
         <section>
           <span className="text-xl flex gap-2 items-center my-6 cursor-pointer">
-            <Microphone size={19} />
+            <Mic size={19} />
             Talks
           </span>
 
