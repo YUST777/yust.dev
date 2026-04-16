@@ -7,6 +7,23 @@ import React, { useState, useEffect } from "react";
 import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
 import { RiTelegramFill, RiGithubFill, RiLinkedinBoxFill, RiMailFill } from "react-icons/ri";
 
+const GITHUB_THEME = {
+  dark: ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a"],
+};
+
+const GITHUB_STYLE = {
+  color: "#71717a",
+  minWidth: "750px",
+  margin: "0 auto",
+};
+
+const SOCIAL_LINKS = [
+  { icon: <RiTelegramFill size={18} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
+  { icon: <RiGithubFill size={18} />, label: "Github", url: "https://github.com/YUST777" },
+  { icon: <RiLinkedinBoxFill size={18} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
+  { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" },
+];
+
 export const Route = createFileRoute("/_main/")({
   component: AboutPage,
 });
@@ -84,12 +101,7 @@ function AboutPage() {
         <div className="mt-16">
           <p className="text-zinc-500 text-[13px] mb-6 font-mono uppercase tracking-widest">Connect with me</p>
           <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
-            {[
-              { icon: <RiTelegramFill size={18} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
-              { icon: <RiGithubFill size={18} />, label: "Github", url: "https://github.com/YUST777" },
-              { icon: <RiLinkedinBoxFill size={18} />, label: "LinkedIn", url: "https://www.linkedin.com/in/yousefmsm1/" },
-              { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" }
-            ].map((link) => (
+            {SOCIAL_LINKS.map((link) => (
               <a key={link.label} href={link.url || "#"} className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 sm:py-2.5 rounded-lg bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[13px] sm:text-sm text-zinc-300 font-mono group">
                 <span className="text-zinc-500 group-hover:text-white transition-colors">
                   {link.icon}
@@ -106,14 +118,8 @@ function AboutPage() {
           <GitHubCalendar
             username="YUST777"
             colorScheme="dark"
-            theme={{
-              dark: ['#18181b', '#27272a', '#3f3f46', '#52525b', '#71717a']
-            }}
-            style={{
-              color: '#71717a',
-              minWidth: '750px',
-              margin: '0 auto'
-            }}
+            theme={GITHUB_THEME}
+            style={GITHUB_STYLE}
             blockSize={11}
             blockMargin={3}
             fontSize={12}
