@@ -58,27 +58,32 @@
 }
 
 @layer base {
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
+  /* Global Scrollbar Opt-in */
+  .custom-scrollbar::-webkit-scrollbar,
+  body::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
-  ::-webkit-scrollbar-track {
+  .custom-scrollbar::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
     background: #0c0c0c;
   }
 
-  ::-webkit-scrollbar-thumb {
+  .custom-scrollbar::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
     background: #27272a;
     border-radius: 10px;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover {
     background: #3f3f46;
   }
 
   /* Firefox */
-  * {
+  .custom-scrollbar,
+  body {
     scrollbar-width: thin;
     scrollbar-color: #27272a #0c0c0c;
   }

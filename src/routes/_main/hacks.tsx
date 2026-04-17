@@ -11,7 +11,11 @@ const hacks = [
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "LUXSAI AI HACKTHON • MAR 3, 2026 • LUXOR UNIVERSITY",
     title: "sast.tech (Pentesting/IDE AI Agent)",
-    desc: "Achieved a distinguished 3rd place finish among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, competing with sast.tech—an autonomous Pentesting AI Agent. We enhanced and shipped a highly competitive iteration of the solution under strict hackathon constraints, enabling dynamic vulnerability patching and actionable reporting.",
+    desc: (
+      <>
+        Achieved a distinguished <strong className="text-zinc-200">3rd place finish</strong> among 67 teams from 17 universities and higher institutes. Officially represented the Faculty of Artificial Intelligence at Horus University, competing with <strong className="text-zinc-200">sast.tech</strong>—an autonomous Pentesting AI Agent.
+      </>
+    ),
     tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
@@ -25,7 +29,11 @@ const hacks = [
     color: "text-white hover:text-[#9ab8d6] transition-colors duration-300",
     event: "GDG DELTA HACKATHON • FEB 18, 2026 • GOOGLE DEVELOPER GROUPS",
     title: "sast.tech (Pentesting/IDE AI Agent)",
-    desc: "Secured 2nd place out of 122 teams (610 competitors) following an intense 49-hour development sprint. This marked the inception of sast.tech, where we co-developed the comprehensive Pentesting AI Agent to secure rapidly generated code using static analysis and Playwright. Acted as Lead UI/UX, Web Dev, and DevOps Engineer.",
+    desc: (
+      <>
+        Secured <strong className="text-zinc-200">2nd place</strong> out of 122 teams (610 competitors) following an intense 49-hour development sprint. This marked the inception of <strong className="text-zinc-200">sast.tech</strong>, where we co-developed the comprehensive Pentesting AI Agent to secure rapidly generated code using static analysis and Playwright.
+      </>
+    ),
     tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
@@ -40,7 +48,11 @@ const hacks = [
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
     title: "Zero Threat",
-    desc: "Won 3RD PLACE at the Tanta National Summit in my very first year, outperforming senior-level (Level 4 & 5) university competitors from 20+ universities. Built Zero Threat, an integrated security ecosystem providing real-time malware protection and OWASP-inspired vulnerability assessment. Officially commended by the Dean of Computer Science for technical excellence as a Freshman.",
+    desc: (
+      <>
+        Won <strong className="text-zinc-200">3RD PLACE</strong> at the Tanta National Summit in my very first year, outperforming senior-level (Level 4 & 5) university competitors from 20+ universities. Built <strong className="text-zinc-200">Zero Threat</strong>, an integrated security ecosystem providing real-time malware protection and OWASP-inspired vulnerability assessment.
+      </>
+    ),
     tech: "Next.js • React • GSAP • YARA Protocol • Cybersecurity",
     linkText: "",
     linkUrl: "",
@@ -74,9 +86,9 @@ function HacksPage() {
             <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
               {hack.title}
             </h3>
-            <p className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+            <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
               {hack.desc}
-            </p>
+            </div>
             <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
               {hack.tech}
             </div>

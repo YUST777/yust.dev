@@ -113,7 +113,7 @@ function AboutPage() {
           <span className="text-[9px] text-zinc-600 sm:hidden lowercase">Swipe to see more →</span>
         </div>
         <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
-          <div className="min-w-[800px] lg:min-w-0">
+          <div className="min-w-[800px] lg:min-w-0 overflow-hidden">
             <GitHubCalendar
               username="YUST777"
               colorScheme="dark"
