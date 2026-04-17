@@ -387,7 +387,7 @@ export default function Projects() {
                       ) : (
                         <div className="bg-[#0c0c0c] flex flex-col items-center justify-center h-full text-center p-4 border border-white/10 w-full h-full pointer-events-none">
                           <i className={`fas ${project.icon} w-10 h-10 text-white/40 mb-4 group-hover:text-white/60 transition-colors`}></i>
-                          <h3 className="text-lg md:text-xl font-display font-bold text-white">{project.title}</h3>
+                          <h3 className="text-lg md:text-base sm:text-lg md:text-xl font-display font-bold text-white">{project.title}</h3>
                           <p className="text-white/60 mt-2 text-[10px] md:text-xs uppercase tracking-widest">{project.description}</p>
                         </div>
                       )}
@@ -563,7 +563,7 @@ export default function Projects() {
                             openDrawer === 'fazzah' ? 'Fazzah' :
                               openDrawer === 'verdict' ? 'Verdict' : ''}
                 </p>
-                <h3 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white leading-tight mt-1 break-words">
+                <h3 className="text-lg sm:text-xl md:text-3xl font-display font-black text-white leading-tight mt-1 break-words">
                   {openDrawer === 'zerothreat' ? 'Zero Threat - Cybersecurity Website Project' :
                     openDrawer === 'giftsCharts' ? 'Gifts Charts - Telegram Analytics Bot' :
                       openDrawer === 'ICPCHUE' ? 'ICPCHUE - Creative Web Project' :
@@ -619,35 +619,35 @@ export default function Projects() {
                 <>
                   {/* Header */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2">Zero Threat – AI-Driven Cybersecurity Suite</h4>
-                    <p className="text-sm text-gray-400"><i className="fas fa-calendar-alt mr-2"></i>August 1 – August 28, 2025</p>
-                    <p className="text-sm text-gray-400 mt-1"><i className="fas fa-trophy mr-2"></i>3rd Place at the National Student Forum (Al-Multaqy Al-Qammy), Tanta University</p>
-                    <p className="text-sm text-gray-400 mt-1">Role: Lead Web Developer & UI/UX Designer</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">Zero Threat – AI-Driven Cybersecurity Suite</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400"><i className="fas fa-calendar-alt mr-2"></i>August 1 – August 28, 2025</p>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mt-1"><i className="fas fa-trophy mr-2"></i>3rd Place at the National Student Forum (Al-Multaqy Al-Qammy), Tanta University</p>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mt-1">Role: Lead Web Developer & UI/UX Designer</p>
                   </div>
 
                   {/* The Achievement */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-trophy mr-2"></i>The Achievement</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-trophy mr-2"></i>The Achievement</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       This project secured 3rd place in a national competition featuring <strong className="text-white">20 universities from across Egypt</strong>. As freshmen from a private university, my team competed against and outperformed 4th and 5th-year Engineering and Computer Science seniors. Our project was evaluated and commended by the Dean of Computer Science and a Professor of Cybersecurity at Tanta University.
                     </p>
                   </div>
 
                   {/* The Solution */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-lightbulb mr-2"></i>The Solution</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-lightbulb mr-2"></i>The Solution</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       Zero Threat is a comprehensive security ecosystem combining a web platform, a browser extension, and a Windows application.
                     </p>
                   </div>
 
                   {/* My Contribution */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-globe mr-2"></i>My Contribution (The Web Platform)</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-globe mr-2"></i>My Contribution (The Web Platform)</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-4">
                       I led the development of the web interface using Next.js and React, focusing on a high-performance UI with smooth animations. Key features I implemented include:
                     </p>
-                    <ul className="space-y-3 text-sm text-gray-300">
+                    <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
                       <li><strong className="text-white">Universal File Scanner:</strong> An integrated tool to scan various file types (ZIP, PNG, MP4) for hidden malware.</li>
                       <li><strong className="text-white">Web Security Tools:</strong> Built-in developer tools for open port scanning and vulnerability assessment (similar to OWASP ZAP).</li>
                       <li><strong className="text-white">Browser Extension:</strong> A companion extension to ensure safe downloads in real-time.</li>
@@ -656,16 +656,16 @@ export default function Projects() {
 
                   {/* The Windows Agent */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-desktop mr-2"></i>The Windows Agent</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-desktop mr-2"></i>The Windows Agent</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       Developed by my teammate Abdelrahman Mohsen, the desktop client utilizes the YARA protocol and AI integration. In our benchmarks, it achieved a <strong className="text-white">90% detection rate</strong> across 90 test subjects, outperforming many traditional signature-based antivirus solutions.
                     </p>
                   </div>
 
                   {/* Official Documentation */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-file-alt mr-2"></i>Official Documentation</h4>
-                    <p className="text-sm text-gray-400 mb-4">Official posts from Tanta University and Horus University:</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-file-alt mr-2"></i>Official Documentation</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mb-4">Official posts from Tanta University and Horus University:</p>
                     <ul className="space-y-3 text-sm">
                       <li>
                         <a href="https://www.facebook.com/share/p/1DAW9yMMH1/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-2">
@@ -704,23 +704,23 @@ export default function Projects() {
                 <>
                   {/* Header */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2">Gifts Charts – Telegram Analytics Bot</h4>
-                    <p className="text-sm text-gray-400"><i className="fas fa-robot mr-2"></i>Live Sticker & Gift Price Tracker</p>
-                    <p className="text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Live & Active</span></p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">Gifts Charts – Telegram Analytics Bot</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400"><i className="fas fa-robot mr-2"></i>Live Sticker & Gift Price Tracker</p>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Live & Active</span></p>
                   </div>
 
                   {/* Overview */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-bullseye mr-2"></i>The Purpose</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-bullseye mr-2"></i>The Purpose</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       Telegrams digital asset market is moving fast. <strong className="text-white">Gifts Charts</strong> bridges the gap between chaos and clarity by providing real-time price tracking for Stickers and unique Gifts. It empowers traders and collectors with instant data, helping them make informed decisions on the fly.
                     </p>
                   </div>
 
                   {/* The Cool Stuff */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-fire mr-2"></i>What Makes It Cool?</h4>
-                    <ul className="space-y-4 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-fire mr-2"></i>What Makes It Cool?</h4>
+                    <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
                       <li className="flex gap-3">
                         <i className="fas fa-bolt text-yellow-400 mt-1"></i>
                         <div>
@@ -747,8 +747,8 @@ export default function Projects() {
 
                   {/* Technical Highlights */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-code-branch mr-2"></i>Under The Hood</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed mb-3">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-code-branch mr-2"></i>Under The Hood</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-3">
                       Built for speed and reliability using a microservice architecture:
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -790,14 +790,14 @@ export default function Projects() {
               {openDrawer === 'verdict' ? (
                 <>
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2">Verdict – Competitive Programming Platform</h4>
-                    <p className="text-sm text-gray-400"><i className="fas fa-code-branch mr-2"></i>Founder & Lead Engineer</p>
-                    <p className="text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Live Beta</span></p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">Verdict – Competitive Programming Platform</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400"><i className="fas fa-code-branch mr-2"></i>Founder & Lead Engineer</p>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Live Beta</span></p>
                   </div>
 
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-bolt mr-2"></i>Core Features</h4>
-                    <ul className="space-y-3 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-bolt mr-2"></i>Core Features</h4>
+                    <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
                       <li><strong className="text-white">Mirror Mode:</strong> Scrape and solve Codeforces problems instantly.</li>
                       <li><strong className="text-white">Smart IDE:</strong> Integrated Monaco editor with multi-language support.</li>
                       <li><strong className="text-white">Whiteboard Integration:</strong> Built-in Excalidraw for visualizing algorithms.</li>
@@ -805,8 +805,8 @@ export default function Projects() {
                   </div>
 
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-server mr-2"></i>Architecture</h4>
-                    <ul className="space-y-3 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-server mr-2"></i>Architecture</h4>
+                    <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
                       <li><strong className="text-white">Browser Extension:</strong> Seamlessly submit code from Verdict to external judges.</li>
                       <li><strong className="text-white">Scraper Service:</strong> Dedicated microservice for parsing problem statements.</li>
                       <li><strong className="text-white">Dockerized:</strong> Fully containerized environment for easy deployment.</li>
@@ -814,7 +814,7 @@ export default function Projects() {
                   </div>
 
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-layer-group mr-2"></i>Technologies</h4>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-layer-group mr-2"></i>Technologies</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Next.js 16', 'TypeScript', 'Puppeteer', 'Monaco Editor', 'Excalidraw'].map((tech) => (
                         <span key={tech} className="px-3 py-1 bg-white/10 rounded-full text-xs text-white border border-white/20">
@@ -843,9 +843,9 @@ export default function Projects() {
                 <>
                   {/* Header */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2"><i className="fas fa-rocket mr-2"></i>Project: ICPC HUE Ecosystem</h4>
-                    <p className="text-sm text-gray-400 font-bold">Role: Lead Software & Security Engineer</p>
-                    <p className="text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Deployed & Scaling</span></p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2"><i className="fas fa-rocket mr-2"></i>Project: ICPC HUE Ecosystem</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400 font-bold">Role: Lead Software & Security Engineer</p>
+                    <p className="text-[12px] sm:text-sm text-gray-400 mt-1">Status: <span className="text-green-400 font-bold">Deployed & Scaling</span></p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {['Next.js 16', 'React 19', 'PostgreSQL', 'Docker', 'Secure Arch'].map((tech) => (
                         <span key={tech} className="px-2 py-1 bg-white/10 rounded-md text-[10px] text-white border border-white/10 uppercase tracking-tighter">
@@ -857,16 +857,16 @@ export default function Projects() {
 
                   {/* The Vision */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-bullseye mr-2"></i>The Vision</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-bullseye mr-2"></i>The Vision</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       We didn't just want another landing page. We built <strong className="text-white">ICPC HUE</strong> to be the beating heart of competitive programming at Horus University. It's a fully integrated ecosystem that handles everything from recruitment and training to secure, real-time code execution.
                     </p>
                   </div>
 
                   {/* Why It's Next Level */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-fire mr-2"></i>Why It's Next Level</h4>
-                    <ul className="space-y-4 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-fire mr-2"></i>Why It's Next Level</h4>
+                    <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
                       <li className="flex gap-3">
                         <i className="fas fa-shield-alt text-green-400 mt-1"></i>
                         <div>
@@ -893,7 +893,7 @@ export default function Projects() {
 
                   {/* Impact Stats */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-chart-line mr-2"></i>Real World Impact</h4>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-chart-line mr-2"></i>Real World Impact</h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Performance</p>
@@ -937,15 +937,15 @@ export default function Projects() {
                 <>
                   {/* Description */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4">About Project</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">About Project</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       A developer focused on building practical tools and applications. Creating clean, well-architected solutions with a focus on user experience and impact.
                     </p>
                   </div>
 
                   {/* Technologies */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Expertise</h4>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Expertise</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Full-Stack Development', 'Cybersecurity', 'Automation'].map((tech) => (
                         <span key={tech} className="px-3 py-1 bg-white/10 rounded-full text-xs text-white border border-white/20">
@@ -957,11 +957,11 @@ export default function Projects() {
 
                   {/* Features */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-star mr-2"></i>Services</h4>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-star mr-2"></i>Services</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <h5 className="text-sm font-bold text-white/80 mb-2"><i className="fas fa-code mr-2"></i>Services</h5>
-                        <ul className="space-y-1 text-sm text-gray-300">
+                        <ul className="space-y-1 text-[13px] sm:text-sm text-gray-300">
                           <li>• Web development</li>
                           <li>• Application development</li>
                           <li>• System design</li>
@@ -969,7 +969,7 @@ export default function Projects() {
                       </div>
                       <div>
                         <h5 className="text-sm font-bold text-white/80 mb-2"><i className="fas fa-bullseye mr-2"></i>Expertise</h5>
-                        <ul className="space-y-1 text-sm text-gray-300">
+                        <ul className="space-y-1 text-[13px] sm:text-sm text-gray-300">
                           <li>• Full-stack development</li>
                           <li>• Web applications</li>
                           <li>• Automation systems</li>
@@ -984,22 +984,22 @@ export default function Projects() {
                 <>
                   {/* Header */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2">PanoBlue – Import/Export Corporate Platform</h4>
-                    <p className="text-sm text-gray-400">Role: Frontend Developer & UI Designer</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">PanoBlue – Import/Export Corporate Platform</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400">Role: Frontend Developer & UI Designer</p>
                   </div>
 
                   {/* Overview */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-info-circle mr-2"></i>Overview</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-info-circle mr-2"></i>Overview</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       PanoBlue is an established import/export company that needed to modernize its digital presence to compete in the international market. The client required a shift away from restrictive WordPress templates to a fully custom, unique web solution.
                     </p>
                   </div>
 
                   {/* Key Contributions */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Key Contributions</h4>
-                    <ul className="space-y-3 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Key Contributions</h4>
+                    <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
                       <li><strong className="text-white">Custom Architecture:</strong> Migrated the client from a generic template to a bespoke codebase, allowing for limitless customization and improved performance.</li>
                       <li><strong className="text-white">Interactive UI:</strong> Implemented advanced animations and interactivity to create a premium user experience that reflects the company's market standing.</li>
                       <li><strong className="text-white">Market-Ready:</strong> Delivered a polished, production-ready site that currently serves real customers and facilitates actual business operations.</li>
@@ -1025,22 +1025,22 @@ export default function Projects() {
                 <>
                   {/* Header */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-2">Fazzah – Streetwear E-Commerce Store</h4>
-                    <p className="text-sm text-gray-400">Role: Full-Stack Shopify Developer</p>
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">Fazzah – Streetwear E-Commerce Store</h4>
+                    <p className="text-[12px] sm:text-sm text-gray-400">Role: Full-Stack Shopify Developer</p>
                   </div>
 
                   {/* Overview */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-info-circle mr-2"></i>Overview</h4>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-info-circle mr-2"></i>Overview</h4>
+                    <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
                       Fazzah is a modern streetwear brand launched to capitalize on the rising demand for high-quality hoodies and apparel. The client needed a rapid-deployment e-commerce solution to enter the market quickly without sacrificing quality.
                     </p>
                   </div>
 
                   {/* Key Contributions */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <h4 className="text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Key Contributions</h4>
-                    <ul className="space-y-3 text-sm text-gray-300">
+                    <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4"><i className="fas fa-tools mr-2"></i>Key Contributions</h4>
+                    <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
                       <li><strong className="text-white">End-to-End Development:</strong> Built a comprehensive landing page and storefront using the Shopify ecosystem.</li>
                       <li><strong className="text-white">Logistics & Payments:</strong> Integrated a secure payment gateway and set up a backend warehouse management system to track inventory and orders.</li>
                       <li><strong className="text-white">Brand Identity:</strong> Designed a clean, minimalist GUI that highlights the products and aligns with current streetwear aesthetics.</li>
