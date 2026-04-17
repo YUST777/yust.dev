@@ -540,7 +540,7 @@ export default function Projects() {
                   setOpenDrawer(null)
                 }
               }}
-              className="fixed inset-x-0 bottom-0 z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-28 sm:pb-12 pt-2 sm:pt-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[92vh] overflow-hidden flex flex-col"
+              className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-[env(safe-area-inset-bottom,2rem)] mb-0 sm:pb-12 pt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[94vh] overflow-hidden flex flex-col pointer-events-auto shadow-2xl"
             >
               {/* Drag Handle - Click to close or Drag down */}
               <div 
@@ -548,8 +548,8 @@ export default function Projects() {
                 onClick={() => setOpenDrawer(null)}
               />
             <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-400 truncate">
                   {openDrawer === 'zerothreat' ? 'Zero Threat' :
                     openDrawer === 'giftsCharts' ? 'Gifts Charts' :
                       openDrawer === 'ICPCHUE' ? 'ICPCHUE' :
@@ -563,7 +563,7 @@ export default function Projects() {
                             openDrawer === 'fazzah' ? 'Fazzah' :
                               openDrawer === 'verdict' ? 'Verdict' : ''}
                 </p>
-                <h3 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white leading-tight mt-1">
+                <h3 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white leading-tight mt-1 break-words">
                   {openDrawer === 'zerothreat' ? 'Zero Threat - Cybersecurity Website Project' :
                     openDrawer === 'giftsCharts' ? 'Gifts Charts - Telegram Analytics Bot' :
                       openDrawer === 'ICPCHUE' ? 'ICPCHUE - Creative Web Project' :
@@ -582,7 +582,7 @@ export default function Projects() {
                 </button>
               </div>
 
-              <ScopedSmoothScroll className="overflow-y-auto flex-1 pr-2 space-y-6 custom-scrollbar touch-pan-y">
+              <ScopedSmoothScroll className="overflow-y-auto flex-1 pr-2 space-y-6 custom-scrollbar touch-pan-y pb-24 sm:pb-4">
               {/* Video Hero */}
               {openDrawer ? (
                 <div className="w-full aspect-video rounded-xl overflow-hidden bg-black/50 border border-white/5 mb-6 flex-shrink-0 relative">
