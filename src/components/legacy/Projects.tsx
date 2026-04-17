@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, memo } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { X, MousePointerClick } from 'lucide-react'
 import BentoTilt from './BentoTilt'
 import ProjectModal from './ProjectModal'
 import ScopedSmoothScroll from './ScopedSmoothScroll'
@@ -303,7 +304,7 @@ export default function Projects() {
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         className="absolute top-4 right-4 z-40 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                       >
-                        <i className="fas fa-arrow-right -rotate-45 text-xl"></i>
+                        <MousePointerClick className="w-6 h-6 text-black" strokeWidth={2.5} />
                       </motion.div>
                     ) : null}
                     <div className="w-full h-full bg-[#0c0c0c] border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
@@ -457,7 +458,7 @@ export default function Projects() {
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="absolute top-4 right-4 z-40 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   >
-                    <i className="fas fa-arrow-right -rotate-45 text-xl"></i>
+                    <MousePointerClick className="w-6 h-6 text-black" strokeWidth={2.5} />
                   </motion.div>
                   <div className="w-full h-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
                     {project.video ? (
@@ -516,15 +517,36 @@ export default function Projects() {
       />
 
       {/* Project Drawer */}
-      {openDrawer ? (
-        <>
-          <div
-            className="fixed inset-0 bg-black/80 z-40"
-            onClick={() => setOpenDrawer(null)}
-          />
-          <div
-            className="fixed inset-x-0 bottom-0 z-50 bg-[#0c0c0c] border-t border-white/20 rounded-t-3xl px-4 sm:px-6 md:px-10 pb-6 sm:pb-10 pt-4 sm:pt-6 transition-transform duration-500 shadow-2xl max-h-[90vh] overflow-hidden flex flex-col translate-y-0"
-          >
+      <AnimatePresence>
+        {openDrawer && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 z-[55] backdrop-blur-sm"
+              onClick={() => setOpenDrawer(null)}
+            />
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 32, stiffness: 300 }}
+              drag="y"
+              dragConstraints={{ top: 0 }}
+              dragElastic={0.1}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 150 || info.velocity.y > 500) {
+                  setOpenDrawer(null)
+                }
+              }}
+              className="fixed inset-x-0 bottom-0 z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-28 sm:pb-12 pt-2 sm:pt-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[92vh] overflow-hidden flex flex-col"
+            >
+              {/* Drag Handle - Click to close or Drag down */}
+              <div 
+                className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-pointer hover:bg-white/30 transition-colors shrink-0" 
+                onClick={() => setOpenDrawer(null)}
+              />
             <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
@@ -541,7 +563,7 @@ export default function Projects() {
                             openDrawer === 'fazzah' ? 'Fazzah' :
                               openDrawer === 'verdict' ? 'Verdict' : ''}
                 </p>
-                <h3 className="text-lg sm:text-2xl md:text-4xl font-display font-black text-white leading-tight">
+                <h3 className="text-xl sm:text-2xl md:text-4xl font-display font-black text-white leading-tight mt-1">
                   {openDrawer === 'zerothreat' ? 'Zero Threat - Cybersecurity Website Project' :
                     openDrawer === 'giftsCharts' ? 'Gifts Charts - Telegram Analytics Bot' :
                       openDrawer === 'ICPCHUE' ? 'ICPCHUE - Creative Web Project' :
@@ -551,15 +573,16 @@ export default function Projects() {
                               openDrawer === 'verdict' ? 'Verdict – Competitive Programming Platform' : ''}
                 </h3>
               </div>
-              <button
-                onClick={() => setOpenDrawer(null)}
-                className="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors flex items-center justify-center"
-              >
-                <i className="fas fa-times w-5 h-5"></i>
-              </button>
-            </div>
+                <button
+                  onClick={() => setOpenDrawer(null)}
+                  className="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 active:scale-90 transition-all flex items-center justify-center shrink-0"
+                  aria-label="Close drawer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <ScopedSmoothScroll className="overflow-y-auto flex-1 pr-2 space-y-6 custom-scrollbar">
+              <ScopedSmoothScroll className="overflow-y-auto flex-1 pr-2 space-y-6 custom-scrollbar touch-pan-y">
               {/* Video Hero */}
               {openDrawer ? (
                 <div className="w-full aspect-video rounded-xl overflow-hidden bg-black/50 border border-white/5 mb-6 flex-shrink-0 relative">
@@ -737,17 +760,29 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Visit Bot Button */}
+                  {/* Action Buttons */}
                   <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                    <a
-                      href="https://t.me/giftsChartBot"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-[#24A1DE] hover:bg-[#208bbd] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
-                    >
-                      <span>Start Bot</span>
-                      <i className="fab fa-telegram-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
+                    <div className="flex flex-col gap-3">
+                      <a
+                        href="https://t.me/giftsChartBot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-[#24A1DE] hover:bg-[#208bbd] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
+                      >
+                        <span>Start Bot</span>
+                        <i className="fab fa-telegram-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+                      </a>
+                      <a
+                        href="https://github.com/YUST777/Giftschart"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-white/10 text-white hover:bg-white/20 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group border border-white/10"
+                      >
+                        <i className="fab fa-github text-xl"></i>
+                        <span>View Source on GitHub</span>
+                        <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform opacity-50 text-xs"></i>
+                      </a>
+                    </div>
                   </div>
                 </>
               ) : null}
@@ -1027,9 +1062,10 @@ export default function Projects() {
                 </>
               ) : null}
             </ScopedSmoothScroll>
-          </div>
+          </motion.div>
         </>
-      ) : null}
+      )}
+    </AnimatePresence>
     </section >
   )
 }

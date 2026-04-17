@@ -12,7 +12,11 @@ const experience = [
     location: "Egypt",
     responsibilities: [
       "Founded a viral Competitive Programming 'Mirror Tool' that transforms the Codeforces UI into a sleek LeetCode-style IDE simply by changing the TLD to '.run'.",
-      "Generated 120k+ impressions on LinkedIn with the launch video, scaling to 500+ registered users and 100+ Daily Active Users (DAU) in early release.",
+      (
+        <>
+          Generated <a href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-activity-7418662435072622594-OycK?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF4UUF8BkaOftBX4nvK7AWZaXUY_x4FtmsU" target="_blank" rel="noopener noreferrer" className="text-zinc-200 underline underline-offset-4 decoration-zinc-700 hover:decoration-zinc-400">120k+ impressions</a> on LinkedIn with the launch video, scaling to 500+ registered users and 100+ Daily Active Users (DAU) in early release.
+        </>
+      ),
       "Engineered an integration suite featuring AI-powered problem solving (MCP), automated video explanations, and a Chrome extension for seamless server-side account rendering.",
       "Self-hosted the entire high-availability infrastructure on OVH using an air-gapped Docker-integrated Code Execution Engine (Judge0).",
       "Drafting and executing plans to scale the platform to serve the entire competitive programming community across Egypt."
@@ -37,7 +41,7 @@ const experience = [
 
 function ExperiencePage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div>
         <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4 uppercase">EXPERIENCE</h1>
         <p className="text-zinc-500 font-mono text-[13px] sm:text-sm max-w-xl">
@@ -45,7 +49,7 @@ function ExperiencePage() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-16 md:gap-20 mt-16">
+      <div className="flex flex-col gap-16 md:gap-20 mt-8">
         {experience.map((job, idx) => (
           <div key={idx} className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 group">
             {/* Left Column: Date */}

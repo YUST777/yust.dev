@@ -40,7 +40,7 @@ const hacks = [
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
     title: "Zero Threat",
-    desc: "Secured 3rd Place nationwide, competing as a Freshman against Level 4 & 5 Engineering seniors from 20 universities. Built Zero Threat, an integrated security ecosystem providing real-time protection and vulnerability assessment. Engineered universal file scanners for hidden malware signatures and an OWASP-inspired vulnerability scanner. Officially commended by the Dean of Computer Science.",
+    desc: "Won 3RD PLACE at the Tanta National Summit in my very first year, outperforming senior-level (Level 4 & 5) university competitors from 20+ universities. Built Zero Threat, an integrated security ecosystem providing real-time malware protection and OWASP-inspired vulnerability assessment. Officially commended by the Dean of Computer Science for technical excellence as a Freshman.",
     tech: "Next.js • React • GSAP • YARA Protocol • Cybersecurity",
     linkText: "",
     linkUrl: "",
@@ -54,7 +54,7 @@ const hacks = [
 
 function HacksPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div>
         <h1 className="text-4xl font-pixel text-white mb-4 uppercase">HACKATHONS</h1>
         <p className="text-zinc-500 font-mono text-[13px] sm:text-sm">
