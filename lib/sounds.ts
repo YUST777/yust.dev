@@ -101,4 +101,42 @@ export const sounds = {
     osc.start(t);
     osc.stop(t + 0.04);
   },
+
+  /** 
+   * Official Desktop Goose Honk — Loaded from /static/goose-honk.mp3
+   */
+  honk: (() => {
+    let honkBuffer: AudioBuffer | null = null;
+    let loading = false;
+
+    return async () => {
+      const ctx = getAudioContext();
+      
+      // Pre-load the buffer if not ready
+      if (!honkBuffer && !loading) {
+        loading = true;
+        try {
+          const resp = await fetch("/static/goose-honk.mp3");
+          const arrayBuf = await resp.arrayBuffer();
+          honkBuffer = await ctx.decodeAudioData(arrayBuf);
+        } catch (err) {
+          console.error("Failed to load honk mp3", err);
+        } finally {
+          loading = false;
+        }
+      }
+
+      if (honkBuffer) {
+        const source = ctx.createBufferSource();
+        source.buffer = honkBuffer;
+        
+        const gain = ctx.createGain();
+        gain.gain.value = 0.45; // Nice and loud
+        
+        source.connect(gain);
+        gain.connect(ctx.destination);
+        source.start(ctx.currentTime);
+      }
+    };
+  })(),
 };

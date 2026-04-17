@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TokenUsageRouteImport } from './routes/token-usage'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as FaviconDoticoRouteImport } from './routes/favicon[.]ico'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainTalksRouteImport } from './routes/_main/talks'
@@ -38,6 +39,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaviconDoticoRoute = FaviconDoticoRouteImport.update({
+  id: '/favicon.ico',
+  path: '/favicon.ico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MainRoute = MainRouteImport.update({
@@ -102,6 +108,7 @@ const MainPostsSplatRoute = MainPostsSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
+  '/favicon.ico': typeof FaviconDoticoRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/thoughts/': typeof MainThoughtsIndexRoute
 }
 export interface FileRoutesByTo {
+  '/favicon.ico': typeof FaviconDoticoRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
@@ -135,6 +143,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
+  '/favicon.ico': typeof FaviconDoticoRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/favicon.ico'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/thoughts/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/favicon.ico'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_main'
+    | '/favicon.ico'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/token-usage'
@@ -204,6 +216,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   MainRoute: typeof MainRouteWithChildren
+  FaviconDoticoRoute: typeof FaviconDoticoRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TokenUsageRoute: typeof TokenUsageRoute
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favicon.ico': {
+      id: '/favicon.ico'
+      path: '/favicon.ico'
+      fullPath: '/favicon.ico'
+      preLoaderRoute: typeof FaviconDoticoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_main': {
@@ -351,6 +371,7 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
+  FaviconDoticoRoute: FaviconDoticoRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TokenUsageRoute: TokenUsageRoute,
