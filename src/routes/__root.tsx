@@ -141,7 +141,12 @@ function RootDocument({ children }: { children: ReactNode }) {
         <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.015]">
           <svg className="w-full h-full opacity-20">
             <filter id="noise">
-              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch" />
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.65"
+                numOctaves="1"
+                stitchTiles="stitch"
+              />
             </filter>
             <rect width="100%" height="100%" filter="url(#noise)" />
           </svg>
@@ -159,9 +164,7 @@ function RootProviders({ children }: { children: ReactNode }) {
     <>
       <Toaster richColors />
       <QueryProvider>
-        <AppThemeProvider>
-          {children}
-        </AppThemeProvider>
+        <AppThemeProvider>{children}</AppThemeProvider>
       </QueryProvider>
     </>
   );

@@ -40,10 +40,7 @@ const CodeEditorIcon = ({ className, ...props }) => (
           y2="16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="var(--nc-gradient-1-color-1,#575757)"
-            data-glass-11="on"
-          ></stop>
+          <stop stopColor="var(--nc-gradient-1-color-1,#575757)" data-glass-11="on"></stop>
           <stop
             offset="1"
             stopColor="var(--nc-gradient-1-color-2,#151515)"
@@ -58,10 +55,7 @@ const CodeEditorIcon = ({ className, ...props }) => (
           y2="15.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="var(--nc-gradient-2-color-1,#E3E3E599)"
-            data-glass-21="on"
-          ></stop>
+          <stop stopColor="var(--nc-gradient-2-color-1,#E3E3E599)" data-glass-21="on"></stop>
           <stop
             offset="1"
             stopColor="var(--nc-gradient-2-color-2,#BBBBC099)"

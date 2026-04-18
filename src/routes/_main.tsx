@@ -22,7 +22,13 @@ function LiveClock() {
 
   return (
     <span>
-      {time.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })} · {time.toLocaleTimeString('en-US')}
+      {time.toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })}{" "}
+      · {time.toLocaleTimeString("en-US")}
     </span>
   );
 }
@@ -39,13 +45,21 @@ function MainLayout() {
             <LiveClock />
           </p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-            <p className="flex items-center gap-1.5"><LocationIcon className="w-3 h-3" /> Damietta, Egypt</p>
+            <p className="flex items-center gap-1.5">
+              <LocationIcon className="w-3 h-3" /> Damietta, Egypt
+            </p>
             <span className="hidden sm:inline text-zinc-800">·</span>
-            <p className="flex items-center gap-1.5"><CloudSunIcon className="w-3 h-3" /> 20°C</p>
+            <p className="flex items-center gap-1.5">
+              <CloudSunIcon className="w-3 h-3" /> 20°C
+            </p>
             <span className="hidden sm:inline text-zinc-800">·</span>
-            <p className="flex items-center gap-1.5"><BoltIcon className="w-3 h-3" /> 100%</p>
+            <p className="flex items-center gap-1.5">
+              <BoltIcon className="w-3 h-3" /> 100%
+            </p>
           </div>
-          <p className="text-zinc-600 pt-2 pb-4">© {new Date().getFullYear()} Yousef. All rights reserved.</p>
+          <p className="text-zinc-600 pt-2 pb-4">
+            © {new Date().getFullYear()} Yousef. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

@@ -29,27 +29,68 @@ const BoltIcon = ({ className, ...props }) => (
         fill="url(#bolt_g2)"
       />
       <defs>
-        <linearGradient id="bolt_g0" x1="13.825" y1="6" x2="13.825" y2="27" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="bolt_g0"
+          x1="13.825"
+          y1="6"
+          x2="13.825"
+          y2="27"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="bolt_g1" x1="7.925" y1="-2" x2="7.925" y2="15" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="bolt_g1"
+          x1="7.925"
+          y1="-2"
+          x2="7.925"
+          y2="15"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#E3E3E5" stopOpacity=".6" />
           <stop offset="1" stopColor="#BBBBC0" stopOpacity=".6" />
         </linearGradient>
-        <linearGradient id="bolt_g2" x1="8.228" y1=".963" x2="8.228" y2="11" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="bolt_g2"
+          x1="8.228"
+          y1=".963"
+          x2="8.228"
+          y2="11"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#fff" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
-        <filter id="bolt_blur" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
-          <feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur" />
+        <filter
+          id="bolt_blur"
+          x="-100%"
+          y="-100%"
+          width="400%"
+          height="400%"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur
+            stdDeviation="2"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="SourceGraphic"
+            edgeMode="none"
+            result="blur"
+          />
         </filter>
         <clipPath id="bolt_clip">
           <path d="M12 9V1.96408C12 0.925331 10.6124 0.575284 10.1197 1.48974L4.00979 12.8291C3.51129 13.8263 4.23674 14.9998 5.35158 15H12V9Z" />
         </clipPath>
         <mask id="bolt_mask">
           <rect width="100%" height="100%" fill="#FFF" />
-          <path d="M12 9V1.96408C12 0.925331 10.6124 0.575284 10.1197 1.48974L4.00979 12.8291C3.51129 13.8263 4.23674 14.9998 5.35158 15H12V9Z" fill="#000" />
+          <path
+            d="M12 9V1.96408C12 0.925331 10.6124 0.575284 10.1197 1.48974L4.00979 12.8291C3.51129 13.8263 4.23674 14.9998 5.35158 15H12V9Z"
+            fill="#000"
+          />
         </mask>
       </defs>
     </g>

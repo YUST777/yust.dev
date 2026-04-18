@@ -33,23 +33,57 @@ const CloudSunIcon = ({ className, ...props }) => (
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="cs_g1" x1="11.5" y1="4" x2="11.5" y2="21" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="cs_g1"
+          x1="11.5"
+          y1="4"
+          x2="11.5"
+          y2="21"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#E3E3E5" stopOpacity=".6" />
           <stop offset="1" stopColor="#BBBBC0" stopOpacity=".6" />
         </linearGradient>
-        <linearGradient id="cs_g2" x1="11.5" y1="4" x2="11.5" y2="13.845" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="cs_g2"
+          x1="11.5"
+          y1="4"
+          x2="11.5"
+          y2="13.845"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#fff" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
-        <filter id="cs_blur" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
-          <feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur" />
+        <filter
+          id="cs_blur"
+          x="-100%"
+          y="-100%"
+          width="400%"
+          height="400%"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur
+            stdDeviation="2"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="SourceGraphic"
+            edgeMode="none"
+            result="blur"
+          />
         </filter>
         <clipPath id="cs_clip">
           <path d="M17.8789 11.0781C17.2021 7.06081 13.7098 4 9.5 4C4.80558 4 1 7.80558 1 12.5C1 17.1944 4.80558 21 9.5 21H17C19.7614 21 22 18.7614 22 16C22 13.5385 20.2211 11.4936 17.8789 11.0781Z" />
         </clipPath>
         <mask id="cs_mask">
           <rect width="100%" height="100%" fill="#FFF" />
-          <path d="M17.8789 11.0781C17.2021 7.06081 13.7098 4 9.5 4C4.80558 4 1 7.80558 1 12.5C1 17.1944 4.80558 21 9.5 21H17C19.7614 21 22 18.7614 22 16C22 13.5385 20.2211 11.4936 17.8789 11.0781Z" fill="#000" />
+          <path
+            d="M17.8789 11.0781C17.2021 7.06081 13.7098 4 9.5 4C4.80558 4 1 7.80558 1 12.5C1 17.1944 4.80558 21 9.5 21H17C19.7614 21 22 18.7614 22 16C22 13.5385 20.2211 11.4936 17.8789 11.0781Z"
+            fill="#000"
+          />
         </mask>
       </defs>
     </g>

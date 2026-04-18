@@ -102,7 +102,7 @@ export const sounds = {
     osc.stop(t + 0.04);
   },
 
-  /** 
+  /**
    * Official Desktop Goose Honk — Loaded from /static/goose-honk.mp3
    */
   honk: (() => {
@@ -111,7 +111,7 @@ export const sounds = {
 
     return async () => {
       const ctx = getAudioContext();
-      
+
       // Pre-load the buffer if not ready
       if (!honkBuffer && !loading) {
         loading = true;
@@ -129,10 +129,10 @@ export const sounds = {
       if (honkBuffer) {
         const source = ctx.createBufferSource();
         source.buffer = honkBuffer;
-        
+
         const gain = ctx.createGain();
         gain.gain.value = 0.45; // Nice and loud
-        
+
         source.connect(gain);
         gain.connect(ctx.destination);
         source.start(ctx.currentTime);

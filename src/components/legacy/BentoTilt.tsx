@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
 interface BentoTiltProps {
-  children: ReactNode
-  className?: string
-  onClick?: () => void
+  children: ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
-export default function BentoTilt({ children, className = '', onClick }: BentoTiltProps) {
+export default function BentoTilt({ children, className = "", onClick }: BentoTiltProps) {
   return (
     <div
       className={className}
       onClick={onClick}
-      role={onClick ? 'button' : undefined}
+      role={onClick ? "button" : undefined}
       style={{
-        position: 'relative',
-        overflow: 'hidden'
+        position: "relative",
+        overflow: "hidden",
       }}
     >
       {children}
     </div>
-  )
+  );
 }

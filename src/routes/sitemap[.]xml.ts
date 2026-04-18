@@ -14,7 +14,6 @@ function buildSitemapXml(): string {
     { loc: `${BASE_URL}/archive`, lastmod: now, changefreq: "monthly", priority: 0.5 },
     { loc: `${BASE_URL}/thoughts`, lastmod: now, changefreq: "weekly", priority: 0.8 },
     { loc: `${BASE_URL}/talks`, lastmod: now, changefreq: "monthly", priority: 0.6 },
-
   );
 
   // Posts

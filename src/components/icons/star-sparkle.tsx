@@ -41,15 +41,36 @@ const StarSparkleIcon = ({ className, ...props }) => (
         fill="url(#star_g5)"
       />
       <defs>
-        <linearGradient id="star_g0" x1="12.706" y1="7.902" x2="12.706" y2="18.386" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="star_g0"
+          x1="12.706"
+          y1="7.902"
+          x2="12.706"
+          y2="18.386"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="star_g1" x1="12" y1="1.801" x2="12" y2="21.802" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="star_g1"
+          x1="12"
+          y1="1.801"
+          x2="12"
+          y2="21.802"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#E3E3E5" stopOpacity=".6" />
           <stop offset="1" stopColor="#BBBBC0" stopOpacity=".6" />
         </linearGradient>
-        <linearGradient id="star_g2" x1="12" y1="1.801" x2="12" y2="13.384" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="star_g2"
+          x1="12"
+          y1="1.801"
+          x2="12"
+          y2="13.384"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#fff" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
@@ -57,23 +78,60 @@ const StarSparkleIcon = ({ className, ...props }) => (
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="star_g4" x1="22.25" y1="15" x2="22.25" y2="17.5" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="star_g4"
+          x1="22.25"
+          y1="15"
+          x2="22.25"
+          y2="17.5"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="star_g5" x1="11.329" y1="4.893" x2="11.329" y2="18.407" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="star_g5"
+          x1="11.329"
+          y1="4.893"
+          x2="11.329"
+          y2="18.407"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <filter id="star_blur" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
-          <feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur" />
+        <filter
+          id="star_blur"
+          x="-100%"
+          y="-100%"
+          width="400%"
+          height="400%"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur
+            stdDeviation="2"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="SourceGraphic"
+            edgeMode="none"
+            result="blur"
+          />
         </filter>
         <clipPath id="star_clip">
-          <path d="M10.6642 2.61922C11.2208 1.52816 12.7794 1.52811 13.336 2.61922L15.5069 6.87508C15.7292 7.31078 16.1505 7.6107 16.6349 7.67879L21.4083 8.34969C22.654 8.52479 23.1438 10.0637 22.2286 10.9268L18.839 14.1231C18.4713 14.4699 18.3034 14.979 18.3917 15.4766L19.2003 20.0372C19.4164 21.2558 18.1473 22.1966 17.0441 21.6358L12.6798 19.418C12.2526 19.2009 11.7476 19.2009 11.3204 19.418L6.95616 21.6358C5.85285 22.1967 4.58376 21.2559 4.79991 20.0372L5.60851 15.4766C5.69678 14.9789 5.52801 14.4699 5.16027 14.1231L1.77159 10.9268C0.856418 10.0637 1.34619 8.52479 2.59191 8.34969L7.36534 7.67879C7.84961 7.61064 8.27006 7.31071 8.4923 6.87508L10.6642 2.61922Z" fill="url(#star_g1)" />
+          <path
+            d="M10.6642 2.61922C11.2208 1.52816 12.7794 1.52811 13.336 2.61922L15.5069 6.87508C15.7292 7.31078 16.1505 7.6107 16.6349 7.67879L21.4083 8.34969C22.654 8.52479 23.1438 10.0637 22.2286 10.9268L18.839 14.1231C18.4713 14.4699 18.3034 14.979 18.3917 15.4766L19.2003 20.0372C19.4164 21.2558 18.1473 22.1966 17.0441 21.6358L12.6798 19.418C12.2526 19.2009 11.7476 19.2009 11.3204 19.418L6.95616 21.6358C5.85285 22.1967 4.58376 21.2559 4.79991 20.0372L5.60851 15.4766C5.69678 14.9789 5.52801 14.4699 5.16027 14.1231L1.77159 10.9268C0.856418 10.0637 1.34619 8.52479 2.59191 8.34969L7.36534 7.67879C7.84961 7.61064 8.27006 7.31071 8.4923 6.87508L10.6642 2.61922Z"
+            fill="url(#star_g1)"
+          />
         </clipPath>
         <mask id="star_mask">
           <rect width="100%" height="100%" fill="#FFF" />
-          <path d="M10.6642 2.61922C11.2208 1.52816 12.7794 1.52811 13.336 2.61922L15.5069 6.87508C15.7292 7.31078 16.1505 7.6107 16.6349 7.67879L21.4083 8.34969C22.654 8.52479 23.1438 10.0637 22.2286 10.9268L18.839 14.1231C18.4713 14.4699 18.3034 14.979 18.3917 15.4766L19.2003 20.0372C19.4164 21.2558 18.1473 22.1966 17.0441 21.6358L12.6798 19.418C12.2526 19.2009 11.7476 19.2009 11.3204 19.418L6.95616 21.6358C5.85285 22.1967 4.58376 21.2559 4.79991 20.0372L5.60851 15.4766C5.69678 14.9789 5.52801 14.4699 5.16027 14.1231L1.77159 10.9268C0.856418 10.0637 1.34619 8.52479 2.59191 8.34969L7.36534 7.67879C7.84961 7.61064 8.27006 7.31071 8.4923 6.87508L10.6642 2.61922Z" fill="#000" />
+          <path
+            d="M10.6642 2.61922C11.2208 1.52816 12.7794 1.52811 13.336 2.61922L15.5069 6.87508C15.7292 7.31078 16.1505 7.6107 16.6349 7.67879L21.4083 8.34969C22.654 8.52479 23.1438 10.0637 22.2286 10.9268L18.839 14.1231C18.4713 14.4699 18.3034 14.979 18.3917 15.4766L19.2003 20.0372C19.4164 21.2558 18.1473 22.1966 17.0441 21.6358L12.6798 19.418C12.2526 19.2009 11.7476 19.2009 11.3204 19.418L6.95616 21.6358C5.85285 22.1967 4.58376 21.2559 4.79991 20.0372L5.60851 15.4766C5.69678 14.9789 5.52801 14.4699 5.16027 14.1231L1.77159 10.9268C0.856418 10.0637 1.34619 8.52479 2.59191 8.34969L7.36534 7.67879C7.84961 7.61064 8.27006 7.31071 8.4923 6.87508L10.6642 2.61922Z"
+            fill="#000"
+          />
         </mask>
       </defs>
     </g>

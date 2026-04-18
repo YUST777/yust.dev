@@ -31,7 +31,7 @@
   z-index: 20;
 }
 
-.staggered-menu-header>* {
+.staggered-menu-header > * {
   pointer-events: auto;
 }
 
@@ -150,7 +150,7 @@
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-[data-position='left'] .staggered-menu-panel {
+[data-position="left"] .staggered-menu-panel {
   right: auto;
   left: 0;
 }
@@ -165,7 +165,7 @@
   z-index: 5;
 }
 
-[data-position='left'] .sm-prelayers {
+[data-position="left"] .sm-prelayers {
   right: auto;
   left: 0;
 }

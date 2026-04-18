@@ -33,23 +33,57 @@ const LocationIcon = ({ className, ...props }) => (
           <stop stopColor="#575757" />
           <stop offset="1" stopColor="#151515" />
         </linearGradient>
-        <linearGradient id="loc_g1" x1="12" y1="1" x2="12" y2="19.795" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="loc_g1"
+          x1="12"
+          y1="1"
+          x2="12"
+          y2="19.795"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#E3E3E5" stopOpacity=".6" />
           <stop offset="1" stopColor="#BBBBC0" stopOpacity=".6" />
         </linearGradient>
-        <linearGradient id="loc_g2" x1="12" y1="1" x2="12" y2="11.884" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="loc_g2"
+          x1="12"
+          y1="1"
+          x2="12"
+          y2="11.884"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#fff" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
-        <filter id="loc_blur" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse">
-          <feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur" />
+        <filter
+          id="loc_blur"
+          x="-100%"
+          y="-100%"
+          width="400%"
+          height="400%"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feGaussianBlur
+            stdDeviation="2"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="SourceGraphic"
+            edgeMode="none"
+            result="blur"
+          />
         </filter>
         <clipPath id="loc_clip">
           <path d="M12 1C15.8041 1 19.9998 3.68995 20 8.59375C20 11.8252 18.0301 14.6669 16.2344 16.6074C15.3187 17.5969 14.4053 18.3973 13.7227 18.9502C13.5202 19.1142 13.3124 19.2741 13.1016 19.4307C12.4477 19.9161 11.5522 19.9163 10.8984 19.4307C10.6887 19.2749 10.4813 19.1154 10.2773 18.9502C9.59466 18.3973 8.68128 17.5969 7.76562 16.6074C5.96987 14.6669 4 11.8252 4 8.59375C4.00016 3.68995 8.1959 1 12 1ZM12 5C9.79086 5 8 6.79086 8 9C8 11.2091 9.79086 13 12 13C14.2091 13 16 11.2091 16 9C16 6.79086 14.2091 5 12 5Z" />
         </clipPath>
         <mask id="loc_mask">
           <rect width="100%" height="100%" fill="#FFF" />
-          <path d="M12 1C15.8041 1 19.9998 3.68995 20 8.59375C20 11.8252 18.0301 14.6669 16.2344 16.6074C15.3187 17.5969 14.4053 18.3973 13.7227 18.9502C13.5202 19.1142 13.3124 19.2741 13.1016 19.4307C12.4477 19.9161 11.5522 19.9163 10.8984 19.4307C10.6887 19.2749 10.4813 19.1154 10.2773 18.9502C9.59466 18.3973 8.68128 17.5969 7.76562 16.6074C5.96987 14.6669 4 11.8252 4 8.59375C4.00016 3.68995 8.1959 1 12 1ZM12 5C9.79086 5 8 6.79086 8 9C8 11.2091 9.79086 13 12 13C14.2091 13 16 11.2091 16 9C16 6.79086 14.2091 5 12 5Z" fill="#000" />
+          <path
+            d="M12 1C15.8041 1 19.9998 3.68995 20 8.59375C20 11.8252 18.0301 14.6669 16.2344 16.6074C15.3187 17.5969 14.4053 18.3973 13.7227 18.9502C13.5202 19.1142 13.3124 19.2741 13.1016 19.4307C12.4477 19.9161 11.5522 19.9163 10.8984 19.4307C10.6887 19.2749 10.4813 19.1154 10.2773 18.9502C9.59466 18.3973 8.68128 17.5969 7.76562 16.6074C5.96987 14.6669 4 11.8252 4 8.59375C4.00016 3.68995 8.1959 1 12 1ZM12 5C9.79086 5 8 6.79086 8 9C8 11.2091 9.79086 13 12 13C14.2091 13 16 11.2091 16 9C16 6.79086 14.2091 5 12 5Z"
+            fill="#000"
+          />
         </mask>
       </defs>
     </g>
