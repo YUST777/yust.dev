@@ -187,9 +187,9 @@ export default function Projects() {
         "An AI autonomous agent that fetches your web app, finds vulnerabilities, patches the code, and generates a verified report. Sast automates the full security lifecycle—identifying, fixing, and verifying vulnerabilities with functional POCs. It ensures your software is secured as fast as it is coded, delivering superior precision through total process optimization.",
       tag: "AI Security",
       icon: "fa-robot",
-      span: "md:col-span-3 md:row-span-1", // Full width headliner
+      span: "md:col-span-2 md:row-span-1",
       delay: "delay-150",
-      video: "/videos/sast.mp4",
+      video: "/videos/sast.webm",
       technologies: ["AI / LLMs", "Node.js", "Cybersecurity", "Autonomous Agents", "Docker"],
       features: [
         {
@@ -203,6 +203,19 @@ export default function Projects() {
           items: ["Web App Fetching", "Visual Reporting", "Fast Verification"],
         },
       ],
+    },
+    {
+      id: 9,
+      title: "Collectable Kit",
+      description: "Next-gen collectibles management platform.",
+      fullDescription:
+        "A comprehensive platform designed for modern collectors. Track, value, and manage your digital and physical collections with real-time analytics and a sleek, high-performance interface.",
+      tag: "Social",
+      icon: "fa-box-open",
+      span: "md:col-span-1 md:row-span-1",
+      delay: "delay-200",
+      video: "/videos/collectablekit.webm",
+      technologies: ["Next.js", "PostgreSQL", "Tailwind CSS", "Lucide Icons"],
     },
     {
       id: 2,
@@ -508,8 +521,12 @@ export default function Projects() {
                           setOpenDrawer("panoblue");
                           return;
                         }
-                        if (project.video === "/videos/sast.mp4") {
+                        if (project.video === "/videos/sast.webm") {
                           setOpenDrawer("sast");
+                          return;
+                        }
+                        if (project.video === "/videos/collectablekit.webm") {
+                          setOpenDrawer("collectablekit");
                           return;
                         }
                         if (project.video === "/videos/verdict.webm") {
@@ -653,6 +670,8 @@ export default function Projects() {
                       "Verdict"
                     ) : openDrawer === "sast" ? (
                       "Sast"
+                    ) : openDrawer === "collectablekit" ? (
+                      "Collectable Kit"
                     ) : (
                       ""
                     )}
@@ -674,7 +693,9 @@ export default function Projects() {
                                   ? "Verdict – Competitive Programming Platform"
                                   : openDrawer === "sast"
                                     ? "Sast – Autonomous AI Security Agent"
-                                    : ""}
+                                    : openDrawer === "collectablekit"
+                                      ? "Collectable Kit – Management Platform"
+                                      : ""}
                   </h3>
                 </div>
                 <button
@@ -713,8 +734,10 @@ export default function Projects() {
                                     : openDrawer === "verdict"
                                       ? "/videos/verdict.webm"
                                       : openDrawer === "sast"
-                                        ? "/videos/sast.mp4"
-                                        : ""
+                                        ? "/videos/sast.webm"
+                                        : openDrawer === "collectablekit"
+                                          ? "/videos/collectablekit.webm"
+                                          : ""
                         }
                         autoPlay
                         loop
@@ -1407,6 +1430,49 @@ export default function Projects() {
                         <span>Visit Sast.tech</span>
                         <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
                       </a>
+                    </div>
+                  </>
+                ) : null}
+
+
+                {openDrawer === "collectablekit" ? (
+                  <>
+                    {/* Header */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">
+                        Collectable Kit – Next-Gen Management
+                      </h4>
+                      <p className="text-[12px] sm:text-sm text-gray-400">
+                        Role: Lead Product Designer & Frontend Developer
+                      </p>
+                    </div>
+
+                    {/* Overview */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-box-open mr-2"></i>The Platform
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
+                        Collectable Kit is a comprehensive platform designed for modern collectors. It allows users to track, value, and manage their digital and physical collections with real-time analytics and a sleek, high-performance interface.
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-star mr-2"></i>Key Features
+                      </h4>
+                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                        <li>
+                          <strong className="text-white">Real-time Analytics:</strong> Stay updated on the value and rarity of your collection at all times.
+                        </li>
+                        <li>
+                          <strong className="text-white">Unified Dashboard:</strong> Manage both digital assets (NFTs) and physical items in one place.
+                        </li>
+                        <li>
+                          <strong className="text-white">Social Sharing:</strong> Showcase your rare finds and entire collections to the community with one click.
+                        </li>
+                      </ul>
                     </div>
                   </>
                 ) : null}
