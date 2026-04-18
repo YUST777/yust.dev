@@ -206,16 +206,16 @@ function AchievementsSection() {
               </a>
               .{" "}
             </strong>
-            Engineered and launched a developer platform that went viral, generating{" "}
+            Engineered and launched a competitive programming platform that went viral, generating{" "}
             <a
               href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-activity-7418662435072622594-OycK"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
-              120k+ impressions
+              120k+ organic impressions
             </a>{" "}
-            on LinkedIn.
+            on LinkedIn from a single early post.
           </p>
         </div>
 
@@ -224,7 +224,8 @@ function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               The01studio on TON.{" "}
             </strong>
-            Founded a Web3 studio. Shipped multiple Telegram mini-apps driven by <span className="text-white">2,000+ daily active users</span>.
+            Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts, @collectablekit) driving{" "}
+            <span className="text-white">2,000+ daily active users</span>.
           </p>
         </div>
 
@@ -234,10 +235,17 @@ function AchievementsSection() {
               ICPC Egypt Lead.{" "}
             </strong>
             Built and scaled{" "}
-            <a href="https://icpchue.com" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">
+            <a
+              href="https://icpchue.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
+            >
               icpchue.com
             </a>
-            —a gamified platform with <span className="text-white">650+ algorithms</span>.
+            —a gamified LeetCode-style training platform housing{" "}
+            <span className="text-white">650+ curated algorithms</span> to prepare students nationwide
+            for the ECPC.
           </p>
         </div>
 
@@ -246,7 +254,26 @@ function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               3x Hackathon Winner.{" "}
             </strong>
-            Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools like <a href="https://sast.tech" target="_blank" rel="noopener noreferrer" className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors">sast.tech</a>.
+            Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including{" "}
+            <a
+              href="https://sast.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
+            >
+              sast.tech
+            </a>
+            —an automated secure code generator.
+          </p>
+        </div>
+
+        <div className="border-l border-zinc-800 pl-4 py-1">
+          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
+            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+              Tanta National Summit.{" "}
+            </strong>
+            Won <span className="text-white">1st place</span> in my very first year, outperforming
+            senior-level (Level 4 & 5) university competitors.
           </p>
         </div>
       </div>
