@@ -9,27 +9,35 @@ import { DesktopGoose } from "./desktop-goose";
 
 export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // 640px is the 'sm' breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const checkDrawer = () => {
       setIsDrawerOpen(document.body.classList.contains("drawer-open"));
     };
 
-    // Check initially
     checkDrawer();
-
-    // Set up a MutationObserver to watch for class changes on body
     const observer = new MutationObserver(checkDrawer);
     observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   return (
     <motion.nav
       initial={false}
       animate={{
-        y: isDrawerOpen ? -150 : 0, // Slide up/down out of view
+        y: isDrawerOpen ? (isMobile ? 150 : -150) : 0, // Slide down on mobile, up on desktop
         opacity: isDrawerOpen ? 0 : 1,
         filter: isDrawerOpen ? "blur(10px)" : "blur(0px)",
       }}
