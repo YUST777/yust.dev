@@ -1153,77 +1153,53 @@ export default function Projects() {
                     {/* Header */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">
-                        <i className="fas fa-rocket mr-2"></i>Project: ICPC HUE Ecosystem
+                        ICPCHUE – The Ultimate Training Ecosystem
                       </h4>
-                      <p className="text-[12px] sm:text-sm text-gray-400 font-bold">
-                        Role: Lead Software & Security Engineer
+                      <p className="text-[12px] sm:text-sm text-gray-400">
+                        <i className="fas fa-code-branch mr-2"></i>Lead Architect & Community Founder
                       </p>
                       <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
-                        Status: <span className="text-green-400 font-bold">Deployed & Scaling</span>
+                        Status: <span className="text-blue-400 font-bold">Nationwide Expansion 🇪🇬</span>
                       </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {["Next.js 16", "React 19", "PostgreSQL", "Docker", "Secure Arch"].map(
-                          (tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-1 bg-white/10 rounded-md text-[10px] text-white border border-white/10 uppercase tracking-tighter"
-                            >
-                              {tech}
-                            </span>
-                          ),
-                        )}
-                      </div>
                     </div>
 
-                    {/* The Vision */}
+                    {/* The Problem */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                        <i className="fas fa-bullseye mr-2"></i>The Vision
+                        <i className="fas fa-exclamation-triangle mr-2"></i>The Problem
                       </h4>
                       <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-                        We didn't just want another landing page. We built{" "}
-                        <strong className="text-white">ICPC HUE</strong> to be the beating heart of
-                        competitive programming at Horus University. It's a fully integrated
-                        ecosystem that handles everything from recruitment and training to secure,
-                        real-time code execution.
+                        ICPC training is scattered. If you start, you need YouTube, CodeBlocks/VS Code, various extensions, Notepad, messy Excel sheets, and Codeforces. Why maintain all that baggage? I built ICPCHUE to gamify the journey and keep you engaged until the end.
                       </p>
                     </div>
 
-                    {/* Why It's Next Level */}
+                    {/* How it Works */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                        <i className="fas fa-fire mr-2"></i>Why It's Next Level
+                        <i className="fas fa-magic mr-2"></i>How It Works?
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
+                        You just join the Hub and immediately get the power of <strong className="text-white">Verdict.run</strong> integrated with a central 3D curriculum.
+                      </p>
+                    </div>
+
+                    {/* Capabilities */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-layer-group mr-2"></i>What does it provide?
                       </h4>
                       <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
-                        <li className="flex gap-3">
-                          <i className="fas fa-shield-alt text-green-400 mt-1"></i>
-                          <div>
-                            <strong className="text-white block">Fortress-Grade Security</strong>
-                            Achieved an{" "}
-                            <strong className="text-white">A+ Rating on SSL Labs</strong> through a
-                            Defense-in-Depth strategy. We utilize Zero-Trust Auth, Cloudflare WAF,
-                            and strict Content Security Policies to keep student data safe.
-                          </div>
+                        <li>
+                          <strong className="text-white">650+ Problems:</strong> Curated from Assiut sheets, split into <strong className="text-white">Level 0 (205)</strong>, <strong className="text-white">Level 1 (226)</strong>, and <strong className="text-white">Level 2 (170)</strong>.
                         </li>
-                        <li className="flex gap-3">
-                          <i className="fas fa-gavel text-orange-400 mt-1"></i>
-                          <div>
-                            <strong className="text-white block">The "Judge" Engine</strong>
-                            A custom-built, sandboxed execution engine. Every line of student code
-                            runs in an isolated, network-gapped Docker container with strict
-                            resource limits—preventing Cheating and DoS attacks while delivering
-                            sub-second grading.
-                          </div>
+                        <li>
+                          <strong className="text-white">Full Roadmap:</strong> From STL basics to high-end graph algorithms.
                         </li>
-                        <li className="flex gap-3">
-                          <i className="fas fa-bolt text-yellow-400 mt-1"></i>
-                          <div>
-                            <strong className="text-white block">Performance First</strong>
-                            Despite the heavy logic, the platform loads in{" "}
-                            <strong className="text-white">under 1.4 seconds</strong>. We optimized
-                            everything from database queries to WebM background assets to ensure a
-                            snappy experience.
-                          </div>
+                        <li>
+                          <strong className="text-white">16hr Curriculum:</strong> Video materials from Eng. Ahmed Walid integrated into the platform.
+                        </li>
+                        <li>
+                          <strong className="text-white">Gamification:</strong> Leaderboards, 3D achievements, and real-time tracking to keep motivation high.
                         </li>
                       </ul>
                     </div>
@@ -1231,28 +1207,6 @@ export default function Projects() {
                     {/* Impact Stats */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                        <i className="fas fa-chart-line mr-2"></i>Real World Impact
-                      </h4>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                            Performance
-                          </p>
-                          <p className="text-lg font-display font-bold text-white">1,395ms</p>
-                          <p className="text-[10px] text-gray-400">Avg Load Time</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                            Adoption
-                          </p>
-                          <p className="text-lg font-display font-bold text-white">300+</p>
-                          <p className="text-[10px] text-gray-400">Reg in 48h</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                            Reach
-                          </p>
-                          <p className="text-lg font-display font-bold text-white">3,840+</p>
                           <p className="text-[10px] text-gray-400">Monthly Views</p>
                         </div>
                         <div>
