@@ -7,6 +7,7 @@ import { QueryProvider } from "@/lib/query/providers";
 import { Toaster } from "sonner";
 import { Navbar } from "../components/navbar";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import globalsCss from "@/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
@@ -153,6 +154,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         </div>
         <RootProviders>{children}</RootProviders>
         <Analytics />
+        <SpeedInsights />
         <Scripts />
       </body>
     </html>
