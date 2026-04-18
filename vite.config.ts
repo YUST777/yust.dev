@@ -115,11 +115,6 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("framer-motion")) return "framer-motion";
-          if (id.includes("gsap")) return "gsap";
-          if (id.includes("@tanstack")) return "tanstack";
-        },
       },
     },
   },
