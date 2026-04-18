@@ -1,6 +1,6 @@
 import * as React from "react";
-import type { MotionValue } from "motion/react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
+import type { MotionValue } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import clsx from "clsx";
 import * as Icons from "./icons";
 import type { UsageDay } from "./data";
