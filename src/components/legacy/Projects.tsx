@@ -1207,16 +1207,39 @@ export default function Projects() {
                     {/* Impact Stats */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                          <p className="text-[10px] text-gray-400">Monthly Views</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">
-                            Scale
-                          </p>
-                          <p className="text-lg font-display font-bold text-white">26+</p>
-                          <p className="text-[10px] text-gray-400">Problems Hosted</p>
-                        </div>
-                      </div>
+                        <i className="fas fa-trophy mr-2"></i>What I'm Proud Of
+                      </h4>
+                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                        <li>
+                          It's the <strong className="text-white">backbone of the ICPCHUE community</strong> in Horus University.
+                        </li>
+                        <li>
+                          Reached <strong className="text-white">120k impressions</strong> on LinkedIn.
+                        </li>
+                        <li>
+                          Presented at the Luxsai conference where <strong className="text-white">21 colleges</strong> liked the idea—it's now being adopted all over Egypt.
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Lessons */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-lightbulb mr-2"></i>What I've Learned
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-4">
+                        This was my first time building a real login system; I graduated from SQLite (Gifts Chart era) to <strong className="text-white">Supabase</strong>. I also leaned heavily into high-end UX and elite domain health scores (see <a href="https://icpchue.com/devlog" className="text-white underline text-white/80 hover:text-white transition-colors decoration-white/30">icpchue.com/devlog</a>).
+                      </p>
+                    </div>
+
+                    {/* The Hardest Part */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-brain mr-2"></i>The Hardest Technical Challenge
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed italic border-l-2 border-white/20 pl-4 py-1">
+                        "The hardest part was building for the future: making an ecosystem that is actually scalable, sustainable, and secure enough to handle nationwide adoption without breaking under pressure."
+                      </p>
                     </div>
 
                     {/* Visit Project Button */}
