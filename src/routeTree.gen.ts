@@ -15,7 +15,6 @@ import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
 import { Route as MainExperienceRouteImport } from './routes/_main/experience'
-import { Route as MainSplatRouteImport } from './routes/_main/$'
 
 const TokenUsageRoute = TokenUsageRouteImport.update({
   id: '/token-usage',
@@ -46,23 +45,16 @@ const MainExperienceRoute = MainExperienceRouteImport.update({
   path: '/experience',
   getParentRoute: () => MainRoute,
 } as any)
-const MainSplatRoute = MainSplatRouteImport.update({
-  id: '/$',
-  path: '/$',
-  getParentRoute: () => MainRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/token-usage': typeof TokenUsageRoute
-  '/$': typeof MainSplatRoute
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
 }
 export interface FileRoutesByTo {
   '/token-usage': typeof TokenUsageRoute
-  '/$': typeof MainSplatRoute
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
@@ -72,7 +64,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
   '/token-usage': typeof TokenUsageRoute
-  '/_main/$': typeof MainSplatRoute
   '/_main/experience': typeof MainExperienceRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
@@ -80,20 +71,13 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/token-usage'
-    | '/$'
-    | '/experience'
-    | '/hacks'
-    | '/projects'
+  fullPaths: '/' | '/token-usage' | '/experience' | '/hacks' | '/projects'
   fileRoutesByTo: FileRoutesByTo
-  to: '/token-usage' | '/$' | '/experience' | '/hacks' | '/projects' | '/'
+  to: '/token-usage' | '/experience' | '/hacks' | '/projects' | '/'
   id:
     | '__root__'
     | '/_main'
     | '/token-usage'
-    | '/_main/$'
     | '/_main/experience'
     | '/_main/hacks'
     | '/_main/projects'
@@ -149,18 +133,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainExperienceRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/$': {
-      id: '/_main/$'
-      path: '/$'
-      fullPath: '/$'
-      preLoaderRoute: typeof MainSplatRouteImport
-      parentRoute: typeof MainRoute
-    }
   }
 }
 
 interface MainRouteChildren {
-  MainSplatRoute: typeof MainSplatRoute
   MainExperienceRoute: typeof MainExperienceRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
@@ -168,7 +144,6 @@ interface MainRouteChildren {
 }
 
 const MainRouteChildren: MainRouteChildren = {
-  MainSplatRoute: MainSplatRoute,
   MainExperienceRoute: MainExperienceRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
