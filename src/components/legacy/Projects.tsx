@@ -53,7 +53,7 @@ const VideoPlayer = memo(
         {isInView ? (
           <video
             ref={videoRef}
-            src={video}
+            src={shouldAutoPlay ? video : `${video}#t=0,5`}
             preload={shouldAutoPlay ? "auto" : "none"}
             autoPlay={shouldAutoPlay}
             loop
