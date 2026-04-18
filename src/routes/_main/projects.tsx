@@ -3,6 +3,16 @@ import Projects from "../../components/legacy/Projects";
 import "../../components/legacy/StaggeredMenu.css";
 
 export const Route = createFileRoute("/_main/projects")({
+  head: () => ({
+    meta: [
+      { title: "Projects | Yousef Mohammed Salah" },
+      {
+        name: "description",
+        content:
+          "Explore my technical project gallery, from cybersecurity ecosystems to viral developer platforms. Highlighting Verdict.run, ICPC HUE, and GiftsChart.",
+      },
+    ],
+  }),
   component: ProjectsPage,
 });
 

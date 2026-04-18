@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/hacks")({
+  head: () => ({
+    meta: [
+      { title: "Hackathons | Yousef Mohammed Salah" },
+      {
+        name: "description",
+        content:
+          "Competitive builds and national awards. Winner of 1ST PLACE at Tanta National Summit and 2ND PLACE at GDG Delta Hackathon out of 100+ teams.",
+      },
+    ],
+  }),
   component: HacksPage,
 });
 

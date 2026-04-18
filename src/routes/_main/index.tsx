@@ -22,6 +22,16 @@ const SOCIAL_LINKS = [
 ];
 
 export const Route = createFileRoute("/_main/")({
+  head: () => ({
+    meta: [
+      { title: "About | Yousef Mohammed Salah" },
+      {
+        name: "description",
+        content:
+          "Official portfolio of Yousef Mohammed Salah (Yüst). AI & Cybersecurity student, founder of Verdict.run and ICPC HUE Lead. Discover my mission and notable achievements.",
+      },
+    ],
+  }),
   component: AboutPage,
 });
 

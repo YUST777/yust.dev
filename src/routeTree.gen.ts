@@ -10,39 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TokenUsageRouteImport } from './routes/token-usage'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
-import { Route as FaviconDoticoRouteImport } from './routes/favicon[.]ico'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
 import { Route as MainExperienceRouteImport } from './routes/_main/experience'
-import { Route as MainBlogRouteImport } from './routes/_main/blog'
-import { Route as MainArchiveRouteImport } from './routes/_main/archive'
 import { Route as MainSplatRouteImport } from './routes/_main/$'
-import { Route as MainThoughtsIndexRouteImport } from './routes/_main/thoughts/index'
-import { Route as MainThoughtsSplatRouteImport } from './routes/_main/thoughts/$'
-import { Route as MainPostsSplatRouteImport } from './routes/_main/posts/$'
 
 const TokenUsageRoute = TokenUsageRouteImport.update({
   id: '/token-usage',
   path: '/token-usage',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
-  id: '/robots.txt',
-  path: '/robots.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaviconDoticoRoute = FaviconDoticoRouteImport.update({
-  id: '/favicon.ico',
-  path: '/favicon.ico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MainRoute = MainRouteImport.update({
@@ -69,144 +46,62 @@ const MainExperienceRoute = MainExperienceRouteImport.update({
   path: '/experience',
   getParentRoute: () => MainRoute,
 } as any)
-const MainBlogRoute = MainBlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => MainRoute,
-} as any)
-const MainArchiveRoute = MainArchiveRouteImport.update({
-  id: '/archive',
-  path: '/archive',
-  getParentRoute: () => MainRoute,
-} as any)
 const MainSplatRoute = MainSplatRouteImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => MainRoute,
 } as any)
-const MainThoughtsIndexRoute = MainThoughtsIndexRouteImport.update({
-  id: '/thoughts/',
-  path: '/thoughts/',
-  getParentRoute: () => MainRoute,
-} as any)
-const MainThoughtsSplatRoute = MainThoughtsSplatRouteImport.update({
-  id: '/thoughts/$',
-  path: '/thoughts/$',
-  getParentRoute: () => MainRoute,
-} as any)
-const MainPostsSplatRoute = MainPostsSplatRouteImport.update({
-  id: '/posts/$',
-  path: '/posts/$',
-  getParentRoute: () => MainRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
-  '/favicon.ico': typeof FaviconDoticoRoute
-  '/robots.txt': typeof RobotsDottxtRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
   '/$': typeof MainSplatRoute
-  '/archive': typeof MainArchiveRoute
-  '/blog': typeof MainBlogRoute
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
-  '/posts/$': typeof MainPostsSplatRoute
-  '/thoughts/$': typeof MainThoughtsSplatRoute
-  '/thoughts/': typeof MainThoughtsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/favicon.ico': typeof FaviconDoticoRoute
-  '/robots.txt': typeof RobotsDottxtRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
   '/$': typeof MainSplatRoute
-  '/archive': typeof MainArchiveRoute
-  '/blog': typeof MainBlogRoute
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/': typeof MainIndexRoute
-  '/posts/$': typeof MainPostsSplatRoute
-  '/thoughts/$': typeof MainThoughtsSplatRoute
-  '/thoughts': typeof MainThoughtsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
-  '/favicon.ico': typeof FaviconDoticoRoute
-  '/robots.txt': typeof RobotsDottxtRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/token-usage': typeof TokenUsageRoute
   '/_main/$': typeof MainSplatRoute
-  '/_main/archive': typeof MainArchiveRoute
-  '/_main/blog': typeof MainBlogRoute
   '/_main/experience': typeof MainExperienceRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
   '/_main/': typeof MainIndexRoute
-  '/_main/posts/$': typeof MainPostsSplatRoute
-  '/_main/thoughts/$': typeof MainThoughtsSplatRoute
-  '/_main/thoughts/': typeof MainThoughtsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/favicon.ico'
-    | '/robots.txt'
-    | '/sitemap.xml'
     | '/token-usage'
     | '/$'
-    | '/archive'
-    | '/blog'
     | '/experience'
     | '/hacks'
     | '/projects'
-    | '/posts/$'
-    | '/thoughts/$'
-    | '/thoughts/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/favicon.ico'
-    | '/robots.txt'
-    | '/sitemap.xml'
-    | '/token-usage'
-    | '/$'
-    | '/archive'
-    | '/blog'
-    | '/experience'
-    | '/hacks'
-    | '/projects'
-    | '/'
-    | '/posts/$'
-    | '/thoughts/$'
-    | '/thoughts'
+  to: '/token-usage' | '/$' | '/experience' | '/hacks' | '/projects' | '/'
   id:
     | '__root__'
     | '/_main'
-    | '/favicon.ico'
-    | '/robots.txt'
-    | '/sitemap.xml'
     | '/token-usage'
     | '/_main/$'
-    | '/_main/archive'
-    | '/_main/blog'
     | '/_main/experience'
     | '/_main/hacks'
     | '/_main/projects'
     | '/_main/'
-    | '/_main/posts/$'
-    | '/_main/thoughts/$'
-    | '/_main/thoughts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   MainRoute: typeof MainRouteWithChildren
-  FaviconDoticoRoute: typeof FaviconDoticoRoute
-  RobotsDottxtRoute: typeof RobotsDottxtRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TokenUsageRoute: typeof TokenUsageRoute
 }
 
@@ -217,27 +112,6 @@ declare module '@tanstack/react-router' {
       path: '/token-usage'
       fullPath: '/token-usage'
       preLoaderRoute: typeof TokenUsageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/robots.txt': {
-      id: '/robots.txt'
-      path: '/robots.txt'
-      fullPath: '/robots.txt'
-      preLoaderRoute: typeof RobotsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/favicon.ico': {
-      id: '/favicon.ico'
-      path: '/favicon.ico'
-      fullPath: '/favicon.ico'
-      preLoaderRoute: typeof FaviconDoticoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_main': {
@@ -275,20 +149,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainExperienceRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/blog': {
-      id: '/_main/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof MainBlogRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/archive': {
-      id: '/_main/archive'
-      path: '/archive'
-      fullPath: '/archive'
-      preLoaderRoute: typeof MainArchiveRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/$': {
       id: '/_main/$'
       path: '/$'
@@ -296,63 +156,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainSplatRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/thoughts/': {
-      id: '/_main/thoughts/'
-      path: '/thoughts'
-      fullPath: '/thoughts/'
-      preLoaderRoute: typeof MainThoughtsIndexRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/thoughts/$': {
-      id: '/_main/thoughts/$'
-      path: '/thoughts/$'
-      fullPath: '/thoughts/$'
-      preLoaderRoute: typeof MainThoughtsSplatRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/posts/$': {
-      id: '/_main/posts/$'
-      path: '/posts/$'
-      fullPath: '/posts/$'
-      preLoaderRoute: typeof MainPostsSplatRouteImport
-      parentRoute: typeof MainRoute
-    }
   }
 }
 
 interface MainRouteChildren {
   MainSplatRoute: typeof MainSplatRoute
-  MainArchiveRoute: typeof MainArchiveRoute
-  MainBlogRoute: typeof MainBlogRoute
   MainExperienceRoute: typeof MainExperienceRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
   MainIndexRoute: typeof MainIndexRoute
-  MainPostsSplatRoute: typeof MainPostsSplatRoute
-  MainThoughtsSplatRoute: typeof MainThoughtsSplatRoute
-  MainThoughtsIndexRoute: typeof MainThoughtsIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
   MainSplatRoute: MainSplatRoute,
-  MainArchiveRoute: MainArchiveRoute,
-  MainBlogRoute: MainBlogRoute,
   MainExperienceRoute: MainExperienceRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
   MainIndexRoute: MainIndexRoute,
-  MainPostsSplatRoute: MainPostsSplatRoute,
-  MainThoughtsSplatRoute: MainThoughtsSplatRoute,
-  MainThoughtsIndexRoute: MainThoughtsIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
-  FaviconDoticoRoute: FaviconDoticoRoute,
-  RobotsDottxtRoute: RobotsDottxtRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TokenUsageRoute: TokenUsageRoute,
 }
 export const routeTree = rootRouteImport

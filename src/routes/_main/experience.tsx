@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/experience")({
   head: () => ({
-    meta: [{ title: "Experience | Yousef Mohammed Salah" }],
+    meta: [
+      { title: "Experience | Yousef Mohammed Salah" },
+      {
+        name: "description",
+        content:
+          "Professional roadmap and technical leadership. Founder at Verdict.run, Horus University ICPC Lead, and Software Engineering Lead at Orbit.",
+      },
+    ],
   }),
   component: ExperiencePage,
 });
