@@ -14,15 +14,20 @@ const VideoPlayer = memo(
     title,
     shouldAutoPlay = false,
     isHovered = false,
+    isPriority = false,
   }: {
     video: string;
     title?: string;
     shouldAutoPlay?: boolean;
     isHovered?: boolean;
+    isPriority?: boolean;
   }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "100px" });
+    const isInView = useInView(containerRef, {
+      once: true,
+      margin: isPriority ? "500px" : "50px",
+    });
 
     useEffect(() => {
       if (!videoRef.current || !isInView) return;
@@ -54,7 +59,7 @@ const VideoPlayer = memo(
           <video
             ref={videoRef}
             src={shouldAutoPlay ? video : `${video}#t=0,5`}
-            preload="metadata"
+            preload={isPriority ? "metadata" : "none"}
             autoPlay={shouldAutoPlay}
             loop
             muted
@@ -301,7 +306,7 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
-          {projectsData.map((project) => {
+          {projectsData.map((project, index) => {
             // --- Large Card (e.g. YousefDev) ---
             if (project.isLarge) {
               return (
@@ -347,6 +352,7 @@ export default function Projects() {
                               project.video === "/videos/yousefdev.webm" ||
                               project.video === "/videos/moreprojects.webm"
                             }
+                            isPriority={index < 2}
                             isHovered={hoveredVideoId === project.id}
                           />
                         ) : (
@@ -412,6 +418,7 @@ export default function Projects() {
                                 project.video === "/videos/yousefdev.webm" ||
                                 project.video === "/videos/moreprojects.webm"
                               }
+                              isPriority={index < 2}
                               isHovered={hoveredVideoId === project.id}
                             />
                             {project.video !== "/videos/moreprojects.webm" ? (
@@ -509,6 +516,7 @@ export default function Projects() {
                             project.video === "/videos/yousefdev.webm" ||
                             project.video === "/videos/moreprojects.webm"
                           }
+                          isPriority={index < 2}
                           isHovered={hoveredVideoId === project.id}
                         />
                       ) : (
