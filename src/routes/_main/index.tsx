@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Star, Undo2 } from "lucide-react";
 import { GitHubCalendar } from "react-github-calendar";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
@@ -149,10 +148,18 @@ function AboutPage() {
                 totalCount: `{{count}} contributions in the last year • Total accumulated repository stars: ${stars !== null ? stars : "..."}`,
               }}
               renderBlock={(block, activity) =>
-                React.cloneElement(block as React.ReactElement, {
-                  "data-tooltip-id": "github-tooltip",
-                  "data-tooltip-html": `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
-                })
+                React.cloneElement(
+                  block as React.ReactElement<
+                    React.SVGProps<SVGRectElement> & {
+                      "data-tooltip-id"?: string;
+                      "data-tooltip-html"?: string;
+                    }
+                  >,
+                  {
+                    "data-tooltip-id": "github-tooltip",
+                    "data-tooltip-html": `<div class="text-xs text-center"><div class="font-bold text-white mb-0.5">${activity.date}</div><div class="text-zinc-400">${activity.count} contributions</div></div>`,
+                  },
+                )
               }
             />
           </div>

@@ -1,5 +1,6 @@
-/* @ts-nocheck */
-const CodeEditorIcon = ({ className, ...props }) => (
+import type { SVGProps } from "react";
+
+const CodeEditorIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width={"24"}
     height={"24"}

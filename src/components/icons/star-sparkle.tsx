@@ -1,5 +1,6 @@
-/* @ts-nocheck */
-const StarSparkleIcon = ({ className, ...props }) => (
+import type { SVGProps } from "react";
+
+const StarSparkleIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

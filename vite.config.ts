@@ -20,16 +20,17 @@ export default defineConfig({
     },
     env: {
       builtin: true,
+      browser: true,
+      node: true,
     },
     ignorePatterns: [
-      "**/*.ts",
-      "**/*.tsx",
       "node_modules/",
       "dist/",
       ".output/",
       ".vinxi/",
       ".content-collections/",
       ".contentlayer/",
+      "**/routeTree.gen.ts",
     ],
     rules: {
       "constructor-super": "error",

@@ -313,7 +313,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
 
       // Fetch CDN images if needed
       if (project?.useCDNImages) {
-        fetchCDNImages();
+        void fetchCDNImages();
       }
     } else {
       document.body.style.overflow = "unset";

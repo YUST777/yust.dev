@@ -8,7 +8,7 @@ import { Toaster } from "sonner";
 import { Navbar } from "../components/navbar";
 import { Analytics } from "@vercel/analytics/react";
 
-import globalsCss from "@/src/globals.css?url";
+import globalsCss from "@/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 

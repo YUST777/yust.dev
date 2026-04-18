@@ -13,7 +13,7 @@ export const Route = createFileRoute("/token-usage")({
     meta: [{ title: "Token Usage | Yousef" }],
   }),
   component: TokenUsagePage,
-  errorComponent: ({ error }) => (
+  errorComponent: () => (
     <div className="flex min-h-screen items-center justify-center">
       <div className="text-center font-mono text-sm">
         <Link to="/" className="text-grey-800 dark:text-grey-100">

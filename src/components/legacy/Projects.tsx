@@ -301,7 +301,7 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
-          {projectsData.map((project, index) => {
+          {projectsData.map((project) => {
             // --- Large Card (e.g. YousefDev) ---
             if (project.isLarge) {
               return (
@@ -380,7 +380,7 @@ export default function Projects() {
                       <button
                         onClick={() => {
                           if (project.isArchive) {
-                            navigate({ to: "/projects" });
+                            void navigate({ to: "/projects" });
                             return;
                           }
                           setSelectedProject(project);

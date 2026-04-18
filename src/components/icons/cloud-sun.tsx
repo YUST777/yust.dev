@@ -1,5 +1,6 @@
-/* @ts-nocheck */
-const CloudSunIcon = ({ className, ...props }) => (
+import type { SVGProps } from "react";
+
+const CloudSunIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     width="24"
     height="24"

@@ -49,7 +49,7 @@ const GOOSE_NOTES = [
 function playHonkSound() {
   if (typeof window === "undefined") return;
   try {
-    sounds.honk();
+    void sounds.honk();
   } catch {
     /* autoplay / AudioContext not allowed yet */
   }
@@ -79,7 +79,7 @@ interface Footprint {
 }
 
 /** Supporting the 4x3 grid with clean row/col slicing */
-function gooseSpriteLayerStyle(frameIdx: number, frameWidthPx: number): CSSProperties {
+function gooseSpriteLayerStyle(frameIdx: number, _frameWidthPx: number): CSSProperties {
   const col = frameIdx % SPRITE_COLS;
   const row = Math.floor(frameIdx / SPRITE_COLS);
 
@@ -194,44 +194,6 @@ export function DesktopGoose() {
       x: margin + Math.random() * rangeX,
       y: margin + Math.random() * rangeY,
     };
-  }, []);
-
-  const pickFleeTarget = useCallback(() => {
-    const cx = cursorPosRef.current.x;
-    const cy = cursorPosRef.current.y;
-    const gcx = posRef.current.x + DISPLAY_SIZE / 2;
-    const gcy = posRef.current.y + (DISPLAY_SIZE * ASPECT_RATIO) / 2;
-    let vx = gcx - cx;
-    let vy = gcy - cy;
-    const len = Math.hypot(vx, vy);
-    if (len < 8) {
-      const a = Math.random() * Math.PI * 2;
-      vx = Math.cos(a);
-      vy = Math.sin(a);
-    } else {
-      vx /= len;
-      vy /= len;
-    }
-    const run = 160 + Math.random() * 260;
-    targetRef.current = clampGoosePos(
-      gcx + vx * run - DISPLAY_SIZE / 2,
-      gcy + vy * run - (DISPLAY_SIZE * ASPECT_RATIO) / 2,
-    );
-  }, []);
-
-  const pickEdgePeckTarget = useCallback(() => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const m = 28;
-    const maxX = Math.max(m, w - DISPLAY_SIZE - m);
-    const maxY = Math.max(m, h - DISPLAY_SIZE * ASPECT_RATIO - m);
-    const rx = () => m + Math.random() * Math.max(0, maxX - m);
-    const ry = () => m + Math.random() * Math.max(0, maxY - m);
-    const edge = Math.floor(Math.random() * 4);
-    if (edge === 0) targetRef.current = clampGoosePos(rx(), m);
-    else if (edge === 1) targetRef.current = clampGoosePos(rx(), maxY);
-    else if (edge === 2) targetRef.current = clampGoosePos(m, ry());
-    else targetRef.current = clampGoosePos(maxX, ry());
   }, []);
 
   useEffect(() => {
