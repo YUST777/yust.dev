@@ -1412,42 +1412,87 @@ export default function Projects() {
                     {/* Header */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">
-                        Sast – The Autonomous AI Security Agent
+                        Sast – Autonomous AI Security Agent
                       </h4>
                       <p className="text-[12px] sm:text-sm text-gray-400">
-                        Role: Lead AI & Security Architect
+                        <i className="fas fa-code-branch mr-2"></i>Lead Web Architect
+                      </p>
+                      <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
+                        Status: <span className="text-yellow-400 font-bold">2x Hackathon Winner 🏆</span>
                       </p>
                     </div>
 
-                    {/* Problem & Solution */}
+                    {/* The Problem */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                        <i className="fas fa-microchip mr-2"></i>The Solution
+                        <i className="fas fa-exclamation-triangle mr-2"></i>The Problem
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed font-medium">
+                        "Code is being generated instantly by AI, but security is still stuck in a slow, manual process. That gap is where hackers win."
+                      </p>
+                    </div>
+
+                    {/* How it Works */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-cogs mr-2"></i>How It Works?
                       </h4>
                       <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-                        Code is generated instantly. Security shouldn't be stuck in manual. Sast is the autonomous AI agent that fetches your app, detects vulnerabilities, and fixes them—instantly. It ensures your software is secured as fast as it is coded.
+                        You feed it your repository or source code, and Sast spins up <strong className="text-white underline decoration-white/30">10 autonomous agents</strong>. Each one has a specific job—they scan your app fully, identify flaws, and then actually patch the code.
                       </p>
                     </div>
 
-                    {/* Features */}
+                    {/* Capabilities */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
-                        <i className="fas fa-shield-alt mr-2"></i>Capabilities
+                        <i className="fas fa-layer-group mr-2"></i>What does it provide?
                       </h4>
-                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-4">
-                        Our agent automates the full security lifecycle—identifying, fixing, and verifying vulnerabilities with functional POCs.
-                      </p>
-                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                      <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
                         <li>
-                          <strong className="text-white">Autonomous Patching:</strong> Automatically generates and applies code patches to resolve detected flaws.
+                          <strong className="text-white font-display">Autonomous Security:</strong> An agent that fetches your app, detects vulnerabilities, and fixes them—instantly.
                         </li>
                         <li>
-                          <strong className="text-white">Vulnerability Verification:</strong> Generates functional Proof-of-Concepts (POCs) to verify actual risk.
+                          <strong className="text-white font-display">Built-in IDE:</strong> Review and merge patches in a integrated development environment.
                         </li>
                         <li>
-                          <strong className="text-white">Superior Precision:</strong> Significantly more robust and optimized than manual competitors.
+                          <strong className="text-white font-display">AI Vulnerability Search:</strong> Deep-level security search combined with automated code patching.
                         </li>
                       </ul>
+                    </div>
+
+                    {/* Wins/Stat */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-trophy mr-2"></i>What I'm Proud Of
+                      </h4>
+                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                        <li>
+                          We won <strong className="text-white">2 major hackathons</strong> with this, earning <strong className="text-green-400 font-bold">70,000 EGP</strong> in prizes.
+                        </li>
+                        <li>
+                          I designed and built the entire high-end <a href="https://sast.tech" className="text-white underline underline-offset-4 decoration-white/30">sast.tech</a> website solo (my friend built the core app).
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Lessons */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-lightbulb mr-2"></i>What I’ve Learned
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
+                        This project was my deep dive into <strong className="text-white">high-end technical website design</strong>. I learned how to create a premium visual identity for complex AI products.
+                      </p>
+                    </div>
+
+                    {/* The Hardest Part */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-brain mr-2"></i>The Hardest Technical Challenge
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed italic border-l-2 border-white/20 pl-4 py-1">
+                        "The hardest part was making the UI look truly premium and clean while linking everything to Supabase. I integrated MCP (Model Context Protocol) to create a 'real' and secure login system that felt seamless with the rest of the application's clean design."
+                      </p>
                     </div>
 
                     {/* CTA */}
@@ -1456,7 +1501,7 @@ export default function Projects() {
                         href="https://sast.tech"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+                        className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                       >
                         <span>Visit Sast.tech</span>
                         <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
