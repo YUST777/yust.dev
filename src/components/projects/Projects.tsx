@@ -10,6 +10,7 @@ import { VideoPlayer } from "./VideoPlayer";
 import { projectsData, archiveProjectsData } from "./ProjectsData";
 import { Project } from "./types";
 import ProjectCard from "./ProjectCard";
+import { sounds } from "@/lib/sounds";
 
 const ProjectModal = lazy(() => import("./ProjectModal"));
 
@@ -96,6 +97,12 @@ export default function Projects() {
   }, [currentText, isDeleting, openDrawer]);
 
   const handleProjectClick = (project: Project) => {
+    try {
+      sounds.popIn();
+    } catch {
+      // Audio context might be restricted
+    }
+
     if (project.isArchive) {
       setIsExpanded(!isExpanded);
       return;
@@ -199,7 +206,10 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setOpenDrawer(null)}
+              onClick={() => {
+                sounds.popOut();
+                setOpenDrawer(null);
+              }}
               className="fixed inset-0 bg-black/80 z-[55] backdrop-blur-sm"
             />
             <motion.div
@@ -211,13 +221,19 @@ export default function Projects() {
               dragConstraints={{ top: 0 }}
               dragElastic={0.1}
               onDragEnd={(_, info) => {
-                if (info.offset.y > 150 || info.velocity.y > 500) setOpenDrawer(null);
+                if (info.offset.y > 150 || info.velocity.y > 500) {
+                  sounds.popOut();
+                  setOpenDrawer(null);
+                }
               }}
               className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-[env(safe-area-inset-bottom,2rem)] mb-0 sm:pb-12 pt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[94vh] overflow-hidden flex flex-col pointer-events-auto"
             >
               <div
                 className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-pointer hover:bg-white/30 transition-colors shrink-0"
-                onClick={() => setOpenDrawer(null)}
+                onClick={() => {
+                  sounds.popOut();
+                  setOpenDrawer(null);
+                }}
               />
               <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
                 <div className="flex-1 min-w-0">
@@ -236,7 +252,10 @@ export default function Projects() {
                   </h3>
                 </div>
                 <button
-                  onClick={() => setOpenDrawer(null)}
+                  onClick={() => {
+                    sounds.popOut();
+                    setOpenDrawer(null);
+                  }}
                   className="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 active:scale-90 transition-all flex items-center justify-center shrink-0"
                 >
                   <X className="w-5 h-5" />
