@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Projects from "../../components/legacy/Projects";
-import "../../components/legacy/StaggeredMenu.css";
+import Projects from "../../components/projects/Projects";
 
 export const Route = createFileRoute("/_main/projects")({
   head: () => ({

@@ -112,6 +112,17 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "framer-motion": ["framer-motion"],
+          gsap: ["gsap"],
+          tanstack: ["@tanstack/react-router", "@tanstack/react-query"],
+        },
+      },
+    },
+  },
   plugins: [
     tailwindcss(),
     tanstackStart(),
