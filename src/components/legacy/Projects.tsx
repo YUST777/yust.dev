@@ -55,22 +55,18 @@ const VideoPlayer = memo(
         ref={containerRef}
         className="absolute inset-0 w-full h-full bg-[#0c0c0c] group-hover:scale-105 transition-transform duration-700 ease-out"
       >
-        {isInView ? (
-          <video
-            ref={videoRef}
-            src={shouldAutoPlay ? video : `${video}#t=0,5`}
-            preload={isPriority ? "metadata" : "none"}
-            autoPlay={shouldAutoPlay}
-            loop
-            muted
-            playsInline
-            onLoadedData={handleLoadedData}
-            className="absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none"
-            title={title}
-          />
-        ) : (
-          <div className="absolute inset-0 w-full h-full bg-zinc-900/50 rounded-2xl" />
-        )}
+        <video
+          ref={videoRef}
+          src={shouldAutoPlay ? video : `${video}#t=0,5`}
+          preload="auto"
+          autoPlay={shouldAutoPlay}
+          loop
+          muted
+          playsInline
+          onLoadedData={handleLoadedData}
+          className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-500 ${isInView ? "opacity-100" : "opacity-0"}`}
+          title={title}
+        />
       </div>
     );
   },
