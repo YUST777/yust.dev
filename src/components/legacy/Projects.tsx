@@ -205,19 +205,6 @@ export default function Projects() {
       ],
     },
     {
-      id: 9,
-      title: "Collectable Kit",
-      description: "Next-gen collectibles management platform.",
-      fullDescription:
-        "A comprehensive platform designed for modern collectors. Track, value, and manage your digital and physical collections with real-time analytics and a sleek, high-performance interface.",
-      tag: "Social",
-      icon: "fa-box-open",
-      span: "md:col-span-1 md:row-span-1",
-      delay: "delay-200",
-      video: "/videos/collectablekit.webm",
-      technologies: ["Next.js", "PostgreSQL", "Tailwind CSS", "Lucide Icons"],
-    },
-    {
       id: 2,
       title: "Gifts Charts",
       description: "Real-time Telegram sticker & gift price tracking bot.",
@@ -246,6 +233,19 @@ export default function Projects() {
           items: ["Microservices", "Docker Containerized", "Async Database", "CDN Service"],
         },
       ],
+    },
+    {
+      id: 9,
+      title: "Collectable Kit",
+      description: "Next-gen collectibles management platform.",
+      fullDescription:
+        "A comprehensive platform designed for modern collectors. Track, value, and manage your digital and physical collections with real-time analytics and a sleek, high-performance interface.",
+      tag: "Social",
+      icon: "fa-box-open",
+      span: "md:col-span-1 md:row-span-1",
+      delay: "delay-200",
+      video: "/videos/collectablekit.webm",
+      technologies: ["Next.js", "PostgreSQL", "Tailwind CSS", "Lucide Icons"],
     },
     {
       id: 4,
