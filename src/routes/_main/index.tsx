@@ -206,7 +206,7 @@ function AchievementsSection() {
               </a>
               .{" "}
             </strong>
-            Engineered and launched a competitive programming platform that went viral, generating{" "}
+            Founded a viral Competitive Programming **'Mirror Tool'** that transforms the Codeforces UI into a sleek LeetCode-style IDE simply by changing the TLD to **verdict.run**. Generated{" "}
             <a
               href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-activity-7418662435072622594-OycK"
               target="_blank"
@@ -215,7 +215,7 @@ function AchievementsSection() {
             >
               120k+ organic impressions
             </a>{" "}
-            on LinkedIn from a single early post.
+            on LinkedIn from a single post.
           </p>
         </div>
 
