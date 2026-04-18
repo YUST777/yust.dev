@@ -2,7 +2,6 @@ import { defineConfig } from "vite-plus";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
-import contentCollections from "@content-collections/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 
@@ -110,9 +109,6 @@ export default defineConfig({
     },
   },
   server: { port: 3000 },
-  optimizeDeps: {
-    exclude: ["content-collections", ".content-collections"],
-  },
   resolve: {
     tsconfigPaths: true,
     alias: {
@@ -126,7 +122,6 @@ export default defineConfig({
     noExternal: ["bright"],
   },
   plugins: [
-    contentCollections(),
     tailwindcss(),
     tanstackStart(),
     nitro({

@@ -95,7 +95,7 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: geistMonoCss },
       {
         rel: "stylesheet",
-        href: "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css",
+        href: "/katex.min.css",
       },
       {
         rel: "preload",
