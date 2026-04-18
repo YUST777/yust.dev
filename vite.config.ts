@@ -112,12 +112,6 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  build: {
-    rollupOptions: {
-      output: {
-      },
-    },
-  },
   plugins: [
     tailwindcss(),
     tanstackStart(),
