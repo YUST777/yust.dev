@@ -115,10 +115,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "framer-motion": ["framer-motion"],
-          gsap: ["gsap"],
-          tanstack: ["@tanstack/react-router", "@tanstack/react-query"],
+        manualChunks(id) {
+          if (id.includes("framer-motion")) return "framer-motion";
+          if (id.includes("gsap")) return "gsap";
+          if (id.includes("@tanstack")) return "tanstack";
         },
       },
     },
