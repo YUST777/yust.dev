@@ -21,7 +21,7 @@ const experience = [
     date: "January 2026 - Present",
     location: "Egypt",
     responsibilities: [
-      "Founded a viral Competitive Programming 'Mirror Tool' that transforms the Codeforces UI into a sleek LeetCode-style IDE simply by changing the TLD to '.run'.",
+      "Founded a viral Competitive Programming 'Mirror Tool' that transforms the Codeforces UI into a sleek LeetCode-style IDE simply by changing the TLD to 'verdict.run'.",
       <>
         Generated{" "}
         <a
