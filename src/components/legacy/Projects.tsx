@@ -327,13 +327,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto">
         <div
           ref={headerRef}
-          className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end mb-12 md:mb-20 px-0 md:px-4"
+          className="flex justify-end mb-8 md:mb-12 px-0 md:px-4"
         >
-          <div className="w-full md:w-auto">
-            <h2 className="text-3xl md:text-8xl font-display font-black text-white tracking-tighter text-center md:text-left">
-              PROJECTS
-            </h2>
-          </div>
           <a
             href="https://github.com/YUST777"
             target="_blank"
