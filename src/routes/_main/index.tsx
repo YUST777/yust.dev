@@ -18,7 +18,7 @@ const SOCIAL_LINKS = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/yousefmsm1/",
   },
-  { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousefmsm1@gmail.com" },
+  { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousfmsm@hotmail.com" },
 ];
 
 export const Route = createFileRoute("/_main/")({

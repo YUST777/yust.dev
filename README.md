@@ -17,7 +17,7 @@
 <a href="https://www.linkedin.com/in/yousef-mohammed-salah/"><img src="https://img.shields.io/badge/LinkedIn-Yousef%20Salah-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
 
 <a href="https://x.com/YUST777"><img src="https://img.shields.io/badge/X-@YUST777-000000?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
-<a href="mailto:contact@yust.dev"><img src="https://img.shields.io/badge/Email-contact@yust.dev-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+<a href="mailto:yousfmsm@hotmail.com"><img src="https://img.shields.io/badge/Email-yousfmsm@hotmail.com-EA4335?style=for-the-badge&logo=microsoft-outlook&logoColor=white" alt="Email"></a>
 
 </div>
 
