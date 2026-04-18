@@ -1475,14 +1475,32 @@ export default function Projects() {
                       </ul>
                     </div>
 
+                    {/* Business Logic */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-hand-holding-usd mr-2"></i>Business & Sustainability
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-4">
+                        The harsh reality I learned is that college projects focus only on tech—but if a project can't make $5 to cover its own server, it's just a hobby. My project "Collectable Kit" had cool UI and tech, but it failed the money test.
+                      </p>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed italic border-l-2 border-green-500/50 pl-4 py-1">
+                        "When we joined the GDG Delta Hackathon, our first question wasn't 'Which tech stack?' but 'How to sell this?'. We priced it at 200 EGP because my friend found a vulnerability in an IDE that gave us free API access, making the project profitable from day one."
+                      </p>
+                    </div>
+
                     {/* Lessons */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
                       <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
                         <i className="fas fa-lightbulb mr-2"></i>What I’ve Learned
                       </h4>
-                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-                        This project was my deep dive into <strong className="text-white">high-end technical website design</strong>. I learned how to create a premium visual identity for complex AI products.
-                      </p>
+                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                        <li>
+                          <strong className="text-white">Business Basics:</strong> How to build a product that customers actually pay for.
+                        </li>
+                        <li>
+                          <strong className="text-white">Premium Design:</strong> Mastering high-end technical website aesthetics.
+                        </li>
+                      </ul>
                     </div>
 
                     {/* The Hardest Part */}
