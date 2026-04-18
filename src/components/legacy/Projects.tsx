@@ -1242,17 +1242,29 @@ export default function Projects() {
                       </p>
                     </div>
 
-                    {/* Visit Project Button */}
+                    {/* Visit Project Buttons */}
                     <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
-                      <a
-                        href="https://icpchue.xyz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-white/10"
-                      >
-                        <span>Visit ICPCHUE</span>
-                        <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
-                      </a>
+                      <div className="flex flex-col gap-3">
+                        <a
+                          href="https://icpchue.xyz"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-white/10"
+                        >
+                          <span>Visit ICPCHUE</span>
+                          <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a
+                          href="https://github.com/YUST777/icpchue"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full bg-white/10 text-white hover:bg-white/20 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group border border-white/10"
+                        >
+                          <i className="fab fa-github text-xl"></i>
+                          <span>View Source on GitHub</span>
+                          <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform opacity-50 text-xs"></i>
+                        </a>
+                      </div>
                     </div>
                   </>
                 ) : null}
