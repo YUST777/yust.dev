@@ -53,12 +53,12 @@ export function Navbar() {
       <div className="flex max-w-[95vw] items-center gap-0.5 overflow-visible sm:gap-1.5 rounded-full border border-white/[0.08] bg-[#0e0e0e]/70 p-1 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-2xl sm:p-1.5 sm:py-2">
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
         <NavLink to="/projects" icon={<SparklesIcon width="18" height="18" />} label="Projects" />
+        <NavLink to="/hacks" icon={<StarSparkleIcon width="18" height="18" />} label="Hacks" />
         <NavLink
           to="/experience"
           icon={<BriefcaseIcon width="18" height="18" />}
           label="Experience"
         />
-        <NavLink to="/hacks" icon={<StarSparkleIcon width="18" height="18" />} label="Hacks" />
 
         <div className="w-[1px] h-6 shrink-0 bg-white/10 mx-1 sm:mx-2" />
 
