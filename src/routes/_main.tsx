@@ -18,10 +18,10 @@ function LiveClock() {
     return () => clearInterval(timer);
   }, []);
 
-  if (!time) return <span>...</span>;
+  if (!time) return <span className="opacity-0">Loading...</span>;
 
   return (
-    <span>
+    <span className="animate-in fade-in duration-500">
       {time.toLocaleString("en-US", {
         weekday: "short",
         month: "short",
@@ -34,6 +34,12 @@ function LiveClock() {
 }
 
 function MainLayout() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 w-full pb-8">
@@ -58,7 +64,7 @@ function MainLayout() {
             </p>
           </div>
           <p className="text-zinc-600 pt-2 pb-4">
-            © {new Date().getFullYear()} Yousef. All rights reserved.
+            © {mounted ? new Date().getFullYear() : "2026"} Yousef. All rights reserved.
           </p>
         </div>
       </footer>
