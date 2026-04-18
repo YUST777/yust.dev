@@ -15,7 +15,6 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as FaviconDoticoRouteImport } from './routes/favicon[.]ico'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
-import { Route as MainTalksRouteImport } from './routes/_main/talks'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
 import { Route as MainExperienceRouteImport } from './routes/_main/experience'
@@ -53,11 +52,6 @@ const MainRoute = MainRouteImport.update({
 const MainIndexRoute = MainIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => MainRoute,
-} as any)
-const MainTalksRoute = MainTalksRouteImport.update({
-  id: '/talks',
-  path: '/talks',
   getParentRoute: () => MainRoute,
 } as any)
 const MainProjectsRoute = MainProjectsRouteImport.update({
@@ -118,7 +112,6 @@ export interface FileRoutesByFullPath {
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
-  '/talks': typeof MainTalksRoute
   '/posts/$': typeof MainPostsSplatRoute
   '/thoughts/$': typeof MainThoughtsSplatRoute
   '/thoughts/': typeof MainThoughtsIndexRoute
@@ -134,7 +127,6 @@ export interface FileRoutesByTo {
   '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
-  '/talks': typeof MainTalksRoute
   '/': typeof MainIndexRoute
   '/posts/$': typeof MainPostsSplatRoute
   '/thoughts/$': typeof MainThoughtsSplatRoute
@@ -153,7 +145,6 @@ export interface FileRoutesById {
   '/_main/experience': typeof MainExperienceRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
-  '/_main/talks': typeof MainTalksRoute
   '/_main/': typeof MainIndexRoute
   '/_main/posts/$': typeof MainPostsSplatRoute
   '/_main/thoughts/$': typeof MainThoughtsSplatRoute
@@ -173,7 +164,6 @@ export interface FileRouteTypes {
     | '/experience'
     | '/hacks'
     | '/projects'
-    | '/talks'
     | '/posts/$'
     | '/thoughts/$'
     | '/thoughts/'
@@ -189,7 +179,6 @@ export interface FileRouteTypes {
     | '/experience'
     | '/hacks'
     | '/projects'
-    | '/talks'
     | '/'
     | '/posts/$'
     | '/thoughts/$'
@@ -207,7 +196,6 @@ export interface FileRouteTypes {
     | '/_main/experience'
     | '/_main/hacks'
     | '/_main/projects'
-    | '/_main/talks'
     | '/_main/'
     | '/_main/posts/$'
     | '/_main/thoughts/$'
@@ -264,13 +252,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MainIndexRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/talks': {
-      id: '/_main/talks'
-      path: '/talks'
-      fullPath: '/talks'
-      preLoaderRoute: typeof MainTalksRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/projects': {
@@ -346,7 +327,6 @@ interface MainRouteChildren {
   MainExperienceRoute: typeof MainExperienceRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
-  MainTalksRoute: typeof MainTalksRoute
   MainIndexRoute: typeof MainIndexRoute
   MainPostsSplatRoute: typeof MainPostsSplatRoute
   MainThoughtsSplatRoute: typeof MainThoughtsSplatRoute
@@ -360,7 +340,6 @@ const MainRouteChildren: MainRouteChildren = {
   MainExperienceRoute: MainExperienceRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
-  MainTalksRoute: MainTalksRoute,
   MainIndexRoute: MainIndexRoute,
   MainPostsSplatRoute: MainPostsSplatRoute,
   MainThoughtsSplatRoute: MainThoughtsSplatRoute,

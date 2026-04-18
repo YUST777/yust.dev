@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/experience")({
+  head: () => ({
+    meta: [{ title: "Experience | Yousef Mohammed Salah" }],
+  }),
   component: ExperiencePage,
 });
 

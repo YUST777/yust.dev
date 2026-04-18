@@ -12,7 +12,7 @@ import globalsCss from "@/src/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
-const SITE_URL = "https://yousefdev.xyz";
+const SITE_URL = "https://yust.dev";
 const SITE_NAME = "Yousef Mohammed Salah (Yüst)";
 const SITE_DESCRIPTION =
   "Yousef Mohammed Salah (businessduck/yust777) — AI & Cybersecurity student and Full-Stack Developer. Founder of Verdict.run and ICPC HUE Lead.";
@@ -85,9 +85,11 @@ export const Route = createRootRoute({
       { name: "twitter:description", content: SITE_SUMMARY },
       { name: "twitter:creator", content: "@yousefmsm1" },
       { name: "twitter:image", content: SOCIAL_IMAGE_PATH },
+      { name: "theme-color", content: "#0c0c0c" },
       { name: "robots", content: "index, follow" },
     ],
     links: [
+      { rel: "canonical", href: SITE_URL },
       { rel: "stylesheet", href: globalsCss },
       { rel: "stylesheet", href: geistSansCss },
       { rel: "stylesheet", href: geistMonoCss },
