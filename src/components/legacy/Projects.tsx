@@ -180,6 +180,31 @@ export default function Projects() {
       ],
     },
     {
+      id: 8,
+      title: "Sast",
+      description: "Autonomous AI Security Agent.",
+      fullDescription:
+        "An AI autonomous agent that fetches your web app, finds vulnerabilities, patches the code, and generates a verified report. Sast automates the full security lifecycle—identifying, fixing, and verifying vulnerabilities with functional POCs. It ensures your software is secured as fast as it is coded, delivering superior precision through total process optimization.",
+      tag: "AI Security",
+      icon: "fa-robot",
+      span: "md:col-span-3 md:row-span-1", // Full width headliner
+      delay: "delay-150",
+      video: "/videos/sast.mp4",
+      technologies: ["AI / LLMs", "Node.js", "Cybersecurity", "Autonomous Agents", "Docker"],
+      features: [
+        {
+          category: "Automated Lifecycle",
+          svgIcon: "bolt",
+          items: ["Auto-Discovery", "Auto-Patching", "POC Generation"],
+        },
+        {
+          category: "Integration",
+          svgIcon: "globe",
+          items: ["Web App Fetching", "Visual Reporting", "Fast Verification"],
+        },
+      ],
+    },
+    {
       id: 2,
       title: "Gifts Charts",
       description: "Real-time Telegram sticker & gift price tracking bot.",
@@ -483,6 +508,10 @@ export default function Projects() {
                           setOpenDrawer("panoblue");
                           return;
                         }
+                        if (project.video === "/videos/sast.mp4") {
+                          setOpenDrawer("sast");
+                          return;
+                        }
                         if (project.video === "/videos/verdict.webm") {
                           setOpenDrawer("verdict");
                           return;
@@ -622,6 +651,8 @@ export default function Projects() {
                       "Fazzah"
                     ) : openDrawer === "verdict" ? (
                       "Verdict"
+                    ) : openDrawer === "sast" ? (
+                      "Sast"
                     ) : (
                       ""
                     )}
@@ -641,7 +672,9 @@ export default function Projects() {
                                 ? "Fazzah - Web Application"
                                 : openDrawer === "verdict"
                                   ? "Verdict – Competitive Programming Platform"
-                                  : ""}
+                                  : openDrawer === "sast"
+                                    ? "Sast – Autonomous AI Security Agent"
+                                    : ""}
                   </h3>
                 </div>
                 <button
@@ -679,7 +712,9 @@ export default function Projects() {
                                     ? "/videos/fazzah.webm"
                                     : openDrawer === "verdict"
                                       ? "/videos/verdict.webm"
-                                      : ""
+                                      : openDrawer === "sast"
+                                        ? "/videos/sast.mp4"
+                                        : ""
                         }
                         autoPlay
                         loop
@@ -1311,6 +1346,65 @@ export default function Projects() {
                         className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
                       >
                         <span>Visit PanoBlue</span>
+                        <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
+                      </a>
+                    </div>
+                  </>
+                ) : null}
+
+
+                {openDrawer === "sast" ? (
+                  <>
+                    {/* Header */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-2">
+                        Sast – The Autonomous AI Security Agent
+                      </h4>
+                      <p className="text-[12px] sm:text-sm text-gray-400">
+                        Role: Lead AI & Security Architect
+                      </p>
+                    </div>
+
+                    {/* Problem & Solution */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-microchip mr-2"></i>The Solution
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
+                        Code is generated instantly. Security shouldn't be stuck in manual. Sast is the autonomous AI agent that fetches your app, detects vulnerabilities, and fixes them—instantly. It ensures your software is secured as fast as it is coded.
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <h4 className="text-base sm:text-lg md:text-xl font-display font-bold text-white mb-4">
+                        <i className="fas fa-shield-alt mr-2"></i>Capabilities
+                      </h4>
+                      <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed mb-4">
+                        Our agent automates the full security lifecycle—identifying, fixing, and verifying vulnerabilities with functional POCs.
+                      </p>
+                      <ul className="space-y-3 text-[13px] sm:text-sm text-gray-300">
+                        <li>
+                          <strong className="text-white">Autonomous Patching:</strong> Automatically generates and applies code patches to resolve detected flaws.
+                        </li>
+                        <li>
+                          <strong className="text-white">Vulnerability Verification:</strong> Generates functional Proof-of-Concepts (POCs) to verify actual risk.
+                        </li>
+                        <li>
+                          <strong className="text-white">Superior Precision:</strong> Significantly more robust and optimized than manual competitors.
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
+                      <a
+                        href="https://sast.tech"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+                      >
+                        <span>Visit Sast.tech</span>
                         <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
                       </a>
                     </div>
