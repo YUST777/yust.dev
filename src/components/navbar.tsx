@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
 import BriefcaseIcon from "./icons/briefcase";
@@ -6,11 +8,39 @@ import StarSparkleIcon from "./icons/star-sparkle";
 import { DesktopGoose } from "./desktop-goose";
 
 export function Navbar() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    const checkDrawer = () => {
+      setIsDrawerOpen(document.body.classList.contains("drawer-open"));
+    };
+
+    // Check initially
+    checkDrawer();
+
+    // Set up a MutationObserver to watch for class changes on body
+    const observer = new MutationObserver(checkDrawer);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    // Shrink-wrap the bar so we can use pointer-events-auto on the whole nav. A full-width
-    // pointer-events-none parent breaks hit-testing for some browsers (clicks never reach the duck).
-    // Desktop goose sprites are portaled to document.body, so translate-x here is safe.
-    <nav className="pointer-events-auto fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] -translate-x-1/2 px-2 sm:bottom-auto sm:top-8 sm:left-1/2">
+    <motion.nav
+      initial={false}
+      animate={{
+        y: isDrawerOpen ? -150 : 0, // Slide up/down out of view
+        opacity: isDrawerOpen ? 0 : 1,
+        filter: isDrawerOpen ? "blur(10px)" : "blur(0px)",
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 30,
+        mass: 1,
+      }}
+      className="pointer-events-auto fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] -translate-x-1/2 px-2 sm:bottom-auto sm:top-8"
+    >
       <div className="flex max-w-[95vw] items-center gap-0.5 overflow-visible sm:gap-1.5 rounded-full border border-white/[0.08] bg-[#0e0e0e]/70 p-1 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-2xl sm:p-1.5 sm:py-2">
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
         <NavLink to="/projects" icon={<SparklesIcon width="18" height="18" />} label="Projects" />
@@ -27,7 +57,7 @@ export function Navbar() {
           <DesktopGoose />
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
@@ -44,7 +74,6 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
         className: "text-zinc-400 hover:text-zinc-200 hover:bg-white/5",
       }}
     >
-      {/* Icon Wrapper for 3D effect */}
       <span className="relative z-10 flex items-center justify-center transform group-hover:scale-105 sm:group-hover:scale-105 transition-transform duration-300">
         {icon}
       </span>

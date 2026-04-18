@@ -142,8 +142,14 @@ export default function Projects() {
     return () => clearInterval(typewriterInterval);
   }, [openDrawer, typewriterText, isDeleting]);
 
-  // Reset typewriter when drawer opens
   useEffect(() => {
+    if (openDrawer) {
+      document.body.classList.add("drawer-open");
+    } else {
+      // Delay removal slightly for a smoother transition if needed
+      document.body.classList.remove("drawer-open");
+    }
+
     if (openDrawer === "yousefdev") {
       setTypewriterText("");
       setIsDeleting(false);
