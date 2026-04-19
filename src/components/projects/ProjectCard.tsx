@@ -60,6 +60,7 @@ export default function ProjectCard({
         >
           <button
             onClick={onClick}
+            aria-label={`View ${project.title} project details`}
             className="absolute inset-0 z-50 w-full h-full bg-transparent cursor-pointer"
           />
 

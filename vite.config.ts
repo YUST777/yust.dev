@@ -112,20 +112,7 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("framer-motion")) return "framer-motion";
-          if (id.includes("gsap")) return "gsap";
-          if (id.includes("@tanstack")) return "tanstack";
-          if (id.includes("react-github-calendar")) return "github-calendar";
-          if (id.includes("react-tooltip")) return "tooltip";
-          if (id.includes("lenis")) return "lenis";
-        },
-      },
-    },
-  },
+  build: {},
   plugins: [
     tailwindcss(),
     tanstackStart(),

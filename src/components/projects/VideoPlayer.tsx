@@ -50,8 +50,8 @@ export const VideoPlayer = memo(
       >
         <video
           ref={videoRef}
-          src={shouldAutoPlay ? video : `${video}#t=0,5`}
-          preload="auto"
+          src={isInView ? (shouldAutoPlay ? video : `${video}#t=0,5`) : undefined}
+          preload={isPriority ? "metadata" : "none"}
           autoPlay={shouldAutoPlay}
           loop
           muted

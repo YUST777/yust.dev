@@ -94,10 +94,7 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: globalsCss },
       { rel: "stylesheet", href: geistSansCss },
       { rel: "stylesheet", href: geistMonoCss },
-      {
-        rel: "stylesheet",
-        href: "/katex.min.css",
-      },
+      // katex.min.css moved to token-usage page for on-demand loading
       {
         rel: "preload",
         href: "/fonts/silkscreen-400.woff2",
