@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, lazy, Suspense, useMemo } from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import BentoTilt from "./BentoTilt";
@@ -13,6 +12,9 @@ import ProjectCard from "./ProjectCard";
 import { sounds } from "@/lib/sounds";
 
 const ProjectModal = lazy(() => import("./ProjectModal"));
+
+// Hoisted regex to module scope per React best practices (avoids recreation each render)
+const CAMEL_CASE_REGEX = /([A-Z])/g;
 
 // Lazy load drawers for better performance and code splitting
 const Drawers = {
@@ -244,7 +246,7 @@ export default function Projects() {
                         <span className="animate-pulse">|</span>
                       </span>
                     ) : (
-                      openDrawer.charAt(0).toUpperCase() + openDrawer.slice(1).replace(/([A-Z])/g, ' $1')
+                      openDrawer.charAt(0).toUpperCase() + openDrawer.slice(1).replace(CAMEL_CASE_REGEX, ' $1')
                     )}
                   </p>
                   <h3 className="text-lg sm:text-xl md:text-3xl font-display font-black text-white leading-tight mt-1 break-words">
