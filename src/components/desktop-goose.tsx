@@ -131,9 +131,7 @@ function GooseNavSprite({ variant }: { variant: "release" | "catch" }) {
             width: NAV_GOOSE_TILE,
             marginLeft: -NAV_SPRITE_H_GUTTER_PX,
             ...gooseSpriteLayerStyle(0, NAV_GOOSE_TILE),
-            filter: isCatch
-              ? "drop-shadow(0 0 6px rgba(251, 146, 60, 0.4))"
-              : "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))",
+            filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
           }}
         />
       </span>
@@ -449,7 +447,12 @@ export function DesktopGoose() {
               <div
                 key={fp.id}
                 className="fixed pointer-events-none opacity-40 z-[99997]"
-                style={{ left: fp.x, top: fp.y, transform: `rotate(${fp.rotation}deg)` }}
+                style={{
+                  top: 0,
+                  left: 0,
+                  transform: `translate(${fp.x}px, ${fp.y}px) rotate(${fp.rotation}deg)`,
+                  willChange: "transform",
+                }}
               >
                 <span className="text-[#8B4513] text-lg font-bold">🐾</span>
               </div>
@@ -489,14 +492,16 @@ export function DesktopGoose() {
               }}
               className={`fixed select-none touch-manipulation ${isDraggingGoose ? "cursor-grabbing" : "cursor-grab"}`}
               style={{
-                left: Math.round(pos.x),
-                top: Math.round(pos.y),
+                top: 0,
+                left: 0,
                 width: DISPLAY_SIZE,
                 height: DISPLAY_SIZE * ASPECT_RATIO,
                 zIndex: 99999,
-                transform: `scaleX(${facingRight ? -1 : 1})`,
-                imageRendering: "pixelated",
-                filter: `drop-shadow(1px 0 0 black) drop-shadow(-1px 0 0 black) drop-shadow(0 1px 0 black) drop-shadow(0 -1px 0 black) drop-shadow(0 4px 12px rgba(0,0,0,0.6))`,
+                transform: `translate(${Math.round(pos.x)}px, ${Math.round(pos.y)}px) scaleX(${facingRight ? -1 : 1})`,
+                willChange: "transform",
+                // Single outline + shadow instead of 5 chained drop-shadows (GPU bottleneck)
+                WebkitTextStroke: "1px black",
+                filter: `drop-shadow(0 3px 6px rgba(0,0,0,0.5))`,
               }}
             >
               <div
@@ -520,9 +525,10 @@ export function DesktopGoose() {
                 key={note.id}
                 className="fixed pointer-events-none z-[99998]"
                 style={{
-                  left: note.x,
-                  top: note.y,
-                  transform: `rotate(${note.rotation}deg)`,
+                  top: 0,
+                  left: 0,
+                  transform: `translate(${note.x}px, ${note.y}px) rotate(${note.rotation}deg)`,
+                  willChange: "transform",
                   animation: "noteAppear 0.35s ease-out forwards",
                 }}
               >
