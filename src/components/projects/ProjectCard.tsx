@@ -38,9 +38,8 @@ export default function ProjectCard({
 
   return (
     <motion.div
-      layout
       key={project.id}
-      className={project.span}
+      className={`${project.span} content-auto will-change-transform`}
       initial={isArchiveItem ? "initial" : undefined}
       animate={isArchiveItem ? "animate" : undefined}
       exit={isArchiveItem ? "exit" : undefined}

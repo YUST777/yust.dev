@@ -57,7 +57,7 @@ export const VideoPlayer = memo(
           muted
           playsInline
           onLoadedData={handleLoadedData}
-          className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-500 ${isInView ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-500 will-change-opacity ${isInView ? "opacity-100" : "opacity-0"}`}
           title={title}
         />
       </div>

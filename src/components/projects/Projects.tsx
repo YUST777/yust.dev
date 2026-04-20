@@ -56,6 +56,9 @@ const DRAWER_COMPONENTS: Record<string, React.LazyExoticComponent<any>> = {
   RetroOS: Drawers.RetroOSDrawer,
 };
 
+const MAIN_PROJECTS = projectsData.filter((p) => !p.isLarge);
+const HIGHLIGHT_PROJECTS = projectsData.filter((p) => p.isLarge);
+
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -146,9 +149,8 @@ export default function Projects() {
           </a>
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
-          {projectsData
-            .filter((p) => !p.isLarge)
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
+          {MAIN_PROJECTS
             .map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -179,8 +181,8 @@ export default function Projects() {
           </AnimatePresence>
 
           {/* Master yousefdev card - always last */}
-          {projectsData.filter(p => p.isLarge).map((project) => (
-            <motion.div layout key={project.id} className={project.span}>
+          {HIGHLIGHT_PROJECTS.map((project) => (
+            <motion.div key={project.id} className={project.span}>
               <BentoTilt className="rounded-2xl overflow-hidden relative group cursor-default h-full">
                 <div className="w-full h-full bg-[#0c0c0c] border border-white/10 rounded-2xl overflow-hidden relative">
                   <VideoPlayer
