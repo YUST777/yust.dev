@@ -20,15 +20,13 @@ export default function AboutSection() {
       </h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I’m Yousef, an AI & Cybersecurity student and a Full-Stack Product Engineer who builds
-          tools that stay in people&apos;s bookmarks. I specialize in bridging the gap between
-          complex technical infrastructure and high-quality user experiences.
+          I'm Yousef, a Level 2 AI &amp; Cybersecurity student based in Egypt and a passionate
+          Full-Stack Developer. Since June 2024, I've been building real projects to sharpen my
+          skills — from an award-winning security suite to Telegram bots and full-stack platforms.
         </p>
         <p>
-          Most recently, I engineered <strong>Verdict.run</strong>, a viral competitive programming
-          platform that garnered 120k+ impressions and transformed the workflow for hundreds of
-          developers. My work spans from autonomous AI security agents (Sast) to architecting
-          unified training ecosystems as the Lead Developer for <strong>ICPC HUE</strong>.
+          I love learning by doing, and I'm always exploring new technologies to solve interesting
+          problems.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5 opacity-80">
@@ -36,22 +34,11 @@ export default function AboutSection() {
             CORE STACK :
           </span>
           <div className="flex flex-wrap items-center gap-6 text-zinc-400">
-            <SiReact title="React" className="w-5 h-5 transition-colors hover:text-[#61DAFB]" />
-            <SiNextdotjs title="Next.js" className="w-5 h-5 transition-colors hover:text-white" />
-            <SiPython title="Python" className="w-5 h-5 transition-colors hover:text-[#3776AB]" />
-            <SiTailwindcss
-              title="Tailwind CSS"
-              className="w-5 h-5 transition-colors hover:text-[#06B6D4]"
-            />
-            <span className="text-[10px] sm:text-[11px] font-bold border border-zinc-700 px-1.5 py-0.5 rounded leading-none hover:border-zinc-400 transition-colors">
-              TS
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-bold border border-zinc-700 px-1.5 py-0.5 rounded leading-none hover:border-zinc-400 transition-colors">
-              DOCKER
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-bold border border-zinc-700 px-1.5 py-0.5 rounded leading-none hover:border-zinc-400 transition-colors">
-              AI/LLM
-            </span>
+            <SiReact className="w-5 h-5 transition-colors hover:text-[#61DAFB]" />
+            <SiNextdotjs className="w-5 h-5 transition-colors hover:text-white" />
+            <SiSupabase className="w-5 h-5 transition-colors hover:text-[#3ECF8E]" />
+            <SiTailwindcss className="w-5 h-5 transition-colors hover:text-[#06B6D4]" />
+            <SiPython className="w-5 h-5 transition-colors hover:text-[#3776AB]" />
           </div>
         </div>
       </div>
