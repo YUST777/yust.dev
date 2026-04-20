@@ -4,7 +4,7 @@ export default function ProfileHeader() {
       <p className="font-mono text-zinc-500 mb-2">Hi I'm 👋</p>
       <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">YOUSEF</h1>
       <p className="text-sm md:text-base text-zinc-400 max-w-2xl uppercase tracking-wider font-mono">
-        Level 2 AI &amp; Cybersecurity student and Full-Stack Developer
+        AI &amp; Cybersecurity Student / Full-Stack Product Engineer
       </p>
 
       <div className="flex items-center gap-3 mt-8">
