@@ -47,6 +47,8 @@ function FazzahDrawer() {
       {/* Visit Project Button */}
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://fazzah.yousefdev.xyz/"
           className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
         >

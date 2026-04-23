@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_main/mem/")({
+export const Route = createFileRoute("/_main/blog/")({
   head: () => ({
     meta: [
       { title: "memorise | Yousef Mohammed Salah" },

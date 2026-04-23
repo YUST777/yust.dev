@@ -23,6 +23,8 @@ function VerdictDrawer() {
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
           Codeforces' old UI sucks, so I made{" "}
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://verdict.run"
             className="text-white underline underline-offset-4 decoration-white/30"
           >
@@ -137,6 +139,8 @@ function VerdictDrawer() {
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <div className="flex flex-col gap-3">
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://verdict.run"
             className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
           >
@@ -144,6 +148,8 @@ function VerdictDrawer() {
             <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
           </a>
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/YUST777/verdict-community"
             className="w-full bg-white/10 text-white hover:bg-white/20 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group border border-white/10"
           >

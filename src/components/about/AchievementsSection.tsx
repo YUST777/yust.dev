@@ -9,6 +9,8 @@ export default function AchievementsSection() {
           <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               <a
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://verdict.run"
                 className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
               >
@@ -18,6 +20,8 @@ export default function AchievementsSection() {
             </strong>
             Engineered and launched a competitive programming platform that went viral, generating{" "}
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-activity-7418662435072622594-OycK"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
@@ -44,6 +48,8 @@ export default function AchievementsSection() {
             </strong>
             Built and scaled{" "}
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://icpchue.com"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
@@ -63,6 +69,8 @@ export default function AchievementsSection() {
             Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI
             tools including{" "}
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://sast.tech"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >

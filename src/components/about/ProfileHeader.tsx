@@ -9,6 +9,8 @@ export default function ProfileHeader() {
 
       <div className="flex items-center gap-3 mt-8">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://verdict.run"
           className="flex items-center px-4 py-2 rounded-md bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800 transition-all text-sm text-zinc-300 font-mono tracking-tight"
         >

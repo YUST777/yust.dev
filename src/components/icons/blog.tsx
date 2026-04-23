@@ -1,21 +1,39 @@
 import type { SVGProps } from "react";
 
-const MemIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+const BlogIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className={className} {...props}>
     <defs>
-      <radialGradient id="mem_SVGID_1_" cx="84.3" cy="80.2" r="28.4" gradientUnits="userSpaceOnUse">
+      <radialGradient
+        id="blog_SVGID_1_"
+        cx="84.3"
+        cy="80.2"
+        r="28.4"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#C0C0C0" offset="0" />
         <stop stopColor="#999999" offset=".3547" />
         <stop stopColor="#666666" offset=".785" />
         <stop stopColor="#4D4D4D" offset="1" />
       </radialGradient>
-      <radialGradient id="mem_SVGID_2_" cx="46.1" cy="36.4" r="14.8" gradientUnits="userSpaceOnUse">
+      <radialGradient
+        id="blog_SVGID_2_"
+        cx="46.1"
+        cy="36.4"
+        r="14.8"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#C0C0C0" offset="0" />
         <stop stopColor="#999999" offset=".3547" />
         <stop stopColor="#666666" offset=".785" />
         <stop stopColor="#4D4D4D" offset="1" />
       </radialGradient>
-      <radialGradient id="mem_SVGID_3_" cx="29.8" cy="91.1" r="15.5" gradientUnits="userSpaceOnUse">
+      <radialGradient
+        id="blog_SVGID_3_"
+        cx="29.8"
+        cy="91.1"
+        r="15.5"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#C0C0C0" offset="0" />
         <stop stopColor="#999999" offset=".3547" />
         <stop stopColor="#666666" offset=".785" />
@@ -23,7 +41,7 @@ const MemIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
       </radialGradient>
     </defs>
     <path
-      fill="url(#mem_SVGID_1_)"
+      fill="url(#blog_SVGID_1_)"
       d="m84.3 58.5c-2.9 10.7-8.2 15.9-17.6 18.6 8.1 2 12.7 7.4 17.6 29.9 2.8-17.4 7.8-25.6 24.6-30-9.5-2.1-19.8-6.2-24.6-18.5z"
     />
     <path
@@ -35,7 +53,7 @@ const MemIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
       d="m84.3 58.5c-2.2 8.9-6.7 15.6-17.6 18.6 8.1 2 12.2 6.4 15.9 21.3-3-11.8-8-16.9-19.7-19.8l-5.3-1.6 5.3-1.1c10.7-2.8 17-5.6 20.5-21.3l0.9-7.7c1.6 8.7 3.6 18.6 11.1 24.4-4.5-2.7-8.5-6.4-11.1-12.8z"
     />
     <path
-      fill="url(#mem_SVGID_2_)"
+      fill="url(#blog_SVGID_2_)"
       d="m46.1 23.2c-1.5 6.2-4.7 9.9-11.1 11.7 5.2 1.5 8.1 4.2 11.1 18.5 1.8-10.8 5.5-16 14.3-18.5-5.5-1.3-11.8-4-14.3-11.7z"
     />
     <path
@@ -47,7 +65,7 @@ const MemIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
       d="m46.1 23.2c-1.1 5.4-3.5 9.9-11.1 11.7 5.2 1.5 7.9 3.7 10 12.5-1.8-7.3-5.3-10-12.4-11.8l-3.9-0.8 3.2-0.7c8.5-2.2 11.8-4.5 14.1-15.5l0.1-2.5c1 5.3 2.1 11.3 6.5 14.8-2.5-1.5-5-3.8-6.5-7.7z"
     />
     <path
-      fill="url(#mem_SVGID_3_)"
+      fill="url(#blog_SVGID_3_)"
       d="m29.9 77c-1.5 6.4-4.8 10.1-11.2 12.4 5.4 1.5 8.3 4.7 11.2 19.2 1.5-11 5.5-16.4 15.2-19.2-5.5-1.3-12.5-4.4-15.2-12.4z"
     />
     <path
@@ -61,4 +79,4 @@ const MemIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default MemIcon;
+export default BlogIcon;

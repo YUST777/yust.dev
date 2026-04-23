@@ -1,0 +1,92 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/_main/mem/")({
+  head: () => ({
+    meta: [
+      { title: "mem | Yousef Mohammed Salah" },
+      {
+        name: "description",
+        content: "Thoughts on software engineering, competitive programming, and social impact.",
+      },
+    ],
+  }),
+  component: MemPage,
+});
+
+export const posts = [
+  {
+    id: "1",
+    title: "A day at Horus Technology Forum",
+    date: "Mar 15, 2026",
+    summary: "Returning to where it all started, but with something much bigger.",
+    content: `Today I was at the Technology Forum event at Horus University. This forum holds a very special place in my heart because it reminds me of my beginnings—it was the first place I ever showcased a project during my first semester.
+
+Returning a year later feels like a major milestone. This time, we came back to present our latest project, **Sast.tech**, which recently secured 2nd place at GDG Delta and 3rd place at LuxsAI, alongside my colleague Abdelrahman Mohsen.
+
+For those who missed the updates, **Sast.tech** is an automated security ecosystem built for the 'Vibe Coding' era. While AI has made writing code incredibly fast, security remains a slow, manual bottleneck. We built an IDE-integrated Pentesting AI Agent that bridges this gap. You provide your GitHub repository and site link, and the agent uses Playwright to navigate your app, identify vulnerabilities, and test them in real-time.
+
+It doesn't just hand you a report; it uses AI to automatically patch the vulnerabilities and provides detailed tips so developers can learn from the process.`,
+    featured: [
+      { label: "Damietta Governorate Official Coverage", url: "https://www.facebook.com/photo/?fbid=1389210596566173" },
+      { label: "Horus University Official Feature", url: "https://www.facebook.com/photo/?fbid=1348813887351864" },
+      { label: "Horus Engineering Faculty Feature", url: "https://www.facebook.com/photo/?fbid=1348813887351864" }
+    ]
+  },
+  {
+    id: "2",
+    title: "Scaling ICPC HUE to 300+ students",
+    date: "Nov 15, 2025",
+    summary: "Technical details on architecting the ICPC HUE training platform.",
+    content: "Technical details on architecting the ICPC HUE training platform..."
+  },
+  {
+    id: "3",
+    title: "Bypassing Cloudflare for competitive programming mirrors",
+    date: "Oct 20, 2025",
+    summary: "Deep dive into the mirror mode implementation.",
+    content: "Deep dive into the mirror mode implementation..."
+  }
+];
+
+function MemPage() {
+  return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <div>
+        <h1 className="text-4xl font-pixel text-white mb-4 uppercase">mem</h1>
+        <p className="text-zinc-500 font-mono text-[13px] sm:text-sm">
+          Thoughts, social impact, and technical deep-dives.
+        </p>
+      </div>
+
+      <div className="space-y-0 border-t border-white/5">
+        {posts.map((post) => (
+          <div key={post.id} className="border-b border-white/5">
+            <Link
+              to="/mem/$postId"
+              params={{ postId: post.id }}
+              className="flex flex-col py-8 group cursor-pointer"
+            >
+              <div className="flex items-baseline justify-between mb-2">
+                <span className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
+                  {post.title}
+                </span>
+                <span className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 ml-4 uppercase tracking-widest">
+                  {post.date}
+                </span>
+              </div>
+              <p className="text-zinc-500 font-sans text-sm md:text-base line-clamp-2 max-w-3xl">
+                {post.summary}
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <div className="pt-4">
+        <p className="text-zinc-500 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">
+          [ Archived Posts ]
+        </p>
+      </div>
+    </div>
+  );
+}

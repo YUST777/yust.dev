@@ -97,6 +97,8 @@ function IcpchueDrawer() {
           era) to <strong className="text-white">Supabase</strong>. I also leaned heavily into
           high-end UX and elite domain health scores (see{" "}
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://icpchue.com/devlog"
             className="text-white underline text-white/80 hover:text-white transition-colors decoration-white/30"
           >
@@ -122,6 +124,8 @@ function IcpchueDrawer() {
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <div className="flex flex-col gap-3">
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://icpchue.xyz"
             className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-white/10"
           >
@@ -129,6 +133,8 @@ function IcpchueDrawer() {
             <i className="fas fa-external-link-alt group-hover:translate-x-1 transition-transform"></i>
           </a>
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/YUST777/icpchue"
             className="w-full bg-white/10 text-white hover:bg-white/20 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group border border-white/10"
           >

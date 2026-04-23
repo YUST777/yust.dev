@@ -14,7 +14,7 @@ import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
 const SITE_URL = "https://yust.dev";
-const SITE_NAME = "Yousef Mohammed Salah (Yüst)";
+const SITE_NAME = "Yousef Mohammed Salah (Yust)";
 const SITE_DESCRIPTION =
   "Yousef Mohammed Salah (businessduck/yust777) — AI & Cybersecurity student and Full-Stack Developer. Founder of Verdict.run and ICPC HUE Lead.";
 const SITE_TITLE = "Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
@@ -34,7 +34,7 @@ const structuredData = {
       url: SITE_URL,
       jobTitle: "Software Engineer",
       description: SITE_SUMMARY,
-      alternateName: ["Yüst", "businessduck", "yust777", "Yousef Mohammed", "Yousef Horus"],
+      alternateName: ["Yust", "businessduck", "yust777", "Yousef Mohammed", "Yousef Horus"],
       sameAs: [
         "https://github.com/YUST777",
         "https://www.linkedin.com/in/yousefmsm1/",

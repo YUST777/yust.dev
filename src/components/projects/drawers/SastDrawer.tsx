@@ -73,6 +73,8 @@ function SastDrawer() {
           <li>
             I designed and built the entire high-end{" "}
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://sast.tech"
               className="text-white underline underline-offset-4 decoration-white/30"
             >
@@ -132,6 +134,8 @@ function SastDrawer() {
       {/* CTA */}
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://sast.tech"
           className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.1)]"
         >

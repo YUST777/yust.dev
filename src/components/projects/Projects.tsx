@@ -152,6 +152,8 @@ export default function Projects() {
         <div ref={headerRef} className="flex justify-end mb-8 md:mb-12 px-0 md:px-4">
           <a
             href="https://github.com/YUST777"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 border border-white/20 px-8 py-3 rounded-full text-sm tracking-widest uppercase hover:bg-white/10 transition-colors"
           >
             <i className="fab fa-github text-lg"></i>

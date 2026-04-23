@@ -52,6 +52,8 @@ export default function AboutSection() {
             <a
               key={link.label}
               href={link.url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 sm:py-2.5 rounded-lg bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[13px] sm:text-sm text-zinc-300 font-mono group"
             >
               <span className="text-zinc-500 group-hover:text-white transition-colors">

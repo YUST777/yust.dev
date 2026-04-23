@@ -90,6 +90,8 @@ function GiftsChartsDrawer() {
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <div className="flex flex-col gap-3">
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://t.me/giftsChartBot"
             className="w-full bg-[#24A1DE] hover:bg-[#208bbd] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
           >
@@ -97,6 +99,8 @@ function GiftsChartsDrawer() {
             <i className="fab fa-telegram-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
           </a>
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/YUST777/Giftschart"
             className="w-full bg-white/10 text-white hover:bg-white/20 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group border border-white/10"
           >

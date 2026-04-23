@@ -94,6 +94,8 @@ function ZeroThreatDrawer() {
         <ul className="space-y-3 text-sm">
           <li>
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.facebook.com/share/p/1DAW9yMMH1/"
               className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
             >
@@ -102,6 +104,8 @@ function ZeroThreatDrawer() {
           </li>
           <li>
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.facebook.com/share/p/1XakrE3nLE/"
               className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
             >
@@ -110,6 +114,8 @@ function ZeroThreatDrawer() {
           </li>
           <li>
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://www.facebook.com/share/v/1HBLEF92ep/"
               className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
             >
@@ -122,6 +128,8 @@ function ZeroThreatDrawer() {
       {/* Visit Project Button */}
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://zerothreat.yousefdev.xyz/"
           className="w-full bg-white text-black hover:bg-gray-200 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
         >

@@ -102,6 +102,8 @@ function CollectableKitDrawer() {
       {/* CTA */}
       <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl p-6">
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://t.me/CollectibleKITbot"
           className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-500/20"
         >

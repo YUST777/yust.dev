@@ -139,6 +139,8 @@ function HacksPage() {
               {hack.linkText && (
                 <a
                   href={hack.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
                 >
                   {hack.linkText}
@@ -149,6 +151,8 @@ function HacksPage() {
                   {hack.proofs.map((proof, idx) => (
                     <a
                       key={idx}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       href={proof.url}
                       className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group"
                     >
