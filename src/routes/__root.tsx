@@ -131,10 +131,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
         {/* React Scan — dev-only re-render profiler (https://react-scan.com) */}
         {process.env.NODE_ENV !== "production" && (
-          <script
-            src="https://unpkg.com/react-scan/dist/auto.global.js"
-            async
-          />
+          <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
         )}
         <script
           type="application/ld+json"

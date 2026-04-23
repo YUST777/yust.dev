@@ -10,8 +10,6 @@ export default function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               <a
                 href="https://verdict.run"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
               >
                 Verdict.run
@@ -21,8 +19,6 @@ export default function AchievementsSection() {
             Engineered and launched a competitive programming platform that went viral, generating{" "}
             <a
               href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-activity-7418662435072622594-OycK"
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
               120k+ organic impressions
@@ -36,8 +32,8 @@ export default function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               The01studio on TON.{" "}
             </strong>
-            Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts, @collectablekit) driving{" "}
-            <span className="text-white">2,000+ daily active users</span>.
+            Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts,
+            @collectablekit) driving <span className="text-white">2,000+ daily active users</span>.
           </p>
         </div>
 
@@ -49,15 +45,13 @@ export default function AchievementsSection() {
             Built and scaled{" "}
             <a
               href="https://icpchue.com"
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
               icpchue.com
             </a>
             —a gamified LeetCode-style training platform housing{" "}
-            <span className="text-white">650+ curated algorithms</span> to prepare students nationwide
-            for the ECPC.
+            <span className="text-white">650+ curated algorithms</span> to prepare students
+            nationwide for the ECPC.
           </p>
         </div>
 
@@ -66,11 +60,10 @@ export default function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               3x Hackathon Winner.{" "}
             </strong>
-            Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI tools including{" "}
+            Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI
+            tools including{" "}
             <a
               href="https://sast.tech"
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
             >
               sast.tech

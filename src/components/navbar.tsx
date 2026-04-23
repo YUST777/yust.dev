@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
-import BriefcaseIcon from "./icons/briefcase";
 import StarSparkleIcon from "./icons/star-sparkle";
+import MemIcon from "./icons/mem";
 import { DesktopGoose } from "./desktop-goose";
 import { sounds } from "@/lib/sounds";
 
@@ -54,11 +54,7 @@ export function Navbar() {
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
         <NavLink to="/projects" icon={<SparklesIcon width="18" height="18" />} label="Projects" />
         <NavLink to="/hacks" icon={<StarSparkleIcon width="18" height="18" />} label="Hacks" />
-        <NavLink
-          to="/experience"
-          icon={<BriefcaseIcon width="18" height="18" />}
-          label="Experience"
-        />
+        <NavLink to="/mem" icon={<MemIcon width="18" height="18" />} label="mem" />
 
         <div className="w-[1px] h-6 shrink-0 bg-white/10 mx-1 sm:mx-2" />
 

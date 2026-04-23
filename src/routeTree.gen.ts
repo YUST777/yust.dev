@@ -14,7 +14,8 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
-import { Route as MainExperienceRouteImport } from './routes/_main/experience'
+import { Route as MainMemIndexRouteImport } from './routes/_main/mem.index'
+import { Route as MainMemPostIdRouteImport } from './routes/_main/mem.$postId'
 
 const TokenUsageRoute = TokenUsageRouteImport.update({
   id: '/token-usage',
@@ -40,48 +41,63 @@ const MainHacksRoute = MainHacksRouteImport.update({
   path: '/hacks',
   getParentRoute: () => MainRoute,
 } as any)
-const MainExperienceRoute = MainExperienceRouteImport.update({
-  id: '/experience',
-  path: '/experience',
+const MainMemIndexRoute = MainMemIndexRouteImport.update({
+  id: '/mem/',
+  path: '/mem/',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainMemPostIdRoute = MainMemPostIdRouteImport.update({
+  id: '/mem/$postId',
+  path: '/mem/$postId',
   getParentRoute: () => MainRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/token-usage': typeof TokenUsageRoute
-  '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
+  '/mem/$postId': typeof MainMemPostIdRoute
+  '/mem/': typeof MainMemIndexRoute
 }
 export interface FileRoutesByTo {
   '/token-usage': typeof TokenUsageRoute
-  '/experience': typeof MainExperienceRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/': typeof MainIndexRoute
+  '/mem/$postId': typeof MainMemPostIdRoute
+  '/mem': typeof MainMemIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
   '/token-usage': typeof TokenUsageRoute
-  '/_main/experience': typeof MainExperienceRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
   '/_main/': typeof MainIndexRoute
+  '/_main/mem/$postId': typeof MainMemPostIdRoute
+  '/_main/mem/': typeof MainMemIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/token-usage' | '/experience' | '/hacks' | '/projects'
+  fullPaths:
+    | '/'
+    | '/token-usage'
+    | '/hacks'
+    | '/projects'
+    | '/mem/$postId'
+    | '/mem/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/token-usage' | '/experience' | '/hacks' | '/projects' | '/'
+  to: '/token-usage' | '/hacks' | '/projects' | '/' | '/mem/$postId' | '/mem'
   id:
     | '__root__'
     | '/_main'
     | '/token-usage'
-    | '/_main/experience'
     | '/_main/hacks'
     | '/_main/projects'
     | '/_main/'
+    | '/_main/mem/$postId'
+    | '/_main/mem/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -126,28 +142,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainHacksRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/experience': {
-      id: '/_main/experience'
-      path: '/experience'
-      fullPath: '/experience'
-      preLoaderRoute: typeof MainExperienceRouteImport
+    '/_main/mem/': {
+      id: '/_main/mem/'
+      path: '/mem'
+      fullPath: '/mem/'
+      preLoaderRoute: typeof MainMemIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/mem/$postId': {
+      id: '/_main/mem/$postId'
+      path: '/mem/$postId'
+      fullPath: '/mem/$postId'
+      preLoaderRoute: typeof MainMemPostIdRouteImport
       parentRoute: typeof MainRoute
     }
   }
 }
 
 interface MainRouteChildren {
-  MainExperienceRoute: typeof MainExperienceRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
   MainIndexRoute: typeof MainIndexRoute
+  MainMemPostIdRoute: typeof MainMemPostIdRoute
+  MainMemIndexRoute: typeof MainMemIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
-  MainExperienceRoute: MainExperienceRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
   MainIndexRoute: MainIndexRoute,
+  MainMemPostIdRoute: MainMemPostIdRoute,
+  MainMemIndexRoute: MainMemIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)

@@ -91,7 +91,9 @@ export default function Projects() {
         setIsDeleting(false);
       } else {
         timeout = setTimeout(() => {
-          setCurrentText(fullText.substring(0, isDeleting ? currentText.length - 1 : currentText.length + 1));
+          setCurrentText(
+            fullText.substring(0, isDeleting ? currentText.length - 1 : currentText.length + 1),
+          );
         }, typeSpeed);
       }
       return () => clearTimeout(timeout);
@@ -128,20 +130,28 @@ export default function Projects() {
     const Component = DRAWER_COMPONENTS[openDrawer];
 
     return Component ? (
-      <Suspense fallback={<div className="h-40 flex items-center justify-center text-white/20">Loading details...</div>}>
+      <Suspense
+        fallback={
+          <div className="h-40 flex items-center justify-center text-white/20">
+            Loading details...
+          </div>
+        }
+      >
         <Component />
       </Suspense>
     ) : null;
   }, [openDrawer]);
 
   return (
-    <section ref={sectionRef} id="projects" className="pt-10 pb-20 md:pt-12 md:pb-32 bg-dark px-4 md:px-6">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="pt-10 pb-20 md:pt-12 md:pb-32 bg-dark px-4 md:px-6"
+    >
       <div className="max-w-7xl mx-auto">
         <div ref={headerRef} className="flex justify-end mb-8 md:mb-12 px-0 md:px-4">
           <a
             href="https://github.com/YUST777"
-            target="_blank"
-            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 border border-white/20 px-8 py-3 rounded-full text-sm tracking-widest uppercase hover:bg-white/10 transition-colors"
           >
             <i className="fab fa-github text-lg"></i>
@@ -150,34 +160,34 @@ export default function Projects() {
         </div>
 
         <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[350px] md:auto-rows-[450px]">
-          {MAIN_PROJECTS
-            .map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                isExpanded={isExpanded}
-                isHovered={hoveredVideoId === project.id}
-                onMouseEnter={() => setHoveredVideoId(project.id)}
-                onMouseLeave={() => setHoveredVideoId(null)}
-                onClick={() => handleProjectClick(project)}
-              />
-            ))}
+          {MAIN_PROJECTS.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              isExpanded={isExpanded}
+              isHovered={hoveredVideoId === project.id}
+              onMouseEnter={() => setHoveredVideoId(project.id)}
+              onMouseLeave={() => setHoveredVideoId(null)}
+              onClick={() => handleProjectClick(project)}
+            />
+          ))}
 
           <AnimatePresence>
-            {isExpanded && archiveProjectsData.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={100} // High index for animation delay logic
-                isExpanded={true}
-                isHovered={hoveredVideoId === project.id}
-                onMouseEnter={() => setHoveredVideoId(project.id)}
-                onMouseLeave={() => setHoveredVideoId(null)}
-                onClick={() => handleProjectClick(project)}
-                isArchiveItem
-              />
-            ))}
+            {isExpanded &&
+              archiveProjectsData.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={100} // High index for animation delay logic
+                  isExpanded={true}
+                  isHovered={hoveredVideoId === project.id}
+                  onMouseEnter={() => setHoveredVideoId(project.id)}
+                  onMouseLeave={() => setHoveredVideoId(null)}
+                  onClick={() => handleProjectClick(project)}
+                  isArchiveItem
+                />
+              ))}
           </AnimatePresence>
 
           {/* Master yousefdev card - always last */}
@@ -200,7 +210,11 @@ export default function Projects() {
       </div>
 
       <Suspense fallback={null}>
-        <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={selectedProject} />
+        <ProjectModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          project={selectedProject}
+        />
       </Suspense>
 
       <AnimatePresence>
@@ -248,7 +262,8 @@ export default function Projects() {
                         <span className="animate-pulse">|</span>
                       </span>
                     ) : (
-                      openDrawer.charAt(0).toUpperCase() + openDrawer.slice(1).replace(CAMEL_CASE_REGEX, ' $1')
+                      openDrawer.charAt(0).toUpperCase() +
+                      openDrawer.slice(1).replace(CAMEL_CASE_REGEX, " $1")
                     )}
                   </p>
                   <h3 className="text-lg sm:text-xl md:text-3xl font-display font-black text-white leading-tight mt-1 break-words">

@@ -20,6 +20,7 @@ export type Project = {
   screenshots?: string[];
   telegramLink?: string;
   repoLink?: string;
+  siteLink?: string;
   useCDNImages?: boolean;
   isMinimal?: boolean;
   isLarge?: boolean;

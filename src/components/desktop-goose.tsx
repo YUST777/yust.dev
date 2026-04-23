@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { CSSProperties } from "react";
+
 import { createPortal } from "react-dom";
 import { useIsHydrated } from "@/lib/hooks/use-is-hydrated";
 import { sounds } from "@/lib/sounds";
+import DuckIcon from "./icons/duck";
 
 /*
  * ══════════════════════════════════════════════════════════
@@ -88,58 +89,16 @@ function clampGoosePos(x: number, y: number) {
 }
 
 // ── Nav sprite (kept in DOM since it's part of the Navbar) ──
-const NAV_GOOSE_TILE = 18;
-const NAV_SPRITE_H_GUTTER_PX = 1;
-
-function gooseSpriteLayerStyle(frameIdx: number): CSSProperties {
-  const col = frameIdx % SPRITE_COLS;
-  const row = Math.floor(frameIdx / SPRITE_COLS);
-  const px = (col / (SPRITE_COLS - 1)) * 100;
-  const py = (row / (SPRITE_ROWS - 1)) * 100;
-  return {
-    backgroundImage: `url('${GOOSE_SPRITE_URL}')`,
-    backgroundSize: `${SPRITE_COLS * 100}% ${SPRITE_ROWS * 100}%`,
-    backgroundPosition: `${px}% ${py}%`,
-    backgroundRepeat: "no-repeat",
-    imageRendering: "pixelated",
-  };
-}
 
 function GooseNavSprite() {
-  const vW = NAV_GOOSE_TILE - 2 * NAV_SPRITE_H_GUTTER_PX;
-  return (
-    <span
-      aria-hidden
-      className="pointer-events-none relative block h-[18px] shrink-0 overflow-hidden"
-      style={{ width: NAV_GOOSE_TILE }}
-    >
-      <span
-        className="block overflow-hidden"
-        style={{ width: vW, height: 18, marginLeft: NAV_SPRITE_H_GUTTER_PX }}
-      >
-        <span
-          className="block h-[18px]"
-          style={{
-            width: NAV_GOOSE_TILE,
-            marginLeft: -NAV_SPRITE_H_GUTTER_PX,
-            ...gooseSpriteLayerStyle(0),
-            filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
-          }}
-        />
-      </span>
-    </span>
-  );
+  return <DuckIcon className="w-[22px] h-[22px]" />;
 }
 
 // ══════════════════════════════════════════════════════════
 //  Canvas-based goose overlay — runs entirely outside React
 // ══════════════════════════════════════════════════════════
 
-function startGooseCanvas(
-  canvas: HTMLCanvasElement,
-  spriteImg: HTMLImageElement,
-  onDeactivate: () => void,
-) {
+function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement) {
   const ctx = canvas.getContext("2d", { alpha: true })!;
   let running = true;
   let frameTick = 0;
@@ -209,7 +168,10 @@ function startGooseCanvas(
     const text = GOOSE_NOTES[Math.floor(Math.random() * GOOSE_NOTES.length)];
     notes.push({
       text,
-      x: Math.max(10, Math.min(window.innerWidth - 180, pos.x + (facingRight ? DISPLAY_SIZE : -150))),
+      x: Math.max(
+        10,
+        Math.min(window.innerWidth - 180, pos.x + (facingRight ? DISPLAY_SIZE : -150)),
+      ),
       y: Math.max(10, pos.y - 20),
       rotation: -10 + Math.random() * 20,
       born: Date.now(),
@@ -260,8 +222,14 @@ function startGooseCanvas(
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(
       spriteImg,
-      sx, sy, spriteW, spriteH,
-      -DISPLAY_SIZE / 2, 0, DISPLAY_SIZE, DISPLAY_SIZE * ASPECT_RATIO,
+      sx,
+      sy,
+      spriteW,
+      spriteH,
+      -DISPLAY_SIZE / 2,
+      0,
+      DISPLAY_SIZE,
+      DISPLAY_SIZE * ASPECT_RATIO,
     );
     ctx.restore();
 
@@ -358,13 +326,16 @@ function startGooseCanvas(
       isChasing = true;
       playHonkSound();
       clearActionTimer();
-      actionTimer = setTimeout(() => {
-        if (!running) return;
-        isHonking = false;
-        brainState = "idle";
-        isChasing = false;
-        actionTimer = setTimeout(scheduleAction, 500);
-      }, 3000 + Math.random() * 2000);
+      actionTimer = setTimeout(
+        () => {
+          if (!running) return;
+          isHonking = false;
+          brainState = "idle";
+          isChasing = false;
+          actionTimer = setTimeout(scheduleAction, 500);
+        },
+        3000 + Math.random() * 2000,
+      );
     } else if (roll < 0.5) {
       brainState = "wandering";
       isChasing = false;
@@ -406,7 +377,12 @@ function startGooseCanvas(
         ty = cursor.y - (DISPLAY_SIZE * ASPECT_RATIO) / 2;
         speed = 4.5;
         walking = true;
-      } else if (st === "wandering" || st === "dragging_note" || st === "fleeing_cursor" || st === "pecking") {
+      } else if (
+        st === "wandering" ||
+        st === "dragging_note" ||
+        st === "fleeing_cursor" ||
+        st === "pecking"
+      ) {
         if (target !== "cursor") {
           tx = target.x;
           ty = target.y;
@@ -425,7 +401,9 @@ function startGooseCanvas(
             dropNote();
             isHonking = true;
             playHonkSound();
-            setTimeout(() => { isHonking = false; }, 500);
+            setTimeout(() => {
+              isHonking = false;
+            }, 500);
           }
           if (st !== "chasing_cursor") {
             brainState = "idle";
@@ -505,14 +483,14 @@ function startGooseCanvas(
     dragging = null;
     pointerDown = null;
     const tap =
-      down &&
-      Math.hypot(e.clientX - down.x, e.clientY - down.y) < 14 &&
-      Date.now() - down.t < 480;
+      down && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 14 && Date.now() - down.t < 480;
     if (tap) {
       playHonkSound();
       isHonking = true;
       dropNote();
-      setTimeout(() => { isHonking = false; }, 800);
+      setTimeout(() => {
+        isHonking = false;
+      }, 800);
     }
   }
 
@@ -565,7 +543,7 @@ export function DesktopGoose() {
 
     // Wait for sprite to load if not ready
     const start = () => {
-      cleanupRef.current = startGooseCanvas(canvas, img, () => setActive(false));
+      cleanupRef.current = startGooseCanvas(canvas, img);
     };
 
     if (img.complete) {

@@ -18,13 +18,14 @@ const hacks = [
   {
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "LUXSAI AI HACKTHON • MAR 3, 2026 • LUXOR UNIVERSITY",
+    event: "LUXSAI AI HACKATHON • MAR 29, 2026 • LUXOR UNIVERSITY",
     title: "sast.tech (Pentesting/IDE AI Agent)",
     desc: (
       <>
         Achieved a distinguished <strong className="text-zinc-200">3rd place finish</strong> among
         67 teams from 17 universities and higher institutes. Officially represented the Faculty of
-        Artificial Intelligence at Horus University, competing with{" "}
+        Artificial Intelligence at Horus University alongside my colleague{" "}
+        <strong className="text-zinc-200">Abdelrahman Mohsen</strong>, competing with{" "}
         <strong className="text-zinc-200">sast.tech</strong>—an autonomous Pentesting AI Agent.
       </>
     ),
@@ -34,7 +35,15 @@ const hacks = [
     proofs: [
       {
         label: "Ministry of Higher Education Coverage (2:53)",
-        url: "https://www.facebook.com/reel/1254422980142263/?rdid=00XQLwjArSKK7907&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F18bpjNiiwF%2F#",
+        url: "https://www.facebook.com/reel/1254422980142263",
+      },
+      {
+        label: "Luxor University Coverage",
+        url: "https://www.facebook.com/share/v/1Ht4qPyxje/",
+      },
+      {
+        label: "International Luxor University Feature",
+        url: "https://www.facebook.com/share/v/1CTtFDqLih/",
       },
     ],
   },
@@ -66,13 +75,13 @@ const hacks = [
   },
 
   {
-    rank: "3RD PLACE",
-    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
+    rank: "1ST PLACE",
+    color: "text-white hover:text-[#ffd700] transition-colors duration-300",
     event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
     title: "Zero Threat",
     desc: (
       <>
-        Won <strong className="text-zinc-200">3RD PLACE</strong> at the Tanta National Summit in my
+        Won <strong className="text-zinc-200">1ST PLACE</strong> at the Tanta National Summit in my
         very first year, outperforming senior-level (Level 4 & 5) university competitors from 20+
         universities. Built <strong className="text-zinc-200">Zero Threat</strong>, an integrated
         security ecosystem providing real-time malware protection and OWASP-inspired vulnerability
@@ -130,8 +139,6 @@ function HacksPage() {
               {hack.linkText && (
                 <a
                   href={hack.linkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
                 >
                   {hack.linkText}
@@ -143,8 +150,6 @@ function HacksPage() {
                     <a
                       key={idx}
                       href={proof.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group"
                     >
                       <svg

@@ -16,9 +16,7 @@ const FeatureCard = memo(({ feature }: { feature: any }) => (
       ) : (
         <span className="text-3xl sm:text-4xl">{feature.icon}</span>
       )}
-      <h3 className="text-lg sm:text-xl font-display font-bold text-white">
-        {feature.category}
-      </h3>
+      <h3 className="text-lg sm:text-xl font-display font-bold text-white">{feature.category}</h3>
     </div>
     <ul className="space-y-2">
       {feature.items.map((item: string, itemIndex: number) => (
@@ -55,6 +53,7 @@ interface ProjectModalProps {
     video?: string;
     telegramLink?: string;
     repoLink?: string;
+    siteLink?: string;
     technologies?: string[];
     useCDNImages?: boolean;
   } | null;
@@ -65,6 +64,24 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [cdnImages, setCdnImages] = useState<string[]>([]);
   const [loadingImages, setLoadingImages] = useState(false);
+
+  const fetchCDNImages = useCallback(async () => {
+    if (cdnImages.length > 0) return;
+
+    setLoadingImages(true);
+    try {
+      const response = await fetch("/api/sticker-collections");
+      const data = await response.json();
+      if (data.collections) {
+        const images = data.collections.map((col: { imageUrl: string }) => col.imageUrl);
+        setCdnImages(images);
+      }
+    } catch (error) {
+      console.error("Failed to fetch CDN images:", error);
+    } finally {
+      setLoadingImages(false);
+    }
+  }, [cdnImages.length]);
 
   useEffect(() => {
     if (isOpen && modalRef.current && contentRef.current) {
@@ -95,25 +112,7 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, project]);
-
-  const fetchCDNImages = useCallback(async () => {
-    if (cdnImages.length > 0) return;
-    
-    setLoadingImages(true);
-    try {
-      const response = await fetch("/api/sticker-collections");
-      const data = await response.json();
-      if (data.collections) {
-        const images = data.collections.map((col: { imageUrl: string }) => col.imageUrl);
-        setCdnImages(images);
-      }
-    } catch (error) {
-      console.error("Failed to fetch CDN images:", error);
-    } finally {
-      setLoadingImages(false);
-    }
-  }, [cdnImages.length]);
+  }, [isOpen, project, fetchCDNImages]);
 
   const handleClose = () => {
     if (modalRef.current && contentRef.current) {
@@ -186,8 +185,6 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
               <div className="absolute top-4 left-4 sm:top-6 sm:left-8">
                 <a
                   href={`https://t.me/${project.telegramLink}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 text-sm sm:text-base"
                 >
                   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -205,12 +202,41 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
               >
                 <a
                   href={project.repoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white rounded-full font-bold transition-all duration-300 hover:scale-105 text-sm sm:text-base pointer-events-auto"
                 >
                   <i className="fab fa-github text-lg"></i>
                   View Repository
+                </a>
+              </div>
+            ) : null}
+
+            {/* Site Link */}
+            {project.siteLink ? (
+              <div
+                className={`absolute top-4 ${
+                  project.telegramLink || project.repoLink
+                    ? "left-auto right-4 sm:right-auto sm:left-[430px]"
+                    : "left-4"
+                } sm:top-6 z-20`}
+              >
+                <a
+                  href={project.siteLink}
+                  className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500/20 hover:bg-blue-500/40 backdrop-blur-md border border-blue-500/30 text-blue-400 rounded-full font-bold transition-all duration-300 hover:scale-105 text-sm sm:text-base pointer-events-auto"
+                >
+                  <svg
+                    className="w-5 h-5 sm:w-6 sm:h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                  Visit Website
                 </a>
               </div>
             ) : null}
@@ -297,7 +323,6 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
           </div>
         </ScopedSmoothScroll>
       </div>
-
     </div>
   );
 });

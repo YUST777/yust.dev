@@ -34,7 +34,8 @@
 
 **The Vision:** Moving beyond static "About Me" pages to create an interactive "Hub" experience that mirrors the quality of the projects it houses.
 
-**Core Philosophy:** 
+**Core Philosophy:**
+
 - **Premium Design:** iPhone-style GUI markers and smooth micro-interactions.
 - **Modular Excellence:** Decoupled data-driven architecture for rapid updates.
 - **Performance First:** Optimized for sub-second load times and 60 FPS animations.
@@ -44,15 +45,19 @@
 ## Featured Flagships
 
 ### [Verdict.run](https://verdict.run) — Mirror for Codeforces
+
 An advanced mirror tool for Codeforces featuring a built-in IDE, whiteboard, and secure submission system. Highlighting the balance between UX and developer productivity.
 
 ### [Sast.tech](https://sast.tech) — Autonomous AI Security
+
 Winner of multiple hackathons. A platform where AI agents fetch, scan, detect, and patch security vulnerabilities instantly.
 
 ### [ICPCHUE.XYZ](https://icpchue.xyz) — Community Hub
+
 Supporting the ICPC community at Horus University with a gamified learning platform, tracking 500+ users across Egypt.
 
 ### [Gifts Charts](https://t.me/giftsChartBot) — Telegram Economy
+
 A live market tracker for Telegram digital assets, featuring automated visual card generation and premium subscription systems.
 
 ---
@@ -60,15 +65,19 @@ A live market tracker for Telegram digital assets, featuring automated visual ca
 ## Technical Highlights
 
 ### ⚡ Vite+ Unified Toolchain
+
 Leveraging **Vite+** for a seamless development lifecycle, wrapping Vite, Rolldown, and Oxlint into a single global powerhouse CLI.
 
 ### 🍱 Dynamic Bento Grid
+
 A responsive, layout-aware grid system that intelligently prioritizes projects based on impact. Built with **Framer Motion** for shared element transitions.
 
 ### 📂 Modular Project Drawers
+
 An isolated drawer system that allows each project to tell its own story. Every project narrative (from tech stacks to "the hardest things I did") is a standalone React component.
 
 ### 🎭 Animation Orchestration
+
 A mix of **GSAP** for precision scroll-based reveals and **Framer Motion** for state-driven UI transitions (like the expandable archive grid).
 
 ---
@@ -87,14 +96,14 @@ A mix of **GSAP** for precision scroll-based reveals and **Framer Motion** for s
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React, TypeScript, Vite+ |
-| **Router** | TanStack Router |
-| **Styling** | Tailwind CSS v4.0 |
-| **Animations** | Framer Motion, GSAP |
-| **Icons** | Lucide, FontAwesome |
-| **Deployment** | Vercel |
+| Layer          | Technology               |
+| -------------- | ------------------------ |
+| **Frontend**   | React, TypeScript, Vite+ |
+| **Router**     | TanStack Router          |
+| **Styling**    | Tailwind CSS v4.0        |
+| **Animations** | Framer Motion, GSAP      |
+| **Icons**      | Lucide, FontAwesome      |
+| **Deployment** | Vercel                   |
 
 ---
 
@@ -120,6 +129,7 @@ A mix of **GSAP** for precision scroll-based reveals and **Framer Motion** for s
 ## Getting Started
 
 1. **Clone & Install**:
+
    ```bash
    git clone https://github.com/YUST777/port4.git
    cd port4
@@ -127,6 +137,7 @@ A mix of **GSAP** for precision scroll-based reveals and **Framer Motion** for s
    ```
 
 2. **Run Dev Server**:
+
    ```bash
    vp dev
    ```
@@ -140,13 +151,16 @@ A mix of **GSAP** for precision scroll-based reveals and **Framer Motion** for s
 
 ## Roadmap
 
-### Phase 1 — V4.0 Re-architecture *(Current)*
+### Phase 1 — V4.0 Re-architecture _(Current)_
+
 Refactored to a fully modular project system. Implemented expandable archive grids and restored premium bottom-sheet drawer mechanics.
 
 ### Phase 2 — Interactive Lab
+
 Adding a "Lab" section to showcase experimental mini-apps, terminal simulations, and raw security research.
 
 ### Phase 3 — Global Adaptation
+
 Deploying advanced SEO and localization to support the ICPCHUE Egyptian-wide adaptation.
 
 ---

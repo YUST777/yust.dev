@@ -1,7 +1,9 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 
-const GitHubCalendar = lazy(() => import("react-github-calendar").then(module => ({ default: module.GitHubCalendar })));
-const Tooltip = lazy(() => import("react-tooltip").then(module => ({ default: module.Tooltip })));
+const GitHubCalendar = lazy(() =>
+  import("react-github-calendar").then((module) => ({ default: module.GitHubCalendar })),
+);
+const Tooltip = lazy(() => import("react-tooltip").then((module) => ({ default: module.Tooltip })));
 import "react-tooltip/dist/react-tooltip.css";
 
 const GITHUB_THEME = {
@@ -21,27 +23,31 @@ export default function GithubContributions() {
         const data = await res.json();
         if (Array.isArray(data)) {
           setStars(data.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0));
+        } else if (data && typeof data === "object" && "message" in data) {
+          console.error("GitHub API error:", data.message);
         }
       } catch (e) {
         if (e instanceof DOMException && e.name === "AbortError") return;
         console.error("Failed to fetch GitHub stars:", e);
       }
     };
-    fetchStars();
+    void fetchStars();
     return () => controller.abort();
   }, []);
 
   return (
     <section className="font-mono mt-16 pb-4">
       <div className="flex items-center justify-between mb-4">
-        <p className="text-zinc-500 text-[13px] uppercase tracking-widest">
-          Contributions
-        </p>
+        <p className="text-zinc-500 text-[13px] uppercase tracking-widest">Contributions</p>
         <span className="text-[9px] text-zinc-600 sm:hidden lowercase">Swipe to see more →</span>
       </div>
       <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
         <div className="min-w-[800px] lg:min-w-0 overflow-hidden min-h-[150px] flex items-center justify-center">
-          <Suspense fallback={<div className="text-zinc-500 text-xs animate-pulse">Loading GitHub Activity...</div>}>
+          <Suspense
+            fallback={
+              <div className="text-zinc-500 text-xs animate-pulse">Loading GitHub Activity...</div>
+            }
+          >
             <GitHubCalendar
               username="YUST777"
               colorScheme="dark"

@@ -13,7 +13,8 @@ export const projectsData: Project[] = [
     delay: "delay-100",
     video: "/videos/verdict.webm",
     repoLink: "https://github.com/YUST777/verdict-community",
-    technologies: ["Next.js 16", "TypeScript", "Puppeteer", "Monaco Editor", "Excalidraw"],
+    siteLink: "https://verdict.run",
+    technologies: ["Next.js 15", "TypeScript", "Puppeteer", "Monaco Editor", "Excalidraw"],
     drawerId: "verdict",
     features: [
       {
@@ -40,6 +41,7 @@ export const projectsData: Project[] = [
     delay: "delay-150",
     video: "/videos/sast.webm",
     technologies: ["AI / LLMs", "Node.js", "Cybersecurity", "Autonomous Agents", "Docker"],
+    siteLink: "https://sast.tech",
     drawerId: "sast",
     features: [
       {
@@ -71,12 +73,7 @@ export const projectsData: Project[] = [
       {
         category: "Core Features",
         svgIcon: "chart",
-        items: [
-          "Live Price Tracking",
-          "Premium Subscriptions",
-          "Admin Dashboard",
-          "Auto-Updates",
-        ],
+        items: ["Live Price Tracking", "Premium Subscriptions", "Admin Dashboard", "Auto-Updates"],
       },
       {
         category: "Architecture",
@@ -104,7 +101,7 @@ export const projectsData: Project[] = [
     title: "ICPCHUE",
     description: "Hardened, sandboxed online judge platform.",
     fullDescription:
-      "I led the development of ICPCHUE.XYZ, a comprehensive platform serving the community. Built with Next.js, featuring secure registration, gamified dashboards, and Skill trackers.",
+      "I led the development of the ICPC HUE training platform, a comprehensive training ecosystem serving the community. Built with Next.js, featuring secure registration, gamified dashboards, and skill trackers.",
     tag: "Platform",
     icon: "fa-code",
     span: "md:col-span-2 md:row-span-1",
@@ -198,12 +195,13 @@ export const archiveProjectsData: Project[] = [
     id: 12,
     title: "RetroOS",
     description: "Interactive Retro OS Simulation",
-    fullDescription: "A nostalgic, browser-based operating system simulation with interactive terminal and retro UI elements.",
+    fullDescription:
+      "A nostalgic, browser-based operating system simulation with interactive terminal and retro UI elements.",
     tag: "Experimental",
     icon: "fa-terminal",
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-300",
     video: "/videos/RetroOS_Project.webm",
     drawerId: "RetroOS",
-  }
+  },
 ];

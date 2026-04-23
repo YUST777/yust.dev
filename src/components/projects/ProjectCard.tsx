@@ -116,9 +116,7 @@ export default function ProjectCard({
                 <h3 className="text-2xl md:text-3xl font-display font-bold mb-1 text-white">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 text-xs md:text-sm font-light">
-                  {project.description}
-                </p>
+                <p className="text-gray-300 text-xs md:text-sm font-light">{project.description}</p>
               </div>
             </div>
           )}
