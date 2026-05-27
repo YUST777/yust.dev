@@ -1,7 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { posts } from "./blog.index";
+import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
 export const Route = createFileRoute("/_main/blog/$postId")({
+  head: ({ params }) => {
+    const post = posts.find((p) => p.id === params.postId);
+    if (!post) {
+      return buildRouteHead({
+        title: "Post Not Found | Yousef Mohammed Salah",
+        description: "The requested blog post could not be found.",
+        path: `/blog/${params.postId}`,
+        noindex: true,
+      });
+    }
+    const title = `${post.title} | Yousef Mohammed Salah`;
+    const image = post.images?.[0];
+    const base = buildRouteHead({
+      title,
+      description: post.summary,
+      path: `/blog/${post.id}`,
+      type: "article",
+      image: image ? `${SITE_URL}${image}` : undefined,
+      publishedTime: post.iso,
+      modifiedTime: post.iso,
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: jsonLdString(blogPostingSchema(post)),
+        },
+      ],
+    };
+  },
   component: PostPage,
 });
 

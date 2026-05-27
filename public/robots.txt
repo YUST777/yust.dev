@@ -1,4 +1,45 @@
+# https://yust.dev — robots.txt
+# Yousef Mohammed Salah (Yust, businessduck, yust777)
+
 User-agent: *
 Allow: /
+Disallow: /token-usage
+Disallow: /api/
+
+# Major search engines — explicit allow keeps things unambiguous.
+User-agent: Googlebot
+Allow: /
+Disallow: /token-usage
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Disallow: /token-usage
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /token-usage
+
+# Block AI training crawlers that don't drive search traffic.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
 
 Sitemap: https://yust.dev/sitemap.xml
+Host: https://yust.dev

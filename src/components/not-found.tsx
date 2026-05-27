@@ -11,7 +11,24 @@ export function NotFound() {
     if (location.pathname.startsWith("/mem")) {
       const newPath = location.pathname.replace("/mem", "/blog");
       void navigate({ to: newPath, replace: true });
+      return;
     }
+
+    // Tell crawlers not to index 404 pages.
+    const existing = document.querySelector<HTMLMetaElement>("meta[name='robots']");
+    const previous = existing?.getAttribute("content") ?? null;
+    if (existing) {
+      existing.setAttribute("content", "noindex, follow");
+    } else {
+      const tag = document.createElement("meta");
+      tag.name = "robots";
+      tag.content = "noindex, follow";
+      document.head.appendChild(tag);
+    }
+    document.title = "Page Not Found | Yousef Mohammed Salah";
+    return () => {
+      if (existing && previous !== null) existing.setAttribute("content", previous);
+    };
   }, [location.pathname, navigate]);
 
   return (

@@ -1,16 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
+
+const TITLE = "Hackathons | Yousef Mohammed Salah — 3x National Winner";
+const DESCRIPTION =
+  "Competitive builds and national awards by Yousef Mohammed Salah. 1st place at Tanta National Summit (Zero Threat), 2nd place at GDG Delta (Sast.tech), 3rd place at LuxsAI Hackathon. 70k+ EGP in prize money.";
+
+const hacksPageSchema = webPageSchema({
+  url: `${SITE_URL}/hacks`,
+  name: TITLE,
+  description: DESCRIPTION,
+  breadcrumbs: [
+    { name: "Home", url: SITE_URL },
+    { name: "Hackathons", url: `${SITE_URL}/hacks` },
+  ],
+});
 
 export const Route = createFileRoute("/_main/hacks")({
-  head: () => ({
-    meta: [
-      { title: "Hackathons | Yousef Mohammed Salah" },
-      {
-        name: "description",
-        content:
-          "Competitive builds and national awards. Winner of 1ST PLACE at Tanta National Summit and 2ND PLACE at GDG Delta Hackathon out of 100+ teams.",
-      },
-    ],
-  }),
+  head: () => {
+    const base = buildRouteHead({
+      title: TITLE,
+      description: DESCRIPTION,
+      path: "/hacks",
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: jsonLdString(hacksPageSchema),
+        },
+      ],
+    };
+  },
   component: HacksPage,
 });
 

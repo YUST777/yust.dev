@@ -13,88 +13,80 @@ import globalsCss from "@/globals.css?url";
 import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
-const SITE_URL = "https://yust.dev";
-const SITE_NAME = "Yousef Mohammed Salah (Yust)";
-const SITE_DESCRIPTION =
-  "Yousef Mohammed Salah (businessduck/yust777) — AI & Cybersecurity student and Full-Stack Developer. Founder of Verdict.run and ICPC HUE Lead.";
-const SITE_TITLE = "Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
-const SITE_SUMMARY =
-  "Full-Stack Developer, Level 2 AI & Cybersecurity student, and founder of projects like Verdict.run, ICPC HUE, and GiftsChart.";
-const SOCIAL_IMAGE_PATH = "/static/images/metadata.jpg";
-const PERSON_ID = `${SITE_URL}/#person`;
-const WEBSITE_ID = `${SITE_URL}/#website`;
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: SITE_NAME,
-      url: SITE_URL,
-      jobTitle: "Software Engineer",
-      description: SITE_SUMMARY,
-      alternateName: ["Yust", "businessduck", "yust777", "Yousef Mohammed", "Yousef Horus"],
-      sameAs: [
-        "https://github.com/YUST777",
-        "https://www.linkedin.com/in/yousefmsm1/",
-        "https://t.me/yousefmsm1",
-        "https://verdict.run",
-        "https://icpchue.com",
-      ],
-      image: `${SITE_URL}/static/images/metadata.png`,
-    },
-    {
-      "@type": "WebSite",
-      "@id": WEBSITE_ID,
-      url: SITE_URL,
-      name: SITE_NAME,
-      description: SITE_SUMMARY,
-      publisher: {
-        "@id": PERSON_ID,
-      },
-    },
-  ],
-};
+import {
+  FAVICON,
+  KEYWORDS,
+  SITE_BRAND,
+  SITE_DESCRIPTION,
+  SITE_DESCRIPTION_SHORT,
+  SITE_NAME,
+  SITE_TITLE_LONG,
+  SITE_URL,
+  SOCIAL_IMAGE,
+  TWITTER_HANDLE,
+  jsonLdString,
+  siteGraph,
+} from "@/lib/seo";
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: SITE_TITLE },
+      { title: SITE_TITLE_LONG },
       { name: "description", content: SITE_DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "yousef mohammed salah, yousef dev, yust, businessduck, yust777, yousef horus, yousef icpchue, yousef verdict, verdict, verdict.run, icpchue, gifts chart, giftschart, software engineer, full stack dev, cybersecurity student, AI student, Horus University",
-      },
+      { name: "keywords", content: KEYWORDS },
       { name: "author", content: SITE_NAME },
       { name: "creator", content: SITE_NAME },
-      { property: "og:type", content: "website" },
+      { name: "publisher", content: SITE_NAME },
+      { name: "application-name", content: SITE_BRAND },
+      { name: "apple-mobile-web-app-title", content: SITE_BRAND },
+      { name: "format-detection", content: "telephone=no" },
+      { name: "theme-color", content: "#0c0c0c" },
+      { name: "color-scheme", content: "dark" },
+      {
+        name: "robots",
+        content:
+          "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
+      { name: "googlebot", content: "index, follow" },
+      { name: "bingbot", content: "index, follow" },
+      // Open Graph
+      { property: "og:type", content: "profile" },
       { property: "og:locale", content: "en_US" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:site_name", content: SITE_NAME },
-      { property: "og:title", content: SITE_TITLE },
+      { property: "og:site_name", content: `${SITE_NAME} (${SITE_BRAND})` },
+      { property: "og:title", content: SITE_TITLE_LONG },
       { property: "og:description", content: SITE_DESCRIPTION },
-      { property: "og:image", content: SOCIAL_IMAGE_PATH },
+      { property: "og:image", content: SOCIAL_IMAGE },
+      { property: "og:image:secure_url", content: SOCIAL_IMAGE },
+      { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: SITE_TITLE },
+      { property: "og:image:alt", content: SITE_TITLE_LONG },
+      { property: "profile:first_name", content: "Yousef" },
+      { property: "profile:last_name", content: "Mohammed Salah" },
+      { property: "profile:username", content: "yust777" },
+      // Twitter / X
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: SITE_TITLE },
-      { name: "twitter:description", content: SITE_SUMMARY },
-      { name: "twitter:creator", content: "@yousefmsm1" },
-      { name: "twitter:image", content: SOCIAL_IMAGE_PATH },
-      { name: "theme-color", content: "#0c0c0c" },
-      { name: "robots", content: "index, follow" },
+      { name: "twitter:title", content: SITE_TITLE_LONG },
+      { name: "twitter:description", content: SITE_DESCRIPTION_SHORT },
+      { name: "twitter:image", content: SOCIAL_IMAGE },
+      { name: "twitter:image:alt", content: SITE_TITLE_LONG },
+      { name: "twitter:creator", content: TWITTER_HANDLE },
+      { name: "twitter:site", content: TWITTER_HANDLE },
     ],
     links: [
       { rel: "canonical", href: SITE_URL },
+      { rel: "alternate", type: "application/rss+xml", title: `${SITE_NAME} – Blog`, href: `${SITE_URL}/rss.xml` },
+      { rel: "sitemap", type: "application/xml", href: `${SITE_URL}/sitemap.xml` },
       { rel: "stylesheet", href: globalsCss },
       { rel: "stylesheet", href: geistSansCss },
       { rel: "stylesheet", href: geistMonoCss },
-      // katex.min.css moved to token-usage page for on-demand loading
+      // Speed up known cross-origin connections (analytics, GitHub APIs, fonts).
+      { rel: "preconnect", href: "https://va.vercel-scripts.com" },
+      { rel: "preconnect", href: "https://api.github.com", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://github-contributions-api.jogruber.de" },
       {
         rel: "preload",
         href: "/fonts/silkscreen-400.woff2",
@@ -109,7 +101,15 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
-      { rel: "icon", href: "/static/images/metadata.png" },
+      { rel: "icon", href: FAVICON, type: "image/png" },
+      { rel: "apple-touch-icon", href: FAVICON },
+      { rel: "shortcut icon", href: FAVICON },
+      { rel: "manifest", href: "/site.webmanifest" },
+      // Personal-name SEO: explicit social profile links.
+      { rel: "me", href: "https://github.com/YUST777" },
+      { rel: "me", href: "https://www.linkedin.com/in/yousefmsm1/" },
+      { rel: "me", href: "https://x.com/YUST777" },
+      { rel: "me", href: "https://t.me/yousefmsm1" },
     ],
   }),
   component: RootComponent,
@@ -135,7 +135,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         )}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(siteGraph()) }}
         />
       </head>
       <body className="antialiased bg-[#0c0c0c] text-zinc-400 font-mono min-h-screen relative">

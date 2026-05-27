@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import TokenUsageGraph from "@/components/token-usage/source";
 import { fetchUsageData } from "@/components/token-usage/data";
+import { buildRouteHead } from "@/lib/seo";
 
 const loadUsageData = createServerFn({ method: "GET" }).handler(() => {
   return fetchUsageData();
@@ -9,9 +10,13 @@ const loadUsageData = createServerFn({ method: "GET" }).handler(() => {
 
 export const Route = createFileRoute("/token-usage")({
   loader: () => loadUsageData(),
-  head: () => ({
-    meta: [{ title: "Token Usage | Yousef" }],
-  }),
+  head: () =>
+    buildRouteHead({
+      title: "Token Usage | Yousef Mohammed Salah",
+      description: "Daily AI token usage breakdown.",
+      path: "/token-usage",
+      noindex: true,
+    }),
   component: TokenUsagePage,
   errorComponent: () => (
     <div className="flex min-h-screen items-center justify-center">

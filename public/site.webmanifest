@@ -1,0 +1,19 @@
+{
+  "name": "Yousef Mohammed Salah (Yust)",
+  "short_name": "Yust",
+  "description": "AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0c",
+  "theme_color": "#0c0c0c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/static/images/metadata.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

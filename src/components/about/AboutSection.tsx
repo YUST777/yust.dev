@@ -18,15 +18,19 @@ export default function AboutSection() {
       <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I’m Yousef, an AI & Cybersecurity student and a Full-Stack Product Engineer who builds
-          tools that stay in people&apos;s bookmarks. I specialize in bridging the gap between
-          complex technical infrastructure and high-quality user experiences.
+          I’m <strong className="text-zinc-200">Yousef Mohammed Salah</strong> (also known as{" "}
+          <em>Yust</em>, <em>businessduck</em>, and <em>yust777</em>), an AI &amp; Cybersecurity
+          student at <strong className="text-zinc-200">Horus University in Egypt</strong> and a
+          Full-Stack Product Engineer who builds tools that stay in people&apos;s bookmarks. I
+          specialize in bridging the gap between complex technical infrastructure and
+          high-quality user experiences.
         </p>
         <p>
           Most recently, I engineered <strong>Verdict.run</strong>, a viral competitive programming
           platform that garnered 120k+ impressions and transformed the workflow for hundreds of
-          developers. My work spans from autonomous AI security agents (Sast) to architecting
-          unified training ecosystems as the Lead Developer for <strong>ICPC HUE</strong>.
+          developers. My work spans from autonomous AI security agents (<strong>Sast.tech</strong>)
+          to architecting unified training ecosystems as the Lead Developer for{" "}
+          <strong>ICPC HUE</strong>.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5 opacity-80">

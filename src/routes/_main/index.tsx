@@ -3,18 +3,44 @@ import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
 import GithubContributions from "@/components/about/GithubContributions";
 import AchievementsSection from "@/components/about/AchievementsSection";
+import {
+  SITE_NAME,
+  SITE_URL,
+  buildRouteHead,
+  jsonLdString,
+  webPageSchema,
+} from "@/lib/seo";
+
+const TITLE = `About | ${SITE_NAME} (Yust) — AI & Cybersecurity, Verdict.run, ICPC HUE`;
+const DESCRIPTION =
+  "Official portfolio of Yousef Mohammed Salah (Yust, businessduck, yust777). AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
+
+const aboutPageSchema = webPageSchema({
+  url: SITE_URL,
+  name: TITLE,
+  description: DESCRIPTION,
+  type: "ProfilePage",
+  breadcrumbs: [{ name: "Home", url: SITE_URL }],
+});
 
 export const Route = createFileRoute("/_main/")({
-  head: () => ({
-    meta: [
-      { title: "About | Yousef Mohammed Salah" },
-      {
-        name: "description",
-        content:
-          "Official portfolio of Yousef Mohammed Salah (Yüst). AI & Cybersecurity student, founder of Verdict.run and ICPC HUE Lead. Discover my mission and notable achievements.",
-      },
-    ],
-  }),
+  head: () => {
+    const base = buildRouteHead({
+      title: TITLE,
+      description: DESCRIPTION,
+      path: "/",
+      type: "profile",
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: jsonLdString(aboutPageSchema),
+        },
+      ],
+    };
+  },
   component: AboutPage,
 });
 

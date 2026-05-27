@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Yousef Mohammed Salah — Blog</title>
+    <link>https://yust.dev/blog</link>
+    <description>Thoughts on software engineering, competitive programming, AI security, and social impact.</description>
+    <language>en-us</language>
+    <atom:link href="https://yust.dev/rss.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>yousfmsm@hotmail.com (Yousef Mohammed Salah)</managingEditor>
+    <webMaster>yousfmsm@hotmail.com (Yousef Mohammed Salah)</webMaster>
+
+    <item>
+      <title>A day at Horus Technology Forum</title>
+      <link>https://yust.dev/blog/1</link>
+      <guid isPermaLink="true">https://yust.dev/blog/1</guid>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Returning to where it all started, but with something much bigger.</description>
+    </item>
+    <item>
+      <title>Marketing Strategy at AZ Tech Solutions</title>
+      <link>https://yust.dev/blog/4</link>
+      <guid isPermaLink="true">https://yust.dev/blog/4</guid>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Learning the art of the 'Filter' and how to scale SaaS products.</description>
+    </item>
+    <item>
+      <title>Winning 3rd Place in LuxsAI</title>
+      <link>https://yust.dev/blog/3</link>
+      <guid isPermaLink="true">https://yust.dev/blog/3</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <description>A 17-hour journey and 850km across Egypt to compete in Luxor.</description>
+    </item>
+    <item>
+      <title>Winning 2nd Place in GDG Delta</title>
+      <link>https://yust.dev/blog/2</link>
+      <guid isPermaLink="true">https://yust.dev/blog/2</guid>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
+      <description>49 hours of sleep-deprived building to secure a win at Google Developer Groups.</description>
+    </item>
+  </channel>
+</rss>

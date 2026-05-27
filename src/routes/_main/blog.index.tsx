@@ -1,23 +1,58 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
+
+const TITLE = "Blog | Yousef Mohammed Salah — Software, Hackathons, ICPC";
+const DESCRIPTION =
+  "Thoughts on software engineering, competitive programming, AI security, and social impact by Yousef Mohammed Salah. Stories from GDG Delta, LuxsAI, Horus University, and the ICPC HUE community.";
+
+const blogIndexSchema = webPageSchema({
+  url: `${SITE_URL}/blog`,
+  name: TITLE,
+  description: DESCRIPTION,
+  type: "CollectionPage",
+  breadcrumbs: [
+    { name: "Home", url: SITE_URL },
+    { name: "Blog", url: `${SITE_URL}/blog` },
+  ],
+});
 
 export const Route = createFileRoute("/_main/blog/")({
-  head: () => ({
-    meta: [
-      { title: "blog | Yousef Mohammed Salah" },
-      {
-        name: "description",
-        content: "Thoughts on software engineering, competitive programming, and social impact.",
-      },
-    ],
-  }),
+  head: () => {
+    const base = buildRouteHead({
+      title: TITLE,
+      description: DESCRIPTION,
+      path: "/blog",
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: jsonLdString(blogIndexSchema),
+        },
+      ],
+    };
+  },
   component: BlogPage,
 });
 
-export const posts = [
+export interface BlogPost {
+  id: string;
+  title: string;
+  date: string;
+  iso: string;
+  summary: string;
+  content: string;
+  featured?: { label: string; url: string }[];
+  images?: string[];
+}
+
+export const posts: BlogPost[] = [
   {
     id: "1",
     title: "A day at Horus Technology Forum",
     date: "Apr 23, 2026",
+    iso: "2026-04-23",
     summary: "Returning to where it all started, but with something much bigger.",
     content: `Today I was at the Technology Forum event at [Horus University](https://horus.edu.eg). This forum holds a very special place in my heart because it reminds me of my beginnings—it was the first place I ever showcased a project during my first semester.
 
@@ -50,6 +85,7 @@ It doesn't just hand you a report; it uses AI to automatically patch the vulnera
     id: "4",
     title: "Marketing Strategy at AZ Tech Solutions",
     date: "Apr 20, 2026",
+    iso: "2026-04-20",
     summary: "Learning the art of the 'Filter' and how to scale SaaS products.",
     content: `Today I was at **AZ Tech Solutions** in Mansoura with my colleagues [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/). We were there for marketing training—learning how to sell your SaaS and generate profit—as a result of our 2nd place win at the **GDG Delta** hackathon.
 
@@ -65,6 +101,7 @@ Special thanks to [Eng. Akram Zeyada](https://www.linkedin.com/in/akram-zeyada-2
     id: "3",
     title: "Winning 3rd Place in LuxsAI",
     date: "Mar 29, 2026",
+    iso: "2026-03-29",
     summary: "A 17-hour journey and 850km across Egypt to compete in Luxor.",
     content: `I traveled 17 hours from Damietta to Luxor and came back with 3rd place :).
 
@@ -95,6 +132,7 @@ Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` 
     id: "2",
     title: "Winning 2nd Place in GDG Delta",
     date: "Feb 18, 2026",
+    iso: "2026-02-18",
     summary: "49 hours of sleep-deprived building to secure a win at Google Developer Groups.",
     content: `Don't sleep until you hold the win in your hand. This was me at 1 AM, after staying awake for 49 hours straight in the service area 😂.
 
