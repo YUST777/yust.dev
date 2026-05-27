@@ -68,7 +68,7 @@ export default function AboutSection() {
       <Suspense fallback={null}>
         <Tooltip
           id="core-stack-tooltip"
-          place="top"
+          place="bottom"
           className="!bg-zinc-900 !border !border-white/10 !rounded-md !text-xs !font-mono"
         />
       </Suspense>
