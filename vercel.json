@@ -1,12 +1,6 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.yust.dev" }],
-      "destination": "https://yust.dev/$1",
-      "permanent": true
-    },
-    {
       "source": "/mem",
       "destination": "/blog",
       "permanent": true
