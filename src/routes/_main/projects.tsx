@@ -39,7 +39,7 @@ const projectsSchema = projectsCollectionSchema([
     name: "Zero Threat",
     url: "https://zerothreat.yousefdev.xyz/",
     description:
-      "AI-powered cybersecurity suite with web platform, browser extension, and Windows agent. 1st Place at Tanta National Summit.",
+      "AI-powered cybersecurity suite with web platform, browser extension, and Windows agent. 3rd Place at Tanta National Summit.",
   },
   {
     name: "Collectable Kit",

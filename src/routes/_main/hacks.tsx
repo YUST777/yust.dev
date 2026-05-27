@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Hackathons · 3x National Winner";
+const TITLE = "yust.dev — Hackathons · 3x Hackathon Winner";
 const DESCRIPTION =
-  "Hackathon wins by Yousef Mohammed Salah: 1st at Tanta National Summit (Zero Threat), 2nd at GDG Delta (Sast.tech), 3rd at LuxsAI. 70k+ EGP prizes.";
+  "Hackathon wins by Yousef Mohammed Salah: 2nd at GDG Delta (Sast.tech), 3rd at LuxsAI (Sast.tech), 3rd at Tanta National Summit (Zero Threat). 70k+ EGP prizes.";
 
 const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,
@@ -96,13 +96,13 @@ const hacks = [
   },
 
   {
-    rank: "1ST PLACE",
-    color: "text-white hover:text-[#ffd700] transition-colors duration-300",
+    rank: "3RD PLACE",
+    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
     title: "Zero Threat",
     desc: (
       <>
-        Won <strong className="text-zinc-200">1ST PLACE</strong> at the Tanta National Summit in my
+        Won <strong className="text-zinc-200">3rd place</strong> at the Tanta National Summit in my
         very first year, outperforming senior-level (Level 4 & 5) university competitors from 20+
         universities. Built <strong className="text-zinc-200">Zero Threat</strong>, an integrated
         security ecosystem providing real-time malware protection and OWASP-inspired vulnerability

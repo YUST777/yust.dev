@@ -85,7 +85,7 @@ export default function AchievementsSection() {
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
               Tanta National Summit.{" "}
             </strong>
-            Won <span className="text-white">1st place</span> in my very first year, outperforming
+            Won <span className="text-white">3rd place</span> in my very first year, outperforming
             senior-level (Level 4 &amp; 5) university competitors.
           </p>
         </div>
