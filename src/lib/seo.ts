@@ -181,6 +181,14 @@ export function webPageSchema(opts: {
   type?: "WebPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 }) {
   const type = opts.type ?? "WebPage";
+  // ProfilePage rich results require `mainEntity` (the Person the profile is about).
+  // For other page types we expose the Person via `about` instead.
+  const personRef = { "@id": PERSON_ID };
+  const entityFields =
+    type === "ProfilePage"
+      ? { mainEntity: personRef, about: personRef }
+      : { about: personRef };
+
   return {
     "@context": "https://schema.org",
     "@type": type,
@@ -190,7 +198,7 @@ export function webPageSchema(opts: {
     description: opts.description,
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
-    about: { "@id": PERSON_ID },
+    ...entityFields,
     breadcrumb: breadcrumbSchema(opts.breadcrumbs),
   };
 }
