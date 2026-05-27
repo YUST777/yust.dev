@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "Blog | Yousef Mohammed Salah — Software, Hackathons, ICPC";
+const TITLE = "Blog | yust.dev — Yousef Mohammed Salah · Software, Hackathons, ICPC";
 const DESCRIPTION =
-  "Thoughts on software engineering, competitive programming, AI security, and social impact by Yousef Mohammed Salah. Stories from GDG Delta, LuxsAI, Horus University, and the ICPC HUE community.";
+  "Thoughts on software engineering, competitive programming, AI security, and social impact by Yousef Mohammed Salah on yust.dev. Stories from GDG Delta, LuxsAI, Horus University, and the ICPC HUE community.";
 
 const blogIndexSchema = webPageSchema({
   url: `${SITE_URL}/blog`,

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "Hackathons | Yousef Mohammed Salah — 3x National Winner";
+const TITLE = "Hackathons | yust.dev — Yousef Mohammed Salah · 3x National Winner";
 const DESCRIPTION =
-  "Competitive builds and national awards by Yousef Mohammed Salah. 1st place at Tanta National Summit (Zero Threat), 2nd place at GDG Delta (Sast.tech), 3rd place at LuxsAI Hackathon. 70k+ EGP in prize money.";
+  "Competitive builds and national awards by Yousef Mohammed Salah on yust.dev. 1st place at Tanta National Summit (Zero Threat), 2nd place at GDG Delta (Sast.tech), 3rd place at LuxsAI Hackathon. 70k+ EGP in prize money.";
 
 const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,

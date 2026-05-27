@@ -8,15 +8,19 @@
  */
 
 export const SITE_URL = "https://yust.dev";
-export const SITE_NAME = "Yousef Mohammed Salah";
-export const SITE_BRAND = "Yust";
+/** The legal/real name. Used as Schema.org Person.name. */
+export const PERSON_NAME = "Yousef Mohammed Salah";
+/** The brand / display handle. Used as the site name and what people search for. */
+export const SITE_BRAND = "yust.dev";
+/** Backward-compatible alias kept so older imports don't break. */
+export const SITE_NAME = SITE_BRAND;
 
 export const SITE_TITLE_LONG =
-  "Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
+  "yust.dev — Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
 export const SITE_DESCRIPTION =
-  "Yousef Mohammed Salah (Yust, businessduck, yust777) — Level 2 AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech. Based in Damietta, Egypt.";
+  "yust.dev is the official portfolio of Yousef Mohammed Salah (also known as Yust, businessduck, yust777). Level 2 AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech. Based in Damietta, Egypt.";
 export const SITE_DESCRIPTION_SHORT =
-  "Full-Stack Developer, AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
+  "yust.dev — Yousef Mohammed Salah. Full-Stack Developer, AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
 
 export const SOCIAL_IMAGE = `${SITE_URL}/static/images/metadata.jpg`;
 export const FAVICON = `${SITE_URL}/static/images/metadata.png`;
@@ -38,8 +42,11 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
 export const KEYWORDS = [
+  "yust.dev",
+  "yust dev",
   "Yousef Mohammed Salah",
   "Yousef Salah",
+  "Yousef Mohammed",
   "Yousef Horus",
   "Yousef ICPC",
   "Yousef Verdict",
@@ -82,8 +89,9 @@ export function personSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": PERSON_ID,
-    name: SITE_NAME,
+    name: PERSON_NAME,
     alternateName: [
+      "yust.dev",
       "Yust",
       "Yüst",
       "businessduck",
@@ -97,7 +105,7 @@ export function personSchema() {
     image: FAVICON,
     jobTitle: "Software Engineer",
     description:
-      "AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech.",
+      "Yousef Mohammed Salah (yust.dev) — AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech.",
     knowsAbout: [
       "Software Engineering",
       "Full-Stack Development",
@@ -147,8 +155,8 @@ export function websiteSchema() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     url: SITE_URL,
-    name: `${SITE_NAME} (${SITE_BRAND})`,
-    alternateName: ["yust.dev", "Yust"],
+    name: SITE_BRAND,
+    alternateName: [PERSON_NAME, "Yust", "yust777", "businessduck"],
     description: SITE_DESCRIPTION_SHORT,
     inLanguage: "en",
     publisher: { "@id": PERSON_ID },
@@ -287,7 +295,7 @@ export function buildRouteHead(opts: RouteHeadOpts) {
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-    { property: "og:site_name", content: `${SITE_NAME} (${SITE_BRAND})` },
+    { property: "og:site_name", content: SITE_BRAND },
     { property: "og:locale", content: "en_US" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: opts.title },

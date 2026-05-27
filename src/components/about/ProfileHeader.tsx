@@ -4,7 +4,11 @@ export default function ProfileHeader() {
       <p className="font-mono text-zinc-500 mb-2">Hi I'm 👋</p>
       <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">
         <span data-goose-name>YOUSEF</span>
-        <span className="sr-only"> Mohammed Salah — Full-Stack Developer & Security Researcher</span>
+        <span className="sr-only">
+          {" "}
+          — known online as yust.dev (real name Yousef Mohammed Salah). Full-Stack Developer &amp;
+          Security Researcher.
+        </span>
       </h1>
       <p className="text-sm md:text-base text-zinc-400 max-w-2xl uppercase tracking-wider font-mono">
         L2 AI &amp; Cybersecurity Student / Full-Stack Product Engineer

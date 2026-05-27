@@ -18,8 +18,9 @@ export default function AboutSection() {
       <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I’m <strong className="text-zinc-200">Yousef Mohammed Salah</strong> (also known as{" "}
-          <em>Yust</em>, <em>businessduck</em>, and <em>yust777</em>), an AI &amp; Cybersecurity
+          I’m known online as <strong className="text-zinc-200">yust.dev</strong> — my real name is{" "}
+          <strong className="text-zinc-200">Yousef Mohammed Salah</strong> (also called{" "}
+          <em>Yust</em>, <em>businessduck</em>, and <em>yust777</em>). AI &amp; Cybersecurity
           student at <strong className="text-zinc-200">Horus University in Egypt</strong> and a
           Full-Stack Product Engineer who builds tools that stay in people&apos;s bookmarks. I
           specialize in bridging the gap between complex technical infrastructure and

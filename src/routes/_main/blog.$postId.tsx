@@ -7,13 +7,13 @@ export const Route = createFileRoute("/_main/blog/$postId")({
     const post = posts.find((p) => p.id === params.postId);
     if (!post) {
       return buildRouteHead({
-        title: "Post Not Found | Yousef Mohammed Salah",
+        title: "Post Not Found | yust.dev — Yousef Mohammed Salah",
         description: "The requested blog post could not be found.",
         path: `/blog/${params.postId}`,
         noindex: true,
       });
     }
-    const title = `${post.title} | Yousef Mohammed Salah`;
+    const title = `${post.title} | yust.dev — Yousef Mohammed Salah`;
     const image = post.images?.[0];
     const base = buildRouteHead({
       title,

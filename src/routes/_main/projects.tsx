@@ -6,9 +6,9 @@ import {
   projectsCollectionSchema,
 } from "@/lib/seo";
 
-const TITLE = "Projects | Yousef Mohammed Salah — Verdict.run, Sast.tech, ICPC HUE";
+const TITLE = "Projects | yust.dev — Yousef Mohammed Salah · Verdict.run, Sast.tech, ICPC HUE";
 const DESCRIPTION =
-  "Technical project gallery by Yousef Mohammed Salah: Verdict.run (Codeforces mirror IDE), Sast.tech (autonomous AI security agent), ICPC HUE training platform, Gifts Charts, Zero Threat, Collectable Kit, and more.";
+  "Technical project gallery on yust.dev by Yousef Mohammed Salah: Verdict.run (Codeforces mirror IDE), Sast.tech (autonomous AI security agent), ICPC HUE training platform, Gifts Charts, Zero Threat, Collectable Kit, and more.";
 
 const projectsSchema = projectsCollectionSchema([
   {
