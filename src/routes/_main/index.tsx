@@ -4,17 +4,15 @@ import AboutSection from "@/components/about/AboutSection";
 import GithubContributions from "@/components/about/GithubContributions";
 import AchievementsSection from "@/components/about/AchievementsSection";
 import {
-  PERSON_NAME,
-  SITE_BRAND,
   SITE_URL,
   buildRouteHead,
   jsonLdString,
   webPageSchema,
 } from "@/lib/seo";
 
-const TITLE = `${SITE_BRAND} — ${PERSON_NAME} | AI & Cybersecurity, Verdict.run, ICPC HUE`;
+const TITLE = "yust.dev — Yousef Mohammed Salah · About";
 const DESCRIPTION =
-  "yust.dev is the official portfolio of Yousef Mohammed Salah (also known as Yust, businessduck, yust777). AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
+  "Portfolio of Yousef Mohammed Salah (yust.dev). AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, 3x hackathon winner.";
 
 const aboutPageSchema = webPageSchema({
   url: SITE_URL,

@@ -25,7 +25,7 @@ export function NotFound() {
       tag.content = "noindex, follow";
       document.head.appendChild(tag);
     }
-    document.title = "Page Not Found | yust.dev — Yousef Mohammed Salah";
+    document.title = "Page Not Found · yust.dev";
     return () => {
       if (existing && previous !== null) existing.setAttribute("content", previous);
     };

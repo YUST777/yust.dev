@@ -26,6 +26,8 @@ export default function ProfileHeader() {
 
         <div className="relative -ml-1 flex items-center mt-2">
           <svg
+            aria-hidden="true"
+            focusable="false"
             className="pointer-events-none size-8 shrink-0 rotate-[190deg] text-zinc-500 opacity-60"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 323.057 323.057"

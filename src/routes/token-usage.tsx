@@ -12,7 +12,7 @@ export const Route = createFileRoute("/token-usage")({
   loader: () => loadUsageData(),
   head: () =>
     buildRouteHead({
-      title: "Token Usage | yust.dev — Yousef Mohammed Salah",
+      title: "Token Usage · yust.dev",
       description: "Daily AI token usage breakdown.",
       path: "/token-usage",
       noindex: true,

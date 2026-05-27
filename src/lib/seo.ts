@@ -16,11 +16,11 @@ export const SITE_BRAND = "yust.dev";
 export const SITE_NAME = SITE_BRAND;
 
 export const SITE_TITLE_LONG =
-  "yust.dev — Yousef Mohammed Salah | Full-Stack Developer & Security Researcher";
+  "yust.dev — Yousef Mohammed Salah · Full-Stack & AI Security";
 export const SITE_DESCRIPTION =
-  "yust.dev is the official portfolio of Yousef Mohammed Salah (also known as Yust, businessduck, yust777). Level 2 AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech. Based in Damietta, Egypt.";
+  "yust.dev — Yousef Mohammed Salah. AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
 export const SITE_DESCRIPTION_SHORT =
-  "yust.dev — Yousef Mohammed Salah. Full-Stack Developer, AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
+  "yust.dev — Yousef Mohammed Salah. Full-Stack Dev, AI & Cybersecurity, Verdict.run founder, ICPC HUE Lead.";
 
 export const SOCIAL_IMAGE = `${SITE_URL}/static/images/metadata.jpg`;
 export const FAVICON = `${SITE_URL}/static/images/metadata.png`;

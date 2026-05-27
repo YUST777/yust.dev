@@ -6,9 +6,9 @@ import {
   projectsCollectionSchema,
 } from "@/lib/seo";
 
-const TITLE = "Projects | yust.dev — Yousef Mohammed Salah · Verdict.run, Sast.tech, ICPC HUE";
+const TITLE = "yust.dev — Projects · Verdict.run, Sast.tech, ICPC HUE";
 const DESCRIPTION =
-  "Technical project gallery on yust.dev by Yousef Mohammed Salah: Verdict.run (Codeforces mirror IDE), Sast.tech (autonomous AI security agent), ICPC HUE training platform, Gifts Charts, Zero Threat, Collectable Kit, and more.";
+  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run (Codeforces IDE), Sast.tech (AI security agent), ICPC HUE, Gifts Charts, Zero Threat.";
 
 const projectsSchema = projectsCollectionSchema([
   {
@@ -72,6 +72,13 @@ export const Route = createFileRoute("/_main/projects")({
 function ProjectsPage() {
   return (
     <div className="bg-transparent text-white pt-0 sm:pt-[45px]">
+      <header className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12">
+        <h1 className="text-4xl font-pixel text-white mb-4 uppercase">PROJECTS</h1>
+        <p className="text-zinc-500 font-mono text-[13px] sm:text-sm max-w-2xl">
+          Tools, platforms, and experiments by Yousef Mohammed Salah — from Verdict.run and
+          Sast.tech to ICPC HUE and Telegram mini-apps on TON.
+        </p>
+      </header>
       <Projects />
     </div>
   );
