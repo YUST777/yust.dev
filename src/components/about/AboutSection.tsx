@@ -1,5 +1,8 @@
+import { lazy, Suspense } from "react";
 import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
 import { RiTelegramFill, RiGithubFill, RiLinkedinBoxFill, RiMailFill } from "react-icons/ri";
+
+const Tooltip = lazy(() => import("react-tooltip").then((m) => ({ default: m.Tooltip })));
 
 const SOCIAL_LINKS = [
   { icon: <RiTelegramFill size={18} />, label: "Telegram", url: "https://t.me/yousefmsm1" },
@@ -11,6 +14,14 @@ const SOCIAL_LINKS = [
   },
   { icon: <RiMailFill size={18} />, label: "Email", url: "mailto:yousfmsm@hotmail.com" },
 ];
+
+const CORE_STACK = [
+  { Icon: SiReact, name: "React", hoverClass: "hover:text-[#61DAFB]" },
+  { Icon: SiNextdotjs, name: "Next.js", hoverClass: "hover:text-white" },
+  { Icon: SiSupabase, name: "Supabase", hoverClass: "hover:text-[#3ECF8E]" },
+  { Icon: SiTailwindcss, name: "Tailwind CSS", hoverClass: "hover:text-[#06B6D4]" },
+  { Icon: SiPython, name: "Python", hoverClass: "hover:text-[#3776AB]" },
+] as const;
 
 export default function AboutSection() {
   return (
@@ -38,14 +49,29 @@ export default function AboutSection() {
             CORE STACK :
           </span>
           <div className="flex flex-wrap items-center gap-6 text-zinc-400">
-            <SiReact className="w-5 h-5 transition-colors hover:text-[#61DAFB]" />
-            <SiNextdotjs className="w-5 h-5 transition-colors hover:text-white" />
-            <SiSupabase className="w-5 h-5 transition-colors hover:text-[#3ECF8E]" />
-            <SiTailwindcss className="w-5 h-5 transition-colors hover:text-[#06B6D4]" />
-            <SiPython className="w-5 h-5 transition-colors hover:text-[#3776AB]" />
+            {CORE_STACK.map(({ Icon, name, hoverClass }) => (
+              <span
+                key={name}
+                tabIndex={0}
+                aria-label={name}
+                data-tooltip-id="core-stack-tooltip"
+                data-tooltip-content={name}
+                className={`inline-flex cursor-default outline-none focus-visible:text-white ${hoverClass} transition-colors`}
+              >
+                <Icon className="w-5 h-5" />
+              </span>
+            ))}
           </div>
         </div>
       </div>
+
+      <Suspense fallback={null}>
+        <Tooltip
+          id="core-stack-tooltip"
+          place="top"
+          className="!bg-zinc-900 !border !border-white/10 !rounded-md !text-xs !font-mono"
+        />
+      </Suspense>
 
       <div className="mt-16">
         <p className="text-zinc-500 text-[13px] mb-6 font-mono uppercase tracking-widest">
