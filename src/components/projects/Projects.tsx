@@ -149,12 +149,22 @@ export default function Projects() {
       className="pt-10 pb-20 md:pt-12 md:pb-32 bg-dark px-4 md:px-6"
     >
       <div className="max-w-7xl mx-auto">
-        <div ref={headerRef} className="flex justify-end mb-8 md:mb-12 px-0 md:px-4">
+        <div
+          ref={headerRef}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-12 px-0 md:px-4"
+        >
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-pixel text-white mb-3 uppercase">PROJECTS</h1>
+            <p className="text-zinc-500 font-mono text-[13px] sm:text-sm">
+              Tools, platforms, and experiments by Yousef Mohammed Salah — from Verdict.run and
+              Sast.tech to ICPC HUE and Telegram mini-apps on TON.
+            </p>
+          </div>
           <a
             href="https://github.com/YUST777"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 border border-white/20 px-8 py-3 rounded-full text-sm tracking-widest uppercase hover:bg-white/10 transition-colors"
+            className="hidden md:flex shrink-0 items-center gap-2 border border-white/20 px-8 py-3 rounded-full text-sm tracking-widest uppercase hover:bg-white/10 transition-colors self-end"
           >
             <i className="fab fa-github text-lg"></i>
             View GitHub
