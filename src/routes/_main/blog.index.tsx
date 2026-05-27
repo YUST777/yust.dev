@@ -158,6 +158,52 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
       "/static/images/mems/mem_2/4.webp",
     ],
   },
+  {
+    id: "5",
+    title: "Winning 3rd Place at the Sustainable Innovation National Summit",
+    date: "Aug 28, 2025",
+    iso: "2025-08-28",
+    summary:
+      "From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.",
+    content: `🎉 From Level 1 to the Top 3! 🎉
+
+Proud to share that our project [Zero Threat](https://zerothreat.yousefdev.xyz/)—a cybersecurity website & AI-powered desktop app—won **3rd place** at the First **Sustainable Innovation National Summit** in **Tanta**, among 20 universities nationwide. 🚀
+
+What makes this win special? Our team are all **Level 1 students**… competing (and winning!) against Level 4 & Level 5 engineers. 💪 Passion and teamwork beat seniority every time.
+
+This was the project that started everything for me. Built end-to-end with my colleague [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/), [Zero Threat](https://zerothreat.yousefdev.xyz/) combines an AI-powered web platform, a browser extension for safe-download checks, and a Windows agent using the **YARA protocol** to deliver a 90% malware detection rate across our test suite—outperforming several traditional signature-based antivirus solutions.
+
+Standing on that stage, surrounded by senior engineers from 20+ universities, taught me the lesson that has guided every project since: **the bar isn't your year, it's the work.**`,
+    featured: [
+      {
+        label: "Horus University Official Post",
+        url: "https://www.facebook.com/hue.eg/posts/pfbid0y73xcQuLyVuA5DroyFuMLtT51GDCifxroNXo7JJkXPtrqhcGJ6szkB3ugaSqPqr6l",
+      },
+      {
+        label: "Tanta University Official Post",
+        url: "https://www.facebook.com/TantaUniversity.Official/posts/pfbid0RAC9wx52FyNeyUoS1maGC8PpuNxqhn5FaEwqJzcu7CB6onWBGcreFTrRX1wajZCsl",
+      },
+      {
+        label: "Tanta University Award Ceremony Reel",
+        url: "https://www.facebook.com/reel/710000655405770",
+      },
+      {
+        label: "Faculty of AI – Horus University Feature",
+        url: "https://www.facebook.com/share/p/1Cv4vQp4KZ/",
+      },
+    ],
+    images: [
+      "/static/images/mems/mem_5/1.jpeg",
+      "/static/images/mems/mem_5/2.jpeg",
+      "/static/images/mems/mem_5/3.jpeg",
+      "/static/images/mems/mem_5/4.jpeg",
+      "/static/images/mems/mem_5/5.jpeg",
+      "/static/images/mems/mem_5/6.jpeg",
+      "/static/images/mems/mem_5/7.jpeg",
+      "/static/images/mems/mem_5/8.jpeg",
+      "/static/images/mems/mem_5/9.jpeg",
+    ],
+  },
 ];
 
 function BlogPage() {
