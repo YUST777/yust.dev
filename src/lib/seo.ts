@@ -215,6 +215,18 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
+/**
+ * Convert a YYYY-MM-DD date to a full ISO 8601 datetime with timezone.
+ * Google's BlogPosting validator warns when datePublished/dateModified is just
+ * a calendar date with no timezone. We anchor to noon UTC so the calendar day
+ * stays correct in every timezone.
+ */
+function toIsoDateTime(date: string): string {
+  if (!date) return date;
+  if (date.includes("T")) return date;
+  return `${date}T12:00:00+00:00`;
+}
+
 export function blogPostingSchema(post: BlogPostMeta) {
   const url = `${SITE_URL}/blog/${post.id}`;
   const image = post.image
@@ -222,14 +234,15 @@ export function blogPostingSchema(post: BlogPostMeta) {
       ? post.image
       : `${SITE_URL}${post.image}`
     : SOCIAL_IMAGE;
+  const isoDateTime = toIsoDateTime(post.iso);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${url}#post`,
     headline: post.title,
     description: post.summary,
-    datePublished: post.iso,
-    dateModified: post.iso,
+    datePublished: isoDateTime,
+    dateModified: isoDateTime,
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     image: [image],

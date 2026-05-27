@@ -16,14 +16,15 @@ export const Route = createFileRoute("/_main/blog/$postId")({
     }
     const title = `${post.title} | yust.dev — Yousef Mohammed Salah`;
     const image = post.images?.[0];
+    const isoDateTime = `${post.iso}T12:00:00+00:00`;
     const base = buildRouteHead({
       title,
       description: post.summary,
       path: `/blog/${post.id}`,
       type: "article",
       image: image ? `${SITE_URL}${image}` : undefined,
-      publishedTime: post.iso,
-      modifiedTime: post.iso,
+      publishedTime: isoDateTime,
+      modifiedTime: isoDateTime,
     });
     return {
       ...base,
