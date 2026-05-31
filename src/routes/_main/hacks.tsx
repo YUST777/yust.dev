@@ -157,7 +157,9 @@ function HacksPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div>
-        <h1 className="text-4xl font-pixel text-white mb-4 uppercase">HACKATHONS</h1>
+        <h1 className="text-4xl font-pixel text-white mb-4 uppercase">
+          HACKATHONS WON ( {hacks.length} )
+        </h1>
         <p className="text-zinc-500 font-mono text-[13px] sm:text-sm">
           Competitions, bounties, and builds under pressure.
         </p>
