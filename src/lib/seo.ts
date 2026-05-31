@@ -18,7 +18,7 @@ export const SITE_NAME = SITE_BRAND;
 export const SITE_TITLE_LONG =
   "yust.dev — Yousef Mohammed Salah · Full-Stack & AI Security";
 export const SITE_DESCRIPTION =
-  "yust.dev — Yousef Mohammed Salah. AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 3x national hackathon winner.";
+  "yust.dev — Yousef Mohammed Salah. AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 4x hackathon winner.";
 export const SITE_DESCRIPTION_SHORT =
   "yust.dev — Yousef Mohammed Salah. Full-Stack Dev, AI & Cybersecurity, Verdict.run founder, ICPC HUE Lead.";
 

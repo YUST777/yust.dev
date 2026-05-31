@@ -19,6 +19,7 @@ const CAMEL_CASE_REGEX = /([A-Z])/g;
 // Lazy load drawers for better performance and code splitting
 const Drawers = {
   VerdictDrawer: lazy(() => import("./drawers/VerdictDrawer")),
+  Runner10kDrawer: lazy(() => import("./drawers/Runner10kDrawer")),
   SastDrawer: lazy(() => import("./drawers/SastDrawer")),
   IcpchueDrawer: lazy(() => import("./drawers/IcpchueDrawer")),
   CollectableKitDrawer: lazy(() => import("./drawers/CollectableKitDrawer")),
@@ -38,6 +39,7 @@ const DRAWER_TITLES: Record<string, string> = {
   panoblue: "PanoBlue - Panorama Viewer",
   fazzah: "Fazzah - Web Application",
   verdict: "Verdict – Competitive Programming Platform",
+  runner10k: "10K Runner – Infinite Runner Web3 Game",
   sast: "Sast – Autonomous AI Security Agent",
   collectablekit: "Collectable Kit – Management Platform",
   RetroOS: "RetroOS – Interactive Web Simulation",
@@ -45,6 +47,7 @@ const DRAWER_TITLES: Record<string, string> = {
 
 const DRAWER_COMPONENTS: Record<string, React.LazyExoticComponent<any>> = {
   verdict: Drawers.VerdictDrawer,
+  runner10k: Drawers.Runner10kDrawer,
   sast: Drawers.SastDrawer,
   ICPCHUE: Drawers.IcpchueDrawer,
   collectablekit: Drawers.CollectableKitDrawer,

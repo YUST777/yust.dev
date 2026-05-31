@@ -6,9 +6,9 @@ import {
   projectsCollectionSchema,
 } from "@/lib/seo";
 
-const TITLE = "yust.dev — Projects · Verdict.run, Sast.tech, ICPC HUE";
+const TITLE = "yust.dev — Projects · Verdict.run, 10K Runner, Sast.tech, ICPC HUE";
 const DESCRIPTION =
-  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run (Codeforces IDE), Sast.tech (AI security agent), ICPC HUE, Gifts Charts, Zero Threat.";
+  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run, 10K Runner (3D game), Sast.tech (AI agent), ICPC HUE, Gifts Charts, Zero Threat.";
 
 const projectsSchema = projectsCollectionSchema([
   {
@@ -16,6 +16,12 @@ const projectsSchema = projectsCollectionSchema([
     url: "https://verdict.run",
     description:
       "Codeforces mirror with built-in IDE, whiteboard, and submission pipeline. 120k+ LinkedIn impressions.",
+  },
+  {
+    name: "10K Runner",
+    url: "https://10krunner.fun",
+    description:
+      "infinite runner game that makes you EARN & fun. Developed in 3 days, won 3rd place at the 10k Squad international contest.",
   },
   {
     name: "Sast.tech",

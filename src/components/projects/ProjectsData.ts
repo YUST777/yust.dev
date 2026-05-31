@@ -30,6 +30,33 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: 13,
+    title: "10K Runner",
+    description: "Infinite runner game that makes you EARN & fun.",
+    fullDescription:
+      "A fast-paced 3D infinite runner game built in 3 days for the 10k Squad international contest. Play, collect coins, and earn rewards while running through procedurally generated Web3 worlds.",
+    tag: "Web3 Game",
+    icon: "fa-gamepad",
+    span: "md:col-span-3 md:row-span-1", // Full width headliner, same as Verdict
+    delay: "delay-150",
+    video: "/videos/10krunner.webm",
+    siteLink: "https://10krunner.fun",
+    technologies: ["React", "Three.js", "React Three Fiber", "Web3", "Tailwind CSS"],
+    drawerId: "runner10k",
+    features: [
+      {
+        category: "Core Features",
+        svgIcon: "bolt",
+        items: ["Infinite Running", "3D Browser Environment", "Coin Collection"],
+      },
+      {
+        category: "Contest Metrics",
+        svgIcon: "trophy",
+        items: ["3rd Place Winner", "Built in 3 Days", "International Stage"],
+      },
+    ],
+  },
+  {
     id: 8,
     title: "Sast",
     description: "Autonomous AI Security Agent.",

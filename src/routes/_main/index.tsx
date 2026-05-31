@@ -12,7 +12,7 @@ import {
 
 const TITLE = "yust.dev — Yousef Mohammed Salah · About";
 const DESCRIPTION =
-  "Portfolio of Yousef Mohammed Salah (yust.dev). AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, 3x hackathon winner.";
+  "Portfolio of Yousef Mohammed Salah (yust.dev). AI & Cybersecurity student, founder of Verdict.run, ICPC HUE Lead, 4x hackathon winner.";
 
 const aboutPageSchema = webPageSchema({
   url: SITE_URL,
