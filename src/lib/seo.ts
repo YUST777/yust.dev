@@ -18,9 +18,9 @@ export const SITE_NAME = SITE_BRAND;
 export const SITE_TITLE_LONG =
   "yust.dev — Yousef Mohammed Salah · Full-Stack & AI Security";
 export const SITE_DESCRIPTION =
-  "yust.dev — Yousef Mohammed Salah. AI & Cybersecurity student at Horus University, founder of Verdict.run, ICPC HUE Lead, and 4x hackathon winner.";
+  "yust.dev — Yousef Mohammed Salah. L3 AI & Cybersecurity student at Horus University, developer of Verdict.run, Sast.tech, SWRMZ, and Lead Dev of ICPC HUE.";
 export const SITE_DESCRIPTION_SHORT =
-  "yust.dev — Yousef Mohammed Salah. Full-Stack Dev, AI & Cybersecurity, Verdict.run founder, ICPC HUE Lead.";
+  "yust.dev — Yousef Mohammed Salah. Full-Stack Dev, AI & Cybersecurity, developer of Verdict.run, Sast.tech, SWRMZ, and ICPC HUE.";
 
 export const SOCIAL_IMAGE = `${SITE_URL}/static/images/metadata.jpg`;
 export const FAVICON = `${SITE_URL}/static/images/metadata.png`;
@@ -57,6 +57,10 @@ export const KEYWORDS = [
   "ICPC HUE",
   "icpchue",
   "Sast.tech",
+  "SWRMZ",
+  "swrmz.tech",
+  "Band.ai",
+  "AI Agents",
   "Gifts Charts",
   "Zero Threat",
   "AI security",
@@ -105,7 +109,7 @@ export function personSchema() {
     image: FAVICON,
     jobTitle: "Software Engineer",
     description:
-      "Yousef Mohammed Salah (yust.dev) — AI & Cybersecurity student and Full-Stack Product Engineer. Founder of Verdict.run, ICPC HUE Lead, and creator of Sast.tech.",
+      "Yousef Mohammed Salah (yust.dev) — L3 AI & Cybersecurity student and Full-Stack Developer. Creator of Verdict.run, Sast.tech, SWRMZ, and Lead Dev of ICPC HUE.",
     knowsAbout: [
       "Software Engineering",
       "Full-Stack Development",

@@ -29,6 +29,7 @@ const Drawers = {
   YousefDevDrawer: lazy(() => import("./drawers/YousefDevDrawer")),
   PanoBlueDrawer: lazy(() => import("./drawers/PanoBlueDrawer")),
   RetroOSDrawer: lazy(() => import("./drawers/RetroOSDrawer")),
+  SwrmzDrawer: lazy(() => import("./drawers/SwrmzDrawer")),
 };
 
 const DRAWER_TITLES: Record<string, string> = {
@@ -43,6 +44,7 @@ const DRAWER_TITLES: Record<string, string> = {
   sast: "Sast – Autonomous AI Security Agent",
   collectablekit: "Collectable Kit – Management Platform",
   RetroOS: "RetroOS – Interactive Web Simulation",
+  swrmz: "SWRMZ – Swarm AI Security",
 };
 
 const DRAWER_COMPONENTS: Record<string, React.LazyExoticComponent<any>> = {
@@ -57,6 +59,7 @@ const DRAWER_COMPONENTS: Record<string, React.LazyExoticComponent<any>> = {
   yousefdev: Drawers.YousefDevDrawer,
   panoblue: Drawers.PanoBlueDrawer,
   RetroOS: Drawers.RetroOSDrawer,
+  swrmz: Drawers.SwrmzDrawer,
 };
 
 const MAIN_PROJECTS = projectsData.filter((p) => !p.isLarge);

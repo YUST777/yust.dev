@@ -58,34 +58,35 @@
 }
 
 @layer base {
-  /* Global Scrollbar Opt-in */
-  .custom-scrollbar::-webkit-scrollbar,
-  body::-webkit-scrollbar {
+  /* Global Custom Scrollbar (Standard Firefox fallback) */
+  html,
+  body,
+  .custom-scrollbar {
+    --scrollbar-thumb: #27272a;
+    --scrollbar-track: #0c0c0c;
+    --scrollbar-thumb-hover: #f97316;
+
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  /* Custom Scrollbar for WebKit/Blink (Brave, Chrome, Edge, Safari) */
+  ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-track,
-  body::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: #0c0c0c;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb,
-  body::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: #27272a;
-    border-radius: 10px;
+    border-radius: 9999px;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover,
-  body::-webkit-scrollbar-thumb:hover {
-    background: #3f3f46;
-  }
-
-  /* Firefox */
-  .custom-scrollbar,
-  body {
-    scrollbar-width: thin;
-    scrollbar-color: #27272a #0c0c0c;
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f97316;
   }
 }
 

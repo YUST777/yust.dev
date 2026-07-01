@@ -1,9 +1,7 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
-
-const GitHubCalendar = lazy(() =>
-  import("react-github-calendar").then((module) => ({ default: module.GitHubCalendar })),
-);
-const Tooltip = lazy(() => import("react-tooltip").then((module) => ({ default: module.Tooltip })));
+import React, { useState, useEffect } from "react";
+import { GitHubCalendar } from "react-github-calendar";
+import { Tooltip } from "react-tooltip";
+import { useIsHydrated } from "@/lib/hooks/use-is-hydrated";
 import "react-tooltip/dist/react-tooltip.css";
 
 const GITHUB_THEME = {
@@ -12,6 +10,7 @@ const GITHUB_THEME = {
 
 export default function GithubContributions() {
   const [stars, setStars] = useState<number | null>(null);
+  const isHydrated = useIsHydrated();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -43,11 +42,7 @@ export default function GithubContributions() {
       </div>
       <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
         <div className="min-w-[800px] lg:min-w-0 overflow-hidden min-h-[150px] flex items-center justify-center">
-          <Suspense
-            fallback={
-              <div className="text-zinc-500 text-xs animate-pulse">Loading GitHub Activity...</div>
-            }
-          >
+          {isHydrated ? (
             <GitHubCalendar
               username="YUST777"
               colorScheme="dark"
@@ -73,15 +68,17 @@ export default function GithubContributions() {
                 )
               }
             />
-          </Suspense>
+          ) : (
+            <div className="text-zinc-500 text-xs animate-pulse">Loading GitHub Activity...</div>
+          )}
         </div>
       </div>
-      <Suspense fallback={null}>
+      {isHydrated && (
         <Tooltip
           id="github-tooltip"
           className="!bg-zinc-900 !border !border-white/10 !rounded-md"
         />
-      </Suspense>
+      )}
     </section>
   );
 }

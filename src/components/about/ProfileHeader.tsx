@@ -11,7 +11,7 @@ export default function ProfileHeader() {
         </span>
       </h1>
       <p className="text-sm md:text-base text-zinc-400 max-w-2xl uppercase tracking-wider font-mono">
-        L2 AI &amp; Cybersecurity Student / Full-Stack Product Engineer
+        L3 AI &amp; Cybersecurity Student / Full-Stack Dev
       </p>
 
       <div className="flex items-center gap-3 mt-8">

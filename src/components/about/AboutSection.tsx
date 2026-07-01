@@ -29,19 +29,15 @@ export default function AboutSection() {
       <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I’m known online as <strong className="text-zinc-200">yust.dev</strong> — my real name is{" "}
-          <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp; Cybersecurity
+          I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp; Cybersecurity
           student at <strong className="text-zinc-200">Horus University in Egypt</strong> and a
-          Full-Stack Product Engineer who builds tools that stay in people&apos;s bookmarks. I
-          specialize in bridging the gap between complex technical infrastructure and
-          high-quality user experiences.
+          Full-Stack dev who builds tools that stay in people&apos;s bookmarks.
         </p>
         <p>
-          Most recently, I engineered <strong>Verdict.run</strong>, a viral competitive programming
-          platform that garnered 120k+ impressions and transformed the workflow for hundreds of
-          developers. My work spans from autonomous AI security agents (<strong>Sast.tech</strong>)
-          to architecting unified training ecosystems as the Lead Developer for{" "}
-          <strong>ICPC HUE</strong>.
+          Most recently, I made <strong className="text-zinc-200">Verdict.run</strong>, a viral competitive programming
+          platform that garnered <strong className="text-zinc-200">120k+ impressions</strong>. Alongside building these, I have won{" "}
+          <strong className="text-zinc-200">4 national hackathons</strong> so far, developing everything from autonomous pentesting
+          agents (<strong className="text-zinc-200">Sast.tech</strong>).
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5 opacity-80">

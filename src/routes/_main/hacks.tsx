@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Hackathons · 4x Hackathon Winner";
+const TITLE = "yust.dev — Hackathons · Achievements & Attempts";
 const DESCRIPTION =
-  "Hackathon wins by Yousef Mohammed Salah: 3rd at 10k Squad (10K Runner), 3rd at LuxsAI, 2nd at GDG Delta (Sast.tech), 3rd at Tanta National (Zero Threat).";
+  "Hackathon wins and project submissions by Yousef Mohammed Salah: 10K Runner, Sast.tech, Zero Threat, and SWRMZ (Lablab.ai x Band.ai).";
 
 const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,
@@ -153,7 +154,32 @@ const hacks = [
   },
 ];
 
+const failedHacks = [
+  {
+    status: "MISSED SUBMISSION BY 2 MINUTES",
+    color: "text-zinc-600 hover:text-amber-500/80 transition-colors duration-300",
+    event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
+    title: "SWRMZ (swrmz.tech)",
+    desc: (
+      <>
+        SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across your stack, remediate them automatically, generate audit-ready reports, and stand guard over your logs around the clock. Missed the submission window by exactly 2 minutes. The code was beautiful, but the clock won.
+      </>
+    ),
+    tech: "Band.ai • AI Agents • Cybersecurity • Next.js",
+    linkText: "Visit Project: swrmz.tech",
+    linkUrl: "https://swrmz.tech",
+    proofs: [
+      {
+        label: "Lablab.ai Hackathon Page",
+        url: "https://lablab.ai/ai-hackathons/band-of-agents-hackathon",
+      }
+    ],
+  }
+];
+
 function HacksPage() {
+  const [showFailed, setShowFailed] = useState(false);
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div>
@@ -228,6 +254,81 @@ function HacksPage() {
           </div>
         ))}
       </div>
+
+      <div className="pt-4">
+        <p
+          onClick={() => setShowFailed(!showFailed)}
+          className="text-zinc-500 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block"
+        >
+          [ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]
+        </p>
+      </div>
+
+      {showFailed && (
+        <div className="space-y-16 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {failedHacks.map((hack, i) => (
+            <div key={i} className="flex flex-col gap-3">
+              <h2 className={`text-2xl sm:text-3xl font-pixel ${hack.color}`}>{hack.status}</h2>
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-500 uppercase tracking-widest mt-1">
+                {hack.event}
+              </div>
+              <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
+                {hack.title}
+              </h3>
+              <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+                {hack.desc}
+              </div>
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
+                {hack.tech}
+              </div>
+
+              <div className="flex flex-col gap-2 mt-1">
+                {hack.linkText && (
+                  <a
+                    href={hack.linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
+                  >
+                    {hack.linkText}
+                  </a>
+                )}
+                {hack.proofs && hack.proofs.length > 0 && (
+                  <div className="flex flex-wrap gap-4 mt-1">
+                    {hack.proofs.map((proof, idx) => (
+                      <a
+                        key={idx}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={proof.url}
+                        className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group"
+                      >
+                        <svg
+                          className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                        <span className="underline decoration-zinc-800 underline-offset-4">
+                          {proof.label}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

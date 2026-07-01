@@ -6,9 +6,9 @@ import {
   projectsCollectionSchema,
 } from "@/lib/seo";
 
-const TITLE = "yust.dev — Projects · Verdict.run, 10K Runner, Sast.tech, ICPC HUE";
+const TITLE = "yust.dev — Projects · Verdict.run, Sast.tech, SWRMZ, ICPC HUE";
 const DESCRIPTION =
-  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run, 10K Runner (3D game), Sast.tech (AI agent), ICPC HUE, Gifts Charts, Zero Threat.";
+  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run, Sast.tech, SWRMZ, 10K Runner, ICPC HUE, Zero Threat, Gifts Charts.";
 
 const projectsSchema = projectsCollectionSchema([
   {
@@ -28,6 +28,12 @@ const projectsSchema = projectsCollectionSchema([
     url: "https://sast.tech",
     description:
       "Autonomous AI security agent that fetches, scans, patches, and verifies vulnerabilities. 2x hackathon winner.",
+  },
+  {
+    name: "SWRMZ",
+    url: "https://swrmz.tech",
+    description:
+      "A swarm of cooperative AI security agents built on Band.ai for the Lablab.ai hackathon, automating security patching and log guarding.",
   },
   {
     name: "ICPC HUE",
