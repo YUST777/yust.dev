@@ -54,6 +54,12 @@ const projectsSchema = projectsCollectionSchema([
       "AI-powered cybersecurity suite with web platform, browser extension, and Windows agent. 3rd Place at Tanta National Summit.",
   },
   {
+    name: "Sketchz",
+    url: "https://sketchz.yousefdev.xyz/",
+    description:
+      "A 3D game on Ethereum where players walk into a museum, mint blank canvases, paint on them in real-time, and sell them directly off the gallery walls.",
+  },
+  {
     name: "Collectable Kit",
     url: "https://t.me/CollectibleKITbot",
     description:
