@@ -221,11 +221,11 @@ function BlogPage() {
               params={{ postId: post.id }}
               className="flex flex-col py-8 group cursor-pointer"
             >
-              <div className="flex items-baseline justify-between mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-2">
                 <span className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
                   {post.title}
                 </span>
-                <span className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 ml-4 uppercase tracking-widest">
+                <span className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest">
                   {post.date}
                 </span>
               </div>
