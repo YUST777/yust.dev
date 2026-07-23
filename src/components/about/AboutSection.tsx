@@ -30,7 +30,7 @@ export default function AboutSection() {
       <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I’m <strong className="text-zinc-200">Yousef</strong>, an AI &amp; Cybersecurity student and a
+          I’m <strong className="text-zinc-200">Yousef Mohammed Salah</strong>, an AI &amp; Cybersecurity student and a
           Full-Stack Product Engineer who builds tools that stay in people&apos;s bookmarks. I
           specialize in bridging the gap between complex technical infrastructure and high-quality user
           experiences.
