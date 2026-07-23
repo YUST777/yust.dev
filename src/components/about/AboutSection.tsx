@@ -32,18 +32,46 @@ export default function AboutSection() {
         <p>
           I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp;
           Cybersecurity student at{" "}
-          <strong className="text-zinc-200">Horus University in Egypt</strong> and a Full-Stack dev
-          who builds tools that stay in people&apos;s bookmarks.
+          <a
+            href="https://horus.edu.eg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            Horus University in Egypt
+          </a>{" "}
+          and a Full-Stack dev who builds tools that stay in people&apos;s bookmarks.
         </p>
         <p>
-          Most recently, I engineered <strong className="text-zinc-200">Verdict.run</strong>, a viral
-          competitive programming platform that garnered{" "}
-          <strong className="text-zinc-200">120k+ impressions</strong> and transformed the workflow for
-          hundreds of developers.
+          Most recently, I engineered{" "}
+          <a
+            href="https://verdict.run"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            Verdict.run
+          </a>
+          , a viral competitive programming platform that garnered{" "}
+          <a
+            href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-ugcPost-7418661841783943168-kJiu/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF4UUF8BkaOftBX4nvK7AWZaXUY_x4FtmsU"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            120k+ impressions
+          </a>{" "}
+          and transformed the workflow for hundreds of developers.
         </p>
         <p>
           Alongside building these, I have won{" "}
-          <strong className="text-zinc-200">4 national hackathons in Egypt</strong> so far.
+          <Link
+            to="/hacks"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            4 national hackathons in Egypt
+          </Link>{" "}
+          so far.
         </p>
 
         <div className="sr-only">

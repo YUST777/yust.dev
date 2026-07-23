@@ -175,6 +175,7 @@ export default function Projects() {
                 <div className="w-full h-full bg-[#0c0c0c] border border-white/10 rounded-2xl overflow-hidden relative">
                   <VideoPlayer
                     video={project.video || ""}
+                    poster={project.poster}
                     title={project.title}
                     shouldAutoPlay={true}
                     isHovered={hoveredVideoId === project.id}

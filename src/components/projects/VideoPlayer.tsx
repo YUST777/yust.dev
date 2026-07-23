@@ -1,14 +1,17 @@
-import { memo, useRef, useEffect } from "react";
+import { memo, useRef, useEffect, useState, useCallback } from "react";
 import { useInView } from "framer-motion";
 
 export const VideoPlayer = memo(
   ({
     video,
+    poster,
     title,
     shouldAutoPlay = false,
     isHovered = false,
+    isPriority = false,
   }: {
     video: string;
+    poster?: string;
     title?: string;
     shouldAutoPlay?: boolean;
     isHovered?: boolean;
@@ -16,13 +19,32 @@ export const VideoPlayer = memo(
   }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+    const [shouldLoadVideo, setShouldLoadVideo] = useState(shouldAutoPlay);
+
+    // Detect when container is near the viewport
     const isInView = useInView(containerRef, {
       once: true,
-      margin: "300px",
+      margin: isPriority ? "500px" : "100px",
     });
 
+    // Only load the actual video src when the user hovers or it's autoplay
     useEffect(() => {
-      if (!videoRef.current || !isInView) return;
+      if (shouldAutoPlay && isInView) {
+        setShouldLoadVideo(true);
+      }
+    }, [shouldAutoPlay, isInView]);
+
+    // On hover, trigger video load if not already loaded
+    useEffect(() => {
+      if (isHovered && isInView) {
+        setShouldLoadVideo(true);
+      }
+    }, [isHovered, isInView]);
+
+    // Play/pause logic
+    useEffect(() => {
+      if (!videoRef.current || !shouldLoadVideo || !videoLoaded) return;
 
       if (shouldAutoPlay) {
         videoRef.current.play().catch(() => {});
@@ -30,39 +52,54 @@ export const VideoPlayer = memo(
       }
 
       if (isHovered) {
-        // Fast playback start from cached metadata
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {});
-        }
+        videoRef.current.play().catch(() => {});
       } else {
         videoRef.current.pause();
       }
-    }, [isHovered, shouldAutoPlay, isInView]);
+    }, [isHovered, shouldAutoPlay, shouldLoadVideo, videoLoaded]);
 
-    const handleLoadedData = () => {
+    const handleCanPlay = useCallback(() => {
+      setVideoLoaded(true);
       if (videoRef.current && !shouldAutoPlay && videoRef.current.currentTime === 0) {
         videoRef.current.currentTime = 0.001;
       }
-    };
+    }, [shouldAutoPlay]);
 
     return (
       <div
         ref={containerRef}
         className="absolute inset-0 w-full h-full bg-[#0c0c0c] group-hover:scale-105 transition-transform duration-700 ease-out"
       >
-        <video
-          ref={videoRef}
-          src={isInView ? (shouldAutoPlay ? video : `${video}#t=0.001`) : undefined}
-          preload={isInView ? "metadata" : "none"}
-          autoPlay={shouldAutoPlay}
-          loop
-          muted
-          playsInline
-          onLoadedData={handleLoadedData}
-          className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-500 will-change-opacity ${isInView ? "opacity-100" : "opacity-0"}`}
-          title={title}
-        />
+        {/* Static poster image — instant paint, no video download needed */}
+        {poster && (
+          <img
+            src={poster}
+            alt={title || "Project preview"}
+            loading={isPriority ? "eager" : "lazy"}
+            decoding="async"
+            className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-300 ${
+              videoLoaded ? "opacity-0" : "opacity-100"
+            }`}
+          />
+        )}
+
+        {/* Actual video element — only loads src when needed */}
+        {shouldLoadVideo && (
+          <video
+            ref={videoRef}
+            src={video}
+            preload="auto"
+            autoPlay={shouldAutoPlay}
+            loop
+            muted
+            playsInline
+            onCanPlay={handleCanPlay}
+            className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-500 will-change-opacity ${
+              videoLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            title={title}
+          />
+        )}
       </div>
     );
   },

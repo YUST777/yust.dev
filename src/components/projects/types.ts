@@ -17,6 +17,7 @@ export type Project = {
   span?: string;
   delay?: string;
   video?: string;
+  poster?: string;
   technologies?: string[];
   features?: ProjectFeature[];
   screenshots?: string[];

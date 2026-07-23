@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
@@ -47,12 +49,50 @@ export interface BlogPost {
   modifiedIso?: string;
   modifiedDate?: string;
   summary: string;
+  category: string;
   content: string;
   featured?: { label: string; url: string }[];
   images?: string[];
+  imagePosition?: string;
 }
 
 export const posts: BlogPost[] = [
+  {
+    id: "6",
+    slug: "winning-3-hackathons-first-two-years",
+    title: "How I Won 3 Hackathons in My First Two Years of College",
+    seoTitle: "How I Won 3 Hackathons in Two Years | yust.dev",
+    date: "Jul 23, 2026",
+    iso: "2026-07-23",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
+    category: "Hackathons",
+    imagePosition: "object-top",
+    summary:
+      "Lessons, late nights, and project building: how we won 3 national hackathons in our first two years of university.",
+    content: `How did I win 3 national hackathons in my first two years of college?
+
+First, blessings and grace. Second: locking yourself in a cave for 3 months to build non-stop.
+
+In reality, it's the result of compounding knowledge built project after project. For example, when building [Verdict.run](https://verdict.run), I was literally just learning how to handle authentication cookies. Competitive problem solving with the [ICPC HUE Community](https://icpchue.xyz) was another major foundation.
+
+The journey started when my teammate [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and I competed in the summer of our freshman year, securing 3rd place nationwide at the Sustainable Innovation National Summit in Tanta.
+
+We kept pushing and won 2 more national hackathons in our sophomore year:
+- **2nd Place** at the Google Developers Group (GDG Delta) Hackathon (February 18, 2026).
+- **3rd Place** at the LUXSAI AI Hackathon (March 29, 2026).`,
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D8%A5%D8%B2%D8%A7%D9%8A-%D9%83%D8%B3%D8%A8%D8%AA-3-%D9%87%D8%A7%D9%83%D8%A7%D8%AB%D9%88%D9%86-%D9%81%D9%8A-%D8%A3%D9%88%D9%84-%D8%B3%D9%86%D8%AA%D9%8A%D9%86-%D9%84%D9%8A%D8%A7-%D9%81%D9%8A-%D8%A7%D9%84%D9%83%D9%84%D9%8A%D8%A9-ugcPost-7480286652070932481-C5X2/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF4UUF8BkaOftBX4nvK7AWZaXUY_x4FtmsU",
+      },
+    ],
+    images: [
+      "/static/images/mems/mem_6/1.webp",
+      "/static/images/mems/mem_6/2.webp",
+      "/static/images/mems/mem_6/3.webp",
+    ],
+  },
   {
     id: "1",
     slug: "horus-technology-forum-sast-tech",
@@ -62,6 +102,7 @@ export const posts: BlogPost[] = [
     iso: "2026-04-23",
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
+    category: "AI & Security",
     summary:
       "How I returned to the Horus Technology Forum to demonstrate Sast.tech, an AI security agent that tests and patches web vulnerabilities.",
     content: `Today I was at the Technology Forum event at [Horus University](https://horus.edu.eg). This forum holds a very special place in my heart because it reminds me of my beginnings—it was the first place I ever showcased a project during my first semester.
@@ -86,9 +127,9 @@ It doesn't just hand you a report; it uses AI to automatically patch the vulnera
       },
     ],
     images: [
+      "/static/images/mems/mem_1/3.webp",
       "/static/images/mems/mem_1/1.webp",
       "/static/images/mems/mem_1/2.webp",
-      "/static/images/mems/mem_1/3.webp",
     ],
   },
   {
@@ -100,6 +141,7 @@ It doesn't just hand you a report; it uses AI to automatically patch the vulnera
     iso: "2026-04-20",
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
+    category: "SaaS & Marketing",
     summary:
       "Practical SaaS marketing lessons from AZ Tech Solutions on awareness, trust, audience filtering, and converting interest into a win-win offer.",
     content: `Today I was at **AZ Tech Solutions** in Mansoura with my colleagues [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/). We were there for marketing training—learning how to sell your SaaS and generate profit—as a result of our 2nd place win at the **GDG Delta** hackathon.
@@ -121,6 +163,7 @@ Special thanks to [Eng. Akram Zeyada](https://www.linkedin.com/in/akram-zeyada-2
     iso: "2026-03-29",
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
+    category: "Hackathons",
     summary:
       "The 850 km journey from Damietta to Luxor, how Sast.tech evolved into a desktop security IDE, and what earned third place at LuxsAI.",
     content: `I traveled 17 hours from Damietta to Luxor and came back with 3rd place :).
@@ -157,6 +200,8 @@ Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` 
     iso: "2026-02-18",
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
+    category: "Hackathons",
+    imagePosition: "object-contain p-2 bg-[#0c0c0c]",
     summary:
       "Inside the 49-hour build that took Sast.tech to second place at the GDG Delta hackathon, from the security problem to the final demo.",
     content: `Don't sleep until you hold the win in your hand. This was me at 1 AM, after staying awake for 49 hours straight in the service area 😂.
@@ -177,8 +222,8 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
       },
     ],
     images: [
-      "/static/images/mems/mem_2/1.webp",
       "/static/images/mems/mem_2/2.webp",
+      "/static/images/mems/mem_2/1.webp",
       "/static/images/mems/mem_2/3.webp",
       "/static/images/mems/mem_2/4.webp",
     ],
@@ -192,6 +237,7 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
     iso: "2025-08-28",
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
+    category: "Hackathons",
     summary:
       "From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.",
     content: `🎉 From Level 1 to the Top 3! 🎉
@@ -222,8 +268,8 @@ Standing on that stage, surrounded by senior engineers from 20+ universities, ta
       },
     ],
     images: [
-      "/static/images/mems/mem_5/1.jpeg",
       "/static/images/mems/mem_5/2.jpeg",
+      "/static/images/mems/mem_5/1.jpeg",
       "/static/images/mems/mem_5/3.jpeg",
       "/static/images/mems/mem_5/4.jpeg",
       "/static/images/mems/mem_5/5.jpeg",
@@ -235,7 +281,26 @@ Standing on that stage, surrounded by senior engineers from 20+ universities, ta
   },
 ];
 
+const CATEGORIES = ["All", "Hackathons", "AI & Security", "SaaS & Marketing"];
+
 function BlogPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [hoveredPost, setHoveredPost] = useState<BlogPost | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const filteredPosts =
+    selectedCategory === "All"
+      ? posts
+      : posts.filter((post) => post.category === selectedCategory);
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <Breadcrumbs
@@ -244,36 +309,116 @@ function BlogPage() {
           { name: "Blog", url: `${SITE_URL}/blog` },
         ]}
       />
-      <div>
-        <h1 className="text-4xl font-pixel text-white mb-4 uppercase">blog</h1>
+      
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+        <div>
+          <h1 className="text-4xl font-pixel text-white mb-2 uppercase">blog</h1>
+          <p className="text-sm font-mono text-zinc-400">
+            Stories, engineering retrospectives, and hackathon wins.
+          </p>
+        </div>
+
+        {/* Category Filters */}
+        <div className="flex flex-wrap items-center gap-2">
+          {CATEGORIES.map((category) => {
+            const isActive = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`relative px-4 py-2 text-xs font-mono rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "bg-white text-black font-semibold shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                    : "border border-white/10 text-zinc-400 hover:text-white hover:border-white/25 bg-white/[0.02]"
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      <div className="space-y-0 border-t border-white/5">
-        {posts.map((post) => (
-          <article key={post.id} className="border-b border-white/5">
-            <Link
-              to="/blog/$postId"
-              params={{ postId: post.slug }}
-              className="flex flex-col py-8 group cursor-pointer"
+      {/* Blog List with Spring Layout Transitions */}
+      <motion.div layout className="space-y-0 border-t border-white/10">
+        <AnimatePresence mode="popLayout">
+          {filteredPosts.map((post) => (
+            <motion.article
+              key={post.id}
+              layout
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="border-b border-white/10 group"
+              onMouseEnter={() => setHoveredPost(post)}
+              onMouseLeave={() => setHoveredPost(null)}
             >
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-2">
-                <h2 className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
-                  {post.title}
-                </h2>
-                <time
-                  dateTime={post.iso}
-                  className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest"
-                >
-                  {post.date}
-                </time>
+              <Link
+                to="/blog/$postId"
+                params={{ postId: post.slug }}
+                className="flex flex-col py-8 group cursor-pointer relative z-10"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 mb-2">
+                  <h2 className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
+                    {post.title}
+                  </h2>
+                  <time
+                    dateTime={post.iso}
+                    className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest"
+                  >
+                    {post.date}
+                  </time>
+                </div>
+                <p className="text-zinc-500 font-sans text-sm md:text-base line-clamp-2 max-w-3xl mt-1">
+                  {post.summary}
+                </p>
+              </Link>
+            </motion.article>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* Sleek Floating Hover Image Popup Preview */}
+      <AnimatePresence>
+        {hoveredPost && hoveredPost.images && hoveredPost.images.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.75, rotate: -4 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              rotate: 0,
+              x: mousePos.x + 24,
+              y: mousePos.y - 120,
+            }}
+            exit={{ opacity: 0, scale: 0.75, rotate: 4 }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 30,
+              mass: 0.8,
+            }}
+            className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+          >
+            <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
+              <img
+                src={hoveredPost.images[0]}
+                alt={hoveredPost.title}
+                className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
+                  {hoveredPost.category}
+                </span>
+                <p className="text-xs font-sans font-bold text-white truncate">
+                  {hoveredPost.title}
+                </p>
               </div>
-              <p className="text-zinc-500 font-sans text-sm md:text-base line-clamp-2 max-w-3xl">
-                {post.summary}
-              </p>
-            </Link>
-          </article>
-        ))}
-      </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="pt-4">
         <p className="text-zinc-500 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">

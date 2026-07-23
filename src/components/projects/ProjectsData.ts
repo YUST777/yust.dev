@@ -14,6 +14,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-3 md:row-span-1", // Full width headliner
     delay: "delay-100",
     video: "/videos/verdict.webm",
+    poster: "/static/images/posters/verdict.webp",
     repoLink: "https://github.com/YUST777/verdict-community",
     siteLink: "https://verdict.run",
     technologies: ["Next.js 15", "TypeScript", "Puppeteer", "Monaco Editor", "Excalidraw"],
@@ -44,6 +45,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-3 md:row-span-1",
     delay: "delay-150",
     video: "/videos/sast.webm",
+    poster: "/static/images/posters/sast.webp",
     technologies: ["AI / LLMs", "Node.js", "Cybersecurity", "Autonomous Agents", "Docker"],
     siteLink: "https://sast.tech",
     drawerId: "sast",
@@ -73,6 +75,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-100",
     video: "/videos/giftscharts.webm",
+    poster: "/static/images/posters/giftscharts.webp",
     technologies: ["Python", "Telegram API", "Docker", "PostgreSQL", "Flask"],
     drawerId: "giftsCharts",
     features: [
@@ -101,6 +104,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-2 md:row-span-1",
     delay: "delay-150",
     video: "/videos/10krunner.webm",
+    poster: "/static/images/posters/10krunner.webp",
     siteLink: "https://10krunner.fun",
     technologies: ["React", "Three.js", "React Three Fiber", "Web3", "Tailwind CSS"],
     drawerId: "runner10k",
@@ -130,6 +134,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-2 md:row-span-1",
     delay: "delay-200",
     video: "/videos/swrmz.webm",
+    poster: "/static/images/posters/swrmz.webp",
     siteLink: "https://swrmz.tech",
     technologies: ["Band.ai", "AI Agents", "Next.js", "Cybersecurity"],
     drawerId: "swrmz",
@@ -147,6 +152,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-250",
     video: "/videos/collectablekit.webm",
+    poster: "/static/images/posters/collectablekit.webp",
     technologies: ["Next.js", "PostgreSQL", "Tailwind CSS", "Lucide Icons"],
     drawerId: "collectablekit",
   },
@@ -163,6 +169,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-3 md:row-span-1",
     delay: "delay-300",
     video: "/videos/icpchue2.webm",
+    poster: "/static/images/posters/icpchue2.webp",
     drawerId: "ICPCHUE",
   },
   {
@@ -178,6 +185,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-3 md:row-span-1",
     delay: "delay-350",
     video: "/videos/zerothreat.webm",
+    poster: "/static/images/posters/zerothreat.webp",
     drawerId: "zerothreat",
   },
   {
@@ -193,6 +201,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-2 md:row-span-1",
     delay: "delay-250",
     video: "/videos/bunny.webm",
+    poster: "/static/images/posters/bunny.webp",
     technologies: ["Three.js", "WebGL", "Solidity", "Next.js", "Ethereum"],
     drawerId: "sketchz",
   },
@@ -208,6 +217,7 @@ export const projectsData: Project[] = [
     isMinimal: true,
     isArchive: true,
     video: "/videos/moreprojects.webm",
+    poster: "/static/images/posters/moreprojects.webp",
     technologies: ["Various Technologies"],
   },
   {
@@ -221,6 +231,7 @@ export const projectsData: Project[] = [
     delay: "delay-300",
     isLarge: true,
     video: "/videos/yousefdev.webm",
+    poster: "/static/images/posters/yousefdev.webp",
     drawerId: "yousefdev",
     technologies: ["Full-Stack Development", "Cybersecurity", "Automation"],
     features: [
@@ -252,6 +263,7 @@ export const archiveProjectsData: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-100",
     video: "/videos/panoblue.webm",
+    poster: "/static/images/posters/panoblue.webp",
     drawerId: "panoblue",
   },
   {
@@ -267,6 +279,7 @@ export const archiveProjectsData: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-200",
     video: "/videos/fazzah.webm",
+    poster: "/static/images/posters/fazzah.webp",
     drawerId: "fazzah",
   },
   {
@@ -282,6 +295,7 @@ export const archiveProjectsData: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     delay: "delay-300",
     video: "/videos/RetroOS_Project.webm",
+    poster: "/static/images/posters/RetroOS_Project.webp",
     drawerId: "RetroOS",
   },
 ];

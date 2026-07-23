@@ -78,6 +78,7 @@ export default function ProjectCard({
             {project.video ? (
               <VideoPlayer
                 video={project.video}
+                poster={project.poster}
                 title={project.title}
                 isPriority={index < 2}
                 isHovered={isHovered}
