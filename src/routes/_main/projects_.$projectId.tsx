@@ -149,6 +149,7 @@ function ProjectPage() {
           ) : (
             <video
               src={`/videos/${project.drawerId === "giftsCharts" ? "giftscharts" : project.drawerId}.webm`}
+              preload="metadata"
               autoPlay
               loop
               muted

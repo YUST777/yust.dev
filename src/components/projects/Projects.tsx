@@ -306,6 +306,7 @@ export default function Projects() {
                   ) : (
                     <video
                       src={`/videos/${openDrawer === "giftsCharts" ? "giftscharts" : openDrawer}.webm`}
+                      preload="metadata"
                       autoPlay
                       loop
                       muted

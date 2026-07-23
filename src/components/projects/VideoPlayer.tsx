@@ -7,7 +7,6 @@ export const VideoPlayer = memo(
     title,
     shouldAutoPlay = false,
     isHovered = false,
-    isPriority = false,
   }: {
     video: string;
     title?: string;
@@ -19,7 +18,7 @@ export const VideoPlayer = memo(
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, {
       once: true,
-      margin: isPriority ? "500px" : "50px",
+      margin: "300px",
     });
 
     useEffect(() => {
@@ -31,7 +30,11 @@ export const VideoPlayer = memo(
       }
 
       if (isHovered) {
-        videoRef.current.play().catch(() => {});
+        // Fast playback start from cached metadata
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
       } else {
         videoRef.current.pause();
       }
@@ -50,8 +53,8 @@ export const VideoPlayer = memo(
       >
         <video
           ref={videoRef}
-          src={isInView ? (shouldAutoPlay ? video : `${video}#t=0,5`) : undefined}
-          preload={isPriority ? "metadata" : "none"}
+          src={isInView ? (shouldAutoPlay ? video : `${video}#t=0.001`) : undefined}
+          preload={isInView ? "metadata" : "none"}
           autoPlay={shouldAutoPlay}
           loop
           muted
