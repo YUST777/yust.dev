@@ -1,0 +1,49 @@
+import { lazy, LazyExoticComponent, ComponentType } from "react";
+
+export const Drawers = {
+  VerdictDrawer: lazy(() => import("./VerdictDrawer")),
+  Runner10kDrawer: lazy(() => import("./Runner10kDrawer")),
+  SastDrawer: lazy(() => import("./SastDrawer")),
+  IcpchueDrawer: lazy(() => import("./IcpchueDrawer")),
+  CollectableKitDrawer: lazy(() => import("./CollectableKitDrawer")),
+  ZeroThreatDrawer: lazy(() => import("./ZeroThreatDrawer")),
+  GiftsChartsDrawer: lazy(() => import("./GiftsChartsDrawer")),
+  FazzahDrawer: lazy(() => import("./FazzahDrawer")),
+  YousefDevDrawer: lazy(() => import("./YousefDevDrawer")),
+  PanoBlueDrawer: lazy(() => import("./PanoBlueDrawer")),
+  RetroOSDrawer: lazy(() => import("./RetroOSDrawer")),
+  SwrmzDrawer: lazy(() => import("./SwrmzDrawer")),
+  SketchzDrawer: lazy(() => import("./SketchzDrawer")),
+};
+
+export const DRAWER_TITLES: Record<string, string> = {
+  zerothreat: "Zero Threat - Cybersecurity Website Project",
+  giftsCharts: "Gifts Charts - Telegram Analytics Bot",
+  ICPCHUE: "ICPCHUE - Creative Web Project",
+  yousefdev: "yousefdev - Building Practical Solutions",
+  panoblue: "PanoBlue - Panorama Viewer",
+  fazzah: "Fazzah - Web Application",
+  verdict: "Verdict – Competitive Programming Platform",
+  runner10k: "10K Runner – Infinite Runner Web3 Game",
+  sast: "Sast – Autonomous AI Security Agent",
+  collectablekit: "Collectable Kit – Management Platform",
+  RetroOS: "RetroOS – Interactive Web Simulation",
+  swrmz: "SWRMZ – Swarm AI Security",
+  sketchz: "Sketchz – 3D Gallery on ETH",
+};
+
+export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType<any>>> = {
+  verdict: Drawers.VerdictDrawer,
+  runner10k: Drawers.Runner10kDrawer,
+  sast: Drawers.SastDrawer,
+  ICPCHUE: Drawers.IcpchueDrawer,
+  collectablekit: Drawers.CollectableKitDrawer,
+  zerothreat: Drawers.ZeroThreatDrawer,
+  giftsCharts: Drawers.GiftsChartsDrawer,
+  fazzah: Drawers.FazzahDrawer,
+  yousefdev: Drawers.YousefDevDrawer,
+  panoblue: Drawers.PanoBlueDrawer,
+  RetroOS: Drawers.RetroOSDrawer,
+  swrmz: Drawers.SwrmzDrawer,
+  sketchz: Drawers.SketchzDrawer,
+};

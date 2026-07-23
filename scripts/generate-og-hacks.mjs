@@ -9,15 +9,13 @@ const rootDir = join(__dirname, "..");
 
 // 1. Extract hackathon wins count from hacks.tsx dynamically
 const hacksContent = readFileSync(join(rootDir, "src/routes/_main/hacks.tsx"), "utf8");
-// Count items in `const hacks = [` array by looking for `rank:` entries
 const rankMatches = hacksContent.match(/rank:\s*["']/g);
 const count = rankMatches ? rankMatches.length : 4;
 
 console.log(`[OG Generator] Detected ${count} hackathon wins from hacks.tsx`);
 
-// 2. Generate HTML with dynamic count
+// 2. Generate HTML with dynamic count using OPTION 2 typography (Ultra-Bold Sans for number, Silkscreen for title)
 const fontPath700 = join(rootDir, "public/fonts/silkscreen-700.woff2");
-const fontPath400 = join(rootDir, "public/fonts/silkscreen-400.woff2");
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -28,11 +26,6 @@ const html = `<!DOCTYPE html>
     font-family: 'Silkscreen';
     src: url('file://${fontPath700}') format('woff2');
     font-weight: 700;
-  }
-  @font-face {
-    font-family: 'Silkscreen';
-    src: url('file://${fontPath400}') format('woff2');
-    font-weight: 400;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,7 +58,7 @@ const html = `<!DOCTYPE html>
   .bracket-box {
     position: relative;
     width: 320px;
-    height: 240px;
+    height: 260px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,13 +78,12 @@ const html = `<!DOCTYPE html>
   .bracket-br { bottom: 0; right: 0; border-width: 0 4px 4px 0; }
 
   .number-hero {
-    font-family: 'Silkscreen', monospace;
-    font-size: 140px;
-    font-weight: 700;
+    font-family: 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 160px;
+    font-weight: 900;
     color: #ffffff;
     line-height: 1;
     text-align: center;
-    margin-bottom: 8px;
   }
 
   .title-text {
@@ -101,7 +93,7 @@ const html = `<!DOCTYPE html>
     color: #ffffff;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-top: 42px;
+    margin-top: 40px;
     text-align: center;
   }
 </style>
@@ -129,7 +121,7 @@ const webpTarget = join(rootDir, "public/static/images/og-hacks.webp");
 try {
   execSync(`google-chrome --headless --disable-gpu --screenshot=${pngTarget} --window-size=1200,630 --hide-scrollbars file://${tempHtml}`, { stdio: "ignore" });
   execSync(`ffmpeg -y -i ${pngTarget} -c:v libwebp -quality 90 ${webpTarget}`, { stdio: "ignore" });
-  console.log(`[OG Generator] Successfully generated og-hacks.png & og-hacks.webp for win count ${count}!`);
+  console.log(`[OG Generator] Successfully generated exact Option 2 og-hacks.png & og-hacks.webp for count ${count}!`);
 } catch (e) {
-  console.warn("[OG Generator] Chrome/ffmpeg export skipped, static images preserved.");
+  console.warn("[OG Generator] Chrome/ffmpeg export skipped.");
 }

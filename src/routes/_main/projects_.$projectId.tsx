@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { archiveProjectsData, projectsData } from "@/components/projects/ProjectsData";
+import { DRAWER_COMPONENTS } from "@/components/projects/drawers";
 import type { Project } from "@/components/projects/types";
 import { SITE_URL, buildRouteHead, jsonLdString, projectPageSchema } from "@/lib/seo";
 
@@ -71,6 +73,8 @@ function ProjectPage() {
     .filter((candidate) => candidate.slug !== project.slug)
     .slice(0, 3);
 
+  const DrawerComponent = project.drawerId ? DRAWER_COMPONENTS[project.drawerId] : null;
+
   return (
     <article className="mx-auto max-w-4xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
       <Breadcrumbs
@@ -98,7 +102,7 @@ function ProjectPage() {
           {project.title}
         </h1>
         <p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-300">
-          {project.description}
+          {project.fullDescription ?? project.description}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           {project.siteLink && (
@@ -124,53 +128,44 @@ function ProjectPage() {
         </div>
       </header>
 
-      <section className="mt-12" aria-labelledby="overview-heading">
-        <h2 id="overview-heading" className="text-2xl font-semibold text-white">
-          What it does
-        </h2>
-        <p className="mt-4 text-base leading-8 text-zinc-400">
-          {project.fullDescription ?? project.description}
-        </p>
-      </section>
-
-      {project.features && project.features.length > 0 && (
-        <section className="mt-12" aria-labelledby="features-heading">
-          <h2 id="features-heading" className="text-2xl font-semibold text-white">
-            Key features
-          </h2>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {project.features.map((feature) => (
-              <section
-                key={feature.category}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
-              >
-                <h3 className="font-medium text-white">{feature.category}</h3>
-                <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                  {feature.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-        </section>
+      {/* Video / Showcase Media */}
+      {project.drawerId && (
+        <div className="mt-10 w-full aspect-video rounded-2xl overflow-hidden bg-black/50 border border-white/10 relative">
+          {project.drawerId === "ICPCHUE" ? (
+            <iframe
+              src="https://www.youtube.com/embed/tH--wuGCMuM?autoplay=1&mute=1&loop=1&playlist=tH--wuGCMuM"
+              className="absolute inset-0 w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              title="ICPC HUE Showcase Video"
+            />
+          ) : (
+            <video
+              src={`/videos/${project.drawerId === "giftsCharts" ? "giftscharts" : project.drawerId}.webm`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              title={`${project.title} detailed showcase video`}
+            />
+          )}
+        </div>
       )}
 
-      {project.technologies && project.technologies.length > 0 && (
-        <section className="mt-12" aria-labelledby="technology-heading">
-          <h2 id="technology-heading" className="text-2xl font-semibold text-white">
-            Technology
-          </h2>
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {project.technologies.map((technology) => (
-              <li
-                key={technology}
-                className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-zinc-400"
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
+      {/* Authentic Drawer Content Slider Info */}
+      {DrawerComponent ? (
+        <div className="mt-10 space-y-6">
+          <Suspense fallback={<div className="text-zinc-500 font-mono text-xs">Loading showcase details...</div>}>
+            <DrawerComponent />
+          </Suspense>
+        </div>
+      ) : (
+        <section className="mt-12">
+          <p className="text-base leading-8 text-zinc-400">
+            {project.fullDescription ?? project.description}
+          </p>
         </section>
       )}
 
