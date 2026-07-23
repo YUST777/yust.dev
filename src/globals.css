@@ -91,6 +91,18 @@
 }
 
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar,
+  .no-scrollbar *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar,
+  .no-scrollbar * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+
   .waving-animation {
     animation: wave 2.5s infinite;
     transform-origin: 70% 70%;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { Tooltip } from "react-tooltip";
 import { useIsHydrated } from "@/lib/hooks/use-is-hydrated";
@@ -11,6 +11,31 @@ const GITHUB_THEME = {
 export default function GithubContributions() {
   const [stars, setStars] = useState<number | null>(null);
   const isHydrated = useIsHydrated();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Enable smooth mouse wheel horizontal scrolling
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY !== 0) {
+        el.scrollLeft += e.deltaY;
+      }
+    };
+    el.addEventListener("wheel", handleWheel, { passive: true });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, []);
+
+  // Auto-scroll focused around March (~45% of scrollWidth) on initial load on mobile/responsive
+  useEffect(() => {
+    if (!isHydrated) return;
+    const timer = setTimeout(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollLeft = scrollRef.current.scrollWidth * 0.45;
+      }
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [isHydrated]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,14 +59,22 @@ export default function GithubContributions() {
     return () => controller.abort();
   }, []);
 
+  // Add 1 more month (~336 days / 11 months) to stretch and align perfectly with section width
+  const selectRecentMonths = <T,>(data: Array<T>): Array<T> => {
+    return data.slice(-336);
+  };
+
   return (
     <section className="font-mono mt-16 pb-4">
       <div className="flex items-center justify-between mb-4">
         <p className="text-zinc-400 text-[13px] uppercase tracking-widest">Contributions</p>
-        <span className="text-[10px] text-zinc-400 sm:hidden lowercase">Swipe to see more →</span>
+        <span className="text-[10px] text-zinc-400 sm:hidden lowercase">Scroll / swipe for more →</span>
       </div>
-      <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
-        <div className="min-w-[800px] lg:min-w-0 overflow-hidden min-h-[150px] flex items-center justify-center">
+      <div
+        ref={scrollRef}
+        className="w-full overflow-x-auto pb-2 no-scrollbar cursor-grab active:cursor-grabbing"
+      >
+        <div className="w-full min-h-[150px] flex items-center justify-start no-scrollbar">
           {isHydrated ? (
             <GitHubCalendar
               username="YUST777"
@@ -50,6 +83,7 @@ export default function GithubContributions() {
               blockSize={12}
               blockMargin={4}
               fontSize={12}
+              transformData={selectRecentMonths}
               labels={{
                 totalCount: `{{count}} contributions in the last year • Total stars: ${stars !== null ? stars : "..."}`,
               }}
