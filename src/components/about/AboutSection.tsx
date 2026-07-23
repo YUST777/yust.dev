@@ -41,6 +41,10 @@ export default function AboutSection() {
           <strong className="text-zinc-200">120k+ impressions</strong> and transformed the workflow for
           hundreds of developers.
         </p>
+        <p>
+          Alongside building these, I have won{" "}
+          <strong className="text-zinc-200">4 national hackathons in Egypt</strong> so far.
+        </p>
 
         <div className="sr-only">
           <Link to="/ai-security-projects">AI security projects</Link>
