@@ -6,7 +6,6 @@ import SparklesIcon from "./icons/sparkles";
 import StarSparkleIcon from "./icons/star-sparkle";
 import BlogIcon from "./icons/blog";
 import { DesktopGoose } from "./desktop-goose";
-import { sounds } from "@/lib/sounds";
 
 export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -67,19 +66,10 @@ export function Navbar() {
 }
 
 function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label: string }) {
-  const handleInteraction = () => {
-    try {
-      sounds.tick();
-    } catch {
-      // Audio context might be suspended or blocked by user gesture requirements
-    }
-  };
-
   return (
     <Link
       to={to}
       preload="intent"
-      onClick={handleInteraction}
       className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-[1rem] sm:rounded-full transition-all duration-300 relative group min-w-[50px] sm:min-w-0"
       activeProps={{
         className:
