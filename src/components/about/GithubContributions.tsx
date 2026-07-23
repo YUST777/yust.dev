@@ -5,7 +5,7 @@ import { useIsHydrated } from "@/lib/hooks/use-is-hydrated";
 import "react-tooltip/dist/react-tooltip.css";
 
 const GITHUB_THEME = {
-  dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+  dark: ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a"],
 };
 
 export default function GithubContributions() {
