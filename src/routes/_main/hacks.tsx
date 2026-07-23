@@ -23,6 +23,7 @@ export const Route = createFileRoute("/_main/hacks")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/hacks",
+      image: `${SITE_URL}/static/images/og-hacks.png`,
     });
     return {
       ...base,
