@@ -56,9 +56,7 @@ export default function AboutSection() {
           Most recently, I made <strong className="text-zinc-200">Verdict.run</strong>, a viral
           competitive programming platform that garnered{" "}
           <strong className="text-zinc-200">120k+ impressions</strong>. Alongside building these, I
-          have won <strong className="text-zinc-200">4 national hackathons</strong> so far,
-          developing everything from autonomous pentesting agents (
-          <strong className="text-zinc-200">Sast.tech</strong>).
+          have won <strong className="text-zinc-200">4 national hackathons</strong> so far.
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5">
