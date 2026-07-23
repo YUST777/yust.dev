@@ -74,7 +74,7 @@ export default function GithubContributions() {
         ref={scrollRef}
         className="w-full overflow-x-auto pb-2 no-scrollbar cursor-grab active:cursor-grabbing"
       >
-        <div className="w-full min-h-[150px] flex items-center justify-start no-scrollbar">
+        <div className="w-full min-h-[150px] flex items-center justify-start no-scrollbar mobile-hide-total-count">
           {isHydrated ? (
             <GitHubCalendar
               username="YUST777"

@@ -103,6 +103,14 @@
     scrollbar-width: none !important;
   }
 
+  @media (max-width: 639px) {
+    .mobile-hide-total-count footer > *:first-child,
+    .mobile-hide-total-count [class*="footer"] > *:first-child,
+    .mobile-hide-total-count [class*="Footer"] > *:first-child {
+      display: none !important;
+    }
+  }
+
   .waving-animation {
     animation: wave 2.5s infinite;
     transform-origin: 70% 70%;
