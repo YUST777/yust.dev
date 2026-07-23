@@ -1,6 +1,31 @@
 {
   "redirects": [
     {
+      "source": "/blog/1",
+      "destination": "/blog/horus-technology-forum-sast-tech",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2",
+      "destination": "/blog/gdg-delta-hackathon-second-place-sast-tech",
+      "permanent": true
+    },
+    {
+      "source": "/blog/3",
+      "destination": "/blog/luxsai-hackathon-third-place-sast-tech",
+      "permanent": true
+    },
+    {
+      "source": "/blog/4",
+      "destination": "/blog/saas-marketing-strategy-az-tech-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5",
+      "destination": "/blog/zero-threat-egypt-innovation-summit",
+      "permanent": true
+    },
+    {
       "source": "/mem",
       "destination": "/blog",
       "permanent": true

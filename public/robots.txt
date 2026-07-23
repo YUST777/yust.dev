@@ -1,4 +1,4 @@
-# https://yust.dev — robots.txt
+# https://www.yust.dev — robots.txt
 # Yousef Mohammed Salah (Yust, businessduck, yust777)
 
 User-agent: *
@@ -41,5 +41,4 @@ Disallow: /
 User-agent: Claude-Web
 Disallow: /
 
-Sitemap: https://yust.dev/sitemap.xml
-Host: https://yust.dev
+Sitemap: https://www.yust.dev/sitemap.xml

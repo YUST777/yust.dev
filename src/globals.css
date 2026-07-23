@@ -5,7 +5,7 @@
   src: url("/fonts/silkscreen-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   src: url("/fonts/silkscreen-700.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 @plugin '@tailwindcss/typography';
@@ -129,5 +129,16 @@
 
   .will-change-transform {
     will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

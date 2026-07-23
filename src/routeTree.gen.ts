@@ -14,7 +14,9 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
+import { Route as MainAiSecurityProjectsRouteImport } from './routes/_main/ai-security-projects'
 import { Route as MainBlogIndexRouteImport } from './routes/_main/blog.index'
+import { Route as MainProjectsProjectIdRouteImport } from './routes/_main/projects_.$projectId'
 import { Route as MainBlogPostIdRouteImport } from './routes/_main/blog.$postId'
 
 const TokenUsageRoute = TokenUsageRouteImport.update({
@@ -41,9 +43,19 @@ const MainHacksRoute = MainHacksRouteImport.update({
   path: '/hacks',
   getParentRoute: () => MainRoute,
 } as any)
+const MainAiSecurityProjectsRoute = MainAiSecurityProjectsRouteImport.update({
+  id: '/ai-security-projects',
+  path: '/ai-security-projects',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainBlogIndexRoute = MainBlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainProjectsProjectIdRoute = MainProjectsProjectIdRouteImport.update({
+  id: '/projects_/$projectId',
+  path: '/projects/$projectId',
   getParentRoute: () => MainRoute,
 } as any)
 const MainBlogPostIdRoute = MainBlogPostIdRouteImport.update({
@@ -55,27 +67,33 @@ const MainBlogPostIdRoute = MainBlogPostIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/token-usage': typeof TokenUsageRoute
+  '/ai-security-projects': typeof MainAiSecurityProjectsRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/blog/$postId': typeof MainBlogPostIdRoute
+  '/projects/$projectId': typeof MainProjectsProjectIdRoute
   '/blog/': typeof MainBlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/token-usage': typeof TokenUsageRoute
+  '/ai-security-projects': typeof MainAiSecurityProjectsRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/': typeof MainIndexRoute
   '/blog/$postId': typeof MainBlogPostIdRoute
+  '/projects/$projectId': typeof MainProjectsProjectIdRoute
   '/blog': typeof MainBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_main': typeof MainRouteWithChildren
   '/token-usage': typeof TokenUsageRoute
+  '/_main/ai-security-projects': typeof MainAiSecurityProjectsRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
   '/_main/': typeof MainIndexRoute
   '/_main/blog/$postId': typeof MainBlogPostIdRoute
+  '/_main/projects_/$projectId': typeof MainProjectsProjectIdRoute
   '/_main/blog/': typeof MainBlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -83,20 +101,32 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/token-usage'
+    | '/ai-security-projects'
     | '/hacks'
     | '/projects'
     | '/blog/$postId'
+    | '/projects/$projectId'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/token-usage' | '/hacks' | '/projects' | '/' | '/blog/$postId' | '/blog'
+  to:
+    | '/token-usage'
+    | '/ai-security-projects'
+    | '/hacks'
+    | '/projects'
+    | '/'
+    | '/blog/$postId'
+    | '/projects/$projectId'
+    | '/blog'
   id:
     | '__root__'
     | '/_main'
     | '/token-usage'
+    | '/_main/ai-security-projects'
     | '/_main/hacks'
     | '/_main/projects'
     | '/_main/'
     | '/_main/blog/$postId'
+    | '/_main/projects_/$projectId'
     | '/_main/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -142,11 +172,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainHacksRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/ai-security-projects': {
+      id: '/_main/ai-security-projects'
+      path: '/ai-security-projects'
+      fullPath: '/ai-security-projects'
+      preLoaderRoute: typeof MainAiSecurityProjectsRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/blog/': {
       id: '/_main/blog/'
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof MainBlogIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/projects_/$projectId': {
+      id: '/_main/projects_/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof MainProjectsProjectIdRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/blog/$postId': {
@@ -160,18 +204,22 @@ declare module '@tanstack/react-router' {
 }
 
 interface MainRouteChildren {
+  MainAiSecurityProjectsRoute: typeof MainAiSecurityProjectsRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
   MainIndexRoute: typeof MainIndexRoute
   MainBlogPostIdRoute: typeof MainBlogPostIdRoute
+  MainProjectsProjectIdRoute: typeof MainProjectsProjectIdRoute
   MainBlogIndexRoute: typeof MainBlogIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
+  MainAiSecurityProjectsRoute: MainAiSecurityProjectsRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
   MainIndexRoute: MainIndexRoute,
   MainBlogPostIdRoute: MainBlogPostIdRoute,
+  MainProjectsProjectIdRoute: MainProjectsProjectIdRoute,
   MainBlogIndexRoute: MainBlogIndexRoute,
 }
 

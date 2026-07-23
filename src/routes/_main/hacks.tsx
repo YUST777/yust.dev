@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Hackathons · Achievements & Attempts";
+const TITLE = "Hackathons & Awards | Yousef Mohammed Salah · yust.dev";
 const DESCRIPTION =
-  "Hackathon wins and project submissions by Yousef Mohammed Salah: 10K Runner, Sast.tech, Zero Threat, and SWRMZ (Lablab.ai x Band.ai).";
+  "Hackathon wins and lessons from Yousef Mohammed Salah, including Sast.tech, 10K Runner, Zero Threat, and SWRMZ.";
 
 const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,
@@ -44,7 +45,10 @@ const hacks = [
     title: "10K Runner (3D Infinite Runner Web3 Game)",
     desc: (
       <>
-        Won <strong className="text-zinc-200">3rd place</strong> in the 10k Squad contest—my very first international and Web3 competition. Developed and vibecoded the game in just 3 days, implementing distributed earning mechanics and full 3D browser-based environment optimizations.
+        Won <strong className="text-zinc-200">3rd place</strong> in the 10k Squad contest—my very
+        first international and Web3 competition. Developed and vibecoded the game in just 3 days,
+        implementing distributed earning mechanics and full 3D browser-based environment
+        optimizations.
       </>
     ),
     tech: "React • Three.js • React Three Fiber • Web3 • Tailwind CSS",
@@ -162,7 +166,10 @@ const failedHacks = [
     title: "SWRMZ (swrmz.tech)",
     desc: (
       <>
-        SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across your stack, remediate them automatically, generate audit-ready reports, and stand guard over your logs around the clock. Missed the submission window by exactly 2 minutes. The code was beautiful, but the clock won.
+        SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across
+        your stack, remediate them automatically, generate audit-ready reports, and stand guard over
+        your logs around the clock. Missed the submission window by exactly 2 minutes. The code was
+        beautiful, but the clock won.
       </>
     ),
     tech: "Band.ai • AI Agents • Cybersecurity • Next.js",
@@ -172,9 +179,9 @@ const failedHacks = [
       {
         label: "Lablab.ai Hackathon Page",
         url: "https://lablab.ai/ai-hackathons/band-of-agents-hackathon",
-      }
+      },
     ],
-  }
+  },
 ];
 
 function HacksPage() {
@@ -182,6 +189,12 @@ function HacksPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <Breadcrumbs
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Hackathons", url: `${SITE_URL}/hacks` },
+        ]}
+      />
       <div>
         <h1 className="text-4xl font-pixel text-white mb-4 uppercase">
           HACKATHONS WON ( {hacks.length} )

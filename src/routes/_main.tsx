@@ -45,7 +45,7 @@ function MainLayout() {
       <main className="flex-1 w-full pb-8">
         <Outlet />
       </main>
-      <footer className="w-full max-w-5xl mx-auto pb-12 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-500 flex flex-col font-mono mt-auto gap-2 opacity-70">
+      <footer className="w-full max-w-5xl mx-auto pb-12 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-400 flex flex-col font-mono mt-auto gap-2">
         <div className="border-t border-white/5 pt-8 space-y-2">
           <p className="mb-1">
             <LiveClock />
@@ -63,7 +63,7 @@ function MainLayout() {
               <BoltIcon className="w-3 h-3" /> 100%
             </p>
           </div>
-          <p className="text-zinc-600 pt-2 pb-4">
+          <p className="text-zinc-400 pt-2 pb-4">
             © {mounted ? new Date().getFullYear() : "2026"} Yousef. All rights reserved.
           </p>
         </div>

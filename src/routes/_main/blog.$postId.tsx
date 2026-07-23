@@ -1,11 +1,21 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { posts } from "./blog.index";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
 export const Route = createFileRoute("/_main/blog/$postId")({
+  loader: ({ params }) => {
+    const post = posts.find(
+      (candidate) => candidate.slug === params.postId || candidate.id === params.postId,
+    );
+    if (!post) throw notFound();
+    return post;
+  },
   head: ({ params }) => {
-    const post = posts.find((p) => p.id === params.postId);
+    const post = posts.find(
+      (candidate) => candidate.slug === params.postId || candidate.id === params.postId,
+    );
     if (!post) {
       return buildRouteHead({
         title: "Post Not Found · yust.dev",
@@ -14,17 +24,17 @@ export const Route = createFileRoute("/_main/blog/$postId")({
         noindex: true,
       });
     }
-    const title = `${post.title} · yust.dev`;
+    const title = post.seoTitle;
     const image = post.images?.[0];
     const isoDateTime = `${post.iso}T12:00:00+00:00`;
     const base = buildRouteHead({
       title,
       description: post.summary,
-      path: `/blog/${post.id}`,
+      path: `/blog/${post.slug}`,
       type: "article",
       image: image ? `${SITE_URL}${image}` : undefined,
       publishedTime: isoDateTime,
-      modifiedTime: isoDateTime,
+      modifiedTime: `${post.modifiedIso ?? post.iso}T12:00:00+00:00`,
     });
     return {
       ...base,
@@ -107,25 +117,18 @@ function parseContent(text: string) {
 }
 
 function PostPage() {
-  const { postId } = Route.useParams();
-  const post = posts.find((p) => p.id === postId);
-
-  if (!post) {
-    return (
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-32 text-center">
-        <h1 className="text-2xl font-pixel text-white mb-4">POST NOT FOUND</h1>
-        <Link
-          to="/blog"
-          className="text-zinc-500 font-mono text-sm hover:text-white transition-colors"
-        >
-          [ GO BACK ]
-        </Link>
-      </div>
-    );
-  }
+  const post = Route.useLoaderData();
+  const relatedPosts = posts.filter((candidate) => candidate.slug !== post.slug).slice(0, 2);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <Breadcrumbs
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Blog", url: `${SITE_URL}/blog` },
+          { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
+        ]}
+      />
       <Link
         to="/blog"
         className="text-zinc-500 font-mono text-[11px] uppercase tracking-[0.2em] hover:text-zinc-300 transition-colors inline-flex items-center gap-2 group"
@@ -138,9 +141,17 @@ function PostPage() {
           {post.title}
         </h1>
         <div className="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest">
-          <span>{post.date}</span>
+          <time dateTime={post.iso}>{post.date}</time>
           <span className="w-1 h-1 bg-zinc-800 rounded-full" />
           <span>Yousef Salah</span>
+          {post.modifiedIso && post.modifiedDate && post.modifiedIso !== post.iso && (
+            <>
+              <span className="w-1 h-1 bg-zinc-800 rounded-full" />
+              <span>
+                Updated <time dateTime={post.modifiedIso}>{post.modifiedDate}</time>
+              </span>
+            </>
+          )}
         </div>
       </div>
 
@@ -158,6 +169,69 @@ function PostPage() {
           </p>
         ))}
       </div>
+
+      <aside
+        aria-labelledby="author-heading"
+        className="rounded-2xl border border-white/10 bg-zinc-950/60 p-6 sm:p-8"
+      >
+        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-600">
+          About the author
+        </p>
+        <h2 id="author-heading" className="text-xl font-semibold text-white">
+          Yousef Mohammed Salah
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+          AI and cybersecurity student at Horus University in Egypt, full-stack developer, and
+          creator of projects including Verdict.run and Sast.tech. I write from direct experience
+          building products, competing in hackathons, and supporting the ICPC HUE community.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-4 font-mono text-xs">
+          <Link
+            to="/"
+            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            About Yousef
+          </Link>
+          <Link
+            to="/projects"
+            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            View projects
+          </Link>
+          <a
+            href="https://www.linkedin.com/in/yousefmsm1/"
+            target="_blank"
+            rel="me noopener noreferrer"
+            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            LinkedIn profile
+          </a>
+        </div>
+      </aside>
+
+      <nav aria-labelledby="related-posts-heading" className="border-t border-white/5 pt-10">
+        <h2 id="related-posts-heading" className="mb-5 text-xl font-semibold text-white">
+          Related stories
+        </h2>
+        <ul className="space-y-3">
+          {relatedPosts.map((relatedPost) => (
+            <li key={relatedPost.slug}>
+              <Link
+                to="/blog/$postId"
+                params={{ postId: relatedPost.slug }}
+                className="group flex items-center justify-between gap-4 rounded-xl border border-white/5 p-4 transition-colors hover:border-white/15 hover:bg-white/[0.02]"
+              >
+                <span className="text-sm text-zinc-300 group-hover:text-white">
+                  {relatedPost.title}
+                </span>
+                <span aria-hidden="true" className="text-zinc-600 group-hover:text-zinc-300">
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {post.featured && post.featured.length > 0 && (
         <div className="pt-12 space-y-6">
@@ -197,10 +271,9 @@ function PostPage() {
           </div>
         </div>
       )}
-    </div>
+    </article>
   );
 }
-
 
 /**
  * LinkedIn-style image collage:
@@ -224,7 +297,8 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
     if (openIndex === null) return;
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpenIndex(null);
-      else if (e.key === "ArrowRight") setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
+      else if (e.key === "ArrowRight")
+        setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
       else if (e.key === "ArrowLeft")
         setOpenIndex((i) => (i === null ? null : (i - 1 + images.length) % images.length));
     }
@@ -247,8 +321,10 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
         >
           <img
             src={hero}
-            alt={`${title} — hero`}
+            alt={`${title} event photo 1`}
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
           />
         </button>
@@ -277,8 +353,9 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
                 >
                   <img
                     src={img}
-                    alt={`${title} — image ${absoluteIndex + 1}`}
+                    alt={`${title} event photo ${absoluteIndex + 1}`}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {showOverlay && (
@@ -346,7 +423,8 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
 
           <img
             src={images[openIndex]}
-            alt={`${title} — image ${openIndex + 1}`}
+            alt={`${title} event photo ${openIndex + 1}`}
+            decoding="async"
             className="max-w-[92vw] max-h-[88vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           />

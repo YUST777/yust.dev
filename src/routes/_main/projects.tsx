@@ -1,14 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Projects from "../../components/projects/Projects";
-import {
-  buildRouteHead,
-  jsonLdString,
-  projectsCollectionSchema,
-} from "@/lib/seo";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { SITE_URL, buildRouteHead, jsonLdString, projectsCollectionSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Projects · Verdict.run, Sast.tech, SWRMZ, ICPC HUE";
+const TITLE = "Yousef's Projects | AI, Security & Full-Stack Builds";
 const DESCRIPTION =
-  "Projects by Yousef Mohammed Salah on yust.dev: Verdict.run, Sast.tech, SWRMZ, 10K Runner, ICPC HUE, Zero Threat, Gifts Charts.";
+  "Explore Yousef Mohammed Salah's full-stack, AI security, Web3, and competitive programming projects, including Verdict.run and Sast.tech.";
 
 const projectsSchema = projectsCollectionSchema([
   {
@@ -90,6 +87,14 @@ export const Route = createFileRoute("/_main/projects")({
 function ProjectsPage() {
   return (
     <div className="bg-transparent text-white pt-0 sm:pt-[45px]">
+      <div className="mx-auto max-w-7xl px-4 pt-8 md:px-6 sm:pt-12">
+        <Breadcrumbs
+          items={[
+            { name: "Home", url: SITE_URL },
+            { name: "Projects", url: `${SITE_URL}/projects` },
+          ]}
+        />
+      </div>
       <Projects />
     </div>
   );

@@ -37,8 +37,8 @@ export default function GithubContributions() {
   return (
     <section className="font-mono mt-16 pb-4">
       <div className="flex items-center justify-between mb-4">
-        <p className="text-zinc-500 text-[13px] uppercase tracking-widest">Contributions</p>
-        <span className="text-[9px] text-zinc-600 sm:hidden lowercase">Swipe to see more →</span>
+        <p className="text-zinc-400 text-[13px] uppercase tracking-widest">Contributions</p>
+        <span className="text-[10px] text-zinc-400 sm:hidden lowercase">Swipe to see more →</span>
       </div>
       <div className="w-full overflow-x-auto pb-4 custom-scrollbar lg:overflow-visible">
         <div className="min-w-[800px] lg:min-w-0 overflow-hidden min-h-[150px] flex items-center justify-center">

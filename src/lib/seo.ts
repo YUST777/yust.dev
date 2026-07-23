@@ -7,7 +7,7 @@
  *  - Stable @id references so Google connects the entity graph (Person ↔ WebSite ↔ WebPage ↔ BlogPosting).
  */
 
-export const SITE_URL = "https://yust.dev";
+export const SITE_URL = "https://www.yust.dev";
 /** The legal/real name. Used as Schema.org Person.name. */
 export const PERSON_NAME = "Yousef Mohammed Salah";
 /** The brand / display handle. Used as the site name and what people search for. */
@@ -15,12 +15,11 @@ export const SITE_BRAND = "yust.dev";
 /** Backward-compatible alias kept so older imports don't break. */
 export const SITE_NAME = SITE_BRAND;
 
-export const SITE_TITLE_LONG =
-  "yust.dev — Yousef Mohammed Salah · Full-Stack & AI Security";
+export const SITE_TITLE_LONG = "Yousef Mohammed Salah | AI & Cybersecurity Developer";
 export const SITE_DESCRIPTION =
-  "yust.dev — Yousef Mohammed Salah. L3 AI & Cybersecurity student at Horus University, developer of Verdict.run, Sast.tech, SWRMZ, and Lead Dev of ICPC HUE.";
+  "Yousef Mohammed Salah is an AI and cybersecurity student and full-stack developer in Egypt, creator of Verdict.run, Sast.tech, and ICPC HUE.";
 export const SITE_DESCRIPTION_SHORT =
-  "yust.dev — Yousef Mohammed Salah. Full-Stack Dev, AI & Cybersecurity, developer of Verdict.run, Sast.tech, SWRMZ, and ICPC HUE.";
+  "AI security, full-stack development, and competitive programming projects by Yousef Mohammed Salah in Egypt.";
 
 export const SOCIAL_IMAGE = `${SITE_URL}/static/images/metadata.jpg`;
 export const FAVICON = `${SITE_URL}/static/images/metadata.png`;
@@ -79,10 +78,12 @@ export interface BreadcrumbItem {
 }
 
 export interface BlogPostMeta {
-  id: string;
+  slug: string;
   title: string;
+  seoTitle?: string;
   date: string; // human-readable (e.g. "Apr 23, 2026")
   iso: string; // ISO 8601 publish date (e.g. "2026-04-23")
+  modifiedIso?: string;
   summary: string;
   image?: string; // absolute URL preferred
 }
@@ -139,20 +140,11 @@ export function personSchema() {
       name: "ICPC HUE",
       url: ICPCHUE_PRIMARY,
     },
-    sameAs: [
-      GITHUB_URL,
-      LINKEDIN_URL,
-      TELEGRAM_URL,
-      "https://x.com/YUST777",
-      "https://verdict.run",
-      "https://sast.tech",
-      ICPCHUE_PRIMARY,
-      ICPCHUE_ALT,
-    ],
+    sameAs: [GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, "https://x.com/YUST777"],
   } as const;
 }
 
-/** The website itself. Allows Google to surface a sitelinks search box. */
+/** The website entity shared by every page. */
 export function websiteSchema() {
   return {
     "@context": "https://schema.org",
@@ -189,9 +181,7 @@ export function webPageSchema(opts: {
   // For other page types we expose the Person via `about` instead.
   const personRef = { "@id": PERSON_ID };
   const entityFields =
-    type === "ProfilePage"
-      ? { mainEntity: personRef, about: personRef }
-      : { about: personRef };
+    type === "ProfilePage" ? { mainEntity: personRef, about: personRef } : { about: personRef };
 
   return {
     "@context": "https://schema.org",
@@ -232,13 +222,14 @@ function toIsoDateTime(date: string): string {
 }
 
 export function blogPostingSchema(post: BlogPostMeta) {
-  const url = `${SITE_URL}/blog/${post.id}`;
+  const url = `${SITE_URL}/blog/${post.slug}`;
   const image = post.image
     ? post.image.startsWith("http")
       ? post.image
       : `${SITE_URL}${post.image}`
     : SOCIAL_IMAGE;
   const isoDateTime = toIsoDateTime(post.iso);
+  const modifiedDateTime = toIsoDateTime(post.modifiedIso ?? post.iso);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -246,11 +237,16 @@ export function blogPostingSchema(post: BlogPostMeta) {
     headline: post.title,
     description: post.summary,
     datePublished: isoDateTime,
-    dateModified: isoDateTime,
+    dateModified: modifiedDateTime,
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     image: [image],
     mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
+    breadcrumb: breadcrumbSchema([
+      { name: "Home", url: SITE_URL },
+      { name: "Blog", url: `${SITE_URL}/blog` },
+      { name: post.title, url },
+    ]),
     inLanguage: "en",
     url,
   };
@@ -260,6 +256,42 @@ export interface ProjectListItem {
   name: string;
   url: string;
   description: string;
+}
+
+export function projectPageSchema(opts: {
+  url: string;
+  name: string;
+  description: string;
+  category: string;
+  technologies: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      webPageSchema({
+        url: opts.url,
+        name: opts.name,
+        description: opts.description,
+        breadcrumbs: [
+          { name: "Home", url: SITE_URL },
+          { name: "Projects", url: `${SITE_URL}/projects` },
+          { name: opts.name, url: opts.url },
+        ],
+        type: "WebPage",
+      }),
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${opts.url}#software`,
+        name: opts.name,
+        description: opts.description,
+        url: opts.url,
+        applicationCategory: opts.category,
+        applicationSubCategory: opts.technologies.join(", "),
+        author: { "@id": PERSON_ID },
+        creator: { "@id": PERSON_ID },
+      },
+    ],
+  };
 }
 
 export function projectsCollectionSchema(items: ProjectListItem[]) {
@@ -273,6 +305,10 @@ export function projectsCollectionSchema(items: ProjectListItem[]) {
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
+    breadcrumb: breadcrumbSchema([
+      { name: "Home", url: SITE_URL },
+      { name: "Projects", url },
+    ]),
     mainEntity: {
       "@type": "ItemList",
       itemListElement: items.map((p, i) => ({

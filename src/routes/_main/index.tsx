@@ -3,16 +3,11 @@ import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
 import GithubContributions from "@/components/about/GithubContributions";
 import AchievementsSection from "@/components/about/AchievementsSection";
-import {
-  SITE_URL,
-  buildRouteHead,
-  jsonLdString,
-  webPageSchema,
-} from "@/lib/seo";
+import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Yousef Mohammed Salah · About";
+const TITLE = "Yousef Mohammed Salah | AI & Cybersecurity Developer";
 const DESCRIPTION =
-  "Portfolio of Yousef Mohammed Salah (yust.dev). L3 AI & Cybersecurity student, developer of Verdict.run, Sast.tech, SWRMZ, and Lead Dev of ICPC HUE.";
+  "Yousef Mohammed Salah is an AI and cybersecurity student and full-stack developer in Egypt, creator of Verdict.run, Sast.tech, and ICPC HUE.";
 
 const aboutPageSchema = webPageSchema({
   url: SITE_URL,

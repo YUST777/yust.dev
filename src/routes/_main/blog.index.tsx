@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
-const TITLE = "yust.dev — Blog · Software, Hackathons, ICPC";
+const TITLE = "Software, AI Security & Hackathon Stories | yust.dev";
 const DESCRIPTION =
-  "Blog by Yousef Mohammed Salah on yust.dev — software engineering, AI security, hackathons, and the ICPC HUE community in Egypt.";
+  "Yousef Mohammed Salah writes about AI security, software engineering, hackathons, and building for Egypt's ICPC community.";
 
 const blogIndexSchema = webPageSchema({
   url: `${SITE_URL}/blog`,
@@ -38,9 +39,13 @@ export const Route = createFileRoute("/_main/blog/")({
 
 export interface BlogPost {
   id: string;
+  slug: string;
   title: string;
+  seoTitle: string;
   date: string;
   iso: string;
+  modifiedIso?: string;
+  modifiedDate?: string;
   summary: string;
   content: string;
   featured?: { label: string; url: string }[];
@@ -50,10 +55,15 @@ export interface BlogPost {
 export const posts: BlogPost[] = [
   {
     id: "1",
+    slug: "horus-technology-forum-sast-tech",
     title: "A day at Horus Technology Forum",
+    seoTitle: "Horus Technology Forum: Building Sast.tech | yust.dev",
     date: "Apr 23, 2026",
     iso: "2026-04-23",
-    summary: "Returning to where it all started, but with something much bigger.",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
+    summary:
+      "How I returned to the Horus Technology Forum to demonstrate Sast.tech, an AI security agent that tests and patches web vulnerabilities.",
     content: `Today I was at the Technology Forum event at [Horus University](https://horus.edu.eg). This forum holds a very special place in my heart because it reminds me of my beginnings—it was the first place I ever showcased a project during my first semester.
 
 Returning a year later feels like a major milestone. This time, we came back to present our latest project, [Sast.tech](https://sast.tech), which recently secured 2nd place at **GDG Delta** and 3rd place at **LuxsAI**, alongside my colleague [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/).
@@ -83,10 +93,15 @@ It doesn't just hand you a report; it uses AI to automatically patch the vulnera
   },
   {
     id: "4",
+    slug: "saas-marketing-strategy-az-tech-solutions",
     title: "Marketing Strategy at AZ Tech Solutions",
+    seoTitle: "SaaS Marketing Lessons from AZ Tech Solutions | yust.dev",
     date: "Apr 20, 2026",
     iso: "2026-04-20",
-    summary: "Learning the art of the 'Filter' and how to scale SaaS products.",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
+    summary:
+      "Practical SaaS marketing lessons from AZ Tech Solutions on awareness, trust, audience filtering, and converting interest into a win-win offer.",
     content: `Today I was at **AZ Tech Solutions** in Mansoura with my colleagues [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/). We were there for marketing training—learning how to sell your SaaS and generate profit—as a result of our 2nd place win at the **GDG Delta** hackathon.
 
 I learned many powerful concepts, but the one that stuck with me most was what I call **"The Filter"** (Al-Musaffa). The idea is simple: to sell your product, you start with an audience representing 100% of the market. Most of them don't know who you are. Your job is to build awareness and your **Personal Brand** so they trust you. After this phase, that 100% is 'filtered' down to roughly 60% who are actually interested and ready for your offer, leading to a true **Win-Win Situation**.
@@ -99,10 +114,15 @@ Special thanks to [Eng. Akram Zeyada](https://www.linkedin.com/in/akram-zeyada-2
   },
   {
     id: "3",
+    slug: "luxsai-hackathon-third-place-sast-tech",
     title: "Winning 3rd Place in LuxsAI",
+    seoTitle: "LuxsAI Hackathon: Third Place with Sast.tech | yust.dev",
     date: "Mar 29, 2026",
     iso: "2026-03-29",
-    summary: "A 17-hour journey and 850km across Egypt to compete in Luxor.",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
+    summary:
+      "The 850 km journey from Damietta to Luxor, how Sast.tech evolved into a desktop security IDE, and what earned third place at LuxsAI.",
     content: `I traveled 17 hours from Damietta to Luxor and came back with 3rd place :).
 
 Yeah, me and [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) went to **LUXSAI** in Luxor—about 850 km away 💀—and thankfully, we secured 3rd place in the AI Hackathon category.
@@ -130,10 +150,15 @@ Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` 
   },
   {
     id: "2",
+    slug: "gdg-delta-hackathon-second-place-sast-tech",
     title: "Winning 2nd Place in GDG Delta",
+    seoTitle: "GDG Delta Hackathon: Sast.tech Wins Second | yust.dev",
     date: "Feb 18, 2026",
     iso: "2026-02-18",
-    summary: "49 hours of sleep-deprived building to secure a win at Google Developer Groups.",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
+    summary:
+      "Inside the 49-hour build that took Sast.tech to second place at the GDG Delta hackathon, from the security problem to the final demo.",
     content: `Don't sleep until you hold the win in your hand. This was me at 1 AM, after staying awake for 49 hours straight in the service area 😂.
 
 We were at the **Google Developers Group - GDG Delta** hackathon. Alongside my colleagues [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/) and [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/), we set out to build something that solves a real problem for the modern developer.
@@ -160,9 +185,13 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
   },
   {
     id: "5",
+    slug: "zero-threat-egypt-innovation-summit",
     title: "Winning 3rd Place at the Sustainable Innovation National Summit",
+    seoTitle: "Zero Threat Wins Third at Egypt Innovation Summit | yust.dev",
     date: "Aug 28, 2025",
     iso: "2025-08-28",
+    modifiedIso: "2026-07-23",
+    modifiedDate: "Jul 23, 2026",
     summary:
       "From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.",
     content: `🎉 From Level 1 to the Top 3! 🎉
@@ -209,31 +238,40 @@ Standing on that stage, surrounded by senior engineers from 20+ universities, ta
 function BlogPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+      <Breadcrumbs
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Blog", url: `${SITE_URL}/blog` },
+        ]}
+      />
       <div>
         <h1 className="text-4xl font-pixel text-white mb-4 uppercase">blog</h1>
       </div>
 
       <div className="space-y-0 border-t border-white/5">
         {posts.map((post) => (
-          <div key={post.id} className="border-b border-white/5">
+          <article key={post.id} className="border-b border-white/5">
             <Link
               to="/blog/$postId"
-              params={{ postId: post.id }}
+              params={{ postId: post.slug }}
               className="flex flex-col py-8 group cursor-pointer"
             >
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-2">
-                <span className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
+                <h2 className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
                   {post.title}
-                </span>
-                <span className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest">
+                </h2>
+                <time
+                  dateTime={post.iso}
+                  className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest"
+                >
                   {post.date}
-                </span>
+                </time>
               </div>
               <p className="text-zinc-500 font-sans text-sm md:text-base line-clamp-2 max-w-3xl">
                 {post.summary}
               </p>
             </Link>
-          </div>
+          </article>
         ))}
       </div>
 

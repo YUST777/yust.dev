@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, lazy, Suspense, useMemo } from "react";
+import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import BentoTilt from "./BentoTilt";
@@ -67,6 +68,9 @@ const DRAWER_COMPONENTS: Record<string, React.LazyExoticComponent<any>> = {
 
 const MAIN_PROJECTS = projectsData.filter((p) => !p.isLarge);
 const HIGHLIGHT_PROJECTS = projectsData.filter((p) => p.isLarge);
+const PROJECT_CASE_STUDIES = [...projectsData, ...archiveProjectsData].filter(
+  (project) => project.slug && !project.isMinimal && !project.isLarge,
+);
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -228,6 +232,39 @@ export default function Projects() {
             </motion.div>
           ))}
         </motion.div>
+
+        <section
+          className="mx-auto mt-14 max-w-5xl border-t border-white/10 px-0 pt-10 md:px-4"
+          aria-labelledby="case-studies-heading"
+        >
+          <div className="max-w-2xl">
+            <h2 id="case-studies-heading" className="text-2xl font-semibold text-white">
+              Project case studies
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+              Crawlable project pages explain what each product does, the technologies behind it,
+              and the problems it was built to solve.
+            </p>
+          </div>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECT_CASE_STUDIES.map((project) => (
+              <li key={project.id}>
+                <Link
+                  to="/projects/$projectId"
+                  params={{ projectId: project.slug! }}
+                  className="group block h-full rounded-xl border border-white/10 p-4 transition-colors hover:border-white/25 hover:bg-white/[0.02]"
+                >
+                  <h3 className="text-sm font-semibold text-zinc-200 group-hover:text-white">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-zinc-500">
+                    {project.description}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
 
       <Suspense fallback={null}>

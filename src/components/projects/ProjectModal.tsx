@@ -291,12 +291,10 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
                         >
                           <img
                             src={screenshot}
-                            alt={`${project.useCDNImages ? "Price Card" : "Screenshot"} ${index + 1}`}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
+                            alt={`${project.title} ${project.useCDNImages ? "price card" : "screenshot"} ${index + 1}`}
                             className="w-full h-auto block rounded-lg sm:rounded-xl"
                             loading="lazy"
+                            decoding="async"
                             style={{
                               width: "100%",
                               height: "auto",

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { Link } from "@tanstack/react-router";
 import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
 import { RiTelegramFill, RiGithubFill, RiLinkedinBoxFill, RiMailFill } from "react-icons/ri";
 
@@ -29,32 +30,44 @@ export default function AboutSection() {
       <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">About Me</h2>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
-          I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp; Cybersecurity
-          student at <strong className="text-zinc-200">Horus University in Egypt</strong> and a
-          Full-Stack dev who builds tools that stay in people&apos;s bookmarks.
+          I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp;
+          Cybersecurity student at{" "}
+          <strong className="text-zinc-200">Horus University in Egypt</strong> and a Full-Stack dev
+          who builds tools that stay in people&apos;s bookmarks.
         </p>
         <p>
-          Most recently, I made <strong className="text-zinc-200">Verdict.run</strong>, a viral competitive programming
-          platform that garnered <strong className="text-zinc-200">120k+ impressions</strong>. Alongside building these, I have won{" "}
-          <strong className="text-zinc-200">4 national hackathons</strong> so far, developing everything from autonomous pentesting
-          agents (<strong className="text-zinc-200">Sast.tech</strong>).
+          Explore my focused overview of{" "}
+          <Link
+            to="/ai-security-projects"
+            className="text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            AI security projects and autonomous agents
+          </Link>
+          , or read the individual project case studies for architecture, features, and use cases.
+        </p>
+        <p>
+          Most recently, I made <strong className="text-zinc-200">Verdict.run</strong>, a viral
+          competitive programming platform that garnered{" "}
+          <strong className="text-zinc-200">120k+ impressions</strong>. Alongside building these, I
+          have won <strong className="text-zinc-200">4 national hackathons</strong> so far,
+          developing everything from autonomous pentesting agents (
+          <strong className="text-zinc-200">Sast.tech</strong>).
         </p>
 
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5 opacity-80">
-          <span className="text-zinc-500 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5">
+          <span className="text-zinc-400 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">
             CORE STACK :
           </span>
           <div className="flex flex-wrap items-center gap-6 text-zinc-400">
             {CORE_STACK.map(({ Icon, name, hoverClass }) => (
               <span
                 key={name}
-                tabIndex={0}
-                aria-label={name}
                 data-tooltip-id="core-stack-tooltip"
                 data-tooltip-content={name}
-                className={`inline-flex cursor-default outline-none focus-visible:text-white ${hoverClass} transition-colors`}
+                className={`inline-flex cursor-default ${hoverClass} transition-colors`}
               >
-                <Icon className="w-5 h-5" />
+                <Icon aria-hidden="true" focusable="false" className="w-5 h-5" />
+                <span className="sr-only">{name}</span>
               </span>
             ))}
           </div>
@@ -70,7 +83,7 @@ export default function AboutSection() {
       </Suspense>
 
       <div className="mt-16">
-        <p className="text-zinc-500 text-[13px] mb-6 font-mono uppercase tracking-widest">
+        <p className="text-zinc-400 text-[13px] mb-6 font-mono uppercase tracking-widest">
           Connect with me
         </p>
         <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">

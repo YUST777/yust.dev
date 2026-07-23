@@ -4,6 +4,8 @@ export const projectsData: Project[] = [
   {
     id: 7,
     title: "Verdict",
+    slug: "verdict-run",
+    seoTitle: "Verdict.run Competitive Programming Platform | yust.dev",
     description: "The Ultimate Competitive Programming Platform.",
     fullDescription:
       "Solve Codeforces problems with a built-in IDE, Whiteboard, and Custom Judge—no more tab switching. Features Mirror Mode, Smart IDE, and Algorithm Visualization.",
@@ -32,6 +34,8 @@ export const projectsData: Project[] = [
   {
     id: 8,
     title: "Sast",
+    slug: "sast-tech",
+    seoTitle: "Sast.tech Autonomous AI Security Agent Project | yust.dev",
     description: "Autonomous AI Security Agent.",
     fullDescription:
       "An AI autonomous agent that fetches your web app, finds vulnerabilities, patches the code, and generates a verified report. Sast automates the full security lifecycle—identifying, fixing, and verifying vulnerabilities with functional POCs. It ensures your software is secured as fast as it is coded, delivering superior precision through total process optimization.",
@@ -59,6 +63,8 @@ export const projectsData: Project[] = [
   {
     id: 2,
     title: "Gifts Charts",
+    slug: "gifts-charts",
+    seoTitle: "Gifts Charts Telegram Analytics Bot Project | yust.dev",
     description: "Real-time Telegram sticker & gift price tracking bot.",
     fullDescription:
       "A sophisticated Telegram bot for tracking live sticker prices and gift collections, featuring real-time data fetching, premium subscription systems, and automated image generation.",
@@ -85,6 +91,8 @@ export const projectsData: Project[] = [
   {
     id: 13,
     title: "10K Runner",
+    slug: "10k-runner",
+    seoTitle: "10K Runner Web3 Infinite Runner Game Project | yust.dev",
     description: "Infinite runner game that makes you EARN & fun.",
     fullDescription:
       "A fast-paced 3D infinite runner game built in 3 days for the 10k Squad international contest. Play, collect coins, and earn rewards while running through procedurally generated Web3 worlds.",
@@ -112,6 +120,8 @@ export const projectsData: Project[] = [
   {
     id: 14,
     title: "SWRMZ",
+    slug: "swrmz",
+    seoTitle: "SWRMZ Cooperative Swarm AI Security Project | yust.dev",
     description: "Cooperative Swarm AI Security agents.",
     fullDescription:
       "A swarm of AI security agents built on Band.ai for the Lablab.ai hackathon. SWRMZ hunts vulnerabilities across your stack, remediates them automatically, and monitors runtime logs.",
@@ -127,6 +137,8 @@ export const projectsData: Project[] = [
   {
     id: 9,
     title: "Collectable Kit",
+    slug: "collectable-kit",
+    seoTitle: "Collectable Kit Telegram Mini App Project | yust.dev",
     description: "Next-gen collectibles management platform.",
     fullDescription:
       "A comprehensive platform designed for modern collectors. Track, value, and manage your digital and physical collections with real-time analytics and a sleek, high-performance interface.",
@@ -141,6 +153,8 @@ export const projectsData: Project[] = [
   {
     id: 4,
     title: "ICPCHUE",
+    slug: "icpc-hue",
+    seoTitle: "ICPC HUE Competitive Programming Platform | yust.dev",
     description: "Hardened, sandboxed online judge platform.",
     fullDescription:
       "I led the development of the ICPC HUE training platform, a comprehensive training ecosystem serving the community. Built with Next.js, featuring secure registration, gamified dashboards, and skill trackers.",
@@ -154,6 +168,8 @@ export const projectsData: Project[] = [
   {
     id: 1,
     title: "Zero Threat",
+    slug: "zero-threat",
+    seoTitle: "Zero Threat AI Cybersecurity Platform Project | yust.dev",
     description: "National award-winning AI-driven security ecosystem.",
     fullDescription:
       "A comprehensive AI-powered cybersecurity suite comprising a web platform, browser extension, and Windows agent, designed for advanced threat intelligence and real-time protection.",
@@ -167,6 +183,8 @@ export const projectsData: Project[] = [
   {
     id: 15,
     title: "Sketchz",
+    slug: "sketchz",
+    seoTitle: "Sketchz Ethereum 3D Web3 Art Game Project | yust.dev",
     description: "A 3D game where you draw on ETH.",
     fullDescription:
       "Sketchz — a 3D game where you draw on ETH. Mint blank, draw it, sell it. Step into a 3D museum on Ethereum: draw your own pieces, watch others create in real-time, and buy or sell art right off the wall.",
@@ -224,6 +242,8 @@ export const archiveProjectsData: Project[] = [
   {
     id: 10,
     title: "PanoBlue",
+    slug: "panoblue",
+    seoTitle: "PanoBlue Corporate Import Export Website | yust.dev",
     description: "Import/Export Corporate Platform",
     fullDescription:
       "A custom-built digital presence for an international import/export company, migrating from WordPress to a tailored, high-performance web solution.",
@@ -237,6 +257,8 @@ export const archiveProjectsData: Project[] = [
   {
     id: 11,
     title: "Fazzah",
+    slug: "fazzah",
+    seoTitle: "Fazzah Full-Stack Web Application Project | yust.dev",
     description: "Efficient Web Application Solution",
     fullDescription:
       "A streamlined web application designed for efficiency and performance, focusing on a clean user interface and robust backend integration.",
@@ -250,9 +272,11 @@ export const archiveProjectsData: Project[] = [
   {
     id: 12,
     title: "RetroOS",
+    slug: "retro-os",
+    seoTitle: "RetroOS Browser Operating System Project | yust.dev",
     description: "Interactive Retro OS Simulation",
     fullDescription:
-      "A nostalgic, browser-based operating system simulation with interactive terminal and retro UI elements.",
+      "A nostalgic browser-based operating system simulation with an interactive terminal, desktop windows, and retro interface experiments.",
     tag: "Experimental",
     icon: "fa-terminal",
     span: "md:col-span-1 md:row-span-1",

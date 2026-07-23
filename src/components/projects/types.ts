@@ -8,6 +8,8 @@ export type ProjectFeature = {
 export type Project = {
   id: number;
   title: string;
+  slug?: string;
+  seoTitle?: string;
   description: string;
   fullDescription?: string;
   tag?: string;

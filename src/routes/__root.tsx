@@ -14,8 +14,6 @@ import geistMonoCss from "geist/font/mono?url";
 import geistSansCss from "geist/font/sans?url";
 
 import {
-  FAVICON,
-  KEYWORDS,
   PERSON_NAME,
   SITE_BRAND,
   SITE_DESCRIPTION,
@@ -35,7 +33,6 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: SITE_TITLE_LONG },
       { name: "description", content: SITE_DESCRIPTION },
-      { name: "keywords", content: KEYWORDS },
       { name: "author", content: PERSON_NAME },
       { name: "creator", content: PERSON_NAME },
       { name: "publisher", content: PERSON_NAME },
@@ -46,8 +43,7 @@ export const Route = createRootRoute({
       { name: "color-scheme", content: "dark" },
       {
         name: "robots",
-        content:
-          "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       },
       { name: "googlebot", content: "index, follow" },
       { name: "bingbot", content: "index, follow" },
@@ -77,8 +73,12 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: TWITTER_HANDLE },
     ],
     links: [
-      { rel: "canonical", href: SITE_URL },
-      { rel: "alternate", type: "application/rss+xml", title: `yust.dev — ${PERSON_NAME} Blog`, href: `${SITE_URL}/rss.xml` },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: `yust.dev — ${PERSON_NAME} Blog`,
+        href: `${SITE_URL}/rss.xml`,
+      },
       { rel: "sitemap", type: "application/xml", href: `${SITE_URL}/sitemap.xml` },
       { rel: "stylesheet", href: globalsCss },
       { rel: "stylesheet", href: geistSansCss },
