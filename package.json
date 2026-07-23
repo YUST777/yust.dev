@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "vp build",
+    "build": "node scripts/generate-og-hacks.mjs && vp build",
+    "og:generate": "node scripts/generate-og-hacks.mjs",
     "preview": "vp preview",
     "start": "vp preview",
     "lint": "vp lint . && tsgo --noEmit",
