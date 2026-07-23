@@ -36,14 +36,21 @@ export default function AboutSection() {
           who builds tools that stay in people&apos;s bookmarks.
         </p>
         <p>
-          Explore my focused overview of{" "}
+          Explore my focused overviews of{" "}
           <Link
             to="/ai-security-projects"
             className="text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white"
           >
-            AI security projects and autonomous agents
+            AI security projects
+          </Link>{" "}
+          and{" "}
+          <Link
+            to="/competitive-programming-platforms"
+            className="text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white"
+          >
+            competitive programming platforms
           </Link>
-          , or read the individual project case studies for architecture, features, and use cases.
+          , or read individual project case studies for architecture, features, and use cases.
         </p>
         <p>
           Most recently, I made <strong className="text-zinc-200">Verdict.run</strong>, a viral

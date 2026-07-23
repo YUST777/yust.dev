@@ -14,6 +14,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainHacksRouteImport } from './routes/_main/hacks'
+import { Route as MainCompetitiveProgrammingPlatformsRouteImport } from './routes/_main/competitive-programming-platforms'
 import { Route as MainAiSecurityProjectsRouteImport } from './routes/_main/ai-security-projects'
 import { Route as MainBlogIndexRouteImport } from './routes/_main/blog.index'
 import { Route as MainProjectsProjectIdRouteImport } from './routes/_main/projects_.$projectId'
@@ -43,6 +44,12 @@ const MainHacksRoute = MainHacksRouteImport.update({
   path: '/hacks',
   getParentRoute: () => MainRoute,
 } as any)
+const MainCompetitiveProgrammingPlatformsRoute =
+  MainCompetitiveProgrammingPlatformsRouteImport.update({
+    id: '/competitive-programming-platforms',
+    path: '/competitive-programming-platforms',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainAiSecurityProjectsRoute = MainAiSecurityProjectsRouteImport.update({
   id: '/ai-security-projects',
   path: '/ai-security-projects',
@@ -68,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof MainIndexRoute
   '/token-usage': typeof TokenUsageRoute
   '/ai-security-projects': typeof MainAiSecurityProjectsRoute
+  '/competitive-programming-platforms': typeof MainCompetitiveProgrammingPlatformsRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/blog/$postId': typeof MainBlogPostIdRoute
@@ -77,6 +85,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/token-usage': typeof TokenUsageRoute
   '/ai-security-projects': typeof MainAiSecurityProjectsRoute
+  '/competitive-programming-platforms': typeof MainCompetitiveProgrammingPlatformsRoute
   '/hacks': typeof MainHacksRoute
   '/projects': typeof MainProjectsRoute
   '/': typeof MainIndexRoute
@@ -89,6 +98,7 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteWithChildren
   '/token-usage': typeof TokenUsageRoute
   '/_main/ai-security-projects': typeof MainAiSecurityProjectsRoute
+  '/_main/competitive-programming-platforms': typeof MainCompetitiveProgrammingPlatformsRoute
   '/_main/hacks': typeof MainHacksRoute
   '/_main/projects': typeof MainProjectsRoute
   '/_main/': typeof MainIndexRoute
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/token-usage'
     | '/ai-security-projects'
+    | '/competitive-programming-platforms'
     | '/hacks'
     | '/projects'
     | '/blog/$postId'
@@ -111,6 +122,7 @@ export interface FileRouteTypes {
   to:
     | '/token-usage'
     | '/ai-security-projects'
+    | '/competitive-programming-platforms'
     | '/hacks'
     | '/projects'
     | '/'
@@ -122,6 +134,7 @@ export interface FileRouteTypes {
     | '/_main'
     | '/token-usage'
     | '/_main/ai-security-projects'
+    | '/_main/competitive-programming-platforms'
     | '/_main/hacks'
     | '/_main/projects'
     | '/_main/'
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainHacksRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/competitive-programming-platforms': {
+      id: '/_main/competitive-programming-platforms'
+      path: '/competitive-programming-platforms'
+      fullPath: '/competitive-programming-platforms'
+      preLoaderRoute: typeof MainCompetitiveProgrammingPlatformsRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/ai-security-projects': {
       id: '/_main/ai-security-projects'
       path: '/ai-security-projects'
@@ -205,6 +225,7 @@ declare module '@tanstack/react-router' {
 
 interface MainRouteChildren {
   MainAiSecurityProjectsRoute: typeof MainAiSecurityProjectsRoute
+  MainCompetitiveProgrammingPlatformsRoute: typeof MainCompetitiveProgrammingPlatformsRoute
   MainHacksRoute: typeof MainHacksRoute
   MainProjectsRoute: typeof MainProjectsRoute
   MainIndexRoute: typeof MainIndexRoute
@@ -215,6 +236,8 @@ interface MainRouteChildren {
 
 const MainRouteChildren: MainRouteChildren = {
   MainAiSecurityProjectsRoute: MainAiSecurityProjectsRoute,
+  MainCompetitiveProgrammingPlatformsRoute:
+    MainCompetitiveProgrammingPlatformsRoute,
   MainHacksRoute: MainHacksRoute,
   MainProjectsRoute: MainProjectsRoute,
   MainIndexRoute: MainIndexRoute,
