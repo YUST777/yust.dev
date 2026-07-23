@@ -129,12 +129,6 @@ function PostPage() {
           { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
         ]}
       />
-      <Link
-        to="/blog"
-        className="text-zinc-500 font-mono text-[11px] uppercase tracking-[0.2em] hover:text-zinc-300 transition-colors inline-flex items-center gap-2 group"
-      >
-        <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to blog
-      </Link>
 
       <div className="space-y-4">
         <h1 className="text-3xl md:text-5xl font-sans font-bold text-white tracking-tight leading-tight">

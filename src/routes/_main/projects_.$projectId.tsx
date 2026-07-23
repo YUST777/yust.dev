@@ -13,7 +13,14 @@ const projectPages = [...projectsData, ...archiveProjectsData].filter(
 );
 
 function getProject(projectId: string) {
-  return projectPages.find((project) => project.slug === projectId);
+  const norm = projectId.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return projectPages.find(
+    (project) =>
+      project.slug === projectId ||
+      project.slug.replace(/[^a-z0-9]/g, "") === norm ||
+      project.drawerId?.toLowerCase().replace(/[^a-z0-9]/g, "") === norm ||
+      project.title.toLowerCase().replace(/[^a-z0-9]/g, "") === norm,
+  );
 }
 
 function getMetaDescription(project: Project) {
@@ -85,14 +92,7 @@ function ProjectPage() {
         ]}
       />
 
-      <Link
-        to="/projects"
-        className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500 transition-colors hover:text-zinc-300"
-      >
-        <span aria-hidden="true">←</span> All projects
-      </Link>
-
-      <header className="mt-10 border-b border-white/10 pb-10">
+      <header className="mt-8 border-b border-white/10 pb-10">
         {project.tag && (
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
             {project.tag}
@@ -110,9 +110,12 @@ function ProjectPage() {
               href={project.siteLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-85"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-85"
             >
-              Visit project <span aria-hidden="true">↗</span>
+              <span>Visit project</span>
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5" />
+              </svg>
             </a>
           )}
           {project.repoLink && (
@@ -120,9 +123,12 @@ function ProjectPage() {
               href={project.repoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-white/40 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-white/40 hover:text-white"
             >
-              Source code <span aria-hidden="true">↗</span>
+              <span>Source code</span>
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5" />
+              </svg>
             </a>
           )}
         </div>

@@ -2,15 +2,32 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
+const SLUG_ALIASES: Record<string, string> = {
+  "/projects/verdict": "/projects/verdict-run",
+  "/projects/sast": "/projects/sast-tech",
+  "/projects/10krunner": "/projects/10k-runner",
+  "/projects/collectablekit": "/projects/collectable-kit",
+  "/projects/zerothreat": "/projects/zero-threat",
+  "/projects/retroos": "/projects/retro-os",
+  "/projects/giftscharts": "/projects/gifts-charts",
+};
+
 export function NotFound() {
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Handle legacy redirects from /mem to /blog
+    // Handle legacy /mem redirects to /blog
     if (location.pathname.startsWith("/mem")) {
       const newPath = location.pathname.replace("/mem", "/blog");
       void navigate({ to: newPath, replace: true });
+      return;
+    }
+
+    // Handle shortcut project slug redirects (e.g. /projects/verdict -> /projects/verdict-run)
+    const lowerPath = location.pathname.toLowerCase().replace(/\/$/, "");
+    if (SLUG_ALIASES[lowerPath]) {
+      void navigate({ to: SLUG_ALIASES[lowerPath], replace: true });
       return;
     }
 
@@ -32,10 +49,7 @@ export function NotFound() {
   }, [location.pathname, navigate]);
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
-
+    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 relative overflow-hidden bg-[#0c0c0c]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
