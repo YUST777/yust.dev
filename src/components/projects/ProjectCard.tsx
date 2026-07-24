@@ -14,6 +14,7 @@ interface ProjectCardProps {
   onMouseLeave: () => void;
   onClick: () => void;
   isArchiveItem?: boolean;
+  overrideSpan?: string;
 }
 
 export default function ProjectCard({
@@ -25,13 +26,15 @@ export default function ProjectCard({
   onMouseLeave,
   onClick,
   isArchiveItem = false,
+  overrideSpan,
 }: ProjectCardProps) {
   const isArchiveTrigger = project.isArchive;
+  const activeSpan = overrideSpan || project.span;
 
   return (
     <div
       key={project.id}
-      className={`${project.span} ${index === 0 ? "" : "content-auto"} ${
+      className={`${activeSpan} ${index === 0 ? "" : "content-auto"} ${
         isArchiveItem ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-3 duration-300" : ""
       }`}
     >

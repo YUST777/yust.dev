@@ -87,34 +87,11 @@ export const Route = createFileRoute("/_main/projects")({
 
 function ProjectsPage() {
   return (
-    <div className="bg-transparent text-white pt-0 sm:pt-[45px]">
-      <div className="mx-auto max-w-7xl px-4 pt-8 md:px-6 sm:pt-12">
-        <Breadcrumbs
-          items={[
-            { name: "Home", url: SITE_URL },
-            { name: "Projects", url: `${SITE_URL}/projects` },
-          ]}
-        />
-      </div>
-      <section id="projects" className="bg-dark px-4 pb-20 pt-10 md:px-6 md:pb-32 md:pt-12">
+    <div className="bg-transparent text-white pt-8 sm:pt-32">
+      <section id="projects" className="bg-dark px-4 pb-20 pt-4 md:px-6 md:pb-32 md:pt-6">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex flex-col gap-6 px-0 md:mb-12 md:flex-row md:items-end md:justify-between md:px-4">
-            <div className="max-w-2xl">
-              <h1 className="mb-3 font-pixel text-4xl uppercase text-white">PROJECTS</h1>
-              <p className="font-mono text-[13px] text-zinc-400 sm:text-sm">
-                Tools, platforms, and experiments by Yousef Mohammed Salah — from Verdict.run and
-                Sast.tech to ICPC HUE and Telegram mini-apps on TON.
-              </p>
-            </div>
-            <a
-              href="https://github.com/YUST777"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden shrink-0 items-center gap-2 self-end rounded-full border border-white/20 px-8 py-3 text-sm uppercase tracking-widest transition-colors hover:bg-white/10 md:flex"
-            >
-              <i className="fab fa-github text-lg" aria-hidden="true" />
-              View GitHub
-            </a>
+          <div className="mb-6 px-0">
+            <h1 className="font-pixel text-4xl uppercase text-white">PROJECTS</h1>
           </div>
 
           <Projects />

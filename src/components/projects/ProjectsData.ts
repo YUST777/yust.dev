@@ -230,7 +230,7 @@ export const projectsData: Project[] = [
     span: "md:col-span-3 md:row-span-1",
     delay: "delay-300",
     isLarge: true,
-    video: "/videos/yousefdev.webm",
+    video: "/videos/yust.webm",
     poster: "/static/images/posters/yousefdev.webp",
     drawerId: "yousefdev",
     technologies: ["Full-Stack Development", "Cybersecurity", "Automation"],
