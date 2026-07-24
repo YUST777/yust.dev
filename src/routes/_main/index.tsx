@@ -40,7 +40,7 @@ export const Route = createFileRoute("/_main/")({
 
 function AboutPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-10 sm:space-y-16 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-10 sm:space-y-16 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <ProfileHeader />
       <AboutSection />
       <GithubContributions />
