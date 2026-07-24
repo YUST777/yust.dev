@@ -54,12 +54,13 @@ export default function ProjectCard({
             className="absolute inset-0 z-50 w-full h-full bg-transparent cursor-pointer"
           />
 
-          <div className="absolute top-4 right-4 z-40 w-12 h-12 scale-0 opacity-0 bg-white rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-[transform,opacity] duration-200 group-hover:scale-100 group-hover:opacity-100">
+          <div className="absolute top-4 right-4 z-40 px-3.5 py-2 scale-90 opacity-0 bg-white text-black rounded-full flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all duration-200 group-hover:scale-100 group-hover:opacity-100 font-mono text-[11px] font-bold uppercase tracking-wider">
             {project.isMinimal ? (
-              <i className="fas fa-hand-pointer text-xl"></i>
+              <i className="fas fa-hand-pointer text-xs"></i>
             ) : (
-              <MousePointerClick className="w-6 h-6 text-black" strokeWidth={2.5} />
+              <MousePointerClick className="w-4 h-4 text-black" strokeWidth={2.5} />
             )}
+            <span>{isArchiveTrigger && isExpanded ? "Collapse" : "Click for Info"}</span>
           </div>
 
           <div className="w-full h-full bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
@@ -106,6 +107,10 @@ export default function ProjectCard({
                   {project.title}
                 </h2>
                 <p className="text-gray-300 text-xs md:text-sm font-light">{project.description}</p>
+                <div className="mt-2 text-[10px] font-mono text-zinc-400 group-hover:text-white transition-colors uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 duration-300">
+                  <span>Click for project details</span>
+                  <span>&rarr;</span>
+                </div>
               </div>
             </div>
           )}
