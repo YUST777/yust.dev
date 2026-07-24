@@ -53,7 +53,6 @@ const hacks = [
         <strong className="text-zinc-200">sast.tech</strong>—an autonomous Pentesting AI Agent.
       </>
     ),
-    tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
@@ -86,7 +85,6 @@ const hacks = [
         Playwright.
       </>
     ),
-    tech: "Next.js • Playwright • Electron • AI Agents",
     linkText: "Project Waitlist: sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
@@ -112,7 +110,6 @@ const hacks = [
         assessment.
       </>
     ),
-    tech: "Next.js • React • GSAP • YARA Protocol • Cybersecurity",
     linkText: "",
     linkUrl: "",
     proofs: [
@@ -146,7 +143,6 @@ const failedHacks = [
         beautiful, but the clock won.
       </>
     ),
-    tech: "Band.ai • AI Agents • Cybersecurity • Next.js",
     proofs: [
       {
         label: "Lablab.ai Hackathon Page",
@@ -166,7 +162,6 @@ const failedHacks = [
         Features a non-custodial onchain order engine for limit buys, limit sells, stop-losses, and take-profit ladders with permissionless execution and TWAP oracle validation.
       </>
     ),
-    tech: "Monad RPC • Solidity • TWAP Oracles • Next.js • Web3",
     linkText: "Live Terminal: monterminal.fun",
     linkUrl: "https://www.monterminal.fun/",
     proofs: [
@@ -215,9 +210,6 @@ function HacksPage() {
             </h3>
             <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
               {hack.desc}
-            </div>
-            <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 mt-2">
-              {hack.tech}
             </div>
 
             <div className="flex flex-col gap-2 mt-1">
@@ -289,9 +281,6 @@ function HacksPage() {
               </h3>
               <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
                 {hack.desc}
-              </div>
-              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 mt-2">
-                {hack.tech}
               </div>
 
               <div className="flex flex-col gap-2 mt-1">
