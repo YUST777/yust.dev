@@ -70,7 +70,7 @@ export const Route = createFileRoute("/_main/projects")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/projects",
-      image: `${SITE_URL}/static/images/og-projects.png`,
+      image: `${SITE_URL}/static/images/og-projects.png?v=2`,
     });
     return {
       ...base,

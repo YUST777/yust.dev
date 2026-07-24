@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_main/blog/")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/blog",
-      image: `${SITE_URL}/static/images/og-blog.png`,
+      image: `${SITE_URL}/static/images/og-blog.png?v=2`,
     });
     return {
       ...base,

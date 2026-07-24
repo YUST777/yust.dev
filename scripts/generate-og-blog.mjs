@@ -386,4 +386,12 @@ try {
   // webp fallback
 }
 
+// Copy to .output if build directory exists
+const outputDir = join(rootDir, ".output/public/static/images");
+if (readFileSync) {
+  try {
+    execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
+  } catch {}
+}
+
 console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-blog.svg + 2K PNG & WebP!`);
