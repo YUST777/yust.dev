@@ -131,7 +131,7 @@ const hacks = [
 
 const failedHacks = [
   {
-    status: "MISSED SUBMISSION BY 2 MINUTES",
+    status: "DIDN'T WIN (MISSED SUBMISSION BY 2 MINUTES)",
     color: "text-zinc-400 hover:text-amber-500/80 transition-colors duration-300",
     event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
     title: "SWRMZ (swrmz.tech)",
@@ -151,13 +151,12 @@ const failedHacks = [
     ],
   },
   {
-    status: "BUILDANYTHING SHOWCASE ENTRY",
-    color: "text-zinc-400 hover:text-amber-500/80 transition-colors duration-300",
+    status: "DIDN'T WIN",
+    color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
     event: "BUILDANYTHING HACKATHON • MONAD MAINNET",
     title: "MonTerminal (Monad Onchain Terminal)",
     desc: (
       <>
-        <p className="font-semibold text-zinc-200 mb-2 font-mono text-xs sm:text-sm">"Memecoins trade 24/7. People don’t."</p>
         MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives traders one place to discover new tokens, inspect real prices and liquidity, trade supported pools, bridge assets, monitor their portfolio, and protect positions without watching charts all day.
         Features a non-custodial onchain order engine for limit buys, limit sells, stop-losses, and take-profit ladders with permissionless execution and TWAP oracle validation.
       </>
