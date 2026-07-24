@@ -132,9 +132,10 @@ const hacks = [
 const failedHacks = [
   {
     status: "DIDN'T WIN (MISSED SUBMISSION BY 2 MINUTES)",
-    color: "text-zinc-400 hover:text-amber-500/80 transition-colors duration-300",
+    color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
     event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
     title: "SWRMZ (swrmz.tech)",
+    iconType: "clock",
     desc: (
       <>
         SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across
@@ -153,8 +154,9 @@ const failedHacks = [
   {
     status: "DIDN'T WIN",
     color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
-    event: "BUILDANYTHING HACKATHON • MONAD MAINNET",
+    event: "BUILDANYTHING HACKATHON • JULY 24, 2026 • MONAD MAINNET",
     title: "MonTerminal (Monad Onchain Terminal)",
+    iconType: "deny",
     desc: (
       <>
         MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives traders one place to discover new tokens, inspect real prices and liquidity, trade supported pools, bridge assets, monitor their portfolio, and protect positions without watching charts all day.
@@ -198,6 +200,44 @@ function PixelTrophy({ rank, className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { r
       <path
         d="M1 0h5v1H1z M0 1h7v2H0z M1 3h5v1H1z M2 4h3v1H2z M3 5h1v1H3z M2 6h3v1H2z M1 7h5v1H1z"
         fill={color}
+      />
+    </svg>
+  );
+}
+
+function PixelClock({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 7 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      shapeRendering="crispEdges"
+    >
+      <path
+        d="M2 0h3v1H2z M1 1h5v1H1z M0 2h7v4H0z M1 6h5v1H1z M2 7h3v1H2z M3 2h1v2H3z M3 4h2v1H3z"
+        fill="#ef4444"
+      />
+    </svg>
+  );
+}
+
+function PixelDeny({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 7 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      shapeRendering="crispEdges"
+    >
+      <path
+        d="M2 0h3v1H2z M1 1h5v1H1z M0 2h7v4H0z M1 6h5v1H1z M2 7h3v1H2z"
+        fill="#ef4444"
+      />
+      <path
+        d="M2 2h1v1H2z M4 2h1v1H4z M3 3h1v2H3z M2 5h1v1H2z M4 5h1v1H4z"
+        fill="#111110"
       />
     </svg>
   );
@@ -297,7 +337,10 @@ function HacksPage() {
         <div className="space-y-16 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-2 duration-500">
           {failedHacks.map((hack, i) => (
             <div key={i} className="flex flex-col gap-3">
-              <h2 className={`text-2xl sm:text-3xl font-pixel ${hack.color}`}>{hack.status}</h2>
+              <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+                {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
+                <span>{hack.status}</span>
+              </h2>
               <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
                 {hack.event}
               </div>
