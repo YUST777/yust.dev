@@ -1,5 +1,4 @@
 import { memo, useRef, useEffect, useState, useCallback } from "react";
-import { useInView } from "framer-motion";
 
 export const VideoPlayer = memo(
   ({
@@ -21,12 +20,24 @@ export const VideoPlayer = memo(
     const containerRef = useRef<HTMLDivElement>(null);
     const [videoLoaded, setVideoLoaded] = useState(false);
     const [shouldLoadVideo, setShouldLoadVideo] = useState(shouldAutoPlay);
+    const [isInView, setIsInView] = useState(false);
 
-    // Detect when container is near the viewport
-    const isInView = useInView(containerRef, {
-      once: true,
-      margin: isPriority ? "500px" : "100px",
-    });
+    useEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          setIsInView(true);
+          observer.disconnect();
+        },
+        { rootMargin: isPriority ? "500px" : "100px" },
+      );
+
+      observer.observe(container);
+      return () => observer.disconnect();
+    }, [isPriority]);
 
     // Only load the actual video src when the user hovers or it's autoplay
     useEffect(() => {
@@ -76,6 +87,7 @@ export const VideoPlayer = memo(
             src={poster}
             alt={title || "Project preview"}
             loading={isPriority ? "eager" : "lazy"}
+            fetchPriority={isPriority ? "high" : "auto"}
             decoding="async"
             className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-300 ${
               videoLoaded ? "opacity-0" : "opacity-100"

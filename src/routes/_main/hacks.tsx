@@ -162,7 +162,7 @@ const hacks = [
 const failedHacks = [
   {
     status: "MISSED SUBMISSION BY 2 MINUTES",
-    color: "text-zinc-600 hover:text-amber-500/80 transition-colors duration-300",
+    color: "text-zinc-400 hover:text-amber-500/80 transition-colors duration-300",
     event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
     title: "SWRMZ (swrmz.tech)",
     desc: (
@@ -189,7 +189,7 @@ function HacksPage() {
   const [showFailed, setShowFailed] = useState(false);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -200,7 +200,7 @@ function HacksPage() {
         <h1 className="text-4xl font-pixel text-white mb-4 uppercase">
           HACKATHONS WON ( {hacks.length} )
         </h1>
-        <p className="text-zinc-500 font-mono text-[13px] sm:text-sm">
+        <p className="text-zinc-400 font-mono text-[13px] sm:text-sm">
           Competitions, bounties, and builds under pressure.
         </p>
       </div>
@@ -209,7 +209,7 @@ function HacksPage() {
         {hacks.map((hack, i) => (
           <div key={i} className="flex flex-col gap-3">
             <h2 className={`text-2xl sm:text-3xl font-pixel ${hack.color}`}>{hack.rank}</h2>
-            <div className="text-[10px] sm:text-[11px] font-mono text-zinc-500 uppercase tracking-widest mt-1">
+            <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
               {hack.event}
             </div>
             <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
@@ -218,7 +218,7 @@ function HacksPage() {
             <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
               {hack.desc}
             </div>
-            <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
+            <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 mt-2">
               {hack.tech}
             </div>
 
@@ -241,7 +241,7 @@ function HacksPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       href={proof.url}
-                      className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group"
+                      className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
                     >
                       <svg
                         className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
@@ -272,7 +272,7 @@ function HacksPage() {
       <div className="pt-4">
         <p
           onClick={() => setShowFailed(!showFailed)}
-          className="text-zinc-500 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block"
+          className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block"
         >
           [ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]
         </p>
@@ -283,7 +283,7 @@ function HacksPage() {
           {failedHacks.map((hack, i) => (
             <div key={i} className="flex flex-col gap-3">
               <h2 className={`text-2xl sm:text-3xl font-pixel ${hack.color}`}>{hack.status}</h2>
-              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-500 uppercase tracking-widest mt-1">
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
                 {hack.event}
               </div>
               <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
@@ -292,7 +292,7 @@ function HacksPage() {
               <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
                 {hack.desc}
               </div>
-              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-600 mt-2">
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 mt-2">
                 {hack.tech}
               </div>
 
@@ -315,7 +315,7 @@ function HacksPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         href={proof.url}
-                        className="text-[10px] sm:text-[11px] font-mono text-zinc-500 hover:text-white transition-colors flex items-center gap-1.5 group"
+                        className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
                       >
                         <svg
                           className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"

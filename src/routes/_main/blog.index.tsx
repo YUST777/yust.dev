@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
@@ -286,30 +285,29 @@ const CATEGORIES = ["All", "Hackathons", "AI & Security", "SaaS & Marketing"];
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredPost, setHoveredPost] = useState<BlogPost | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (!previewRef.current) return;
+      previewRef.current.style.transform = `translate3d(${e.clientX + 24}px, ${e.clientY - 120}px, 0)`;
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const filteredPosts =
-    selectedCategory === "All"
-      ? posts
-      : posts.filter((post) => post.category === selectedCategory);
+    selectedCategory === "All" ? posts : posts.filter((post) => post.category === selectedCategory);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
           { name: "Blog", url: `${SITE_URL}/blog` },
         ]}
       />
-      
+
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
         <div>
           <h1 className="text-4xl font-pixel text-white mb-2 uppercase">blog</h1>
@@ -339,89 +337,65 @@ function BlogPage() {
         </div>
       </div>
 
-      {/* Blog List with Spring Layout Transitions */}
-      <motion.div layout className="space-y-0 border-t border-white/10">
-        <AnimatePresence mode="popLayout">
-          {filteredPosts.map((post) => (
-            <motion.article
-              key={post.id}
-              layout
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="border-b border-white/10 group"
-              onMouseEnter={() => setHoveredPost(post)}
-              onMouseLeave={() => setHoveredPost(null)}
-            >
-              <Link
-                to="/blog/$postId"
-                params={{ postId: post.slug }}
-                className="flex flex-col py-8 group cursor-pointer relative z-10"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 mb-2">
-                  <h2 className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
-                    {post.title}
-                  </h2>
-                  <time
-                    dateTime={post.iso}
-                    className="text-zinc-500 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest"
-                  >
-                    {post.date}
-                  </time>
-                </div>
-                <p className="text-zinc-500 font-sans text-sm md:text-base line-clamp-2 max-w-3xl mt-1">
-                  {post.summary}
-                </p>
-              </Link>
-            </motion.article>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* Sleek Floating Hover Image Popup Preview */}
-      <AnimatePresence>
-        {hoveredPost && hoveredPost.images && hoveredPost.images.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.75, rotate: -4 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              rotate: 0,
-              x: mousePos.x + 24,
-              y: mousePos.y - 120,
-            }}
-            exit={{ opacity: 0, scale: 0.75, rotate: 4 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 30,
-              mass: 0.8,
-            }}
-            className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+      <div
+        key={selectedCategory}
+        className="space-y-0 border-t border-white/10 animate-in fade-in duration-150"
+      >
+        {filteredPosts.map((post) => (
+          <article
+            key={post.id}
+            className="border-b border-white/10 group"
+            onMouseEnter={() => setHoveredPost(post)}
+            onMouseLeave={() => setHoveredPost(null)}
           >
-            <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
-              <img
-                src={hoveredPost.images[0]}
-                alt={hoveredPost.title}
-                className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-4 right-4">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
-                  {hoveredPost.category}
-                </span>
-                <p className="text-xs font-sans font-bold text-white truncate">
-                  {hoveredPost.title}
-                </p>
+            <Link
+              to="/blog/$postId"
+              params={{ postId: post.slug }}
+              className="flex flex-col py-8 group cursor-pointer relative z-10"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 mb-2">
+                <h2 className="text-zinc-200 group-hover:text-white transition-colors font-sans text-lg md:text-xl tracking-tight font-semibold">
+                  {post.title}
+                </h2>
+                <time
+                  dateTime={post.iso}
+                  className="text-zinc-400 text-[11px] md:text-xs font-mono shrink-0 sm:ml-4 uppercase tracking-widest"
+                >
+                  {post.date}
+                </time>
               </div>
+              <p className="text-zinc-400 font-sans text-sm md:text-base line-clamp-2 max-w-3xl mt-1">
+                {post.summary}
+              </p>
+            </Link>
+          </article>
+        ))}
+      </div>
+
+      {hoveredPost && hoveredPost.images && hoveredPost.images.length > 0 && (
+        <div
+          ref={previewRef}
+          className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
+        >
+          <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
+            <img
+              src={hoveredPost.images[0]}
+              alt={hoveredPost.title}
+              className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+            <div className="absolute bottom-3 left-4 right-4">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
+                {hoveredPost.category}
+              </span>
+              <p className="text-xs font-sans font-bold text-white truncate">{hoveredPost.title}</p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
 
       <div className="pt-4">
-        <p className="text-zinc-500 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">
+        <p className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">
           [ Archived Posts ]
         </p>
       </div>

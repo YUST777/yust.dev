@@ -1,24 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { lazy, Suspense, useEffect, useState } from "react";
 import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
 import StarSparkleIcon from "./icons/star-sparkle";
 import BlogIcon from "./icons/blog";
-import { DesktopGoose } from "./desktop-goose";
+import DuckIcon from "./icons/duck";
+
+const loadDesktopGoose = () =>
+    import("./desktop-goose").then((module) => ({ default: module.DesktopGoose })),
+  DesktopGoose = lazy(loadDesktopGoose);
 
 export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640); // 640px is the 'sm' breakpoint
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
     const checkDrawer = () => {
       setIsDrawerOpen(document.body.classList.contains("drawer-open"));
     };
@@ -29,25 +24,16 @@ export function Navbar() {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
   return (
-    <motion.nav
-      initial={false}
-      animate={{
-        y: isDrawerOpen ? (isMobile ? 150 : -150) : 0, // Slide down on mobile, up on desktop
-        opacity: isDrawerOpen ? 0 : 1,
-        filter: isDrawerOpen ? "blur(10px)" : "blur(0px)",
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 30,
-        mass: 1,
-      }}
-      className="pointer-events-auto fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] -translate-x-1/2 px-2 sm:bottom-auto sm:top-8"
+    <nav
+      className={`pointer-events-auto fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] -translate-x-1/2 px-2 transition-[transform,opacity,filter] duration-300 ease-out sm:bottom-auto sm:top-8 ${
+        isDrawerOpen
+          ? "translate-y-[150px] opacity-0 blur-[10px] sm:-translate-y-[150px]"
+          : "translate-y-0 opacity-100 blur-0"
+      }`}
     >
       <div className="flex max-w-[95vw] items-center gap-0.5 overflow-visible sm:gap-1.5 rounded-full border border-white/[0.08] bg-[#0e0e0e]/70 p-1 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-2xl sm:p-1.5 sm:py-2">
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
@@ -58,10 +44,44 @@ export function Navbar() {
         <div className="w-[1px] h-6 shrink-0 bg-white/10 mx-1 sm:mx-2" />
 
         <div className="flex shrink-0 items-center overflow-visible py-px">
-          <DesktopGoose />
+          <GooseLauncher />
         </div>
       </div>
-    </motion.nav>
+    </nav>
+  );
+}
+
+function GooseLauncher() {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  if (shouldLoad) {
+    return (
+      <Suspense fallback={<GooseIcon />}>
+        <DesktopGoose initiallyActive />
+      </Suspense>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onPointerEnter={() => void loadDesktopGoose()}
+      onFocus={() => void loadDesktopGoose()}
+      onClick={() => setShouldLoad(true)}
+      aria-label="Release the desktop goose"
+      title="🪿 Release the Goose"
+      className="group flex items-center justify-center rounded-full p-2 text-zinc-400 transition-all duration-300 hover:bg-white/5 hover:text-zinc-200 active:bg-[#252528]/90 active:ring-1 active:ring-white/10"
+    >
+      <DuckIcon className="h-[22px] w-[22px]" />
+    </button>
+  );
+}
+
+function GooseIcon() {
+  return (
+    <span aria-hidden="true" className="flex items-center justify-center p-2 text-zinc-400">
+      <DuckIcon className="h-[22px] w-[22px]" />
+    </span>
   );
 }
 
@@ -69,7 +89,7 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
   return (
     <Link
       to={to}
-      preload="intent"
+      preload="render"
       className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-[1rem] sm:rounded-full transition-all duration-300 relative group min-w-[50px] sm:min-w-0"
       activeProps={{
         className:

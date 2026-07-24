@@ -1,5 +1,6 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 import { AppThemeProvider } from "@/components/mode-toggle";
 import { QueryProvider } from "@/lib/query/providers";
@@ -152,11 +153,30 @@ function RootDocument({ children }: { children: ReactNode }) {
           </svg>
         </div>
         <RootProviders>{children}</RootProviders>
-        <Analytics />
-        <SpeedInsights />
+        <VercelTelemetry />
         <Scripts />
       </body>
     </html>
+  );
+}
+
+function VercelTelemetry() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const hostname = window.location.hostname;
+    setEnabled(
+      hostname === "yust.dev" || hostname === "www.yust.dev" || hostname.endsWith(".vercel.app"),
+    );
+  }, []);
+
+  if (!enabled) return null;
+
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+    </>
   );
 }
 

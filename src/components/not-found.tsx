@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 const SLUG_ALIASES: Record<string, string> = {
@@ -50,30 +49,11 @@ export function NotFound() {
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 relative overflow-hidden bg-[#0c0c0c]">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center relative z-10"
-      >
-        <motion.h1
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{
-            duration: 1.2,
-            ease: [0, 0.71, 0.2, 1.01],
-            scale: {
-              type: "spring",
-              damping: 12,
-              stiffness: 100,
-              restDelta: 0.001,
-            },
-          }}
-          className="text-[120px] md:text-[180px] font-pixel font-bold leading-none bg-gradient-to-b from-white to-white/20 bg-clip-text text-transparent"
-        >
+      <div className="relative z-10 animate-in fade-in slide-in-from-bottom-5 duration-300 text-center">
+        <h1 className="bg-gradient-to-b from-white to-white/20 bg-clip-text font-pixel text-[120px] font-bold leading-none text-transparent md:text-[180px]">
           404
-        </motion.h1>
-      </motion.div>
+        </h1>
+      </div>
 
       {/* Decorative Elements */}
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />

@@ -23,12 +23,12 @@ const GOOSE_SPRITE_URL = "/static/images/goose-sprite-final.webp";
 const DPR = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
 
 const ANIM = {
-  idle:  [0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
-  walk:  [10, 11, 12, 13, 14, 15, 16, 17, 16, 15, 14, 13, 12, 11],
-  run:   [20, 21, 22, 23, 24, 25, 26, 27, 26, 25, 24, 23, 22, 21],
-  honk:  [30, 31, 32, 33, 34, 35, 36, 37],
+  idle: [0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
+  walk: [10, 11, 12, 13, 14, 15, 16, 17, 16, 15, 14, 13, 12, 11],
+  run: [20, 21, 22, 23, 24, 25, 26, 27, 26, 25, 24, 23, 22, 21],
+  honk: [30, 31, 32, 33, 34, 35, 36, 37],
   carry: [40, 41, 42, 43, 44, 45, 46, 47, 46, 45, 44, 43, 42, 41],
-  drag:  [50, 51, 52, 53, 54, 55, 56, 55, 54, 53, 52, 51],
+  drag: [50, 51, 52, 53, 54, 55, 56, 55, 54, 53, 52, 51],
 } as const;
 
 const GOOSE_NOTES = [
@@ -103,20 +103,20 @@ interface Footprint {
 
 // ── Name-steal task phases ──
 type NameStealPhase =
-  | "walk_to_name"      // walk toward the h1
-  | "grab_name"         // pause, honk, hide DOM text
-  | "drag_offscreen"    // carry text offscreen
-  | "wait_offscreen"    // pause offscreen
-  | "return_with_hire"  // come back carrying "hire yousef pls"
-  | "place_hire"        // drop the replacement text
+  | "walk_to_name" // walk toward the h1
+  | "grab_name" // pause, honk, hide DOM text
+  | "drag_offscreen" // carry text offscreen
+  | "wait_offscreen" // pause offscreen
+  | "return_with_hire" // come back carrying "hire yousef pls"
+  | "place_hire" // drop the replacement text
   | "done";
 
 // ── Meme-bring task phases ──
 type MemeBringPhase =
-  | "walk_offscreen"    // walk to edge
-  | "wait_offscreen"    // pause to "find" a meme
-  | "return_with_meme"  // come back dragging the meme
-  | "drop_meme"         // place it on screen
+  | "walk_offscreen" // walk to edge
+  | "wait_offscreen" // pause to "find" a meme
+  | "return_with_meme" // come back dragging the meme
+  | "drop_meme" // place it on screen
   | "done";
 
 interface NameStealState {
@@ -172,7 +172,11 @@ interface GooseCommands {
 //  Canvas-based goose overlay — runs entirely outside React
 // ══════════════════════════════════════════════════════════
 
-function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement, commands?: GooseCommands) {
+function startGooseCanvas(
+  canvas: HTMLCanvasElement,
+  spriteImg: HTMLImageElement,
+  commands?: GooseCommands,
+) {
   const ctx = canvas.getContext("2d", { alpha: true })!;
   let running = true;
   let frameTickRef = 0;
@@ -535,12 +539,17 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         const ty = ns.nameRect!.top - DISPLAY_SIZE * ASPECT_RATIO + 20;
         const dist = moveToward(tx, ty, spd, dt);
         footprintAccum += spd * dt;
-        if (footprintAccum > 50) { footprintAccum -= 50; leaveFootprint(); }
+        if (footprintAccum > 50) {
+          footprintAccum -= 50;
+          leaveFootprint();
+        }
         if (dist < 15) {
           ns.phase = "grab_name";
           isHonking = true;
           playHonkSound();
-          setTimeout(() => { isHonking = false; }, 600);
+          setTimeout(() => {
+            isHonking = false;
+          }, 600);
           setTimeout(() => {
             if (ns.nameEl) ns.nameEl.style.visibility = "hidden";
             ns.phase = "drag_offscreen";
@@ -570,7 +579,10 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         } else {
           pos.x += Math.sign(dx) * spd * dt;
           footprintAccum += spd * dt;
-          if (footprintAccum > 50) { footprintAccum -= 50; leaveFootprint(); }
+          if (footprintAccum > 50) {
+            footprintAccum -= 50;
+            leaveFootprint();
+          }
         }
         break;
       }
@@ -589,7 +601,10 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         pos.x = clamped.x;
         pos.y = clamped.y;
         footprintAccum += spd * dt;
-        if (footprintAccum > 50) { footprintAccum -= 50; leaveFootprint(); }
+        if (footprintAccum > 50) {
+          footprintAccum -= 50;
+          leaveFootprint();
+        }
         if (dist < 15) {
           ns.phase = "place_hire";
           isHonking = true;
@@ -669,14 +684,20 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         pos.x += Math.sign(dx) * spd * dt;
         if (Math.abs(dx) > 1) facingRight = dx > 0;
         footprintAccum += spd * dt;
-        if (footprintAccum > 50) { footprintAccum -= 50; leaveFootprint(); }
+        if (footprintAccum > 50) {
+          footprintAccum -= 50;
+          leaveFootprint();
+        }
         if (Math.abs(pos.x - mb.exitX) < 30 || pos.x < -150 || pos.x > window.innerWidth + 150) {
           mb.phase = "wait_offscreen";
-          const tid = setTimeout(() => {
-            if (!running || !memeBring) return;
-            mb.phase = "return_with_meme";
-            facingRight = mb.dropTarget.x > pos.x;
-          }, 1000 + Math.random() * 800);
+          const tid = setTimeout(
+            () => {
+              if (!running || !memeBring) return;
+              mb.phase = "return_with_meme";
+              facingRight = mb.dropTarget.x > pos.x;
+            },
+            1000 + Math.random() * 800,
+          );
           deferredTimers.push(tid);
         }
         break;
@@ -693,7 +714,10 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         pos.x = clamped.x;
         pos.y = clamped.y;
         footprintAccum += spd * 0.7 * dt;
-        if (footprintAccum > 50) { footprintAccum -= 50; leaveFootprint(); }
+        if (footprintAccum > 50) {
+          footprintAccum -= 50;
+          leaveFootprint();
+        }
         if (dist < 20) {
           mb.phase = "drop_meme";
           isHonking = true;
@@ -779,12 +803,12 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
 
   // Animation FPS per state — pixel art sweet spot
   const ANIM_FPS: Record<string, number> = {
-    idle: 4,        // very slow breathing — calm
-    walk: 8,        // natural walk pace
-    run: 12,        // fast run
-    honk: 8,        // dramatic honk
-    carry: 7,       // slightly slower when carrying
-    drag: 6,        // heavy dragging
+    idle: 4, // very slow breathing — calm
+    walk: 8, // natural walk pace
+    run: 12, // fast run
+    honk: 8, // dramatic honk
+    carry: 7, // slightly slower when carrying
+    drag: 6, // heavy dragging
   };
 
   // Movement speeds (pixels per second) — frame-rate independent
@@ -801,7 +825,8 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
   function getAnimFps(): number {
     if (isHonking) return ANIM_FPS.honk;
     if (brainState === "stealing_name") {
-      if (nameSteal?.phase === "drag_offscreen" || nameSteal?.phase === "return_with_hire") return ANIM_FPS.carry;
+      if (nameSteal?.phase === "drag_offscreen" || nameSteal?.phase === "return_with_hire")
+        return ANIM_FPS.carry;
       return ANIM_FPS.run;
     }
     if (brainState === "bringing_meme") {
@@ -817,7 +842,8 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
   function getAnimList(): readonly number[] {
     if (isHonking) return ANIM.honk;
     if (brainState === "stealing_name") {
-      if (nameSteal?.phase === "drag_offscreen" || nameSteal?.phase === "return_with_hire") return ANIM.carry;
+      if (nameSteal?.phase === "drag_offscreen" || nameSteal?.phase === "return_with_hire")
+        return ANIM.carry;
       return ANIM.run;
     }
     if (brainState === "bringing_meme") {
@@ -888,7 +914,12 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
         ty = cursor.y - (DISPLAY_SIZE * ASPECT_RATIO) / 2;
         speed = SPEED.chase;
         walking = true;
-      } else if (st === "wandering" || st === "dragging_note" || st === "fleeing_cursor" || st === "pecking") {
+      } else if (
+        st === "wandering" ||
+        st === "dragging_note" ||
+        st === "fleeing_cursor" ||
+        st === "pecking"
+      ) {
         if (target !== "cursor") {
           tx = target.x;
           ty = target.y;
@@ -910,7 +941,9 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
             dropNote();
             isHonking = true;
             playHonkSound();
-            setTimeout(() => { isHonking = false; }, 500);
+            setTimeout(() => {
+              isHonking = false;
+            }, 500);
           }
           if (st !== "chasing_cursor") {
             brainState = "idle";
@@ -934,7 +967,12 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
     drawFootprints();
     drawDroppedMemes();
     drawCarriedMeme();
-    if (nameSteal && (nameSteal.phase === "drag_offscreen" || nameSteal.phase === "grab_name" || nameSteal.phase === "return_with_hire")) {
+    if (
+      nameSteal &&
+      (nameSteal.phase === "drag_offscreen" ||
+        nameSteal.phase === "grab_name" ||
+        nameSteal.phase === "return_with_hire")
+    ) {
       drawCarriedText(nameSteal.carriedText, nameSteal.carriedX, nameSteal.carriedY);
     }
     drawSprite(currentFrame);
@@ -1011,13 +1049,16 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
       isHonking = true;
       isChasing = true;
       playHonkSound();
-      actionTimer = setTimeout(() => {
-        if (!running) return;
-        isHonking = false;
-        brainState = "idle";
-        isChasing = false;
-        actionTimer = setTimeout(scheduleAction, 500);
-      }, 3000 + Math.random() * 2000);
+      actionTimer = setTimeout(
+        () => {
+          if (!running) return;
+          isHonking = false;
+          brainState = "idle";
+          isChasing = false;
+          actionTimer = setTimeout(scheduleAction, 500);
+        },
+        3000 + Math.random() * 2000,
+      );
     };
     commands.dropNote = () => {
       clearActionTimer();
@@ -1067,9 +1108,9 @@ function startGooseCanvas(canvas: HTMLCanvasElement, spriteImg: HTMLImageElement
 //  React component (minimal — only handles toggle state)
 // ══════════════════════════════════════════════════════════
 
-export function DesktopGoose() {
+export function DesktopGoose({ initiallyActive = false }: { initiallyActive?: boolean }) {
   const isHydrated = useIsHydrated();
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(initiallyActive);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
   const commandsRef = useRef<GooseCommands>({
@@ -1178,7 +1219,14 @@ export function DesktopGoose() {
               fontSize: 11,
             }}
           >
-            <span style={{ color: "#f97316", fontWeight: "bold", textAlign: "center", paddingBottom: 2 }}>
+            <span
+              style={{
+                color: "#f97316",
+                fontWeight: "bold",
+                textAlign: "center",
+                paddingBottom: 2,
+              }}
+            >
               🪿 goose dev
             </span>
             {(

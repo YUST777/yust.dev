@@ -7,13 +7,13 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-8 font-mono text-[11px] uppercase tracking-[0.16em]">
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-zinc-600">
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-zinc-400">
         {items.map((item, index) => {
           const isCurrent = index === items.length - 1;
           return (
             <li key={item.url} className="flex items-center gap-2">
               {index > 0 && (
-                <span aria-hidden="true" className="text-zinc-800">
+                <span aria-hidden="true" className="text-zinc-600">
                   /
                 </span>
               )}
