@@ -337,7 +337,7 @@ function BlogPage() {
 
       <div
         key={selectedCategory}
-        className="space-y-0 border-t border-white/10 animate-in fade-in duration-150"
+        className="space-y-0 animate-in fade-in duration-150"
       >
         {filteredPosts.map((post) => (
           <article
