@@ -88,7 +88,7 @@ export const Route = createFileRoute("/_main/projects")({
 function ProjectsPage() {
   return (
     <div className="bg-transparent text-white pt-8 sm:pt-32">
-      <section id="projects" className="bg-dark px-4 pb-20 pt-4 md:px-6 md:pb-32 md:pt-6">
+      <section id="projects" className="bg-dark px-4 pb-20 md:px-6 md:pb-32">
         <div className="mx-auto max-w-7xl">
           <div className="mb-6 px-0">
             <h1 className="font-pixel text-4xl uppercase text-white">PROJECTS</h1>
