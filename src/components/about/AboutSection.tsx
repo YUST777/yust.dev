@@ -79,22 +79,48 @@ export default function AboutSection() {
           <Link to="/competitive-programming-platforms">competitive programming platforms</Link>
         </div>
 
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 pt-6 border-t border-white/5">
-          <span className="text-zinc-400 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">
-            CORE STACK :
-          </span>
-          <div className="flex flex-wrap items-center gap-6 text-zinc-400">
-            {CORE_STACK.map(({ Icon, name, hoverClass }) => (
-              <span
-                key={name}
-                data-tooltip-id="core-stack-tooltip"
-                data-tooltip-content={name}
-                className={`inline-flex cursor-default ${hoverClass} transition-colors`}
-              >
-                <Icon aria-hidden="true" focusable="false" className="w-5 h-5" />
-                <span className="sr-only">{name}</span>
-              </span>
-            ))}
+        <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+          {/* Core Stack */}
+          <div className="space-y-3">
+            <p className="text-zinc-400 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">
+              CORE STACK
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              {CORE_STACK.map(({ Icon, name, hoverClass }) => (
+                <span
+                  key={name}
+                  data-tooltip-id="core-stack-tooltip"
+                  data-tooltip-content={name}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-zinc-900/60 border border-white/5 ${hoverClass} transition-colors cursor-default`}
+                >
+                  <Icon aria-hidden="true" focusable="false" className="w-4 h-4 text-zinc-400" />
+                  <span className="text-[11px] font-mono font-medium text-zinc-300">{name}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Connect With Me */}
+          <div className="space-y-3">
+            <p className="text-zinc-400 font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px]">
+              CONNECT WITH ME
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 rounded-md bg-zinc-900/70 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[11px] sm:text-xs text-zinc-300 font-mono group"
+                >
+                  <span className="text-zinc-400 group-hover:text-white transition-colors">
+                    {link.icon}
+                  </span>
+                  <span>{link.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -106,28 +132,6 @@ export default function AboutSection() {
           className="!bg-zinc-900 !border !border-white/10 !rounded-md !text-xs !font-mono"
         />
       </Suspense>
-
-      <div className="mt-8 sm:mt-16">
-        <p className="text-zinc-400 text-[11px] sm:text-[13px] mb-3 sm:mb-6 font-mono uppercase tracking-widest">
-          Connect with me
-        </p>
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
-          {SOCIAL_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.url || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-md sm:rounded-lg bg-zinc-900/70 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[11px] sm:text-sm text-zinc-300 font-mono group"
-            >
-              <span className="text-zinc-400 group-hover:text-white transition-colors">
-                {link.icon}
-              </span>
-              <span>{link.label}</span>
-            </a>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
