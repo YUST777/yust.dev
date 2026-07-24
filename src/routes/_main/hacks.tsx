@@ -181,6 +181,29 @@ const failedHacks = [
   },
 ];
 
+function PixelTrophy({ rank, className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { rank: string; className?: string }) {
+  const color = rank.includes("1ST")
+    ? "#FFD700"
+    : rank.includes("2ND")
+    ? "#C0C0C0"
+    : "#CD7F32";
+
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 7 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      shapeRendering="crispEdges"
+    >
+      <path
+        d="M1 0h5v1H1z M0 1h7v2H0z M1 3h5v1H1z M2 4h3v1H2z M3 5h1v1H3z M2 6h3v1H2z M1 7h5v1H1z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
 function HacksPage() {
   const [showFailed, setShowFailed] = useState(false);
 
@@ -201,7 +224,10 @@ function HacksPage() {
       <div className="space-y-16">
         {hacks.map((hack, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <h2 className={`text-2xl sm:text-3xl font-pixel ${hack.color}`}>{hack.rank}</h2>
+            <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+              <PixelTrophy rank={hack.rank} />
+              <span>{hack.rank}</span>
+            </h2>
             <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
               {hack.event}
             </div>
