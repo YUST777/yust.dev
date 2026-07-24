@@ -45,12 +45,14 @@
     "vite": "npm:@voidzero-dev/vite-plus-core@0.1.18"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@rolldown/plugin-babel": "^0.2.3",
     "@typescript/native-preview": "latest",
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.4.2",
     "next": "^16.2.9",
+    "satori": "^0.29.0",
     "vite-plus": "latest"
   },
   "engines": {

@@ -2,6 +2,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import React from "react";
+import satori from "satori";
+import { Resvg } from "@resvg/resvg-js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -20,22 +23,12 @@ while ((m = hackRegex.exec(hacksContent)) !== null) {
   hacks.push({ rank: m[1], event: m[2], title: m[3] });
 }
 
-console.log(`[OG Generator] Detected ${count} hackathon wins`);
-console.log(`[OG Generator] Hacks: ${hacks.map(h => h.title).join(", ")}`);
+console.log(`[OG Generator - Satori] Detected ${count} hackathon wins`);
 
-// Trophy color mapping
-function trophyColor(rank) {
-  if (rank.includes("1ST")) return { fill: "#FFD700", label: "1ST", labelColor: "#b8960a" };
-  if (rank.includes("2ND")) return { fill: "#C0C0C0", label: "2ND", labelColor: "#808080" };
-  return { fill: "#CD7F32", label: "3RD", labelColor: "#8B5A2B" };
-}
-
-// Clean title by removing parenthetical notes (e.g. "(3D Infinite Runner...)")
 function cleanTitle(title) {
   return title.replace(/\s*\(.*?\)/g, "").trim();
 }
 
-// Extract short event name (first part before •)
 function shortEvent(event) {
   if (event.includes("SUSTAINABLE")) {
     return "SUSTAINABLE SUMMIT TANTA";
@@ -43,312 +36,408 @@ function shortEvent(event) {
   return event.split("•")[0].trim();
 }
 
-// Extract date from event string (second part after first •)
 function eventDate(event) {
   const parts = event.split("•");
   return parts.length >= 2 ? parts[1].trim() : "";
 }
 
-// 2. Build pixel trophy SVG — 8-bit style
-function pixelTrophy(color, size = 28) {
-  // 7x8 pixel grid trophy
+function trophyColor(rank) {
+  if (rank.includes("1ST")) return { fill: "#FFD700", label: "1ST", labelColor: "#b8960a" };
+  if (rank.includes("2ND")) return { fill: "#C0C0C0", label: "2ND", labelColor: "#808080" };
+  return { fill: "#CD7F32", label: "3RD", labelColor: "#8B5A2B" };
+}
+
+// Load TrueType fonts
+const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
+const fontGeistMono = readFileSync(
+  join(
+    rootDir,
+    "node_modules/.pnpm/geist@1.7.0_next@16.2.9_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@_ecfbda6c36d7ae78bcfb95798de1846f/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"
+  )
+);
+
+// Pixel trophy SVG element builder
+function PixelTrophy({ color, size = 28 }) {
   const grid = [
-    [0,1,1,1,1,1,0],
-    [1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1],
-    [0,1,1,1,1,1,0],
-    [0,0,1,1,1,0,0],
-    [0,0,0,1,0,0,0],
-    [0,0,1,1,1,0,0],
-    [0,1,1,1,1,1,0],
+    [0, 1, 1, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [0, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 1, 1, 0],
   ];
   const px = size / 7;
-  let rects = "";
+  const rects = [];
   for (let row = 0; row < grid.length; row++) {
     for (let col = 0; col < grid[row].length; col++) {
       if (grid[row][col]) {
-        rects += `<rect x="${col * px}" y="${row * px}" width="${px + 0.5}" height="${px + 0.5}" fill="${color}"/>`;
+        rects.push(
+          React.createElement("rect", {
+            key: `${row}-${col}`,
+            x: col * px,
+            y: row * px,
+            width: px + 0.5,
+            height: px + 0.5,
+            fill: color,
+          })
+        );
       }
     }
   }
   const h = (size / 7) * 8;
-  return `<svg width="${size}" height="${h}" viewBox="0 0 ${size} ${h}" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
+  return React.createElement(
+    "svg",
+    { width: size, height: h, viewBox: `0 0 ${size} ${h}` },
+    ...rects
+  );
 }
 
-const fontPath700 = join(rootDir, "public/fonts/silkscreen-700.woff2");
-
-const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<style>
-  @font-face {
-    font-family: 'Silkscreen';
-    src: url('file://${fontPath700}') format('woff2');
-    font-weight: 700;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    width: 1200px;
-    height: 630px;
-    background-color: #111110;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-    font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-  }
-
-  .card {
-    width: 1140px;
-    height: 570px;
-    border: 1.5px solid rgba(255,255,255,0.06);
-    border-radius: 24px;
-    background: #151514;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .main {
-    flex: 1;
-    display: flex;
-    padding: 44px 52px 0 52px;
-    gap: 52px;
-  }
-
-  /* LEFT — Big number hero */
-  .left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
-  }
-
-  .bracket-box {
-    position: relative;
-    width: 280px;
-    height: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .bracket {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    border-color: #52525b;
-    border-style: solid;
-  }
-
-  .bracket-tl { top: 0; left: 0; border-width: 3px 0 0 3px; }
-  .bracket-tr { top: 0; right: 0; border-width: 3px 3px 0 0; }
-  .bracket-bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; }
-  .bracket-br { bottom: 0; right: 0; border-width: 0 3px 3px 0; }
-
-  .number-hero {
-    font-family: 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 140px;
-    font-weight: 900;
-    color: #ffffff;
-    line-height: 1;
-    text-align: center;
-  }
-
-  .title-text {
-    font-family: 'Silkscreen', monospace;
-    font-size: 28px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-top: 28px;
-    text-align: center;
-  }
-
-  .subtitle-text {
-    font-family: 'Silkscreen', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: #3f3f46;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-top: 12px;
-    text-align: center;
-  }
-
-  /* RIGHT — Hackathon list */
-  .right {
-    width: 400px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .list-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Silkscreen', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    color: #d4d4d8;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .header-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #a1a1aa;
-  }
-
-  .hack-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 16px 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .hack-item:last-child {
-    border-bottom: none;
-  }
-
-  .trophy-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-
-  .trophy-rank {
-    font-family: 'Silkscreen', monospace;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .hack-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-
-  .hack-title {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #e4e4e7;
-    line-height: 1.35;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .hack-event {
-    font-family: 'Silkscreen', monospace;
-    font-size: 9px;
-    color: #52525b;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    line-height: 1.4;
-  }
-
-  .hack-date {
-    font-family: 'Silkscreen', monospace;
-    font-size: 9px;
-    color: #3f3f46;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* FOOTER */
-  .footer {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 18px 52px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Silkscreen', monospace;
-    font-size: 11px;
-    color: #3f3f46;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-</style>
-</head>
-<body>
-  <div class="card">
-    <div class="main">
-      <!-- LEFT: Hero Number -->
-      <div class="left">
-        <div class="bracket-box">
-          <div class="bracket bracket-tl"></div>
-          <div class="bracket bracket-tr"></div>
-          <div class="bracket bracket-bl"></div>
-          <div class="bracket bracket-br"></div>
-          <div class="number-hero">${count}</div>
-        </div>
-        <div class="title-text">Hackathons Won</div>
-        <div class="subtitle-text">And Counting</div>
-      </div>
-
-      <!-- RIGHT: Hackathon List with Trophies -->
-      <div class="right">
-        <div class="list-header">
-          <div class="header-dot"></div>
-          COMPETITIONS
-        </div>
-        ${hacks.slice(0, 4).map((hack) => {
+// 2. Build Satori Vercel OG Node Tree
+const element = React.createElement(
+  "div",
+  {
+    style: {
+      width: "1200px",
+      height: "630px",
+      backgroundColor: "#111110",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "GeistMono",
+      color: "#ffffff",
+    },
+  },
+  React.createElement(
+    "div",
+    {
+      style: {
+        width: "1140px",
+        height: "570px",
+        border: "1.5px solid rgba(255,255,255,0.06)",
+        borderRadius: "24px",
+        backgroundColor: "#151514",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      },
+    },
+    // Main Body
+    React.createElement(
+      "div",
+      {
+        style: {
+          flex: 1,
+          display: "flex",
+          padding: "44px 52px 0 52px",
+          gap: "52px",
+        },
+      },
+      // Left Column (Hero Number)
+      React.createElement(
+        "div",
+        {
+          style: {
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: "20px",
+          },
+        },
+        React.createElement(
+          "div",
+          {
+            style: {
+              position: "relative",
+              width: "280px",
+              height: "230px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          },
+          // Corner Brackets
+          React.createElement("div", {
+            style: {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "28px",
+              height: "28px",
+              borderTop: "3px solid #52525b",
+              borderLeft: "3px solid #52525b",
+            },
+          }),
+          React.createElement("div", {
+            style: {
+              position: "absolute",
+              top: 0,
+              right: 0,
+              width: "28px",
+              height: "28px",
+              borderTop: "3px solid #52525b",
+              borderRight: "3px solid #52525b",
+            },
+          }),
+          React.createElement("div", {
+            style: {
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "28px",
+              height: "28px",
+              borderBottom: "3px solid #52525b",
+              borderLeft: "3px solid #52525b",
+            },
+          }),
+          React.createElement("div", {
+            style: {
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: "28px",
+              height: "28px",
+              borderBottom: "3px solid #52525b",
+              borderRight: "3px solid #52525b",
+            },
+          }),
+          React.createElement(
+            "div",
+            {
+              style: {
+                fontSize: "140px",
+                fontWeight: 900,
+                color: "#ffffff",
+                lineHeight: 1,
+                textAlign: "center",
+              },
+            },
+            String(count)
+          )
+        ),
+        React.createElement(
+          "div",
+          {
+            style: {
+              fontFamily: "Silkscreen",
+              fontSize: "28px",
+              fontWeight: 700,
+              color: "#ffffff",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              marginTop: "28px",
+              textAlign: "center",
+            },
+          },
+          "Hackathons Won"
+        ),
+        React.createElement(
+          "div",
+          {
+            style: {
+              fontFamily: "Silkscreen",
+              fontSize: "11px",
+              fontWeight: 700,
+              color: "#3f3f46",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginTop: "12px",
+              textAlign: "center",
+            },
+          },
+          "And Counting"
+        )
+      ),
+      // Right Column (Competitions List)
+      React.createElement(
+        "div",
+        {
+          style: {
+            width: "400px",
+            display: "flex",
+            flexDirection: "column",
+          },
+        },
+        React.createElement(
+          "div",
+          {
+            style: {
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontFamily: "Silkscreen",
+              fontSize: "12px",
+              fontWeight: 700,
+              color: "#d4d4d8",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginBottom: "16px",
+            },
+          },
+          React.createElement("div", {
+            style: {
+              width: "8px",
+              height: "8px",
+              borderRadius: "50%",
+              backgroundColor: "#a1a1aa",
+            },
+          }),
+          "COMPETITIONS"
+        ),
+        ...hacks.slice(0, 4).map((hack, i) => {
           const t = trophyColor(hack.rank);
-          return `
-        <div class="hack-item">
-          <div class="trophy-col">
-            ${pixelTrophy(t.fill, 28)}
-            <div class="trophy-rank" style="color:${t.labelColor}">${t.label}</div>
-          </div>
-          <div class="hack-info">
-            <div class="hack-title">${cleanTitle(hack.title)}</div>
-            <div class="hack-event">${shortEvent(hack.event)}</div>
-            <div class="hack-date">${eventDate(hack.event)}</div>
-          </div>
-        </div>`;
-        }).join("")}
-      </div>
-    </div>
+          return React.createElement(
+            "div",
+            {
+              key: i,
+              style: {
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "16px",
+                padding: "16px 18px",
+                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none",
+              },
+            },
+            React.createElement(
+              "div",
+              {
+                style: {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "4px",
+                  paddingTop: "2px",
+                },
+              },
+              React.createElement(PixelTrophy, { color: t.fill, size: 28 }),
+              React.createElement(
+                "div",
+                {
+                  style: {
+                    fontFamily: "Silkscreen",
+                    fontSize: "8px",
+                    fontWeight: 700,
+                    color: t.labelColor,
+                    letterSpacing: "0.08em",
+                  },
+                },
+                t.label
+              )
+            ),
+            React.createElement(
+              "div",
+              {
+                style: {
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                },
+              },
+              React.createElement(
+                "div",
+                {
+                  style: {
+                    fontSize: "13.5px",
+                    fontWeight: 700,
+                    color: "#e4e4e7",
+                    lineHeight: 1.35,
+                  },
+                },
+                cleanTitle(hack.title)
+              ),
+              React.createElement(
+                "div",
+                {
+                  style: {
+                    fontFamily: "Silkscreen",
+                    fontSize: "9px",
+                    color: "#52525b",
+                    letterSpacing: "0.04em",
+                  },
+                },
+                shortEvent(hack.event)
+              ),
+              React.createElement(
+                "div",
+                {
+                  style: {
+                    fontFamily: "Silkscreen",
+                    fontSize: "9px",
+                    color: "#3f3f46",
+                    letterSpacing: "0.06em",
+                  },
+                },
+                eventDate(hack.event)
+              )
+            )
+          );
+        })
+      )
+    ),
+    // Footer
+    React.createElement(
+      "div",
+      {
+        style: {
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+          padding: "18px 52px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          fontFamily: "Silkscreen",
+          fontSize: "11px",
+          color: "#3f3f46",
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+        },
+      },
+      React.createElement("span", null, "Competitions. Builds. Wins."),
+      React.createElement("span", null, "/hacks")
+    )
+  )
+);
 
-    <!-- FOOTER -->
-    <div class="footer">
-      <span>Competitions. Builds. Wins.</span>
-      <span>/hacks</span>
-    </div>
-  </div>
-</body>
-</html>`;
-
-const tempHtml = "/tmp/temp-og-hacks.html";
-writeFileSync(tempHtml, html);
+// 3. Generate Satori Vector SVG
+const svg = await satori(element, {
+  width: 1200,
+  height: 630,
+  fonts: [
+    {
+      name: "Silkscreen",
+      data: fontSilkscreen,
+      weight: 700,
+      style: "normal",
+    },
+    {
+      name: "GeistMono",
+      data: fontGeistMono,
+      weight: 700,
+      style: "normal",
+    },
+  ],
+});
 
 const pngTarget = join(rootDir, "public/static/images/og-hacks.png");
 const webpTarget = join(rootDir, "public/static/images/og-hacks.webp");
+const svgTarget = join(rootDir, "public/static/images/og-hacks.svg");
+
+// Write true Satori vector SVG!
+writeFileSync(svgTarget, svg);
+
+// Render crisp 2400x1260 2K Retina PNG & WebP using Resvg engine
+const resvg = new Resvg(svg, {
+  fitTo: { mode: "width", value: 2400 },
+});
+const pngData = resvg.render().asPng();
+writeFileSync(pngTarget, pngData);
 
 try {
-  execSync(`google-chrome --headless=new --disable-gpu --force-device-scale-factor=2 --screenshot=${pngTarget} --window-size=1200,630 --hide-scrollbars file://${tempHtml}`, { stdio: "ignore" });
   execSync(`ffmpeg -y -i ${pngTarget} -c:v libwebp -quality 98 ${webpTarget}`, { stdio: "ignore" });
-  console.log(`[OG Generator] Successfully generated 2K retina og-hacks.png & og-hacks.webp!`);
-} catch (e) {
-  console.warn("[OG Generator] Chrome/ffmpeg export skipped.");
+} catch {
+  // webp fallback
 }
+
+console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-hacks.svg + 2K PNG & WebP!`);
