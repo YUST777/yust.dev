@@ -100,7 +100,7 @@ const hacks = [
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
     event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
-    title: "Zero Threat",
+    title: "Zero Threat (AI-Powered Antivirus)",
     desc: (
       <>
         Won <strong className="text-zinc-200">3rd place</strong> at the Tanta National Summit in my
