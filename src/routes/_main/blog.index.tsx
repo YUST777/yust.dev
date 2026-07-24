@@ -301,7 +301,7 @@ function BlogPage() {
     selectedCategory === "All" ? posts : posts.filter((post) => post.category === selectedCategory);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
