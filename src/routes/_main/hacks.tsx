@@ -131,27 +131,6 @@ const hacks = [
 
 const failedHacks = [
   {
-    status: "MISSED SUBMISSION",
-    color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
-    event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
-    title: "SWRMZ (swrmz.tech)",
-    iconType: "clock",
-    desc: (
-      <>
-        SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across
-        your stack, remediate them automatically, generate audit-ready reports, and stand guard over
-        your logs around the clock. Missed the submission window by exactly 2 minutes. The code was
-        beautiful, but the clock won.
-      </>
-    ),
-    proofs: [
-      {
-        label: "Lablab.ai Hackathon Page",
-        url: "https://lablab.ai/ai-hackathons/band-of-agents-hackathon",
-      },
-    ],
-  },
-  {
     status: "DIDN'T WIN",
     color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
     event: "BUILDANYTHING HACKATHON • JULY 24, 2026 • MONAD MAINNET",
@@ -177,6 +156,27 @@ const failedHacks = [
       {
         label: "X / Twitter Announcement",
         url: "https://x.com/yust_dev/status/2078523331481870739?s=20",
+      },
+    ],
+  },
+  {
+    status: "MISSED SUBMISSION",
+    color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
+    event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
+    title: "SWRMZ (swrmz.tech)",
+    iconType: "clock",
+    desc: (
+      <>
+        SWRMZ is a swarm of AI security agents, built on Band.ai, that hunt vulnerabilities across
+        your stack, remediate them automatically, generate audit-ready reports, and stand guard over
+        your logs around the clock. Missed the submission window by exactly 2 minutes. The code was
+        beautiful, but the clock won.
+      </>
+    ),
+    proofs: [
+      {
+        label: "Lablab.ai Hackathon Page",
+        url: "https://lablab.ai/ai-hackathons/band-of-agents-hackathon",
       },
     ],
   },
