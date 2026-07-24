@@ -205,43 +205,41 @@ function PixelTrophy({ rank, className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { r
   );
 }
 
-function PixelClock({ className = "w-5 h-5 sm:w-6 sm:h-6 shrink-0" }: { className?: string }) {
+function PixelClock({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { className?: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 16 16"
+      viewBox="0 0 7 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       shapeRendering="crispEdges"
     >
-      {/* Top Alarm Clock Bells */}
-      <path d="M3 1h3v2H3z M10 1h3v2h-3z M7 0h2v2H7z" fill="#ef4444" />
-      {/* Clock Outer Rim */}
-      <path d="M4 3h8v1H4z M2 4h12v1H2z M1 5h14v6H1z M2 11h12v1H2z M4 12h8v1H4z" fill="#ef4444" />
-      {/* Inner Dark Dial */}
-      <path d="M4 4h8v1H4z M3 5h10v6H3z M4 11h8v1H4z" fill="#18181b" />
-      {/* Yellow Clock Hands */}
-      <path d="M7 6h2v3H7z M5 6h2v2H5z" fill="#fbbf24" />
-      <path d="M7 8h2v2H7z" fill="#ffffff" />
+      {/* Alarm bells */}
+      <path d="M1 0h2v1H1z M4 0h2v1H4z" fill="#ef4444" />
+      {/* Clock body outline */}
+      <path d="M1 1h5v1H1z M0 2h7v4H0z M1 6h5v1H1z" fill="#ef4444" />
+      {/* Hollow inner dial */}
+      <path d="M2 3h3v2H2z" fill="#111110" />
+      {/* Clock hands inside */}
+      <path d="M3 3h1v2H3z M4 4h1v1H4z" fill="#ef4444" />
     </svg>
   );
 }
 
-function PixelDeny({ className = "w-5 h-5 sm:w-6 sm:h-6 shrink-0" }: { className?: string }) {
+function PixelDeny({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { className?: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 16 16"
+      viewBox="0 0 7 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       shapeRendering="crispEdges"
     >
-      {/* Red Circle Rim */}
-      <path d="M5 1h6v2H5z M3 2h2v2H3z M11 2h2v2h-2z M1 5h2v6H1z M13 5h2v6h-2z M3 12h2v2H3z M11 12h2v2h-2z M5 13h6v2H5z" fill="#ef4444" />
-      {/* Diagonal Prohibition Slash */}
-      <path d="M11 3h2v2h-2z M9 5h2v2H9z M7 7h2v2H7z M5 9h2v2H5z M3 11h2v2H3z" fill="#ef4444" />
-      {/* Dark Dial Interior */}
-      <path d="M5 3h6v2H5z M3 5h4v2H3z M9 5h2v2H9z M3 7h2v2H3z M11 7h2v2h-2z M5 9h2v2H5z M9 9h4v2H9z M5 11h6v2H5z" fill="#18181b" />
+      {/* Pixel 'X' cross symbol matching PixelTrophy grid */}
+      <path
+        d="M0 0h2v2H0z M5 0h2v2H5z M1 1h2v2H1z M4 1h2v2H4z M2 2h3v4H2z M1 5h2v2H1z M4 5h2v2H4z M0 6h2v2H0z M5 6h2v2H5z"
+        fill="#ef4444"
+      />
     </svg>
   );
 }
