@@ -107,23 +107,23 @@ export default function AboutSection() {
         />
       </Suspense>
 
-      <div className="mt-16">
-        <p className="text-zinc-400 text-[13px] mb-6 font-mono uppercase tracking-widest">
+      <div className="mt-8 sm:mt-16">
+        <p className="text-zinc-400 text-[11px] sm:text-[13px] mb-3 sm:mb-6 font-mono uppercase tracking-widest">
           Connect with me
         </p>
-        <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
           {SOCIAL_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center sm:justify-start gap-2.5 px-4 py-3 sm:py-2.5 rounded-lg bg-zinc-900 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[13px] sm:text-sm text-zinc-300 font-mono group"
+              className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-md sm:rounded-lg bg-zinc-900/70 border border-white/5 hover:border-white/20 hover:bg-zinc-800/50 transition-all text-[11px] sm:text-sm text-zinc-300 font-mono group"
             >
-              <span className="text-zinc-500 group-hover:text-white transition-colors">
+              <span className="text-zinc-400 group-hover:text-white transition-colors">
                 {link.icon}
               </span>
-              {link.label}
+              <span>{link.label}</span>
             </a>
           ))}
         </div>
