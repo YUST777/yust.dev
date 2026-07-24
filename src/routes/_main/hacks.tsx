@@ -214,14 +214,21 @@ function PixelClock({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { classNam
       xmlns="http://www.w3.org/2000/svg"
       shapeRendering="crispEdges"
     >
-      {/* Alarm bells */}
-      <path d="M1 0h2v1H1z M4 0h2v1H4z" fill="#ef4444" />
-      {/* Clock body outline */}
-      <path d="M1 1h5v1H1z M0 2h7v4H0z M1 6h5v1H1z" fill="#ef4444" />
-      {/* Hollow inner dial */}
-      <path d="M2 3h3v2H2z" fill="#111110" />
-      {/* Clock hands inside */}
-      <path d="M3 3h1v2H3z M4 4h1v1H4z" fill="#ef4444" />
+      {/* Red Hourglass Frame */}
+      <path
+        d="M0 0h7v1H0z M1 1h5v1H1z M2 2h3v1H2z M3 3h1v2H3z M2 5h3v1H2z M1 6h5v1H1z M0 7h7v1H0z"
+        fill="#ef4444"
+      />
+      {/* Inner Chamber Cutout */}
+      <path
+        d="M2 1h3v1H2z M3 2h1v1H3z M3 5h1v1H3z M2 6h3v1H2z"
+        fill="#111110"
+      />
+      {/* Falling Sand in Gold */}
+      <path
+        d="M3 3h1v3H3z M2 6h3v1H2z"
+        fill="#fbbf24"
+      />
     </svg>
   );
 }
