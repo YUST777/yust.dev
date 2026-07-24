@@ -327,31 +327,11 @@ writeFileSync(tempHtml, html);
 
 const pngTarget = join(rootDir, "public/static/images/og-blog.png");
 const webpTarget = join(rootDir, "public/static/images/og-blog.webp");
-const svgTarget = join(rootDir, "public/static/images/og-blog.svg");
-
-// Write inline SVG wrapper version as well
-const fontBase64 = readFileSync(fontPath700).toString("base64");
-const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <foreignObject width="1200" height="630">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>
-        @font-face {
-          font-family: 'Silkscreen';
-          src: url('data:font/woff2;base64,${fontBase64}') format('woff2');
-          font-weight: 700;
-        }
-        ${html.split("<style>")[1].split("</style>")[0]}
-      </style>
-      ${html.split("<body>")[1].split("</body>")[0]}
-    </div>
-  </foreignObject>
-</svg>`;
-writeFileSync(svgTarget, svgContent);
 
 try {
   execSync(`google-chrome --headless=new --disable-gpu --force-device-scale-factor=2 --screenshot=${pngTarget} --window-size=1200,630 --hide-scrollbars file://${tempHtml}`, { stdio: "ignore" });
   execSync(`ffmpeg -y -i ${pngTarget} -c:v libwebp -quality 98 ${webpTarget}`, { stdio: "ignore" });
-  console.log(`[OG Generator] Successfully generated 2K retina og-blog.png, og-blog.webp & og-blog.svg!`);
+  console.log(`[OG Generator] Successfully generated 2K retina og-blog.png & og-blog.webp!`);
 } catch (e) {
   console.warn("[OG Generator] Chrome/ffmpeg export skipped.");
 }
