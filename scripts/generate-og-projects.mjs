@@ -38,7 +38,7 @@ const featuredProjects = [
   {
     title: "10K Runner",
     tag: "WEB3 GAME",
-    desc: "3D infinite runner Web3 game built in 3 days. 3rd place 10K Squad contest winner.",
+    desc: "3D infinite runner Web3 game built in 3 days with procedural worlds.",
     site: "10krunner.fun",
     tech: ["React", "Three.js", "R3F", "Web3"],
   },

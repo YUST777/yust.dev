@@ -5,7 +5,7 @@ import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo
 
 const TITLE = "Hackathons & Awards | Yousef Mohammed Salah · yust.dev";
 const DESCRIPTION =
-  "Hackathon wins and lessons from Yousef Mohammed Salah, including Sast.tech, 10K Runner, Zero Threat, and SWRMZ.";
+  "Explore national hackathon wins, software awards, and engineering retrospectives by Yousef Mohammed Salah, including Sast.tech and Zero Threat.";
 
 const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,
@@ -39,33 +39,6 @@ export const Route = createFileRoute("/_main/hacks")({
 });
 
 const hacks = [
-  {
-    rank: "3RD PLACE",
-    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "10K SQUAD INTERNATIONAL HACKATHON • MAY 30, 2026 • 10K SQUAD",
-    title: "10K Runner (3D Infinite Runner Web3 Game)",
-    desc: (
-      <>
-        Won <strong className="text-zinc-200">3rd place</strong> in the 10k Squad contest—my very
-        first international and Web3 competition. Developed and vibecoded the game in just 3 days,
-        implementing distributed earning mechanics and full 3D browser-based environment
-        optimizations.
-      </>
-    ),
-    tech: "React • Three.js • React Three Fiber • Web3 • Tailwind CSS",
-    linkText: "Play Game: 10krunner.fun",
-    linkUrl: "https://10krunner.fun",
-    proofs: [
-      {
-        label: "Discord Announcement in Live Stream",
-        url: "https://discord.com/channels/1282268775709802568/1333487119749877902/1510664741339533472",
-      },
-      {
-        label: "10k Squad Official X Announcement",
-        url: "https://x.com/the10kSquad/status/2061112653410357321?s=20",
-      },
-    ],
-  },
   {
     rank: "3RD PLACE",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",

@@ -18,7 +18,7 @@ const projectsSchema = projectsCollectionSchema([
     name: "10K Runner",
     url: "https://10krunner.fun",
     description:
-      "infinite runner game that makes you EARN & fun. Developed in 3 days, won 3rd place at the 10k Squad international contest.",
+      "infinite runner game that makes you EARN & fun. Developed in 3 days with Web3 earning mechanics and 3D browser environment optimizations.",
   },
   {
     name: "Sast.tech",
