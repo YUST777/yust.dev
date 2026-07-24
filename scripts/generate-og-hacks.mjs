@@ -56,41 +56,21 @@ const fontGeistMono = readFileSync(
   )
 );
 
-// Pixel trophy SVG element builder
+// Pixel trophy SVG element builder — clean single vector path
 function PixelTrophy({ color, size = 28 }) {
-  const grid = [
-    [0, 1, 1, 1, 1, 1, 0],
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1],
-    [0, 1, 1, 1, 1, 1, 0],
-    [0, 0, 1, 1, 1, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 1, 1, 1, 0, 0],
-    [0, 1, 1, 1, 1, 1, 0],
-  ];
-  const px = size / 7;
-  const rects = [];
-  for (let row = 0; row < grid.length; row++) {
-    for (let col = 0; col < grid[row].length; col++) {
-      if (grid[row][col]) {
-        rects.push(
-          React.createElement("rect", {
-            key: `${row}-${col}`,
-            x: col * px,
-            y: row * px,
-            width: px + 0.5,
-            height: px + 0.5,
-            fill: color,
-          })
-        );
-      }
-    }
-  }
-  const h = (size / 7) * 8;
+  const h = Math.round((size / 7) * 8);
   return React.createElement(
     "svg",
-    { width: size, height: h, viewBox: `0 0 ${size} ${h}` },
-    ...rects
+    {
+      width: size,
+      height: h,
+      viewBox: "0 0 7 8",
+      style: { backgroundColor: "transparent" },
+    },
+    React.createElement("path", {
+      d: "M1 0h5v1H1z M0 1h7v2H0z M1 3h5v1H1z M2 4h3v1H2z M3 5h1v1H3z M2 6h3v1H2z M1 7h5v1H1z",
+      fill: color,
+    })
   );
 }
 
