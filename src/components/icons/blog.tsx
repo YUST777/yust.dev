@@ -3,7 +3,7 @@ import type { SVGProps } from "react";
 const BlogIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 150 187"
+    viewBox="52 32 96 106"
     className={className}
     {...props}
   >
