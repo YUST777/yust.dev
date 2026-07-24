@@ -24,10 +24,35 @@ const PROJECT_CASE_STUDIES = [...projectsData, ...archiveProjectsData].filter(
   (project) => project.slug && !project.isMinimal && !project.isLarge,
 );
 
-const CATEGORIES = ["All", "AI & Security", "CP", "Web3", "Games"];
+const CATEGORIES = ["Featured", "AI & Security", "CP", "Web3", "Games"];
+
+function isFeaturedProject(project: Project): boolean {
+  if (project.isArchive || project.isMinimal) return true;
+  const slug = (project.slug || "").toLowerCase();
+  const title = (project.title || "").toLowerCase();
+
+  if (
+    slug.includes("10k") ||
+    slug.includes("collectable") ||
+    slug.includes("gifts") ||
+    slug.includes("zero") ||
+    slug.includes("icpc") ||
+    slug.includes("sketchz") ||
+    title.includes("10k") ||
+    title.includes("collectable") ||
+    title.includes("gifts") ||
+    title.includes("zero") ||
+    title.includes("icpc") ||
+    title.includes("sketchz")
+  ) {
+    return false;
+  }
+
+  return true;
+}
 
 function belongsToCategory(project: Project, category: string): boolean {
-  if (category === "All") return true;
+  if (category === "Featured") return isFeaturedProject(project);
 
   const title = (project.title || "").toLowerCase();
   const slug = (project.slug || "").toLowerCase();
@@ -93,10 +118,12 @@ export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Featured");
 
   const filteredProjects = useMemo(() => {
-    if (selectedCategory === "All") return MAIN_PROJECTS;
+    if (selectedCategory === "Featured") {
+      return MAIN_PROJECTS.filter((p) => isFeaturedProject(p));
+    }
     return MAIN_PROJECTS.filter((p) => {
       if (p.isArchive || p.isMinimal) return false;
       return belongsToCategory(p, selectedCategory);
