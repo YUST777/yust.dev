@@ -1,80 +1,156 @@
 import type { SVGProps } from "react";
 
 const BlogIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className={className} {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 150 187"
+    className={className}
+    {...props}
+  >
     <defs>
-      <radialGradient
-        id="blog_SVGID_1_"
-        cx="84.3"
-        cy="80.2"
-        r="28.4"
+      <linearGradient
+        id="new_blog_SVGID_1_"
+        x1="64.88"
+        x2="97.49"
+        y1="36.69"
+        y2="131.8"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#C0C0C0" offset="0" />
-        <stop stopColor="#999999" offset=".3547" />
-        <stop stopColor="#666666" offset=".785" />
-        <stop stopColor="#4D4D4D" offset="1" />
-      </radialGradient>
-      <radialGradient
-        id="blog_SVGID_2_"
-        cx="46.1"
-        cy="36.4"
-        r="14.8"
+        <stop stopColor="#BCBCBF" offset="0" />
+        <stop stopColor="#68686C" offset="1" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_2_"
+        x1="92.7"
+        x2="114.9"
+        y1="95.82"
+        y2="116.2"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#C0C0C0" offset="0" />
-        <stop stopColor="#999999" offset=".3547" />
-        <stop stopColor="#666666" offset=".785" />
-        <stop stopColor="#4D4D4D" offset="1" />
-      </radialGradient>
-      <radialGradient
-        id="blog_SVGID_3_"
-        cx="29.8"
-        cy="91.1"
-        r="15.5"
+        <stop stopColor="#131415" offset="0" />
+        <stop stopColor="#111213" offset="1" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_3_"
+        x1="120"
+        x2="125.2"
+        y1="96.21"
+        y2="117"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#C0C0C0" offset="0" />
-        <stop stopColor="#999999" offset=".3547" />
-        <stop stopColor="#666666" offset=".785" />
-        <stop stopColor="#4D4D4D" offset="1" />
-      </radialGradient>
+        <stop stopColor="#A8A7AA" offset="0" />
+        <stop stopColor="#77787B" offset="1" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_4_"
+        x1="134.8"
+        x2="141.5"
+        y1="82.11"
+        y2="97.86"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#BABABC" offset="0" />
+        <stop stopColor="#7D7E81" offset=".9601" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_5_"
+        x1="102.9"
+        x2="107"
+        y1="116.8"
+        y2="132.5"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#AEADB1" offset="0" />
+        <stop stopColor="#757679" offset=".8931" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_6_"
+        x1="95.65"
+        x2="95.65"
+        y1="62.08"
+        y2="70.02"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#343536" offset="0" />
+        <stop stopColor="#303030" offset="1" />
+      </linearGradient>
+      <linearGradient
+        id="new_blog_SVGID_7_"
+        x1="89.86"
+        x2="89.86"
+        y1="78.64"
+        y2="86.14"
+        gradientTransform="translate(0 .2)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#343536" offset="0" />
+        <stop stopColor="#303030" offset="1" />
+      </linearGradient>
     </defs>
     <path
-      fill="url(#blog_SVGID_1_)"
-      d="m84.3 58.5c-2.9 10.7-8.2 15.9-17.6 18.6 8.1 2 12.7 7.4 17.6 29.9 2.8-17.4 7.8-25.6 24.6-30-9.5-2.1-19.8-6.2-24.6-18.5z"
+      fill="url(#new_blog_SVGID_1_)"
+      d="m136.6 53c0-2.4-1.2-4-3.3-6l-8.3-7.5c-1.8-1.6-5-3.3-9.1-3.3h-46.5c-7.2 0-15.3 5.7-15.3 14.5v68.8c0 6.7 5.4 14.1 13.8 14.1h30.7l37.9-57.4v-23.2z"
     />
     <path
-      fill="#333333"
-      d="m84.3 28.5c-3.3 20.8-4.3 30.8-8.9 37-5 6.8-15.5 7.8-33.8 11.4 17.9 3.4 28.3 4.2 33.3 10.5 4.5 5.7 5.8 16.1 9.3 37.2 3.7-20.1 4.8-29.5 8.6-35 4.6-6.8 11.4-8.1 33.8-12.6-21.9-3.7-29-4.9-33-11.1-3.9-5.8-5.6-16-9.3-37.4zm0 78.3c-2.2-16.2-6.5-25.3-18.8-28.4l-7.9-1.4 5.3-1.1c10.7-2.8 17-5.6 20.5-21.3l0.9-7.7 1.6 7.4c2.7 11.2 7.5 17.8 19.2 21.3l6.8 1.4-4.5 0.8c-11.3 2.8-18.3 6.7-21.9 20.1l-1.2 8.9z"
+      fill="#464547"
+      d="m57.2 118.9v-68c0-6.2 6.6-14.3 13.1-14.7-7.9-0.1-16.2 5.6-16.3 14.3v69c0.1 7.4 5.8 14.1 14 14.1h4c-8.2 0-14.8-5.6-14.8-14.7z"
     />
     <path
-      fill="#E0E0E0"
-      d="m84.3 58.5c-2.2 8.9-6.7 15.6-17.6 18.6 8.1 2 12.2 6.4 15.9 21.3-3-11.8-8-16.9-19.7-19.8l-5.3-1.6 5.3-1.1c10.7-2.8 17-5.6 20.5-21.3l0.9-7.7c1.6 8.7 3.6 18.6 11.1 24.4-4.5-2.7-8.5-6.4-11.1-12.8z"
+      fill="url(#new_blog_SVGID_2_)"
+      d="m136.6 76c-1.9-0.1-6 1.1-8.6 3.5l-31.5 30.5c-1.6 1.8-2.7 3.7-3.1 5.6l-4.7 18h9.3l36.3-51.6 2.3-6z"
+    />
+    <path fill="#131415" d="m129.4 85.2 14.1 13.7-2.1 2.1-13.8-12.6z" />
+    <path
+      fill="url(#new_blog_SVGID_3_)"
+      d="m126.8 88.9-26.8 25.5-4.4 14.6c-0.5 2.8 0.5 4.8 3.9 4.6 0.7 0 11.3-3.3 13.2-4.2 0.9-0.4 1.6-0.8 2.2-1.4l27.1-27.3-14.2-12.7c-0.3-0.3-0.6 0.5-1 0.9z"
     />
     <path
-      fill="url(#blog_SVGID_2_)"
-      d="m46.1 23.2c-1.5 6.2-4.7 9.9-11.1 11.7 5.2 1.5 8.1 4.2 11.1 18.5 1.8-10.8 5.5-16 14.3-18.5-5.5-1.3-11.8-4-14.3-11.7z"
+      fill="url(#new_blog_SVGID_4_)"
+      d="m138.2 81.6c-3.3-0.2-6.7 1-8.7 3.7l14.5 13.4 0.8-0.9c4.8-5.3 2.6-15.4-6.6-16.2z"
     />
     <path
-      fill="#333333"
-      d="m46.1 3.5c-2 12.6-2.9 20.1-6.1 24.1-2.9 3.8-9.6 5-22.4 7.2 12.8 2.3 20.3 3.1 23.1 8.3 2.5 4.5 3.7 13 5.4 23.3 2.5-13 3-21.3 7-25 3.3-3.3 9.5-4.2 21.1-6.5-12.1-2-18.1-2.8-21.6-6.8-3-3.6-4.4-11.2-6.5-24.6zm0 50.4-1.1-6c-1.8-7.8-5.3-10.5-12.4-12.3l-3.9-0.8 3.2-0.7c8.5-2.2 12.3-5 14.1-18h0.1c1.5 8.3 3.6 14.3 9.8 16.3l7.5 2.5-4.2 0.5c-7 1.7-10.8 4.7-12.6 14l-0.5 4.5z"
+      fill="url(#new_blog_SVGID_5_)"
+      d="m100 114.4 13.4 12.9-0.6 2.1c-3.5 1.6-10.4 3.5-12.8 4.2s-4.9-0.8-4.3-3.9l4.3-15.3z"
     />
     <path
-      fill="#E0E0E0"
-      d="m46.1 23.2c-1.1 5.4-3.5 9.9-11.1 11.7 5.2 1.5 7.9 3.7 10 12.5-1.8-7.3-5.3-10-12.4-11.8l-3.9-0.8 3.2-0.7c8.5-2.2 11.8-4.5 14.1-15.5l0.1-2.5c1 5.3 2.1 11.3 6.5 14.8-2.5-1.5-5-3.8-6.5-7.7z"
+      fill="#58595B"
+      d="m113.7 62.1h-36.1c-2 0-3.7 1.6-3.7 3.6s1.7 3.6 3.7 3.6h36.1c3.1 0.3 3.7-1.3 3.7-3.6 0-2.2-1-3.6-3.7-3.6zm-12 16.8h-24.1c-2 0-3.7 1.6-3.7 3.6s1.7 3.6 3.7 3.6h24.1c2 0.4 4.1-1.2 4.1-3.6s-1-3.6-3.3-3.6h-0.8z"
     />
     <path
-      fill="url(#blog_SVGID_3_)"
-      d="m29.9 77c-1.5 6.4-4.8 10.1-11.2 12.4 5.4 1.5 8.3 4.7 11.2 19.2 1.5-11 5.5-16.4 15.2-19.2-5.5-1.3-12.5-4.4-15.2-12.4z"
+      fill="none"
+      stroke="#E5E5E5"
+      strokeWidth={0.25}
+      strokeMiterlimit={10}
+      d="m69.9 36.4h46c3.2 0 6.2 0.6 8.8 2.6l9.3 8.6c1.7 1.7 2.4 3.4 2.4 5.9v22.7"
     />
     <path
-      fill="#333333"
-      d="m29.9 56.8c-2 12.6-2.9 20.3-6 24.3-2.9 3.8-9.3 5-22.3 8.1 13 2.2 20.5 3.2 23 7.9 2.5 4.5 3.5 12.3 5.4 24 2.6-13.7 3.2-21.5 7.1-24.5 3.5-3.2 9.5-4.4 22-6.6-12.5-2.1-18.7-2.9-22.2-6.5-3.3-3.1-4.8-10.4-7-26.7zm0 51.6-1-6c-2-7.8-5.2-10.3-11.8-12l-4.7-1.2 3.3-0.6c8.4-2 12.4-5.5 14.2-18.6l1.1 5.4c2 7.7 5.1 9.7 10.9 11.7l6 2.1-3.8 0.4c-7.2 2-11.5 5-13.5 14.4l-0.7 4.4z"
+      fill="none"
+      stroke="#231F20"
+      strokeWidth={0.25}
+      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      d="m129.5 85.3c1.9-2.3 4.5-3.7 7.7-3.7 7.2-0.3 12.2 7 8.3 14.4l-1.7 2.5-29.6 29c-1.5 1.5-10.2 4.1-14.7 6.1h-31.6c-6.4 0-13.5-4.8-13.6-13.7l-0.1-69.4c0.1-6.3 6.3-14.1 15.7-14.1"
     />
     <path
-      fill="#E0E0E0"
-      d="m29.9 77c-1.3 5.6-4.3 10.6-11.2 12.4 5.2 1.5 7.9 4.2 9.9 13-2-7.3-4.9-10.3-11.5-12l-4.7-1.2 3.3-0.6c8.4-2 11.7-5.2 13.9-14.7l0.3-3.9c1.1 5.4 2.2 11.1 6.7 14.6-2.5-1.5-5.2-3.7-6.7-7.6z"
+      fill="none"
+      stroke="url(#new_blog_SVGID_6_)"
+      strokeMiterlimit={10}
+      strokeWidth={0.5}
+      d="m113.7 62.3h-36.1c-1.8 0-3.4 1.5-3.4 3.4s1.6 3.8 3.4 3.8h36.1c2.2 0.2 3.4-0.7 3.4-3.8 0-2.3-0.7-3.4-3.4-3.4z"
+    />
+    <path
+      fill="none"
+      stroke="url(#new_blog_SVGID_7_)"
+      strokeMiterlimit={10}
+      strokeWidth={0.5}
+      d="m102.1 78.9h-24.5c-1.8 0-3.4 1.5-3.4 3.4s1.6 3.8 3.4 3.8h24.5c2.2 0.3 3.4-1.2 3.4-3.6s-1.2-3.6-3.4-3.6z"
+    />
+    <path
+      fill="none"
+      stroke="#E5E5E5"
+      strokeWidth={0.25}
+      strokeMiterlimit={10}
+      d="m57.2 50.9v68.1c0 5.8 4.5 13.1 12.4 13.6h19.4"
     />
   </svg>
 );
