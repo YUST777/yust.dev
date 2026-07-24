@@ -309,23 +309,20 @@ function BlogPage() {
         ]}
       />
 
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-pixel text-white mb-2 uppercase">blog</h1>
-          <p className="text-sm font-mono text-zinc-400">
-            Stories, engineering retrospectives, and hackathon wins.
-          </p>
+          <h1 className="text-4xl font-pixel text-white uppercase">blog</h1>
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap shrink min-w-0">
           {CATEGORIES.map((category) => {
             const isActive = selectedCategory === category;
             return (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`relative px-4 py-2 text-xs font-mono rounded-full transition-all duration-300 ${
+                className={`relative px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs font-mono rounded-full transition-all duration-300 whitespace-nowrap shrink-0 ${
                   isActive
                     ? "bg-white text-black font-semibold shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                     : "border border-white/10 text-zinc-400 hover:text-white hover:border-white/25 bg-white/[0.02]"
