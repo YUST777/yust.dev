@@ -64,7 +64,7 @@ export default function AchievementsSection() {
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
             <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
-              4x Hackathon Winner.{" "}
+              3x Hackathon Winner.{" "}
             </strong>
             Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI
             tools including{" "}
