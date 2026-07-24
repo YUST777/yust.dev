@@ -38,12 +38,16 @@ function isFeaturedProject(project: Project): boolean {
     slug.includes("zero") ||
     slug.includes("icpc") ||
     slug.includes("sketchz") ||
+    slug.includes("monterminal") ||
+    slug.includes("hellish") ||
     title.includes("10k") ||
     title.includes("collectable") ||
     title.includes("gifts") ||
     title.includes("zero") ||
     title.includes("icpc") ||
-    title.includes("sketchz")
+    title.includes("sketchz") ||
+    title.includes("monterminal") ||
+    title.includes("hellish")
   ) {
     return false;
   }
@@ -79,10 +83,12 @@ function belongsToCategory(project: Project, category: string): boolean {
 
   if (category === "Web3") {
     return (
+      title.includes("monterminal") ||
       title.includes("collectable") ||
       title.includes("gifts") ||
       title.includes("sketchz") ||
       title.includes("10k runner") ||
+      slug.includes("monterminal") ||
       slug.includes("collectable") ||
       slug.includes("gifts") ||
       slug.includes("sketchz") ||
@@ -92,8 +98,10 @@ function belongsToCategory(project: Project, category: string): boolean {
 
   if (category === "Games") {
     return (
+      title.includes("hellish") ||
       title.includes("sketchz") ||
       title.includes("10k runner") ||
+      slug.includes("hellish") ||
       slug.includes("sketchz") ||
       slug.includes("10k-runner")
     );

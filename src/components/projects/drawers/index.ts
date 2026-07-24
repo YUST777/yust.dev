@@ -14,6 +14,8 @@ export const Drawers = {
   RetroOSDrawer: lazy(() => import("./RetroOSDrawer")),
   SwrmzDrawer: lazy(() => import("./SwrmzDrawer")),
   SketchzDrawer: lazy(() => import("./SketchzDrawer")),
+  MonTerminalDrawer: lazy(() => import("./MonTerminalDrawer")),
+  HellishGolfDrawer: lazy(() => import("./HellishGolfDrawer")),
 };
 
 export const DRAWER_TITLES: Record<string, string> = {
@@ -30,6 +32,8 @@ export const DRAWER_TITLES: Record<string, string> = {
   RetroOS: "RetroOS – Interactive Web Simulation",
   swrmz: "SWRMZ – Swarm AI Security",
   sketchz: "Sketchz – 3D Gallery on ETH",
+  monterminal: "MonTerminal – Monad Onchain Trading Terminal",
+  hellishgolf: "Hellish Golf – Daily Golf Challenge inside Reddit Feed",
 };
 
 export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType<any>>> = {
@@ -46,4 +50,6 @@ export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType
   RetroOS: Drawers.RetroOSDrawer,
   swrmz: Drawers.SwrmzDrawer,
   sketchz: Drawers.SketchzDrawer,
+  monterminal: Drawers.MonTerminalDrawer,
+  hellishgolf: Drawers.HellishGolfDrawer,
 };
