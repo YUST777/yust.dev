@@ -370,7 +370,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
 
       {openIndex !== null && (
         <div
-          className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
+          className="fixed inset-0 w-screen h-screen z-[9999] bg-black flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
           onClick={() => setOpenIndex(null)}
           role="dialog"
           aria-modal="true"
