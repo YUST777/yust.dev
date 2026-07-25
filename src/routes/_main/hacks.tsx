@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
@@ -333,79 +334,108 @@ function HacksPage() {
       </div>
 
       <div className="pt-4">
-        <p
+        <motion.button
+          type="button"
           onClick={() => setShowFailed(!showFailed)}
-          className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block"
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-flex items-center gap-2 select-none focus:outline-none"
         >
-          [ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]
-        </p>
+          <span>[ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]</span>
+          <motion.span
+            animate={{ rotate: showFailed ? 180 : 0 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="text-[9px] opacity-70"
+          >
+            ▼
+          </motion.span>
+        </motion.button>
       </div>
 
-      {showFailed && (
-        <div className="space-y-16 pt-8 border-t border-white/5 animate-in fade-in slide-in-from-bottom-2 duration-500">
-          {failedHacks.map((hack, i) => (
-            <div key={i} className="flex flex-col gap-3">
-              <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
-                {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
-                <span>{hack.status}</span>
-              </h2>
-              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
-                {hack.event}
-              </div>
-              <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
-                {hack.title}
-              </h3>
-              <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
-                {hack.desc}
-              </div>
+      <AnimatePresence initial={false}>
+        {showFailed && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+            animate={{ opacity: 1, height: "auto", marginTop: 32 }}
+            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="overflow-hidden border-t border-white/5"
+          >
+            <div className="space-y-16 pt-8">
+              {failedHacks.map((hack, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.08 }}
+                  className="flex flex-col gap-3"
+                >
+                  <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+                    {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
+                    <span>{hack.status}</span>
+                  </h2>
+                  <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
+                    {hack.event}
+                  </div>
+                  <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
+                    {hack.title}
+                  </h3>
+                  <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+                    {hack.desc}
+                  </div>
 
-              <div className="flex flex-col gap-2 mt-1">
-                {hack.linkText && (
-                  <a
-                    href={hack.linkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
-                  >
-                    {hack.linkText}
-                  </a>
-                )}
-                {hack.proofs && hack.proofs.length > 0 && (
-                  <div className="flex flex-wrap gap-4 mt-1">
-                    {hack.proofs.map((proof, idx) => (
+                  <div className="flex flex-col gap-2 mt-1">
+                    {hack.linkText && (
                       <a
-                        key={idx}
+                        href={hack.linkUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        href={proof.url}
-                        className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
+                        className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
                       >
-                        <svg
-                          className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          />
-                        </svg>
-                        <span className="underline decoration-zinc-800 underline-offset-4">
-                          {proof.label}
-                        </span>
+                        {hack.linkText}
                       </a>
-                    ))}
+                    )}
+                    {hack.proofs && hack.proofs.length > 0 && (
+                      <div className="flex flex-wrap gap-4 mt-1">
+                        {hack.proofs.map((proof, idx) => (
+                          <a
+                            key={idx}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={proof.url}
+                            className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
+                          >
+                            <svg
+                              className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </svg>
+                            <span className="underline decoration-zinc-800 underline-offset-4">
+                              {proof.label}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </motion.div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
