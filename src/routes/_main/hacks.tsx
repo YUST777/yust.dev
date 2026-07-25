@@ -352,90 +352,85 @@ function HacksPage() {
         </motion.button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {showFailed && (
-          <motion.div
-            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: "auto", marginTop: 32 }}
-            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{
-              duration: 0.4,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="overflow-hidden border-t border-white/5"
-          >
-            <div className="space-y-16 pt-8">
-              {failedHacks.map((hack, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
-                  className="flex flex-col gap-3"
-                >
-                  <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
-                    {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
-                    <span>{hack.status}</span>
-                  </h2>
-                  <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
-                    {hack.event}
-                  </div>
-                  <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
-                    {hack.title}
-                  </h3>
-                  <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
-                    {hack.desc}
-                  </div>
+      <motion.div
+        initial={false}
+        animate={{
+          gridTemplateRows: showFailed ? "1fr" : "0fr",
+          opacity: showFailed ? 1 : 0,
+        }}
+        transition={{
+          duration: 0.35,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="grid border-t border-white/5 overflow-hidden"
+        style={{
+          marginTop: showFailed ? "2rem" : "0rem",
+        }}
+      >
+        <div className="min-h-0 overflow-hidden space-y-16 pt-8">
+          {failedHacks.map((hack, i) => (
+            <div key={i} className="flex flex-col gap-3">
+              <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+                {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
+                <span>{hack.status}</span>
+              </h2>
+              <div className="text-[10px] sm:text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1">
+                {hack.event}
+              </div>
+              <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
+                {hack.title}
+              </h3>
+              <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+                {hack.desc}
+              </div>
 
-                  <div className="flex flex-col gap-2 mt-1">
-                    {hack.linkText && (
+              <div className="flex flex-col gap-2 mt-1">
+                {hack.linkText && (
+                  <a
+                    href={hack.linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
+                  >
+                    {hack.linkText}
+                  </a>
+                )}
+                {hack.proofs && hack.proofs.length > 0 && (
+                  <div className="flex flex-wrap gap-4 mt-1">
+                    {hack.proofs.map((proof, idx) => (
                       <a
-                        href={hack.linkUrl}
+                        key={idx}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[10px] sm:text-[11px] font-mono text-zinc-300 hover:text-white transition-colors underline decoration-zinc-700 underline-offset-4 self-start"
+                        href={proof.url}
+                        className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
                       >
-                        {hack.linkText}
+                        <svg
+                          className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                        <span className="underline decoration-zinc-800 underline-offset-4">
+                          {proof.label}
+                        </span>
                       </a>
-                    )}
-                    {hack.proofs && hack.proofs.length > 0 && (
-                      <div className="flex flex-wrap gap-4 mt-1">
-                        {hack.proofs.map((proof, idx) => (
-                          <a
-                            key={idx}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={proof.url}
-                            className="text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 group"
-                          >
-                            <svg
-                              className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                              />
-                            </svg>
-                            <span className="underline decoration-zinc-800 underline-offset-4">
-                              {proof.label}
-                            </span>
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                    ))}
                   </div>
-                </motion.div>
-              ))}
+                )}
+              </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }
