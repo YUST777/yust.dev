@@ -297,9 +297,11 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
         setOpenIndex((i) => (i === null ? null : (i - 1 + images.length) % images.length));
     }
     window.addEventListener("keydown", onKey);
+    document.body.classList.add("drawer-open");
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
+      document.body.classList.remove("drawer-open");
       document.body.style.overflow = "";
     };
   }, [openIndex, images.length]);
@@ -368,63 +370,98 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
 
       {openIndex !== null && (
         <div
-          className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-200"
+          className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
           onClick={() => setOpenIndex(null)}
           role="dialog"
           aria-modal="true"
           aria-label={`${title} gallery`}
         >
+          {/* Close Button */}
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               setOpenIndex(null);
             }}
-            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-zinc-900/80 hover:bg-white text-zinc-400 hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
             aria-label="Close gallery"
           >
-            ✕
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
 
+          {/* Previous Arrow */}
           {images.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenIndex((i) =>
-                    i === null ? null : (i - 1 + images.length) % images.length,
-                  );
-                }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
-                aria-label="Previous image"
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenIndex((i) =>
+                  i === null ? null : (i - 1 + images.length) % images.length,
+                );
+              }}
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-900/80 hover:bg-white text-white hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
+              aria-label="Previous image"
+            >
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
               >
-                ←
-              </button>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
-                }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
-                aria-label="Next image"
-              >
-                →
-              </button>
-            </>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
           )}
 
-          <img
-            src={images[openIndex]}
-            alt={`${title} event photo ${openIndex + 1}`}
-            decoding="async"
-            className="max-w-[92vw] max-h-[88vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          />
+          {/* Next Arrow */}
+          {images.length > 1 && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
+              }}
+              className="absolute right-3 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-900/80 hover:bg-white text-white hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
+              aria-label="Next image"
+            >
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
 
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-zinc-400 font-mono text-xs tracking-widest uppercase">
-            {openIndex + 1} / {images.length}
+          {/* Main Lightbox Content Box */}
+          <div
+            className="flex flex-col items-center justify-center max-w-5xl w-full h-full max-h-[85vh] gap-3 select-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex-1 min-h-0 flex items-center justify-center w-full">
+              <img
+                src={images[openIndex]}
+                alt={`${title} event photo ${openIndex + 1}`}
+                decoding="async"
+                className="max-w-full max-h-[70vh] sm:max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl animate-in zoom-in-95 duration-200"
+              />
+            </div>
+
+            {/* Caption & Counter Bar (100% visible on screen) */}
+            <div className="flex flex-col items-center gap-1 shrink-0 max-w-xl text-center px-4 pb-2">
+              <span className="text-zinc-500 font-mono text-[11px] sm:text-xs tracking-widest uppercase">
+                {openIndex + 1} / {images.length}
+              </span>
+              <p className="text-zinc-300 font-sans text-xs sm:text-sm leading-snug line-clamp-2">
+                {title}
+              </p>
+            </div>
           </div>
         </div>
       )}
