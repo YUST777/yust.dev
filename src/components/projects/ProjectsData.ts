@@ -251,7 +251,7 @@ export const projectsData: Project[] = [
       "A devilishly hard daily golf challenge, played right inside the Reddit feed. Built in 4 days for Reddit's Games with a Hook Hackathon. Designed to drive daily retention and community competition.",
     tag: "Game",
     icon: "fa-gamepad",
-    span: "md:col-span-2 md:row-span-1",
+    span: "md:col-span-3 md:row-span-1",
     delay: "delay-250",
     video: "/videos/hellishgolf.webm",
     poster: "/static/images/posters/hellishgolf.webp",
@@ -266,21 +266,6 @@ export const projectsData: Project[] = [
         items: ["Daily Shared Hole", "Reddit Feed Inline", "Powerup Shop", "Leaderboards"],
       },
     ],
-  },
-  {
-    id: 5,
-    title: "More Projects",
-    description: "Additional projects and experiments",
-    fullDescription:
-      "Explore additional projects, experiments, and creative work showcasing various technologies and solutions.",
-    icon: "fa-archive",
-    span: "md:col-span-1 md:row-span-1",
-    delay: "delay-200",
-    isMinimal: true,
-    isArchive: true,
-    video: "/videos/moreprojects.webm",
-    poster: "/static/images/posters/moreprojects.webp",
-    technologies: ["Various Technologies"],
   },
   {
     id: 6,
@@ -311,53 +296,4 @@ export const projectsData: Project[] = [
   },
 ];
 
-export const archiveProjectsData: Project[] = [
-  {
-    id: 10,
-    title: "PanoBlue",
-    slug: "panoblue",
-    seoTitle: "PanoBlue Corporate Import Export Website | yust.dev",
-    description: "Import/Export Corporate Platform",
-    fullDescription:
-      "A custom-built digital presence for an international import/export company, migrating from WordPress to a tailored, high-performance web solution.",
-    tag: "Corporate",
-    icon: "fa-globe",
-    span: "md:col-span-1 md:row-span-1",
-    delay: "delay-100",
-    video: "/videos/panoblue.webm",
-    poster: "/static/images/posters/panoblue.webp",
-    drawerId: "panoblue",
-  },
-  {
-    id: 11,
-    title: "Fazzah",
-    slug: "fazzah",
-    seoTitle: "Fazzah Full-Stack Web Application Project | yust.dev",
-    description: "Efficient Web Application Solution",
-    fullDescription:
-      "A streamlined web application designed for efficiency and performance, focusing on a clean user interface and robust backend integration.",
-    tag: "Web App",
-    icon: "fa-rocket",
-    span: "md:col-span-1 md:row-span-1",
-    delay: "delay-200",
-    video: "/videos/fazzah.webm",
-    poster: "/static/images/posters/fazzah.webp",
-    drawerId: "fazzah",
-  },
-  {
-    id: 12,
-    title: "RetroOS",
-    slug: "retro-os",
-    seoTitle: "RetroOS Browser Operating System Project | yust.dev",
-    description: "Interactive Retro OS Simulation",
-    fullDescription:
-      "A nostalgic browser-based operating system simulation with an interactive terminal, desktop windows, and retro interface experiments.",
-    tag: "Experimental",
-    icon: "fa-terminal",
-    span: "md:col-span-1 md:row-span-1",
-    delay: "delay-300",
-    video: "/videos/RetroOS_Project.webm",
-    poster: "/static/images/posters/RetroOS_Project.webp",
-    drawerId: "RetroOS",
-  },
-];
+export const archiveProjectsData: Project[] = [];

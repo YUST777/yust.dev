@@ -11,7 +11,7 @@ function VerdictDrawer() {
           <i className="fas fa-code-branch mr-2"></i>Founder & Lead Engineer
         </p>
         <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
-          Status: <span className="text-green-400 font-bold">Live Beta</span>
+          Status: <span className="text-green-400 font-bold">Live</span>
         </p>
       </div>
 
