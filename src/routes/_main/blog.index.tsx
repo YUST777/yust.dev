@@ -53,6 +53,7 @@ export interface BlogPost {
   content: string;
   featured?: { label: string; url: string }[];
   images?: string[];
+  previewImage?: string;
   imagePosition?: string;
 }
 
@@ -201,7 +202,8 @@ Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` 
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
     category: "Hackathons",
-    imagePosition: "object-contain p-2 bg-[#0c0c0c]",
+    previewImage: "/static/images/mems/mem_2/gdg-preview.webp",
+    imagePosition: "object-cover",
     summary:
       "Inside the 49-hour build that took Sast.tech to second place at the GDG Delta hackathon, from the security problem to the final demo.",
     content: `Don't sleep until you hold the win in your hand. This was me at 1 AM, after staying awake for 49 hours straight in the service area 😂.
@@ -377,7 +379,7 @@ function BlogPage() {
         >
           <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
             <img
-              src={hoveredPost.images[0]}
+              src={hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""}
               alt={hoveredPost.title}
               className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
             />
