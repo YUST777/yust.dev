@@ -181,7 +181,11 @@ export default function Projects() {
     }
 
     if (project.isArchive) {
-      setIsExpanded(!isExpanded);
+      if (archiveProjectsData.length > 0) {
+        setIsExpanded(!isExpanded);
+      } else {
+        window.open("https://github.com/YUST777?tab=repositories", "_blank", "noopener,noreferrer");
+      }
       return;
     }
 
