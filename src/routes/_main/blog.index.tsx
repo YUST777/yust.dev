@@ -240,6 +240,8 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
     modifiedIso: "2026-07-23",
     modifiedDate: "Jul 23, 2026",
     category: "Hackathons",
+    previewImage: "/static/images/mems/mem_5/summit-preview.webp",
+    imagePosition: "object-cover",
     summary:
       "From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.",
     content: `🎉 From Level 1 to the Top 3! 🎉
