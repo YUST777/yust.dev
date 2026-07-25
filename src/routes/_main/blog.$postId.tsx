@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { posts } from "./blog.index";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
@@ -278,8 +279,27 @@ function PostPage() {
  *
  * Clicking any thumb opens a simple lightbox with prev/next/escape.
  */
+const imageVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 200 : direction < 0 ? -200 : 0,
+    opacity: 0,
+    scale: 0.96,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 200 : direction > 0 ? -200 : 0,
+    opacity: 0,
+    scale: 0.96,
+  }),
+};
+
 function ImageCollage({ images, title }: { images: string[]; title: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [direction, setDirection] = useState(0);
 
   // Up to 3 thumbnails after the hero. Anything beyond is a "+N" overlay on the last visible thumb.
   const hero = images[0];
@@ -287,14 +307,21 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
   const overflow = Math.max(0, images.length - 4);
   const thumbCount = visibleThumbs.length;
 
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setOpenIndex((i) => {
+      if (i === null) return null;
+      if (newDirection > 0) return (i + 1) % images.length;
+      return (i - 1 + images.length) % images.length;
+    });
+  };
+
   useEffect(() => {
     if (openIndex === null) return;
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpenIndex(null);
-      else if (e.key === "ArrowRight")
-        setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
-      else if (e.key === "ArrowLeft")
-        setOpenIndex((i) => (i === null ? null : (i - 1 + images.length) % images.length));
+      else if (e.key === "ArrowRight") paginate(1);
+      else if (e.key === "ArrowLeft") paginate(-1);
     }
     window.addEventListener("keydown", onKey);
     document.body.classList.add("drawer-open");
@@ -311,7 +338,10 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
       <div className="space-y-2 md:gap-3">
         <button
           type="button"
-          onClick={() => setOpenIndex(0)}
+          onClick={() => {
+            setDirection(0);
+            setOpenIndex(0);
+          }}
           className="block w-full overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 h-[250px] md:h-[500px] cursor-zoom-in"
           aria-label={`Open ${title} image 1 in fullscreen`}
         >
@@ -339,7 +369,10 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
                 <button
                   key={img}
                   type="button"
-                  onClick={() => setOpenIndex(absoluteIndex)}
+                  onClick={() => {
+                    setDirection(0);
+                    setOpenIndex(absoluteIndex);
+                  }}
                   className="relative aspect-video overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 cursor-zoom-in group"
                   aria-label={
                     showOverlay
@@ -397,9 +430,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setOpenIndex((i) =>
-                  i === null ? null : (i - 1 + images.length) % images.length,
-                );
+                paginate(-1);
               }}
               className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-900/80 hover:bg-white text-white hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
               aria-label="Previous image"
@@ -422,7 +453,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setOpenIndex((i) => (i === null ? null : (i + 1) % images.length));
+                paginate(1);
               }}
               className="absolute right-3 sm:left-auto sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-900/80 hover:bg-white text-white hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
               aria-label="Next image"
@@ -444,13 +475,26 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
             className="flex flex-col items-center justify-center max-w-5xl w-full h-full max-h-[85vh] gap-3 select-none"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex-1 min-h-0 flex items-center justify-center w-full">
-              <img
-                src={images[openIndex]}
-                alt={`${title} event photo ${openIndex + 1}`}
-                decoding="async"
-                className="max-w-full max-h-[70vh] sm:max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl animate-in zoom-in-95 duration-200"
-              />
+            <div className="flex-1 min-h-0 flex items-center justify-center w-full relative overflow-hidden">
+              <AnimatePresence custom={direction} mode="wait">
+                <motion.img
+                  key={openIndex}
+                  src={images[openIndex]}
+                  alt={`${title} event photo ${openIndex + 1}`}
+                  custom={direction}
+                  variants={imageVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 350, damping: 32 },
+                    opacity: { duration: 0.2 },
+                    scale: { duration: 0.2 },
+                  }}
+                  decoding="async"
+                  className="max-w-full max-h-[70vh] sm:max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
+                />
+              </AnimatePresence>
             </div>
 
             {/* Caption & Counter Bar (100% visible on screen) */}
