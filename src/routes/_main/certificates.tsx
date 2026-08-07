@@ -143,7 +143,7 @@ function CertificatesPage() {
       <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         <section
           aria-label="Certificate folders"
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-3 lg:gap-x-7 lg:gap-y-10 lg:overflow-visible lg:pb-0"
+          className="flex items-center overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 pb-4 px-[16vw] sm:px-[25vw] lg:px-0 lg:grid lg:grid-cols-3 lg:gap-x-7 lg:gap-y-10 lg:overflow-visible lg:pb-0"
         >
           {certificatePreviews.map((certificate, index) => (
             <CertificateFolder
@@ -238,7 +238,9 @@ function CertificateFolder({
       transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.97 }}
-      className="group min-w-0 text-left outline-none shrink-0 w-[150px] sm:w-[170px] snap-center lg:w-auto lg:shrink"
+      className={`group min-w-0 text-left outline-none shrink-0 w-[68vw] max-w-[240px] sm:w-[260px] snap-center lg:w-auto lg:shrink transition-all duration-500 ${
+        isOpen ? "opacity-100 scale-100" : "opacity-30 scale-95 lg:opacity-100 lg:scale-100"
+      }`}
     >
       <span className="relative block aspect-[1.3/1] [perspective:900px]">
         <span className="absolute inset-x-1 bottom-0 top-4 rounded-xl border border-white/10 bg-[#111214] shadow-[0_14px_30px_rgba(0,0,0,0.35)]">
