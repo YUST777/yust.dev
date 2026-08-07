@@ -387,10 +387,10 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="flex flex-col justify-end h-full mt-12 sm:mt-16 lg:mt-0 pt-6 sm:pt-8 lg:pt-0" aria-label="Selected certificate preview">
+    <aside className="flex flex-col items-center justify-end h-full mt-12 sm:mt-16 lg:mt-0 pt-6 sm:pt-8 lg:pt-0" aria-label="Selected certificate preview">
       {/* 3D Scene Container */}
       <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[680px] [perspective:2000px] group cursor-pointer">
-        <div className="relative h-full w-full [transform-style:preserve-3d] [transform:rotateX(12deg)_translateY(-6px)] transition-transform duration-500 ease-out">
+        <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-500 ease-out">
           
           {/* Folder Base (Back tray that holds the certificate) */}
           <div className="absolute inset-0 rounded-[18px] border border-[#2a2a2c] bg-[#1a1a1c] p-[2.5%] shadow-[0_30px_60px_rgba(0,0,0,0.9),inset_0_10px_20px_rgba(0,0,0,0.5)] z-10 flex flex-col">
@@ -416,7 +416,7 @@ function CertificateViewer({
 
           {/* Folder Cover (The part that hinges open upwards - responsive rotateX) */}
           <div
-            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(96deg)] sm:[transform:rotateX(106deg)] lg:[transform:rotateX(118deg)] group-hover:[transform:rotateX(108deg)] lg:group-hover:[transform:rotateX(125deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
+            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] group-hover:[transform:rotateX(110deg)] lg:group-hover:[transform:rotateX(125deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
           >
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
