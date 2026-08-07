@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, BrainCircuit, Cloud, Code2, Maximize2, ShieldCheck, Trophy, X } from "lucide-react";
+import { Maximize2, X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
@@ -50,7 +50,6 @@ type CertificatePreview = {
   credentialId: string;
   image: string;
   accent: string;
-  icon: typeof Award;
 };
 
 const certificatePreviews: CertificatePreview[] = [
@@ -63,7 +62,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "GDG-DELTA-2026-02",
     image: "/certi/gdg-delta-hackathon-4.webp",
     accent: "from-blue-400/20 to-sky-400/5",
-    icon: Trophy,
   },
   {
     id: "luxsai-ai-hackathon",
@@ -74,7 +72,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "LUXSAI-HACK-2026-03",
     image: "/certi/luxsai-ai-hackathon-winner.webp",
     accent: "from-purple-400/20 to-indigo-400/5",
-    icon: BrainCircuit,
   },
   {
     id: "sustainable-innovation-summit",
@@ -85,7 +82,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "TANTA-SUMMIT-2025-08",
     image: "/certi/tanta-sustainable-innovation-summit.webp",
     accent: "from-emerald-400/20 to-teal-400/5",
-    icon: ShieldCheck,
   },
   {
     id: "iti-ai-ml-course",
@@ -96,7 +92,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "ITI-AI-ML-2026-07",
     image: "/certi/iti-ai-ml-course.webp",
     accent: "from-amber-400/20 to-yellow-400/5",
-    icon: Code2,
   },
   {
     id: "horus-university-excellence",
@@ -107,7 +102,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "HUE-ENG-2026",
     image: "/certi/horus-university-excellence.webp",
     accent: "from-sky-400/20 to-blue-400/5",
-    icon: Award,
   },
   {
     id: "luxsai-ai-summit",
@@ -118,7 +112,6 @@ const certificatePreviews: CertificatePreview[] = [
     credentialId: "LUXSAI-SUMMIT-2026",
     image: "/certi/luxsai-ai-summit-luxor.webp",
     accent: "from-violet-400/20 to-fuchsia-400/5",
-    icon: Cloud,
   },
 ];
 
@@ -230,8 +223,6 @@ function CertificateFolder({
   onHover: () => void;
   onLeave: () => void;
 }) {
-  const Icon = certificate.icon;
-
   return (
     <button
       type="button"
@@ -275,9 +266,6 @@ function CertificateFolder({
           }`}
         >
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/25 shadow-[0_8px_22px_rgba(0,0,0,0.35)]">
-            <Icon className="h-5 w-5 text-zinc-300" aria-hidden="true" />
-          </span>
         </span>
       </span>
 
@@ -296,8 +284,6 @@ function CertificateViewer({
   certificate: CertificatePreview;
   onOpenFullscreen: () => void;
 }) {
-  const Icon = certificate.icon;
-
   return (
     <aside className="lg:sticky lg:top-28" aria-label="Selected certificate preview">
       <div className="relative mx-auto aspect-[1.42/1] w-full max-w-[560px] overflow-visible [perspective:1200px]">
@@ -327,13 +313,7 @@ function CertificateViewer({
         {/* 3D Opened Top Folder Lid Flap (opens UPWARDS to the top!) */}
         <div
           className={`absolute left-0 right-0 top-0 h-[35%] origin-top overflow-hidden rounded-t-2xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#1a1b1d] shadow-[0_-12px_35px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform:perspective(1200px)_rotateX(-75deg)_translateY(-14px)]`}
-        >
-          <div className="flex h-full items-center justify-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/40 shadow-lg">
-              <Icon className="h-5 w-5 text-zinc-300" />
-            </span>
-          </div>
-        </div>
+        />
 
         <div className="absolute bottom-[2%] left-[8%] right-[3%] h-4 rounded-full bg-black/60 blur-xl" />
       </div>
