@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
@@ -117,13 +117,23 @@ const certificatePreviews: CertificatePreview[] = [
 ];
 
 function CertificatesPage() {
-  const [selectedId, setSelectedId] = useState(certificatePreviews[0].id);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [fullscreenCert, setFullscreenCert] = useState<CertificatePreview | null>(null);
 
   const selectedCertificate =
-    certificatePreviews.find((certificate) => certificate.id === (hoveredId ?? selectedId)) ??
-    certificatePreviews[0];
+    hoveredId
+      ? (certificatePreviews.find((cert) => cert.id === hoveredId) ?? certificatePreviews[activeIndex])
+      : certificatePreviews[activeIndex];
+
+  const handleDragEnd = (_: unknown, info: PanInfo) => {
+    const swipeThreshold = 40;
+    if (info.offset.x < -swipeThreshold && activeIndex < certificatePreviews.length - 1) {
+      setActiveIndex((prev) => prev + 1);
+    } else if (info.offset.x > swipeThreshold && activeIndex > 0) {
+      setActiveIndex((prev) => prev - 1);
+    }
+  };
 
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32">
@@ -134,28 +144,133 @@ function CertificatesPage() {
         ]}
       />
 
-      <header>
+      <header className="space-y-4">
         <h1 className="font-pixel text-3xl uppercase tracking-[0.12em] text-white sm:text-4xl">
           Certificates
         </h1>
       </header>
 
       <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
+        {/* Desktop Grid Layout */}
         <section
-          aria-label="Certificate folders"
-          className="flex items-center overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 pb-4 px-[16vw] sm:px-[25vw] lg:px-0 lg:grid lg:grid-cols-3 lg:gap-x-7 lg:gap-y-10 lg:overflow-visible lg:pb-0"
+          aria-label="Certificate folders grid"
+          className="hidden lg:grid lg:grid-cols-3 lg:gap-x-7 lg:gap-y-10"
         >
           {certificatePreviews.map((certificate, index) => (
             <CertificateFolder
               key={certificate.id}
               certificate={certificate}
               index={index}
-              isOpen={certificate.id === (hoveredId ?? selectedId)}
-              onActivate={() => setSelectedId(certificate.id)}
+              isOpen={index === activeIndex || certificate.id === hoveredId}
+              onActivate={() => setActiveIndex(index)}
               onHover={() => setHoveredId(certificate.id)}
               onLeave={() => setHoveredId(null)}
             />
           ))}
+        </section>
+
+        {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
+        <section aria-label="Certificate folders carousel" className="block lg:hidden select-none">
+          <div className="relative flex flex-col items-center gap-3">
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              className="relative flex w-full items-center justify-center overflow-hidden py-4 touch-pan-y"
+            >
+              <div className="flex w-full items-center justify-center gap-2 sm:gap-4">
+                {/* Left Folder (30% Opacity Inactive) */}
+                {activeIndex > 0 ? (
+                  <motion.div
+                    key={`left-${activeIndex - 1}`}
+                    onClick={() => setActiveIndex(activeIndex - 1)}
+                    initial={{ opacity: 0.3, scale: 0.82 }}
+                    animate={{ opacity: 0.3, scale: 0.85 }}
+                    whileTap={{ scale: 0.8 }}
+                    className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 cursor-pointer text-left opacity-30"
+                  >
+                    <CertificateFolderContent
+                      certificate={certificatePreviews[activeIndex - 1]}
+                      isOpen={false}
+                    />
+                  </motion.div>
+                ) : (
+                  <div className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 opacity-0 pointer-events-none" />
+                )}
+
+                {/* Center Active Folder (100% Opacity Active) */}
+                <motion.div
+                  key={`center-${activeIndex}`}
+                  initial={{ opacity: 0.8, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="w-[44%] min-w-[170px] max-w-[210px] shrink-0 text-left"
+                >
+                  <CertificateFolderContent
+                    certificate={certificatePreviews[activeIndex]}
+                    isOpen={true}
+                  />
+                </motion.div>
+
+                {/* Right Folder (30% Opacity Inactive) */}
+                {activeIndex < certificatePreviews.length - 1 ? (
+                  <motion.div
+                    key={`right-${activeIndex + 1}`}
+                    onClick={() => setActiveIndex(activeIndex + 1)}
+                    initial={{ opacity: 0.3, scale: 0.82 }}
+                    animate={{ opacity: 0.3, scale: 0.85 }}
+                    whileTap={{ scale: 0.8 }}
+                    className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 cursor-pointer text-left opacity-30"
+                  >
+                    <CertificateFolderContent
+                      certificate={certificatePreviews[activeIndex + 1]}
+                      isOpen={false}
+                    />
+                  </motion.div>
+                ) : (
+                  <div className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 opacity-0 pointer-events-none" />
+                )}
+              </div>
+            </motion.div>
+
+            {/* Mobile Swipe / Arrow Controls & Dots */}
+            <div className="flex items-center gap-4 pt-1">
+              <button
+                type="button"
+                disabled={activeIndex === 0}
+                onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-zinc-400 disabled:opacity-20 hover:bg-white hover:text-black transition-all"
+                aria-label="Previous certificate"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                {certificatePreviews.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActiveIndex(i)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === activeIndex ? "w-6 bg-white" : "w-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                disabled={activeIndex === certificatePreviews.length - 1}
+                onClick={() => setActiveIndex((prev) => Math.min(certificatePreviews.length - 1, prev + 1))}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-zinc-400 disabled:opacity-20 hover:bg-white hover:text-black transition-all"
+                aria-label="Next certificate"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
         </section>
 
         <CertificateViewer
@@ -238,10 +353,22 @@ function CertificateFolder({
       transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.97 }}
-      className={`group min-w-0 text-left outline-none shrink-0 w-[68vw] max-w-[240px] sm:w-[260px] snap-center lg:w-auto lg:shrink transition-all duration-500 ${
-        isOpen ? "opacity-100 scale-100" : "opacity-30 scale-95 lg:opacity-100 lg:scale-100"
-      }`}
+      className="group min-w-0 text-left outline-none"
     >
+      <CertificateFolderContent certificate={certificate} isOpen={isOpen} />
+    </motion.button>
+  );
+}
+
+function CertificateFolderContent({
+  certificate,
+  isOpen,
+}: {
+  certificate: CertificatePreview;
+  isOpen: boolean;
+}) {
+  return (
+    <>
       <span className="relative block aspect-[1.3/1] [perspective:900px]">
         <span className="absolute inset-x-1 bottom-0 top-4 rounded-xl border border-white/10 bg-[#111214] shadow-[0_14px_30px_rgba(0,0,0,0.35)]">
           <span className="absolute -top-4 left-0 h-6 w-[42%] rounded-t-xl border-x border-t border-white/10 bg-[#17181a]" />
@@ -285,7 +412,7 @@ function CertificateFolder({
         {certificate.issuer}
       </span>
       <span className="mt-1 block text-[11px] text-zinc-500">{certificate.issued}</span>
-    </motion.button>
+    </>
   );
 }
 
