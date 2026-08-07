@@ -140,10 +140,10 @@ function CertificatesPage() {
         </h1>
       </header>
 
-      <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
+      <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         <section
           aria-label="Certificate folders"
-          className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3"
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-3 lg:gap-x-7 lg:gap-y-10 lg:overflow-visible lg:pb-0"
         >
           {certificatePreviews.map((certificate, index) => (
             <CertificateFolder
@@ -238,7 +238,7 @@ function CertificateFolder({
       transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.97 }}
-      className="group min-w-0 text-left outline-none"
+      className="group min-w-0 text-left outline-none shrink-0 w-[150px] sm:w-[170px] snap-center lg:w-auto lg:shrink"
     >
       <span className="relative block aspect-[1.3/1] [perspective:900px]">
         <span className="absolute inset-x-1 bottom-0 top-4 rounded-xl border border-white/10 bg-[#111214] shadow-[0_14px_30px_rgba(0,0,0,0.35)]">
