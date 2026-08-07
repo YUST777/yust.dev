@@ -132,7 +132,7 @@ function CertificatesPage() {
     certificatePreviews[0];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300 pb-32">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -140,9 +140,15 @@ function CertificatesPage() {
         ]}
       />
 
-      <div>
-        <h1 className="text-4xl font-pixel text-white uppercase">certificates</h1>
-      </div>
+      <header className="space-y-4">
+        <h1 className="font-pixel text-3xl uppercase tracking-[0.12em] text-white sm:text-4xl">
+          Certificates
+        </h1>
+        <p className="max-w-2xl text-sm leading-7 text-zinc-400 sm:text-base">
+          A file cabinet for official credentials, hackathon wins, and academic honors. Hover over a folder to open it, or click to view in full resolution.
+        </p>
+        <div className="h-px w-24 bg-gradient-to-r from-zinc-500/70 to-transparent" />
+      </header>
 
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         <section
@@ -269,9 +275,8 @@ function CertificateFolder({
           }`}
         >
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <span className="flex h-12 min-w-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 text-sm font-semibold text-zinc-200 shadow-[0_8px_22px_rgba(0,0,0,0.35)]">
-            <Icon className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-            {certificate.mark}
+          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/25 shadow-[0_8px_22px_rgba(0,0,0,0.35)]">
+            <Icon className="h-5 w-5 text-zinc-300" aria-hidden="true" />
           </span>
         </span>
       </span>
@@ -323,13 +328,9 @@ function CertificateViewer({
         <div
           className={`absolute left-0 right-0 top-0 h-[35%] origin-top overflow-hidden rounded-t-2xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#1a1b1d] shadow-[0_-12px_35px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform:perspective(1200px)_rotateX(-75deg)_translateY(-14px)]`}
         >
-          <div className="flex h-full items-center justify-between px-5 py-2">
-            <span className="flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs font-mono font-bold text-zinc-200">
-              <Icon className="h-4 w-4 text-zinc-400" />
-              {certificate.mark}
-            </span>
-            <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-zinc-400 truncate max-w-[200px]">
-              {certificate.issuer}
+          <div className="flex h-full items-center justify-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black/40 shadow-lg">
+              <Icon className="h-5 w-5 text-zinc-300" />
             </span>
           </div>
         </div>
