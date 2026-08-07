@@ -16,6 +16,7 @@ export const Drawers = {
   SketchzDrawer: lazy(() => import("./SketchzDrawer")),
   MonTerminalDrawer: lazy(() => import("./MonTerminalDrawer")),
   HellishGolfDrawer: lazy(() => import("./HellishGolfDrawer")),
+  SpaceWorthDrawer: lazy(() => import("./SpaceWorthDrawer")),
 };
 
 export const DRAWER_TITLES: Record<string, string> = {
@@ -34,6 +35,7 @@ export const DRAWER_TITLES: Record<string, string> = {
   sketchz: "Sketchz – 3D Gallery on ETH",
   monterminal: "MonTerminal – Monad Onchain Trading Terminal",
   hellishgolf: "Hellish Golf – Daily Golf Challenge inside Reddit Feed",
+  spaceworth: "SpaceWorth – AI Real Estate Valuation & CAD Intelligence",
 };
 
 export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType<any>>> = {
@@ -52,4 +54,5 @@ export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType
   sketchz: Drawers.SketchzDrawer,
   monterminal: Drawers.MonTerminalDrawer,
   hellishgolf: Drawers.HellishGolfDrawer,
+  spaceworth: Drawers.SpaceWorthDrawer,
 };

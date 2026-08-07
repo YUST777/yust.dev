@@ -25,7 +25,7 @@ const PROJECT_CASE_STUDIES = [...projectsData, ...archiveProjectsData].filter(
   (project) => project.slug && !project.isMinimal && !project.isLarge,
 );
 
-const CATEGORIES = ["Featured", "AI & Security", "CP", "Web3", "Games"];
+const CATEGORIES = ["Featured", "Security", "AI", "CP", "Web3", "Games"];
 
 function isFeaturedProject(project: Project): boolean {
   if (project.isArchive || project.isMinimal) return true;
@@ -62,7 +62,7 @@ function belongsToCategory(project: Project, category: string): boolean {
   const title = (project.title || "").toLowerCase();
   const slug = (project.slug || "").toLowerCase();
 
-  if (category === "AI & Security") {
+  if (category === "Security") {
     return (
       title.includes("sast") ||
       title.includes("swrmz") ||
@@ -70,6 +70,13 @@ function belongsToCategory(project: Project, category: string): boolean {
       slug.includes("sast") ||
       slug.includes("swrmz") ||
       slug.includes("zero")
+    );
+  }
+
+  if (category === "AI") {
+    return (
+      title.includes("spaceworth") ||
+      slug.includes("spaceworth")
     );
   }
 
