@@ -134,13 +134,10 @@ function CertificatesPage() {
         ]}
       />
 
-      <header className="space-y-4">
+      <header>
         <h1 className="font-pixel text-3xl uppercase tracking-[0.12em] text-white sm:text-4xl">
           Certificates
         </h1>
-        <p className="max-w-2xl text-sm leading-7 text-zinc-400 sm:text-base">
-          A file cabinet for official credentials, hackathon wins, and academic honors. Hover over a folder to open it, or click to view in full resolution.
-        </p>
       </header>
 
       <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
