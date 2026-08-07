@@ -140,7 +140,6 @@ function CertificatesPage() {
         <p className="max-w-2xl text-sm leading-7 text-zinc-400 sm:text-base">
           A file cabinet for official credentials, hackathon wins, and academic honors. Hover over a folder to open it, or click to view in full resolution.
         </p>
-        <div className="h-px w-24 bg-gradient-to-r from-zinc-500/70 to-transparent" />
       </header>
 
       <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
