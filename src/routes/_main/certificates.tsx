@@ -143,7 +143,7 @@ function CertificatesPage() {
         <div className="h-px w-24 bg-gradient-to-r from-zinc-500/70 to-transparent" />
       </header>
 
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
+      <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         <section
           aria-label="Certificate folders"
           className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3"
@@ -285,7 +285,7 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="lg:sticky lg:top-28" aria-label="Selected certificate preview">
+    <aside className="flex flex-col justify-end h-full" aria-label="Selected certificate preview">
       {/* 3D Scene Container */}
       <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[680px] [perspective:2000px] group cursor-pointer">
         <div className="relative h-full w-full [transform-style:preserve-3d] [transform:rotateX(12deg)_translateY(-6px)] transition-transform duration-500 ease-out">
