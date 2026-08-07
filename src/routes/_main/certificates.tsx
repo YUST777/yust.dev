@@ -286,36 +286,43 @@ function CertificateViewer({
 }) {
   return (
     <aside className="lg:sticky lg:top-28" aria-label="Selected certificate preview">
-      <div className="relative mx-auto aspect-[1.42/1] w-full max-w-[560px] overflow-visible [perspective:1200px]">
-        {/* Outer Folder Container */}
-        <div className="absolute inset-x-0 bottom-0 top-6 rounded-2xl border border-white/10 bg-[#111214] shadow-[0_28px_75px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.05)]" />
-
-        {/* Real Certificate Paper Inside Folder Case */}
+      <div className="relative mx-auto aspect-[1.38/1] w-full max-w-[620px] [perspective:1200px]">
+        {/* Top Opened Flap (Open Lid) */}
         <div
-          key={certificate.id}
-          onClick={onOpenFullscreen}
-          className="group absolute bottom-[6%] left-[6%] right-[6%] top-[10%] animate-in fade-in zoom-in-95 duration-300 cursor-pointer overflow-hidden rounded-md bg-[#ebe8e1] p-2 text-[#252525] shadow-[0_18px_45px_rgba(0,0,0,0.46)] sm:p-3"
+          className="absolute -top-[16%] inset-x-0 h-[28%] origin-bottom overflow-hidden rounded-t-[22px] border border-white/10 bg-gradient-to-b from-[#1c1d20] to-[#141517] shadow-[0_-14px_40px_rgba(0,0,0,0.6)] [transform:perspective(1200px)_rotateX(-65deg)_translateY(-12px)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
         >
-          <div className="relative flex h-full flex-col overflow-hidden rounded-sm border border-[#8d846e]/35 bg-white">
-            <img
-              src={certificate.image}
-              alt={certificate.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[1px]">
-              <span className="flex items-center gap-2 rounded-full border border-white/20 bg-zinc-900/90 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xl">
-                <Maximize2 className="h-3.5 w-3.5" /> Expand Certificate
-              </span>
+          {/* Subtle center notch on flap */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 h-1 rounded-full bg-white/10" />
+        </div>
+
+        {/* Folder Frame Container */}
+        <div className="relative h-full w-full rounded-[24px] border border-white/10 bg-[#131416] p-3.5 sm:p-4 shadow-[0_32px_90px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col">
+          {/* Center tab notch behind paper */}
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-14 h-2.5 rounded-t-lg bg-[#18191c] border-t border-x border-white/10" />
+
+          {/* Real Certificate Paper */}
+          <div
+            key={certificate.id}
+            onClick={onOpenFullscreen}
+            className="group relative flex-1 w-full overflow-hidden rounded-[14px] bg-[#f5f3ee] p-2.5 sm:p-3 text-[#252525] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.1),0_10px_30px_rgba(0,0,0,0.5)] cursor-pointer transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
+          >
+            <div className="relative h-full w-full overflow-hidden rounded-lg bg-white shadow-sm flex items-center justify-center">
+              <img
+                src={certificate.image}
+                alt={certificate.title}
+                className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px]">
+                <span className="flex items-center gap-2 rounded-full border border-white/20 bg-zinc-900/90 px-4 py-2 text-xs font-semibold text-white shadow-xl hover:scale-105 transition-transform">
+                  <Maximize2 className="h-4 w-4" /> Expand Certificate
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 3D Opened Top Folder Lid Flap (opens UPWARDS to the top!) */}
-        <div
-          className={`absolute left-0 right-0 top-0 h-[35%] origin-top overflow-hidden rounded-t-2xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#1a1b1d] shadow-[0_-12px_35px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform:perspective(1200px)_rotateX(-75deg)_translateY(-14px)]`}
-        />
-
-        <div className="absolute bottom-[2%] left-[8%] right-[3%] h-4 rounded-full bg-black/60 blur-xl" />
+        {/* Ambient shadow beneath folder */}
+        <div className="absolute -bottom-4 left-[6%] right-[6%] h-6 rounded-full bg-black/75 blur-2xl" />
       </div>
     </aside>
   );
