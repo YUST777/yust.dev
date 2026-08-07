@@ -53,8 +53,7 @@ export function Navbar() {
         <NavLink
           to="/certificates"
           icon={<CertificateIcon className="h-[19px] w-[19px] object-contain" />}
-          label="Certificates"
-          mobileLabel="Certs"
+          label="Certs"
         />
         <NavLink to="/blog" icon={<BlogIcon width="18" height="18" />} label="blog" />
 
