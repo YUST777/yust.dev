@@ -136,7 +136,7 @@ function CertificatesPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32 overflow-x-clip">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -170,16 +170,16 @@ function CertificatesPage() {
         </section>
 
         {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
-        <section aria-label="Certificate folders carousel" className="block lg:hidden select-none">
-          <div className="relative flex flex-col items-center gap-3">
+        <section aria-label="Certificate folders carousel" className="block lg:hidden select-none overflow-hidden w-full">
+          <div className="relative flex flex-col items-center gap-3 w-full max-w-full">
             <motion.div
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="relative flex w-full items-center justify-center overflow-hidden py-4 touch-pan-y"
+              className="relative flex w-full max-w-full items-center justify-center overflow-hidden py-3 touch-pan-y"
             >
-              <div className="flex w-full items-center justify-center gap-2 sm:gap-4">
+              <div className="flex w-full max-w-full items-center justify-between gap-1 sm:gap-3 px-1">
                 {/* Left Folder (30% Opacity Inactive) */}
                 {activeIndex > 0 ? (
                   <motion.div
@@ -188,7 +188,7 @@ function CertificatesPage() {
                     initial={{ opacity: 0.3, scale: 0.82 }}
                     animate={{ opacity: 0.3, scale: 0.85 }}
                     whileTap={{ scale: 0.8 }}
-                    className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 cursor-pointer text-left opacity-30"
+                    className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
                   >
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex - 1]}
@@ -196,7 +196,7 @@ function CertificatesPage() {
                     />
                   </motion.div>
                 ) : (
-                  <div className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 opacity-0 pointer-events-none" />
+                  <div className="w-[24%] max-w-[105px] shrink-0 opacity-0 pointer-events-none" />
                 )}
 
                 {/* Center Active Folder (100% Opacity Active) */}
@@ -205,7 +205,7 @@ function CertificatesPage() {
                   initial={{ opacity: 0.8, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="w-[44%] min-w-[170px] max-w-[210px] shrink-0 text-left"
+                  className="w-[48%] max-w-[190px] shrink-0 text-left"
                 >
                   <CertificateFolderContent
                     certificate={certificatePreviews[activeIndex]}
@@ -221,7 +221,7 @@ function CertificatesPage() {
                     initial={{ opacity: 0.3, scale: 0.82 }}
                     animate={{ opacity: 0.3, scale: 0.85 }}
                     whileTap={{ scale: 0.8 }}
-                    className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 cursor-pointer text-left opacity-30"
+                    className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
                   >
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex + 1]}
@@ -229,7 +229,7 @@ function CertificatesPage() {
                     />
                   </motion.div>
                 ) : (
-                  <div className="w-[28%] min-w-[95px] max-w-[130px] shrink-0 opacity-0 pointer-events-none" />
+                  <div className="w-[24%] max-w-[105px] shrink-0 opacity-0 pointer-events-none" />
                 )}
               </div>
             </motion.div>
