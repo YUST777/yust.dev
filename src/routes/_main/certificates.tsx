@@ -266,7 +266,7 @@ function CertificateFolder({
           </span>
         </span>
 
-        {/* Folder Cover Flap */}
+        {/* Top Folder Cover Flap */}
         <span
           className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isOpen
@@ -303,13 +303,13 @@ function CertificateViewer({
     <aside className="lg:sticky lg:top-28" aria-label="Selected certificate preview">
       <div className="relative mx-auto aspect-[1.42/1] w-full max-w-[560px] overflow-visible [perspective:1200px]">
         {/* Outer Folder Container */}
-        <div className="absolute inset-x-[4%] bottom-[7%] top-[7%] rounded-2xl border border-white/10 bg-[#111214] shadow-[0_28px_75px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.05)]" />
+        <div className="absolute inset-x-0 bottom-0 top-6 rounded-2xl border border-white/10 bg-[#111214] shadow-[0_28px_75px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.05)]" />
 
-        {/* Certificate Paper Inside Folder */}
+        {/* Real Certificate Paper Inside Folder Case */}
         <div
           key={certificate.id}
           onClick={onOpenFullscreen}
-          className="group absolute bottom-[12%] left-[14%] right-[8%] top-[12%] animate-in fade-in zoom-in-95 duration-300 cursor-pointer overflow-hidden rounded-md bg-[#ebe8e1] p-2 text-[#252525] shadow-[0_18px_45px_rgba(0,0,0,0.46)] sm:p-3"
+          className="group absolute bottom-[6%] left-[6%] right-[6%] top-[10%] animate-in fade-in zoom-in-95 duration-300 cursor-pointer overflow-hidden rounded-md bg-[#ebe8e1] p-2 text-[#252525] shadow-[0_18px_45px_rgba(0,0,0,0.46)] sm:p-3"
         >
           <div className="relative flex h-full flex-col overflow-hidden rounded-sm border border-[#8d846e]/35 bg-white">
             <img
@@ -325,41 +325,22 @@ function CertificateViewer({
           </div>
         </div>
 
-        {/* 3D Opened Folder Cover Flap */}
+        {/* 3D Opened Top Folder Lid Flap (opens UPWARDS to the top!) */}
         <div
-          className={`absolute bottom-[7%] left-[4%] top-[7%] w-[30%] origin-left overflow-hidden rounded-l-2xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#1a1b1d] shadow-[18px_18px_45px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.08)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform:perspective(1200px)_rotateY(-72deg)]`}
+          className={`absolute left-0 right-0 top-0 h-[35%] origin-top overflow-hidden rounded-t-2xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#1a1b1d] shadow-[0_-12px_35px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform:perspective(1200px)_rotateX(-75deg)_translateY(-14px)]`}
         >
-          <div className="flex h-full flex-col items-center justify-center gap-2 p-3 text-center">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-zinc-300">
-              <Icon className="h-5 w-5" />
-            </span>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-zinc-300">
+          <div className="flex h-full items-center justify-between px-5 py-2">
+            <span className="flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs font-mono font-bold text-zinc-200">
+              <Icon className="h-4 w-4 text-zinc-400" />
               {certificate.mark}
+            </span>
+            <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-zinc-400 truncate max-w-[200px]">
+              {certificate.issuer}
             </span>
           </div>
         </div>
 
         <div className="absolute bottom-[2%] left-[8%] right-[3%] h-4 rounded-full bg-black/60 blur-xl" />
-      </div>
-
-      {/* Details Bar below Viewer */}
-      <div className="mt-6 space-y-2 rounded-xl border border-white/10 bg-zinc-900/40 p-4 backdrop-blur-sm">
-        <div className="flex items-center justify-between gap-2">
-          <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[11px] font-mono text-zinc-300">
-            <Icon className="h-3.5 w-3.5 text-zinc-400" />
-            {certificate.mark}
-          </span>
-          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500">
-            {certificate.issued}
-          </span>
-        </div>
-        <h2 className="text-base font-sans font-bold text-white tracking-tight">
-          {certificate.title}
-        </h2>
-        <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[11px] font-mono text-zinc-500">
-          <span>{certificate.issuer}</span>
-          <span className="text-zinc-600">ID: {certificate.credentialId}</span>
-        </div>
       </div>
     </aside>
   );
