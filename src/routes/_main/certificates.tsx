@@ -268,12 +268,12 @@ function CertificateFolder({
           </span>
         </motion.span>
 
-        {/* Top Folder Cover Flap (Framer Motion 3D Spring Animation) */}
+        {/* Top Folder Cover Flap (Framer Motion 3D Spring Animation - 20% less fold) */}
         <motion.span
           initial={false}
           animate={{
-            rotateX: isOpen ? -58 : 0,
-            y: isOpen ? 16 : 0,
+            rotateX: isOpen ? -45 : 0,
+            y: isOpen ? 12 : 0,
           }}
           transition={{ type: "spring", stiffness: 280, damping: 22 }}
           className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)]`}
