@@ -132,7 +132,7 @@ function CertificatesPage() {
     certificatePreviews[0];
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300 pb-32">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -140,15 +140,9 @@ function CertificatesPage() {
         ]}
       />
 
-      <header className="space-y-4">
-        <h1 className="font-pixel text-3xl uppercase tracking-[0.12em] text-white sm:text-4xl">
-          Certificates
-        </h1>
-        <p className="max-w-2xl text-sm leading-7 text-zinc-400 sm:text-base">
-          A file cabinet for official credentials, hackathon wins, and academic honors. Hover over a folder to open it, or click to view in full resolution.
-        </p>
-        <div className="h-px w-24 bg-gradient-to-r from-zinc-500/70 to-transparent" />
-      </header>
+      <div>
+        <h1 className="text-4xl font-pixel text-white uppercase">certificates</h1>
+      </div>
 
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         <section
