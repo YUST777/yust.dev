@@ -317,9 +317,9 @@ function CertificateViewer({
             </div>
           </div>
 
-          {/* Folder Cover (The part that hinges open upwards - 20% smaller height) */}
+          {/* Folder Cover (The part that hinges open upwards - h-[90%]) */}
           <div
-            className="absolute inset-x-0 top-0 h-[80%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(118deg)] group-hover:[transform:rotateX(125deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
+            className="absolute inset-x-0 top-0 h-[90%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(118deg)] group-hover:[transform:rotateX(125deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
           >
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
