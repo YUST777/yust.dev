@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
@@ -233,43 +233,6 @@ function CertificatesPage() {
                 )}
               </div>
             </motion.div>
-
-            {/* Mobile Swipe / Arrow Controls & Dots */}
-            <div className="flex items-center gap-4 pt-1">
-              <button
-                type="button"
-                disabled={activeIndex === 0}
-                onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-zinc-400 disabled:opacity-20 hover:bg-white hover:text-black transition-all"
-                aria-label="Previous certificate"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-
-              <div className="flex items-center gap-1.5">
-                {certificatePreviews.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActiveIndex(i)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === activeIndex ? "w-6 bg-white" : "w-1.5 bg-white/20 hover:bg-white/40"
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                disabled={activeIndex === certificatePreviews.length - 1}
-                onClick={() => setActiveIndex((prev) => Math.min(certificatePreviews.length - 1, prev + 1))}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-zinc-400 disabled:opacity-20 hover:bg-white hover:text-black transition-all"
-                aria-label="Next certificate"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
           </div>
         </section>
 
@@ -374,12 +337,12 @@ function CertificateFolderContent({
           <span className="absolute -top-4 left-0 h-6 w-[42%] rounded-t-xl border-x border-t border-white/10 bg-[#17181a]" />
         </span>
 
-        {/* Certificate Paper Peek (Framer Motion Spring Animation) */}
+        {/* Certificate Paper Peek (Framer Motion Spring Animation - 100% Symmetric) */}
         <motion.span
           initial={false}
           animate={{
             y: isOpen ? "-22%" : "13%",
-            rotate: isOpen ? -2 : 0,
+            rotate: 0,
             opacity: isOpen ? 1 : 0.75,
           }}
           transition={{ type: "spring", stiffness: 320, damping: 24 }}
