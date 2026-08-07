@@ -5,6 +5,7 @@ import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
 import StarSparkleIcon from "./icons/star-sparkle";
 import BlogIcon from "./icons/blog";
+import CertificateIcon from "./icons/certificate";
 import DuckIcon from "./icons/duck";
 
 const loadDesktopGoose = () =>
@@ -49,6 +50,12 @@ export function Navbar() {
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
         <NavLink to="/projects" icon={<SparklesIcon width="18" height="18" />} label="Projects" />
         <NavLink to="/hacks" icon={<StarSparkleIcon width="18" height="18" />} label="Hacks" />
+        <NavLink
+          to="/certificates"
+          icon={<CertificateIcon className="h-[19px] w-[19px] object-contain" />}
+          label="Certificates"
+          mobileLabel="Certs"
+        />
         <NavLink to="/blog" icon={<BlogIcon width="18" height="18" />} label="blog" />
 
         <div className="w-[1px] h-6 shrink-0 bg-white/10 mx-1 sm:mx-2" />
@@ -95,7 +102,17 @@ function GooseIcon() {
   );
 }
 
-function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label: string }) {
+function NavLink({
+  to,
+  icon,
+  label,
+  mobileLabel,
+}: {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  mobileLabel?: string;
+}) {
   return (
     <Link
       to={to}
@@ -113,7 +130,8 @@ function NavLink({ to, icon, label }: { to: string; icon: React.ReactNode; label
         {icon}
       </span>
       <span className="relative z-10 text-[9px] sm:text-[13px] font-semibold tracking-wide whitespace-nowrap">
-        {label}
+        <span className="sm:hidden">{mobileLabel ?? label}</span>
+        <span className="hidden sm:inline">{label}</span>
       </span>
     </Link>
   );
