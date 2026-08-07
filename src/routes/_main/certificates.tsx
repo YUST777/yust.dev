@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -147,10 +148,11 @@ function CertificatesPage() {
           aria-label="Certificate folders"
           className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-7 sm:gap-y-10 lg:grid-cols-3"
         >
-          {certificatePreviews.map((certificate) => (
+          {certificatePreviews.map((certificate, index) => (
             <CertificateFolder
               key={certificate.id}
               certificate={certificate}
+              index={index}
               isOpen={certificate.id === (hoveredId ?? selectedId)}
               onActivate={() => setSelectedId(certificate.id)}
               onHover={() => setHoveredId(certificate.id)}
@@ -211,19 +213,21 @@ function CertificatesPage() {
 
 function CertificateFolder({
   certificate,
+  index,
   isOpen,
   onActivate,
   onHover,
   onLeave,
 }: {
   certificate: CertificatePreview;
+  index: number;
   isOpen: boolean;
   onActivate: () => void;
   onHover: () => void;
   onLeave: () => void;
 }) {
   return (
-    <button
+    <motion.button
       type="button"
       aria-pressed={isOpen}
       aria-label={`Preview ${certificate.issuer} certificate folder`}
@@ -232,6 +236,11 @@ function CertificateFolder({
       onMouseLeave={onLeave}
       onFocus={onHover}
       onBlur={onLeave}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.97 }}
       className="group min-w-0 text-left outline-none"
     >
       <span className="relative block aspect-[1.3/1] [perspective:900px]">
@@ -239,13 +248,16 @@ function CertificateFolder({
           <span className="absolute -top-4 left-0 h-6 w-[42%] rounded-t-xl border-x border-t border-white/10 bg-[#17181a]" />
         </span>
 
-        {/* Certificate Paper Peek */}
-        <span
-          className={`absolute bottom-[8%] left-[10%] right-[10%] top-[10%] rounded-sm bg-[#e8e5de] p-1.5 text-[#242424] shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition-all duration-500 ease-out ${
-            isOpen
-              ? "-translate-y-[22%] rotate-[-1deg] opacity-100"
-              : "translate-y-[13%] opacity-70 group-hover:-translate-y-[22%] group-hover:rotate-[-1deg] group-hover:opacity-100"
-          }`}
+        {/* Certificate Paper Peek (Framer Motion Spring Animation) */}
+        <motion.span
+          initial={false}
+          animate={{
+            y: isOpen ? "-22%" : "13%",
+            rotate: isOpen ? -2 : 0,
+            opacity: isOpen ? 1 : 0.75,
+          }}
+          transition={{ type: "spring", stiffness: 320, damping: 24 }}
+          className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] rounded-sm bg-[#e8e5de] p-1.5 text-[#242424] shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
         >
           <span className="flex h-full flex-col overflow-hidden border border-black/15">
             <img
@@ -254,25 +266,27 @@ function CertificateFolder({
               className="h-full w-full object-cover"
             />
           </span>
-        </span>
+        </motion.span>
 
-        {/* Top Folder Cover Flap */}
-        <span
-          className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isOpen
-              ? "[transform:perspective(900px)_rotateX(-58deg)_translateY(16px)]"
-              : "[transform:perspective(900px)_rotateX(0deg)] group-hover:[transform:perspective(900px)_rotateX(-58deg)_translateY(16px)]"
-          }`}
+        {/* Top Folder Cover Flap (Framer Motion 3D Spring Animation) */}
+        <motion.span
+          initial={false}
+          animate={{
+            rotateX: isOpen ? -58 : 0,
+            y: isOpen ? 16 : 0,
+          }}
+          transition={{ type: "spring", stiffness: 280, damping: 22 }}
+          className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)]`}
         >
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        </span>
+        </motion.span>
       </span>
 
       <span className="mt-3 block truncate text-sm font-semibold text-zinc-100">
         {certificate.issuer}
       </span>
       <span className="mt-1 block text-[11px] text-zinc-500">{certificate.issued}</span>
-    </button>
+    </motion.button>
   );
 }
 
