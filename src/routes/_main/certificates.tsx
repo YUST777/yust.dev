@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Maximize2, X } from "lucide-react";
+import { X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
@@ -298,19 +298,14 @@ function CertificateViewer({
               <div
                 key={certificate.id}
                 onClick={onOpenFullscreen}
-                className="group/paper relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer transition-all duration-300 flex items-center justify-center"
+                className="relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer flex items-center justify-center"
               >
                 <div className="relative h-full w-full overflow-hidden rounded bg-white flex items-center justify-center">
                   <img
                     src={certificate.image}
                     alt={certificate.title}
-                    className="h-full w-full object-contain transition-transform duration-500 group-hover/paper:scale-[1.02]"
+                    className="h-full w-full object-contain"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover/paper:opacity-100 backdrop-blur-[2px]">
-                    <span className="flex items-center gap-2 rounded-full border border-white/20 bg-zinc-900/90 px-4 py-2 text-xs font-semibold text-white shadow-xl hover:scale-105 transition-transform">
-                      <Maximize2 className="h-4 w-4" /> Expand Certificate
-                    </span>
-                  </div>
                 </div>
               </div>
 
