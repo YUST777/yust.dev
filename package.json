@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vp dev",
     "build": "npm run og:generate && vp build",
-    "og:generate": "node scripts/generate-og-hacks.mjs && node scripts/generate-og-blog.mjs && node scripts/generate-og-projects.mjs",
+    "og:generate": "node scripts/generate-og-hacks.mjs && node scripts/generate-og-blog.mjs && node scripts/generate-og-projects.mjs && node scripts/generate-og-certificates.mjs",
     "preview": "vp preview",
     "start": "vp preview",
     "lint": "vp lint . && tsgo --noEmit",

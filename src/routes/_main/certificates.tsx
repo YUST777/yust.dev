@@ -27,6 +27,7 @@ export const Route = createFileRoute("/_main/certificates")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/certificates",
+      image: `${SITE_URL}/static/images/og-certificates.png?v=1`,
     });
 
     return {
