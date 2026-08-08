@@ -136,7 +136,7 @@ function CertificatesPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10 px-4 pb-40 pt-8 sm:px-6 sm:pb-24 sm:pt-32 overflow-x-clip">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip animate-in fade-in slide-in-from-bottom-2 duration-300">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -144,11 +144,11 @@ function CertificatesPage() {
         ]}
       />
 
-      <header className="space-y-4">
-        <h1 className="font-pixel text-3xl uppercase tracking-[0.12em] text-white sm:text-4xl">
-          Certificates
+      <div>
+        <h1 className="text-4xl font-pixel text-white uppercase">
+          CERTS
         </h1>
-      </header>
+      </div>
 
       <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         {/* Desktop Grid Layout */}
