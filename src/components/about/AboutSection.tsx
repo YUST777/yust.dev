@@ -69,7 +69,7 @@ export default function AboutSection() {
             to="/hacks"
             className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
           >
-            4 national hackathons in Egypt
+            3 national hackathons in Egypt
           </Link>{" "}
           so far.
         </p>
