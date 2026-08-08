@@ -132,7 +132,7 @@ function CertificatesPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip">
       <Breadcrumbs
         items={[
           { name: "Home", url: SITE_URL },
@@ -156,7 +156,6 @@ function CertificatesPage() {
             <CertificateFolder
               key={certificate.id}
               certificate={certificate}
-              index={index}
               isOpen={index === activeIndex}
               onActivate={() => setActiveIndex(index)}
             />
@@ -179,9 +178,9 @@ function CertificatesPage() {
                   <motion.div
                     key={`left-${activeIndex - 1}`}
                     onClick={() => setActiveIndex(activeIndex - 1)}
-                    initial={{ opacity: 0.3, scale: 0.82 }}
                     animate={{ opacity: 0.3, scale: 0.85 }}
-                    whileTap={{ scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                    whileTap={{ scale: 0.82 }}
                     className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
                   >
                     <CertificateFolderContent
@@ -196,9 +195,8 @@ function CertificatesPage() {
                 {/* Center Active Folder (100% Opacity Active) */}
                 <motion.div
                   key={`center-${activeIndex}`}
-                  initial={{ opacity: 0.8, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 28 }}
                   className="w-[48%] max-w-[190px] shrink-0 text-left"
                 >
                   <CertificateFolderContent
@@ -212,9 +210,9 @@ function CertificatesPage() {
                   <motion.div
                     key={`right-${activeIndex + 1}`}
                     onClick={() => setActiveIndex(activeIndex + 1)}
-                    initial={{ opacity: 0.3, scale: 0.82 }}
                     animate={{ opacity: 0.3, scale: 0.85 }}
-                    whileTap={{ scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                    whileTap={{ scale: 0.82 }}
                     className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
                   >
                     <CertificateFolderContent
@@ -239,7 +237,7 @@ function CertificatesPage() {
       {/* Fullscreen Certificate Modal */}
       {fullscreenCert && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-in fade-in duration-150"
           onClick={() => setFullscreenCert(null)}
           role="dialog"
           aria-modal="true"
@@ -248,7 +246,7 @@ function CertificatesPage() {
           <button
             type="button"
             onClick={() => setFullscreenCert(null)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-zinc-900/80 hover:bg-white text-zinc-400 hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-zinc-900/80 hover:bg-white text-zinc-400 hover:text-black border border-white/10 hover:border-white shadow-2xl active:scale-95 transition-all duration-150 flex items-center justify-center group"
             aria-label="Close viewer"
           >
             <X className="w-5 h-5" />
@@ -262,6 +260,8 @@ function CertificatesPage() {
               <img
                 src={fullscreenCert.image}
                 alt={fullscreenCert.title}
+                loading="eager"
+                decoding="async"
                 className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10"
               />
             </div>
@@ -282,12 +282,10 @@ function CertificatesPage() {
 
 function CertificateFolder({
   certificate,
-  index,
   isOpen,
   onActivate,
 }: {
   certificate: CertificatePreview;
-  index: number;
   isOpen: boolean;
   onActivate: () => void;
 }) {
@@ -297,10 +295,6 @@ function CertificateFolder({
       aria-pressed={isOpen}
       aria-label={`Preview ${certificate.issuer} certificate folder`}
       onClick={onActivate}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
-      whileHover={{ y: -4 }}
       whileTap={{ scale: 0.97 }}
       className="group min-w-0 text-left outline-none"
     >
@@ -323,7 +317,7 @@ function CertificateFolderContent({
           <span className="absolute -top-4 left-0 h-6 w-[42%] rounded-t-xl border-x border-t border-white/10 bg-[#17181a]" />
         </span>
 
-        {/* Certificate Paper Peek (Framer Motion Spring Animation - 100% Symmetric) */}
+        {/* Certificate Paper Peek (Snappy Spring Animation) */}
         <motion.span
           initial={false}
           animate={{
@@ -331,26 +325,28 @@ function CertificateFolderContent({
             rotate: 0,
             opacity: isOpen ? 1 : 0.75,
           }}
-          transition={{ type: "spring", stiffness: 320, damping: 24 }}
+          transition={{ type: "spring", stiffness: 400, damping: 28 }}
           className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] rounded-sm bg-[#e8e5de] p-1.5 text-[#242424] shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
         >
           <span className="flex h-full flex-col overflow-hidden border border-black/15">
             <img
               src={certificate.image}
               alt={certificate.title}
+              loading="eager"
+              decoding="async"
               className="h-full w-full object-cover"
             />
           </span>
         </motion.span>
 
-        {/* Top Folder Cover Flap (Framer Motion 3D Spring Animation) */}
+        {/* Top Folder Cover Flap (Snappy 3D Spring Animation) */}
         <motion.span
           initial={false}
           animate={{
             rotateX: isOpen ? -38 : 0,
             y: isOpen ? 10 : 0,
           }}
-          transition={{ type: "spring", stiffness: 280, damping: 22 }}
+          transition={{ type: "spring", stiffness: 400, damping: 28 }}
           className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)]`}
         >
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -392,6 +388,8 @@ function CertificateViewer({
                   <img
                     src={certificate.image}
                     alt={certificate.title}
+                    loading="eager"
+                    decoding="async"
                     className="h-full w-full object-contain"
                   />
                 </div>
@@ -402,7 +400,7 @@ function CertificateViewer({
 
           {/* Folder Cover (The part that hinges open upwards - responsive rotateX) */}
           <div
-            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-800 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] group-hover:[transform:rotateX(110deg)] lg:group-hover:[transform:rotateX(125deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
+            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
           >
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
