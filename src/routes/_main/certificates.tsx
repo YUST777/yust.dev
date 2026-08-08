@@ -146,7 +146,7 @@ function CertificatesPage() {
         </h1>
       </div>
 
-      <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
+      <div className="grid items-stretch gap-3 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
         {/* Desktop Grid Layout */}
         <section
           aria-label="Certificate folders grid"
@@ -164,13 +164,13 @@ function CertificatesPage() {
 
         {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
         <section aria-label="Certificate folders carousel" className="block lg:hidden select-none overflow-hidden w-full">
-          <div className="relative flex flex-col items-center gap-3 w-full max-w-full">
+          <div className="relative flex flex-col items-center gap-1 w-full max-w-full">
             <motion.div
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className="relative flex w-full max-w-full items-center justify-center overflow-hidden py-3 touch-pan-y"
+              className="relative flex w-full max-w-full items-center justify-center overflow-hidden py-1 touch-pan-y"
             >
               <div className="flex w-full max-w-full items-center justify-between gap-1 sm:gap-3 px-1">
                 {/* Left Folder (30% Opacity Inactive) */}
@@ -369,7 +369,7 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="flex flex-col items-center justify-end h-full w-full mt-12 sm:mt-16 lg:mt-0 pt-6 sm:pt-8 lg:pt-0" aria-label="Selected certificate preview">
+    <aside className="flex flex-col items-center justify-end h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0" aria-label="Selected certificate preview">
       {/* 3D Scene Container */}
       <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[580px] px-1 sm:px-0 [perspective:2000px] group cursor-pointer">
         <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-500 ease-out">
