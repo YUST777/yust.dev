@@ -118,13 +118,9 @@ const certificatePreviews: CertificatePreview[] = [
 
 function CertificatesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [fullscreenCert, setFullscreenCert] = useState<CertificatePreview | null>(null);
 
-  const selectedCertificate =
-    hoveredId
-      ? (certificatePreviews.find((cert) => cert.id === hoveredId) ?? certificatePreviews[activeIndex])
-      : certificatePreviews[activeIndex];
+  const selectedCertificate = certificatePreviews[activeIndex];
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     const swipeThreshold = 40;
@@ -161,10 +157,8 @@ function CertificatesPage() {
               key={certificate.id}
               certificate={certificate}
               index={index}
-              isOpen={index === activeIndex || certificate.id === hoveredId}
+              isOpen={index === activeIndex}
               onActivate={() => setActiveIndex(index)}
-              onHover={() => setHoveredId(certificate.id)}
-              onLeave={() => setHoveredId(null)}
             />
           ))}
         </section>
@@ -291,15 +285,11 @@ function CertificateFolder({
   index,
   isOpen,
   onActivate,
-  onHover,
-  onLeave,
 }: {
   certificate: CertificatePreview;
   index: number;
   isOpen: boolean;
   onActivate: () => void;
-  onHover: () => void;
-  onLeave: () => void;
 }) {
   return (
     <motion.button
@@ -307,10 +297,6 @@ function CertificateFolder({
       aria-pressed={isOpen}
       aria-label={`Preview ${certificate.issuer} certificate folder`}
       onClick={onActivate}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      onFocus={onHover}
-      onBlur={onLeave}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
