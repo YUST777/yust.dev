@@ -181,6 +181,35 @@ const failedHacks = [
       },
     ],
   },
+
+  {
+    status: "DIDN'T WIN",
+    color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
+    event: "REDDIT GAMES WITH A HOOK HACKATHON • DEVPOST",
+    title: "Hellish Golf (hellishgolf.xyz)",
+    iconType: "deny",
+    desc: (
+      <>
+        Built a daily mini-app browser game inspired by Wordle and Kinda Hard Golf for Reddit&apos;s &quot;Games with a Hook&quot; hackathon on Devpost. Built from scratch with Vite (without traditional game engines like Unity or Godot) using open-source itch.io textures. Designed to test high-retention mini-app mechanics for Reddit community engagement. Didn&apos;t take home a prize, but gained great hands-on experience building lightweight game loops and open-source mini-apps.
+      </>
+    ),
+    linkText: "Live Game: hellishgolf.xyz",
+    linkUrl: "https://hellishgolf.xyz",
+    proofs: [
+      {
+        label: "Devpost Submission",
+        url: "https://devpost.com/software/hellishgolf",
+      },
+      {
+        label: "Reddit Hackathon Gallery",
+        url: "https://redditgameswithahook.devpost.com/",
+      },
+      {
+        label: "GitHub Repository",
+        url: "https://github.com/YUST777/hellishgolf",
+      },
+    ],
+  },
 ];
 
 function PixelTrophy({ rank, className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { rank: string; className?: string }) {
