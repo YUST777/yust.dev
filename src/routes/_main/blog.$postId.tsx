@@ -152,9 +152,24 @@ function PostPage() {
 
       <div className="h-[1px] w-full bg-zinc-900" />
 
-      {/* LinkedIn-style image collage with overflow indicator */}
-      {post.images && post.images.length > 0 && (
-        <ImageCollage images={post.images} title={post.title} />
+      {/* Media Header (Video or Image Collage) */}
+      {post.previewVideo ? (
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] shadow-2xl">
+          <video
+            src={post.previewVideo}
+            autoPlay
+            loop
+            muted
+            controls
+            playsInline
+            poster={post.previewImage}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        post.images && post.images.length > 0 && (
+          <ImageCollage images={post.images} title={post.title} />
+        )
       )}
 
       <div className="prose prose-invert prose-zinc max-w-none space-y-6">

@@ -54,6 +54,7 @@ export interface BlogPost {
   featured?: { label: string; url: string }[];
   images?: string[];
   previewImage?: string;
+  previewVideo?: string;
   imagePosition?: string;
 }
 
@@ -95,6 +96,9 @@ I completed the game on schedule and submitted the project on time. Unfortunatel
 - **Devpost Submission:** [Devpost Software Entry](https://devpost.com/software/hellishgolf)
 - **Reddit Winner Gallery:** [Devpost Project Gallery](https://redditgameswithahook.devpost.com/project-gallery)
 - **Open-Source Code:** [GitHub Repository](https://github.com/YUST777/hellishgolf)`,
+    previewImage: "/static/images/posters/hellishgolf.webp",
+    previewVideo: "/videos/hellishgolf.webm",
+    images: ["/static/images/posters/hellishgolf.webp"],
     featured: [
       {
         label: "Live Game: hellishgolf.xyz",
@@ -430,17 +434,29 @@ function BlogPage() {
         ))}
       </div>
 
-      {hoveredPost && hoveredPost.images && hoveredPost.images.length > 0 && (
+      {hoveredPost && (hoveredPost.previewVideo || (hoveredPost.images && hoveredPost.images.length > 0)) && (
         <div
           ref={previewRef}
           className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
         >
           <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
-            <img
-              src={hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""}
-              alt={hoveredPost.title}
-              className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
-            />
+            {hoveredPost.previewVideo ? (
+              <video
+                src={hoveredPost.previewVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster={hoveredPost.previewImage}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""}
+                alt={hoveredPost.title}
+                className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 left-4 right-4">
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
