@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
@@ -31,6 +31,14 @@ export const Route = createFileRoute("/_main/certificates")({
 
     return {
       ...base,
+      links: [
+        ...(base.links || []),
+        ...certificatePreviews.map((cert) => ({
+          rel: "preload",
+          as: "image",
+          href: cert.image,
+        })),
+      ],
       scripts: [
         {
           type: "application/ld+json",
@@ -121,6 +129,14 @@ function CertificatesPage() {
   const [fullscreenCert, setFullscreenCert] = useState<CertificatePreview | null>(null);
 
   const selectedCertificate = certificatePreviews[activeIndex];
+
+  useEffect(() => {
+    // Warm-preload all certificate images in browser GPU texture memory
+    certificatePreviews.forEach((cert) => {
+      const img = new Image();
+      img.src = cert.image;
+    });
+  }, []);
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     const swipeThreshold = 40;
