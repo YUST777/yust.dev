@@ -59,6 +59,62 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: "7",
+    slug: "reddit-games-with-a-hook-hackathon-hellish-golf",
+    title: "I Entered Reddit's Hackathon... and Built a Golf Game for Some Reason! ⛳",
+    seoTitle: "Building Hellish Golf for Reddit Hackathon | yust.dev",
+    date: "Aug 8, 2026",
+    iso: "2026-08-08",
+    category: "Hackathons",
+    summary:
+      "My takeaways from participating in Reddit's 'Games with a Hook' Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.",
+    content: `I recently entered Reddit's **"Games with a Hook"** hackathon on Devpost, and... I ended up building a daily golf game!
+
+In this post, I want to share some of the core insights and technical takeaways I gained from participating in this sprint.
+
+### What Was the Hackathon About?
+
+The core challenge was to build a **mini-app** formatted as an interactive game. To put it simply: remember *FarmVille* back on Facebook? That's the literal definition of a social mini-app.
+
+Reddit's main objective for this hackathon was boosting daily active user retention. Unlike Telegram's play-to-earn monetization model, Reddit actually pays out monetization rewards directly to developers if your game succeeds. They are actively looking for addictive mini-games that give users a reason to open Reddit specifically to play every single day—not just scroll past two posts and leave. That daily retention hook was my primary focus.
+
+### The Development Journey & Game Mechanics
+
+When I discovered the hackathon on Devpost, I decided to build a **daily challenge game** inspired by Wordle's daily retention loop. I drew conceptual inspiration from *Kinda Hard Golf* and hit the ground running:
+
+- **No Heavy Game Engines:** I deliberately chose not to use traditional engines like Unity or Godot since I didn't have extensive experience with them. Instead, I relied strictly on a lightweight **Vite + React** stack for both the frontend and backend logic.
+- **Open-Source Assets:** For textures and visual elements, I leveraged open-source 2D asset packs from [itch.io](https://itch.io).
+
+### The Outcome & Key Lessons
+
+I completed the game on schedule and submitted the project on time. Unfortunately, I didn't take home a winning prize this round. However, it was an incredible learning experience in designing social mini-app loops and rapid game development. Plus, there are several more achievements dropping later this month that I'll be sharing soon! :)
+
+### Check Out the Project & Code
+
+- **Play the Game:** [hellishgolf.xyz](https://hellishgolf.xyz)
+- **Devpost Submission:** [Devpost Software Entry](https://devpost.com/software/hellishgolf)
+- **Reddit Winner Gallery:** [Devpost Project Gallery](https://redditgameswithahook.devpost.com/project-gallery)
+- **Open-Source Code:** [GitHub Repository](https://github.com/YUST777/hellishgolf)`,
+    featured: [
+      {
+        label: "Live Game: hellishgolf.xyz",
+        url: "https://hellishgolf.xyz",
+      },
+      {
+        label: "Devpost Submission Page",
+        url: "https://devpost.com/software/hellishgolf",
+      },
+      {
+        label: "Reddit Hackathon Winner Gallery",
+        url: "https://redditgameswithahook.devpost.com/project-gallery",
+      },
+      {
+        label: "GitHub Open-Source Code",
+        url: "https://github.com/YUST777/hellishgolf",
+      },
+    ],
+  },
+  {
     id: "6",
     slug: "winning-3-hackathons-first-two-years",
     title: "How I Won 3 Hackathons in My First Two Years of College",

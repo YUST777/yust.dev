@@ -26,10 +26,7 @@ console.log(`[OG Generator - Certificates] Detected ${certs.length} official cer
 // Load TrueType fonts
 const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
 const fontGeistMono = readFileSync(
-  join(
-    rootDir,
-    "node_modules/.pnpm/geist@1.7.0_next@16.2.9_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@_ecfbda6c36d7ae78bcfb95798de1846f/node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"
-  )
+  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf")
 );
 
 // 2. Build Satori Vercel OG Node Tree

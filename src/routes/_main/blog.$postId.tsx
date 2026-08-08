@@ -165,45 +165,6 @@ function PostPage() {
         ))}
       </div>
 
-      <aside
-        aria-labelledby="author-heading"
-        className="rounded-2xl border border-white/10 bg-zinc-950/60 p-6 sm:p-8"
-      >
-        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-600">
-          About the author
-        </p>
-        <h2 id="author-heading" className="text-xl font-semibold text-white">
-          Yousef Mohammed Salah
-        </h2>
-        <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-          AI and cybersecurity student at Horus University in Egypt, full-stack developer, and
-          creator of projects including Verdict.run and Sast.tech. I write from direct experience
-          building products, competing in hackathons, and supporting the ICPC HUE community.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-4 font-mono text-xs">
-          <Link
-            to="/"
-            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
-          >
-            About Yousef
-          </Link>
-          <Link
-            to="/projects"
-            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
-          >
-            View projects
-          </Link>
-          <a
-            href="https://www.linkedin.com/in/yousefmsm1/"
-            target="_blank"
-            rel="me noopener noreferrer"
-            className="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white"
-          >
-            LinkedIn profile
-          </a>
-        </div>
-      </aside>
-
       <nav aria-labelledby="related-posts-heading" className="border-t border-white/5 pt-10">
         <h2 id="related-posts-heading" className="mb-5 text-xl font-semibold text-white">
           Related stories
