@@ -63,9 +63,20 @@ function MainLayout() {
               <BoltIcon className="w-3 h-3" /> 100%
             </p>
           </div>
-          <p className="text-zinc-400 pt-2 pb-4">
-            © {mounted ? new Date().getFullYear() : "2026"} Yousef. All rights reserved.
-          </p>
+          <div className="text-zinc-400 pt-2 pb-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] sm:text-[11px]">
+            <span>v{typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "0.4.0"}</span>
+            <span className="text-zinc-800">·</span>
+            <a
+              href={`https://github.com/YUST777/yust.dev/commit/${typeof __COMMIT_HASH__ !== "undefined" ? __COMMIT_HASH__ : "main"}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4 decoration-zinc-800 hover:decoration-zinc-500"
+            >
+              commit {typeof __COMMIT_HASH__ !== "undefined" ? __COMMIT_HASH__ : "HEAD"}
+            </a>
+            <span className="text-zinc-800">·</span>
+            <span>© {mounted ? new Date().getFullYear() : "2026"} Yousef</span>
+          </div>
         </div>
       </footer>
     </div>

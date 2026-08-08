@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import { defineConfig } from "vite-plus";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
@@ -5,7 +6,23 @@ import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 
+function getCommitHash() {
+  try {
+    return execSync("git rev-parse --short HEAD").toString().trim();
+  } catch {
+    return (
+      process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ||
+      process.env.GITHUB_SHA?.slice(0, 7) ||
+      "8fc4e18"
+    );
+  }
+}
+
 export default defineConfig({
+  define: {
+    __COMMIT_HASH__: JSON.stringify(getCommitHash()),
+    __APP_VERSION__: JSON.stringify("0.4.0"),
+  },
   fmt: {
     ignorePatterns: ["src/routeTree.gen.ts"],
   },
