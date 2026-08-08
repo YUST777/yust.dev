@@ -63,7 +63,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 15,
+    id: 18,
     title: "SpaceWorth",
     slug: "spaceworth",
     seoTitle: "SpaceWorth — AI Real Estate Valuation & CAD Intelligence | yust.dev",

@@ -373,7 +373,7 @@ function CertificateFolderContent({
       <span className="mt-3 block truncate text-sm font-semibold text-zinc-100">
         {certificate.issuer}
       </span>
-      <span className="mt-1 block text-[11px] text-zinc-500">{certificate.issued}</span>
+      <span className="mt-1 block text-[11px] text-zinc-400">{certificate.issued}</span>
     </>
   );
 }
