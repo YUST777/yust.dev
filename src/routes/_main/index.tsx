@@ -1,9 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router'
+import { lazy, Suspense } from "react";
 import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
-import GithubContributions from "@/components/about/GithubContributions";
 import AchievementsSection from "@/components/about/AchievementsSection";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
+
+const GithubContributions = lazy(() => import("@/components/about/GithubContributions"));
 
 const TITLE = "Yousef Mohammed Salah | AI & Cybersecurity Developer";
 const DESCRIPTION =
@@ -40,10 +42,12 @@ export const Route = createFileRoute("/_main/")({
 
 function AboutPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-10 sm:space-y-16 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-10 sm:space-y-16">
       <ProfileHeader />
       <AboutSection />
-      <GithubContributions />
+      <Suspense fallback={<div className="h-48 w-full rounded-xl bg-zinc-900/50 border border-white/5 animate-pulse" />}>
+        <GithubContributions />
+      </Suspense>
       <AchievementsSection />
     </div>
   );

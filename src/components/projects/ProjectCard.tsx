@@ -34,7 +34,7 @@ export default function ProjectCard({
   return (
     <div
       key={project.id}
-      className={`${activeSpan} ${index === 0 ? "" : "content-auto"} ${
+      className={`${activeSpan} ${
         isArchiveItem ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-3 duration-300" : ""
       }`}
     >
