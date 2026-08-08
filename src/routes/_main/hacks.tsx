@@ -174,10 +174,16 @@ const failedHacks = [
         beautiful, but the clock won.
       </>
     ),
+    linkText: "Project Waitlist: swrmz.tech",
+    linkUrl: "https://swrmz.tech",
     proofs: [
       {
         label: "Lablab.ai Hackathon Page",
         url: "https://lablab.ai/ai-hackathons/band-of-agents-hackathon",
+      },
+      {
+        label: "GitHub Repository",
+        url: "https://github.com/YUST777/swrmz",
       },
     ],
   },
