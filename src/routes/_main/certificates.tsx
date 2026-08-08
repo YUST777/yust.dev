@@ -378,13 +378,18 @@ function CertificateViewer({
           <div className="absolute inset-0 rounded-[18px] border border-[#2a2a2c] bg-[#1a1a1c] p-[2.5%] shadow-[0_30px_60px_rgba(0,0,0,0.9),inset_0_10px_20px_rgba(0,0,0,0.5)] z-10 flex flex-col">
             <div className="relative h-full w-full rounded-[10px] bg-[#0f0f11] p-[1.5%] shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] flex flex-col">
               
-              {/* Real Certificate Paper */}
+              {/* Real Certificate Paper with Fast Pixelated Retro Intro Effect */}
               <div
-                key={certificate.id}
                 onClick={onOpenFullscreen}
                 className="relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer flex items-center justify-center"
               >
-                <div className="relative h-full w-full overflow-hidden rounded bg-white flex items-center justify-center">
+                <motion.div
+                  key={certificate.id}
+                  initial={{ opacity: 0.2, filter: "blur(8px) contrast(220%)", scale: 1.03 }}
+                  animate={{ opacity: 1, filter: "blur(0px) contrast(100%)", scale: 1 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="relative h-full w-full overflow-hidden rounded bg-white flex items-center justify-center"
+                >
                   <img
                     src={certificate.image}
                     alt={certificate.title}
@@ -392,7 +397,14 @@ function CertificateViewer({
                     decoding="async"
                     className="h-full w-full object-contain"
                   />
-                </div>
+                  {/* Subtle pixel grid flash overlay on reveal */}
+                  <motion.div
+                    initial={{ opacity: 0.35 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:4px_4px]"
+                  />
+                </motion.div>
               </div>
 
             </div>
