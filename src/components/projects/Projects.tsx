@@ -370,19 +370,10 @@ export default function Projects() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 32, stiffness: 300 }}
-              drag="y"
-              dragConstraints={{ top: 0 }}
-              dragElastic={0.15}
-              onDragEnd={(_, info) => {
-                if (info.offset.y > 100 || info.velocity.y > 400) {
-                  sounds.popOut();
-                  setOpenDrawer(null);
-                }
-              }}
-              className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-[env(safe-area-inset-bottom,2rem)] mb-0 sm:pb-12 pt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[94vh] overflow-hidden flex flex-col pointer-events-auto touch-pan-y"
+              className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-[env(safe-area-inset-bottom,2rem)] mb-0 sm:pb-12 pt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[94vh] overflow-hidden flex flex-col pointer-events-auto"
             >
               <div
-                className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-grab active:cursor-grabbing hover:bg-white/30 transition-colors shrink-0"
+                className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-pointer hover:bg-white/30 transition-colors shrink-0"
                 onClick={() => {
                   sounds.popOut();
                   setOpenDrawer(null);
@@ -423,7 +414,7 @@ export default function Projects() {
                   </div>
                 }
               >
-                <ScopedSmoothScroll className="overflow-y-auto flex-1 pr-2 space-y-6 custom-scrollbar touch-pan-y pb-24 sm:pb-4">
+                <div className="overflow-y-auto overscroll-contain flex-1 pr-2 space-y-6 custom-scrollbar pb-24 sm:pb-8">
                   <div className="w-full aspect-video rounded-xl overflow-hidden bg-black/50 border border-white/5 mb-6 flex-shrink-0 relative">
                     {openDrawer === "ICPCHUE" ? (
                       <iframe
@@ -448,7 +439,7 @@ export default function Projects() {
                     )}
                   </div>
                   {DrawerContent}
-                </ScopedSmoothScroll>
+                </div>
               </Suspense>
             </motion.div>
           </>

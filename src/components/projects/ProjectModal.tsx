@@ -164,7 +164,7 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
         </button>
 
         {/* Scrollable Content */}
-        <ScopedSmoothScroll className="overflow-y-auto max-h-[95vh] sm:max-h-[90vh] custom-scrollbar">
+        <div className="overflow-y-auto overscroll-contain max-h-[95vh] sm:max-h-[90vh] custom-scrollbar">
           {/* Header with Video/Image */}
           <div className="relative h-48 sm:h-64 md:h-96 overflow-hidden">
             {project.video ? (
@@ -325,7 +325,7 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
               </div>
             ) : null}
           </div>
-        </ScopedSmoothScroll>
+        </div>
       </div>
     </div>
   );
