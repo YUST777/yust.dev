@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Link } from "@tanstack/react-router";
+import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
+
 function TelegramIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
     <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -32,51 +34,6 @@ function MailIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   );
 }
 
-function ReactIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="-11.5 -10.23174 23 20.46348" fill="none">
-      <circle cx="0" cy="0" r="2.05" fill="currentColor"/>
-      <g stroke="currentColor" strokeWidth="1" fill="none">
-        <ellipse rx="11" ry="4.2"/>
-        <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-        <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-      </g>
-    </svg>
-  );
-}
-
-function NextIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 180 180" fill="currentColor">
-      <path d="M90 0a90 90 0 1090 90A90.1 90.1 0 0090 0zm43.14 133.56L68.86 48.74v84.82H54V44.4h15.93l62.27 82.52v-82.5h14.86v89.14z"/>
-    </svg>
-  );
-}
-
-function SupabaseIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M13.35 20.13c-.66.86-2.02.4-2.02-.69v-6.94H3.8c-.89 0-1.37-1.04-.79-1.73l7.64-9.06c.66-.86 2.02-.4 2.02.69v6.94h7.53c.89 0 1.37 1.04.79 1.73l-7.64 9.06z"/>
-    </svg>
-  );
-}
-
-function TailwindIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"/>
-    </svg>
-  );
-}
-
-function PythonIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path d="M11.927 0C5.975 0 6.326.258 6.326 2.341v1.737H12.3v.578H3.873C1.6 4.656 0 6.008 0 8.784c0 2.775 1.95 3.993 3.873 3.993h1.307v-1.84c0-2.179 1.905-3.993 4.146-3.993h5.819V4.656c0-2.083-.873-4.656-6.218-4.656zm-3.05 1.343a.916.916 0 1 1 0 1.832.916.916 0 0 1 0-1.832zm3.197 9.873c-2.24 0-4.146 1.814-4.146 3.993v2.418c0 2.083.873 4.656 6.218 4.656 5.952 0 5.601-.258 5.601-2.341v-1.737h-5.974v-.578h8.427C22.4 19.344 24 17.992 24 15.216c0-2.775-1.95-3.993-3.873-3.993h-1.307v1.84c0 2.179-1.905 3.993-4.146 3.993zm3.05 11.442a.916.916 0 1 1 0-1.832.916.916 0 0 1 0 1.832z"/>
-    </svg>
-  );
-}
-
 const Tooltip = lazy(() => import("react-tooltip").then((m) => ({ default: m.Tooltip })));
 
 const SOCIAL_LINKS = [
@@ -91,11 +48,11 @@ const SOCIAL_LINKS = [
 ];
 
 const CORE_STACK = [
-  { Icon: ReactIcon, name: "React", hoverClass: "hover:text-[#61DAFB]" },
-  { Icon: NextIcon, name: "Next.js", hoverClass: "hover:text-white" },
-  { Icon: SupabaseIcon, name: "Supabase", hoverClass: "hover:text-[#3ECF8E]" },
-  { Icon: TailwindIcon, name: "Tailwind CSS", hoverClass: "hover:text-[#06B6D4]" },
-  { Icon: PythonIcon, name: "Python", hoverClass: "hover:text-[#3776AB]" },
+  { Icon: SiReact, name: "React", hoverClass: "hover:text-[#61DAFB]" },
+  { Icon: SiNextdotjs, name: "Next.js", hoverClass: "hover:text-white" },
+  { Icon: SiSupabase, name: "Supabase", hoverClass: "hover:text-[#3ECF8E]" },
+  { Icon: SiTailwindcss, name: "Tailwind CSS", hoverClass: "hover:text-[#06B6D4]" },
+  { Icon: SiPython, name: "Python", hoverClass: "hover:text-[#3776AB]" },
 ] as const;
 
 export default function AboutSection() {
