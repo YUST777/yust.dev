@@ -146,7 +146,7 @@ function CertificatesPage() {
 
       <div>
         <h1 className="text-4xl font-pixel text-white uppercase">
-          CERTS
+          CERTIFICATES
         </h1>
       </div>
 
