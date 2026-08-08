@@ -9,25 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TokenUsageRouteImport } from './routes/token-usage'
 import { Route as MainRouteImport } from './routes/_main'
+import { Route as TokenUsageRouteImport } from './routes/token-usage'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
-import { Route as MainProjectsRouteImport } from './routes/_main/projects'
-import { Route as MainHacksRouteImport } from './routes/_main/hacks'
-import { Route as MainCompetitiveProgrammingPlatformsRouteImport } from './routes/_main/competitive-programming-platforms'
-import { Route as MainCertificatesRouteImport } from './routes/_main/certificates'
 import { Route as MainAiSecurityProjectsRouteImport } from './routes/_main/ai-security-projects'
+import { Route as MainCertificatesRouteImport } from './routes/_main/certificates'
+import { Route as MainCompetitiveProgrammingPlatformsRouteImport } from './routes/_main/competitive-programming-platforms'
+import { Route as MainHacksRouteImport } from './routes/_main/hacks'
+import { Route as MainProjectsRouteImport } from './routes/_main/projects'
 import { Route as MainBlogIndexRouteImport } from './routes/_main/blog.index'
-import { Route as MainProjectsProjectIdRouteImport } from './routes/_main/projects_.$projectId'
 import { Route as MainBlogPostIdRouteImport } from './routes/_main/blog.$postId'
+import { Route as MainProjectsProjectIdRouteImport } from './routes/_main/projects_.$projectId'
 
+const MainRoute = MainRouteImport.update({
+  id: '/_main',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TokenUsageRoute = TokenUsageRouteImport.update({
   id: '/token-usage',
   path: '/token-usage',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MainRoute = MainRouteImport.update({
-  id: '/_main',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MainIndexRoute = MainIndexRouteImport.update({
@@ -35,14 +35,14 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRoute,
 } as any)
-const MainProjectsRoute = MainProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
+const MainAiSecurityProjectsRoute = MainAiSecurityProjectsRouteImport.update({
+  id: '/ai-security-projects',
+  path: '/ai-security-projects',
   getParentRoute: () => MainRoute,
 } as any)
-const MainHacksRoute = MainHacksRouteImport.update({
-  id: '/hacks',
-  path: '/hacks',
+const MainCertificatesRoute = MainCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
   getParentRoute: () => MainRoute,
 } as any)
 const MainCompetitiveProgrammingPlatformsRoute =
@@ -51,14 +51,14 @@ const MainCompetitiveProgrammingPlatformsRoute =
     path: '/competitive-programming-platforms',
     getParentRoute: () => MainRoute,
   } as any)
-const MainCertificatesRoute = MainCertificatesRouteImport.update({
-  id: '/certificates',
-  path: '/certificates',
+const MainHacksRoute = MainHacksRouteImport.update({
+  id: '/hacks',
+  path: '/hacks',
   getParentRoute: () => MainRoute,
 } as any)
-const MainAiSecurityProjectsRoute = MainAiSecurityProjectsRouteImport.update({
-  id: '/ai-security-projects',
-  path: '/ai-security-projects',
+const MainProjectsRoute = MainProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => MainRoute,
 } as any)
 const MainBlogIndexRoute = MainBlogIndexRouteImport.update({
@@ -66,14 +66,14 @@ const MainBlogIndexRoute = MainBlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => MainRoute,
 } as any)
-const MainProjectsProjectIdRoute = MainProjectsProjectIdRouteImport.update({
-  id: '/projects_/$projectId',
-  path: '/projects/$projectId',
-  getParentRoute: () => MainRoute,
-} as any)
 const MainBlogPostIdRoute = MainBlogPostIdRouteImport.update({
   id: '/blog/$postId',
   path: '/blog/$postId',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainProjectsProjectIdRoute = MainProjectsProjectIdRouteImport.update({
+  id: '/projects_/$projectId',
+  path: '/projects/$projectId',
   getParentRoute: () => MainRoute,
 } as any)
 
@@ -162,18 +162,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/token-usage': {
-      id: '/token-usage'
-      path: '/token-usage'
-      fullPath: '/token-usage'
-      preLoaderRoute: typeof TokenUsageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_main': {
       id: '/_main'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof MainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/token-usage': {
+      id: '/token-usage'
+      path: '/token-usage'
+      fullPath: '/token-usage'
+      preLoaderRoute: typeof TokenUsageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_main/': {
@@ -183,25 +183,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/projects': {
-      id: '/_main/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof MainProjectsRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/hacks': {
-      id: '/_main/hacks'
-      path: '/hacks'
-      fullPath: '/hacks'
-      preLoaderRoute: typeof MainHacksRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/competitive-programming-platforms': {
-      id: '/_main/competitive-programming-platforms'
-      path: '/competitive-programming-platforms'
-      fullPath: '/competitive-programming-platforms'
-      preLoaderRoute: typeof MainCompetitiveProgrammingPlatformsRouteImport
+    '/_main/ai-security-projects': {
+      id: '/_main/ai-security-projects'
+      path: '/ai-security-projects'
+      fullPath: '/ai-security-projects'
+      preLoaderRoute: typeof MainAiSecurityProjectsRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/certificates': {
@@ -211,11 +197,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainCertificatesRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/ai-security-projects': {
-      id: '/_main/ai-security-projects'
-      path: '/ai-security-projects'
-      fullPath: '/ai-security-projects'
-      preLoaderRoute: typeof MainAiSecurityProjectsRouteImport
+    '/_main/competitive-programming-platforms': {
+      id: '/_main/competitive-programming-platforms'
+      path: '/competitive-programming-platforms'
+      fullPath: '/competitive-programming-platforms'
+      preLoaderRoute: typeof MainCompetitiveProgrammingPlatformsRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/hacks': {
+      id: '/_main/hacks'
+      path: '/hacks'
+      fullPath: '/hacks'
+      preLoaderRoute: typeof MainHacksRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/projects': {
+      id: '/_main/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof MainProjectsRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/blog/': {
@@ -225,18 +225,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainBlogIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/projects_/$projectId': {
-      id: '/_main/projects_/$projectId'
-      path: '/projects/$projectId'
-      fullPath: '/projects/$projectId'
-      preLoaderRoute: typeof MainProjectsProjectIdRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/blog/$postId': {
       id: '/_main/blog/$postId'
       path: '/blog/$postId'
       fullPath: '/blog/$postId'
       preLoaderRoute: typeof MainBlogPostIdRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/projects_/$projectId': {
+      id: '/_main/projects_/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof MainProjectsProjectIdRouteImport
       parentRoute: typeof MainRoute
     }
   }

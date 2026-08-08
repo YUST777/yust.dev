@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
+    "dev": "vp dev --force",
     "build": "npm run og:generate && vp build",
     "og:generate": "node scripts/generate-og-hacks.mjs && node scripts/generate-og-blog.mjs && node scripts/generate-og-projects.mjs && node scripts/generate-og-certificates.mjs",
     "preview": "vp preview",
@@ -60,12 +60,8 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "pnpm@10.32.1",
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:@voidzero-dev/vite-plus-core@0.1.18",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@0.1.18"
-    }
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8"
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",
