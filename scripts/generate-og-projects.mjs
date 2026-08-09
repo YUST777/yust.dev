@@ -13,7 +13,7 @@ const rootDir = join(__dirname, "..");
 // Load TrueType fonts
 const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
 const fontGeistMono = readFileSync(
-  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf")
+  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"),
 );
 
 // Featured projects list
@@ -133,7 +133,7 @@ const element = React.createElement(
                 marginBottom: "24px",
               },
             },
-            "P R O J E C T S"
+            "P R O J E C T S",
           ),
           React.createElement(
             "div",
@@ -147,7 +147,7 @@ const element = React.createElement(
                 marginBottom: "16px",
               },
             },
-            featured.title
+            featured.title,
           ),
           React.createElement(
             "div",
@@ -160,7 +160,7 @@ const element = React.createElement(
                 marginBottom: "22px",
               },
             },
-            featured.desc
+            featured.desc,
           ),
           React.createElement(
             "div",
@@ -186,10 +186,10 @@ const element = React.createElement(
                     textTransform: "uppercase",
                   },
                 },
-                t
-              )
-            )
-          )
+                t,
+              ),
+            ),
+          ),
         ),
         React.createElement(
           "div",
@@ -213,7 +213,7 @@ const element = React.createElement(
                 gap: "8px",
               },
             },
-            "Explore Project ↗"
+            "Explore Project ↗",
           ),
           React.createElement(
             "div",
@@ -226,9 +226,9 @@ const element = React.createElement(
                 color: "#d4d4d8",
               },
             },
-            featured.site
-          )
-        )
+            featured.site,
+          ),
+        ),
       ),
       // Right Column (Sidebar - Featured Builds)
       React.createElement(
@@ -264,7 +264,7 @@ const element = React.createElement(
               backgroundColor: "#d4d4d8",
             },
           }),
-          "FEATURED BUILDS"
+          "FEATURED BUILDS",
         ),
         ...sidebarProjects.map((p, i) =>
           React.createElement(
@@ -278,7 +278,8 @@ const element = React.createElement(
                 backgroundColor: i === 0 ? "rgba(255,255,255,0.04)" : "transparent",
                 borderRadius: i === 0 ? "12px" : "0",
                 border: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                borderBottom: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(255,255,255,0.05)",
+                borderBottom:
+                  i === 0 ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(255,255,255,0.05)",
                 marginBottom: i === 0 ? "4px" : "0",
               },
             },
@@ -312,8 +313,8 @@ const element = React.createElement(
                     lineHeight: 1.35,
                   },
                 },
-                p.title
-              )
+                p.title,
+              ),
             ),
             React.createElement(
               "div",
@@ -329,11 +330,11 @@ const element = React.createElement(
                 },
               },
               React.createElement("span", null, p.tag),
-              React.createElement("span", null, p.site)
-            )
-          )
-        )
-      )
+              React.createElement("span", null, p.site),
+            ),
+          ),
+        ),
+      ),
     ),
     // Footer
     React.createElement(
@@ -353,9 +354,9 @@ const element = React.createElement(
         },
       },
       React.createElement("span", null, "Software. Security. Systems."),
-      React.createElement("span", null, "/projects")
-    )
-  )
+      React.createElement("span", null, "/projects"),
+    ),
+  ),
 );
 
 // 3. Generate Satori Vector SVG
@@ -402,8 +403,15 @@ try {
 const outputDir = join(rootDir, ".output/public/static/images");
 if (readFileSync) {
   try {
-    execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
-  } catch {}
+    execSync(
+      `mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`,
+      { stdio: "ignore" },
+    );
+  } catch {
+    // The optional output directory is unavailable in local builds.
+  }
 }
 
-console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-projects.svg + 2K PNG & WebP!`);
+console.log(
+  `[OG Generator - Satori] Successfully generated TRUE Satori SVG og-projects.svg + 2K PNG & WebP!`,
+);

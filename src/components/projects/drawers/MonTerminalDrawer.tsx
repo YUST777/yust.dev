@@ -11,7 +11,10 @@ function MonTerminalDrawer() {
           <i className="fas fa-code mr-2"></i>Full-Stack & Smart Contract Developer
         </p>
         <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
-          Status: <span className="text-amber-500 font-bold">BuildAnything Hackathon Entry (Monad Mainnet)</span>
+          Status:{" "}
+          <span className="text-amber-500 font-bold">
+            BuildAnything Hackathon Entry (Monad Mainnet)
+          </span>
         </p>
       </div>
 
@@ -21,7 +24,10 @@ function MonTerminalDrawer() {
           <i className="fas fa-bolt mr-2"></i>Memecoins trade 24/7. People don’t.
         </h4>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed font-medium">
-          MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives traders one place to discover new tokens, inspect real prices and liquidity, trade supported pools, bridge assets, monitor their portfolio, and protect positions without watching charts all day.
+          MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives
+          traders one place to discover new tokens, inspect real prices and liquidity, trade
+          supported pools, bridge assets, monitor their portfolio, and protect positions without
+          watching charts all day.
         </p>
       </div>
 
@@ -31,7 +37,11 @@ function MonTerminalDrawer() {
           <i className="fas fa-cogs mr-2 font-mono"></i>Non-Custodial Onchain Order Engine
         </h4>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-          The core of MonTerminal is a non-custodial onchain order engine for limit buys, limit sells, stop-losses, and take-profit ladders. Orders store the user’s instructions—not their funds. Tokens remain in the wallet until an order becomes executable, and execution is permissionless. The contracts validate price conditions using TWAP, enforce expiry and minimum output, and protect swaps from unacceptable slippage.
+          The core of MonTerminal is a non-custodial onchain order engine for limit buys, limit
+          sells, stop-losses, and take-profit ladders. Orders store the user’s instructions—not
+          their funds. Tokens remain in the wallet until an order becomes executable, and execution
+          is permissionless. The contracts validate price conditions using TWAP, enforce expiry and
+          minimum output, and protect swaps from unacceptable slippage.
         </p>
       </div>
 
@@ -42,13 +52,16 @@ function MonTerminalDrawer() {
         </h4>
         <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
           <li>
-            <strong className="text-white font-display">Live Market Data & AMM Depth:</strong> Real candles, AMM liquidity depth, portfolio analytics, and shareable performance cards.
+            <strong className="text-white font-display">Live Market Data & AMM Depth:</strong> Real
+            candles, AMM liquidity depth, portfolio analytics, and shareable performance cards.
           </li>
           <li>
-            <strong className="text-white font-display">AI-Assisted Order Planning:</strong> Cross-chain routing and intelligent order strategy planning built directly into the UI.
+            <strong className="text-white font-display">AI-Assisted Order Planning:</strong>{" "}
+            Cross-chain routing and intelligent order strategy planning built directly into the UI.
           </li>
           <li>
-            <strong className="text-white font-display">Onchain Proof & Transparency:</strong> Real APIs and Monad RPC calls rather than mocked responses for total auditability.
+            <strong className="text-white font-display">Onchain Proof & Transparency:</strong> Real
+            APIs and Monad RPC calls rather than mocked responses for total auditability.
           </li>
         </ul>
       </div>
@@ -59,8 +72,19 @@ function MonTerminalDrawer() {
           <i className="fas fa-microchip mr-2"></i>Technologies Used
         </h4>
         <div className="flex flex-wrap gap-2">
-          {["Monad RPC", "Solidity", "TWAP Oracles", "Next.js", "TypeScript", "Tailwind CSS", "Web3"].map((tech) => (
-            <span key={tech} className="px-3 py-1 text-xs font-mono bg-zinc-900 border border-white/5 text-zinc-300 rounded-full">
+          {[
+            "Monad RPC",
+            "Solidity",
+            "TWAP Oracles",
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Web3",
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 text-xs font-mono bg-zinc-900 border border-white/5 text-zinc-300 rounded-full"
+            >
               {tech}
             </span>
           ))}

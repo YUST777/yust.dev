@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import HouseIcon from "./icons/house";
 import SparklesIcon from "./icons/sparkles";
 import StarSparkleIcon from "./icons/star-sparkle";
@@ -30,21 +29,14 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={false}
-      animate={{
-        y: isDrawerOpen ? -120 : 0,
+    <nav
+      style={{
+        transform: `translate(-50%, ${isDrawerOpen ? "-120px" : "0"})`,
         opacity: isDrawerOpen ? 0 : 1,
         filter: isDrawerOpen ? "blur(12px)" : "blur(0px)",
-      }}
-      transition={{
-        duration: 0.4,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      style={{
         pointerEvents: isDrawerOpen ? "none" : "auto",
       }}
-      className="fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] -translate-x-1/2 px-2 sm:bottom-auto sm:top-8"
+      className="fixed bottom-4 left-1/2 z-[999] w-max max-w-[calc(100vw-1rem)] px-2 transition-[transform,opacity,filter] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:bottom-auto sm:top-8"
     >
       <div className="flex max-w-[95vw] items-center gap-0.5 overflow-visible sm:gap-1.5 rounded-full border border-white/[0.08] bg-[#0e0e0e]/70 p-1 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-2xl sm:p-1.5 sm:py-2">
         <NavLink to="/" icon={<HouseIcon width="18" height="18" />} label="About" />
@@ -63,7 +55,7 @@ export function Navbar() {
           <GooseLauncher />
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
 
@@ -125,7 +117,10 @@ function NavLink({
         className: "text-zinc-400 hover:text-zinc-200 hover:bg-white/5",
       }}
     >
-      <span className="relative z-10 flex items-center justify-center transform group-hover:scale-105 sm:group-hover:scale-105 transition-transform duration-300">
+      <span
+        aria-hidden="true"
+        className="relative z-10 flex items-center justify-center transform group-hover:scale-105 sm:group-hover:scale-105 transition-transform duration-300"
+      >
         {icon}
       </span>
       <span className="relative z-10 text-[9px] sm:text-[13px] font-semibold tracking-wide whitespace-nowrap">

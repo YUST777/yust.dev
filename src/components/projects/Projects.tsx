@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, lazy, Suspense, useMemo } from "react";
+import { useEffect, useState, Suspense, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -10,9 +10,6 @@ import { projectsData, archiveProjectsData } from "./ProjectsData";
 import { Project } from "./types";
 import ProjectCard from "./ProjectCard";
 import { sounds } from "@/lib/sounds";
-
-const ProjectModal = lazy(() => import("./ProjectModal"));
-const ScopedSmoothScroll = lazy(() => import("./ScopedSmoothScroll"));
 
 // Hoisted regex to module scope per React best practices (avoids recreation each render)
 const CAMEL_CASE_REGEX = /([A-Z])/g;
@@ -74,10 +71,7 @@ function belongsToCategory(project: Project, category: string): boolean {
   }
 
   if (category === "AI") {
-    return (
-      title.includes("spaceworth") ||
-      slug.includes("spaceworth")
-    );
+    return title.includes("spaceworth") || slug.includes("spaceworth");
   }
 
   if (category === "CP") {
@@ -130,8 +124,6 @@ function getDynamicSpan(project: Project, category: string): string {
 
 export default function Projects() {
   const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Featured");
@@ -198,9 +190,8 @@ export default function Projects() {
 
     if (project.drawerId) {
       setOpenDrawer(project.drawerId);
-    } else {
-      setSelectedProject(project);
-      setIsModalOpen(true);
+    } else if (project.slug) {
+      window.location.assign(`/projects/${project.slug}`);
     }
   };
 
@@ -303,8 +294,8 @@ export default function Projects() {
                   video={project.video || ""}
                   poster={project.poster}
                   title={project.title}
-                  shouldAutoPlay={true}
-                  isPriority={true}
+                  shouldAutoPlay={false}
+                  isPriority={false}
                   isHovered={hoveredVideoId === project.id}
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
@@ -341,16 +332,6 @@ export default function Projects() {
           ))}
         </ul>
       </section>
-
-      <Suspense fallback={null}>
-        {isModalOpen && (
-          <ProjectModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            project={selectedProject}
-          />
-        )}
-      </Suspense>
 
       <AnimatePresence>
         {openDrawer && (

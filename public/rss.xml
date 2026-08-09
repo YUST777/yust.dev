@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>yust.dev — Yousef Mohammed Salah · Blog</title>
     <link>https://www.yust.dev/blog</link>
-    <guid isPermaLink="false">https://www.yust.dev/#blog</guid>
-    <description>Thoughts on software engineering, competitive programming, AI security, and social impact by Yousef Mohammed Salah (yust.dev).</description>
+    <description>Software engineering, competitive programming, AI security, and hackathon stories by Yousef Mohammed Salah.</description>
     <language>en-us</language>
     <atom:link href="https://www.yust.dev/rss.xml" rel="self" type="application/rss+xml" />
     <managingEditor>yousfmsm@hotmail.com (Yousef Mohammed Salah)</managingEditor>
     <webMaster>yousfmsm@hotmail.com (Yousef Mohammed Salah)</webMaster>
-
+    <item>
+      <title>I Entered Reddit&apos;s Hackathon... and Built a Golf Game for Some Reason! ⛳</title>
+      <link>https://www.yust.dev/blog/reddit-games-with-a-hook-hackathon-hellish-golf</link>
+      <guid isPermaLink="true">https://www.yust.dev/blog/reddit-games-with-a-hook-hackathon-hellish-golf</guid>
+      <pubDate>Sat, 08 Aug 2026 12:00:00 GMT</pubDate>
+      <description>My takeaways from participating in Reddit&apos;s &apos;Games with a Hook&apos; Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.</description>
+    </item>
+    <item>
+      <title>How I Won 3 Hackathons in My First Two Years of College</title>
+      <link>https://www.yust.dev/blog/winning-3-hackathons-first-two-years</link>
+      <guid isPermaLink="true">https://www.yust.dev/blog/winning-3-hackathons-first-two-years</guid>
+      <pubDate>Thu, 23 Jul 2026 12:00:00 GMT</pubDate>
+      <description>Lessons, late nights, and project building: how we won 3 national hackathons in our first two years of university.</description>
+    </item>
     <item>
       <title>A day at Horus Technology Forum</title>
       <link>https://www.yust.dev/blog/horus-technology-forum-sast-tech</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/horus-technology-forum-sast-tech</guid>
-      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
+      <pubDate>Thu, 23 Apr 2026 12:00:00 GMT</pubDate>
       <description>How I returned to the Horus Technology Forum to demonstrate Sast.tech, an AI security agent that tests and patches web vulnerabilities.</description>
     </item>
     <item>
       <title>Marketing Strategy at AZ Tech Solutions</title>
       <link>https://www.yust.dev/blog/saas-marketing-strategy-az-tech-solutions</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/saas-marketing-strategy-az-tech-solutions</guid>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
       <description>Practical SaaS marketing lessons from AZ Tech Solutions on awareness, trust, audience filtering, and converting interest into a win-win offer.</description>
     </item>
     <item>
       <title>Winning 3rd Place in LuxsAI</title>
       <link>https://www.yust.dev/blog/luxsai-hackathon-third-place-sast-tech</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/luxsai-hackathon-third-place-sast-tech</guid>
-      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 29 Mar 2026 12:00:00 GMT</pubDate>
       <description>The 850 km journey from Damietta to Luxor, how Sast.tech evolved into a desktop security IDE, and what earned third place at LuxsAI.</description>
     </item>
     <item>
       <title>Winning 2nd Place in GDG Delta</title>
       <link>https://www.yust.dev/blog/gdg-delta-hackathon-second-place-sast-tech</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/gdg-delta-hackathon-second-place-sast-tech</guid>
-      <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 18 Feb 2026 12:00:00 GMT</pubDate>
       <description>Inside the 49-hour build that took Sast.tech to second place at the GDG Delta hackathon, from the security problem to the final demo.</description>
     </item>
     <item>
       <title>Winning 3rd Place at the Sustainable Innovation National Summit</title>
       <link>https://www.yust.dev/blog/zero-threat-egypt-innovation-summit</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/zero-threat-egypt-innovation-summit</guid>
-      <pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate>
+      <pubDate>Thu, 28 Aug 2025 12:00:00 GMT</pubDate>
       <description>From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.</description>
     </item>
   </channel>

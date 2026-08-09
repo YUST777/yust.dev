@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Competitive Programming Tools & Platforms | yust.dev";
@@ -103,13 +102,6 @@ export const Route = createFileRoute("/_main/competitive-programming-platforms")
 function CpPlatformsPage() {
   return (
     <article className="mx-auto max-w-5xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Competitive Programming Platforms", url: PAGE_URL },
-        ]}
-      />
-
       <header className="max-w-3xl">
         <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-500">
           Competitive programming portfolio
@@ -174,14 +166,14 @@ function CpPlatformsPage() {
         </h2>
         <div className="mt-5 space-y-5 text-base leading-8 text-zinc-400">
           <p>
-            Building code judgment engines requires sub-second latency and sandboxed execution. Verdict.run
-            uses real-time WebSocket state synchronization so competitors feel instantaneous feedback during
-            1v1 battles.
+            Building code judgment engines requires sub-second latency and sandboxed execution.
+            Verdict.run uses real-time WebSocket state synchronization so competitors feel
+            instantaneous feedback during 1v1 battles.
           </p>
           <p>
-            Structured curriculum design boosts user retention. ICPC HUE breaks complex algorithms into
-            level-based progression tracks so university students can step up from basic data structures to
-            advanced graph theory and dynamic programming.
+            Structured curriculum design boosts user retention. ICPC HUE breaks complex algorithms
+            into level-based progression tracks so university students can step up from basic data
+            structures to advanced graph theory and dynamic programming.
           </p>
         </div>
       </section>

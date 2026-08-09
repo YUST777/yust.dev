@@ -1,4 +1,10 @@
 /// <reference types="vite/client" />
 
-declare const __COMMIT_HASH__: string;
-declare const __APP_VERSION__: string;
+interface ImportMetaEnv {
+  readonly VITE_APP_VERSION: string;
+  readonly VITE_COMMIT_HASH: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

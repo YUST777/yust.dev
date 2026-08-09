@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import React from "react";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
+import { getEntryBlocks, readId, readStringField } from "./source-content.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,32 +14,30 @@ const rootDir = join(__dirname, "..");
 // 1. Extract blog posts data from blog.index.tsx
 const blogContent = readFileSync(join(rootDir, "src/routes/_main/blog.index.tsx"), "utf8");
 
-// Parse posts from the source
-const postBlocks = [...blogContent.matchAll(/\{\s*id:\s*["'](\d+)["'][\s\S]*?title:\s*["']([^"']+)["'][\s\S]*?date:\s*["']([^"']+)["'][\s\S]*?category:\s*["']([^"']+)["'][\s\S]*?summary:\s*\n?\s*["']([^"']+)["']/g)];
-
-const posts = postBlocks.map((m) => ({
-  id: m[1],
-  title: m[2],
-  date: m[3],
-  category: m[4],
-  summary: m[5],
-}));
-
-// Sort by id descending (newest first)
-posts.sort((a, b) => Number(b.id) - Number(a.id));
+const posts = getEntryBlocks(blogContent)
+  .map((block) => ({
+    id: readId(block),
+    title: readStringField(block, "title"),
+    date: readStringField(block, "date"),
+    iso: readStringField(block, "iso"),
+    category: readStringField(block, "category"),
+    summary: readStringField(block, "summary"),
+  }))
+  .filter((post) => post.id && post.title && post.date && post.iso && post.category && post.summary)
+  .sort((a, b) => b.iso.localeCompare(a.iso));
 
 const featured = posts[0];
 const latest = posts.slice(0, 4);
 
 // Estimate read times
-const readTimes = { "6": 5, "1": 4, "4": 6, "3": 3, "2": 5, "5": 4 };
+const readTimes = { 6: 5, 1: 4, 4: 6, 3: 3, 2: 5, 5: 4 };
 
 console.log(`[OG Generator - Satori] Featured: "${featured.title}"`);
 
 // Load TrueType fonts
 const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
 const fontGeistMono = readFileSync(
-  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf")
+  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"),
 );
 
 // 2. Build Satori Vercel OG Node Tree
@@ -114,7 +113,7 @@ const element = React.createElement(
                 marginBottom: "24px",
               },
             },
-            "B L O G"
+            "B L O G",
           ),
           React.createElement(
             "div",
@@ -128,7 +127,7 @@ const element = React.createElement(
                 marginBottom: "18px",
               },
             },
-            featured.title
+            featured.title,
           ),
           React.createElement(
             "div",
@@ -140,7 +139,7 @@ const element = React.createElement(
                 maxWidth: "440px",
               },
             },
-            featured.summary
+            featured.summary,
           ),
           React.createElement(
             "div",
@@ -172,9 +171,9 @@ const element = React.createElement(
                   textTransform: "uppercase",
                 },
               },
-              featured.category
-            )
-          )
+              featured.category,
+            ),
+          ),
         ),
         React.createElement(
           "div",
@@ -198,7 +197,7 @@ const element = React.createElement(
                 gap: "8px",
               },
             },
-            "Read the full post ↗"
+            "Read the full post ↗",
           ),
           React.createElement(
             "div",
@@ -211,9 +210,9 @@ const element = React.createElement(
                 color: "#d4d4d8",
               },
             },
-            "/blog"
-          )
-        )
+            "/blog",
+          ),
+        ),
       ),
       // Right Column (Latest Posts Sidebar)
       React.createElement(
@@ -249,7 +248,7 @@ const element = React.createElement(
               backgroundColor: "#d4d4d8",
             },
           }),
-          "LATEST POSTS"
+          "LATEST POSTS",
         ),
         ...latest.map((post, i) =>
           React.createElement(
@@ -263,7 +262,8 @@ const element = React.createElement(
                 backgroundColor: i === 0 ? "rgba(255,255,255,0.04)" : "transparent",
                 borderRadius: i === 0 ? "12px" : "0",
                 border: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                borderBottom: i === 0 ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(255,255,255,0.05)",
+                borderBottom:
+                  i === 0 ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(255,255,255,0.05)",
                 marginBottom: i === 0 ? "4px" : "0",
               },
             },
@@ -297,8 +297,8 @@ const element = React.createElement(
                     lineHeight: 1.4,
                   },
                 },
-                post.title
-              )
+                post.title,
+              ),
             ),
             React.createElement(
               "div",
@@ -314,11 +314,11 @@ const element = React.createElement(
                 },
               },
               React.createElement("span", null, post.date.toUpperCase()),
-              React.createElement("span", null, `${readTimes[post.id] || 5} MIN READ`)
-            )
-          )
-        )
-      )
+              React.createElement("span", null, `${readTimes[post.id] || 5} MIN READ`),
+            ),
+          ),
+        ),
+      ),
     ),
     // Footer
     React.createElement(
@@ -338,9 +338,9 @@ const element = React.createElement(
         },
       },
       React.createElement("span", null, "Stories. Retrospectives. Wins."),
-      React.createElement("span", null, "New Posts Weekly")
-    )
-  )
+      React.createElement("span", null, "New Posts Weekly"),
+    ),
+  ),
 );
 
 // 3. Generate Satori Vector SVG
@@ -387,8 +387,15 @@ try {
 const outputDir = join(rootDir, ".output/public/static/images");
 if (readFileSync) {
   try {
-    execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
-  } catch {}
+    execSync(
+      `mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`,
+      { stdio: "ignore" },
+    );
+  } catch {
+    // The optional output directory is unavailable in local builds.
+  }
 }
 
-console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-blog.svg + 2K PNG & WebP!`);
+console.log(
+  `[OG Generator - Satori] Successfully generated TRUE Satori SVG og-blog.svg + 2K PNG & WebP!`,
+);

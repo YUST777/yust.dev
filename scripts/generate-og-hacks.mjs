@@ -16,7 +16,8 @@ const rankMatches = hacksContent.match(/rank:\s*["']/g);
 const count = rankMatches ? rankMatches.length : 4;
 
 // Parse hack entries (rank, event, title)
-const hackRegex = /\{\s*rank:\s*["']([^"']+)["'][\s\S]*?event:\s*["']([^"']+)["'][\s\S]*?title:\s*["']([^"']+)["']/g;
+const hackRegex =
+  /\{\s*rank:\s*["']([^"']+)["'][\s\S]*?event:\s*["']([^"']+)["'][\s\S]*?title:\s*["']([^"']+)["']/g;
 const hacks = [];
 let m;
 while ((m = hackRegex.exec(hacksContent)) !== null) {
@@ -50,7 +51,7 @@ function trophyColor(rank) {
 // Load TrueType fonts
 const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
 const fontGeistMono = readFileSync(
-  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf")
+  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"),
 );
 
 // Pixel trophy SVG element builder — clean single vector path
@@ -67,7 +68,7 @@ function PixelTrophy({ color, size = 28 }) {
     React.createElement("path", {
       d: "M1 0h5v1H1z M0 1h7v2H0z M1 3h5v1H1z M2 4h3v1H2z M3 5h1v1H3z M2 6h3v1H2z M1 7h5v1H1z",
       fill: color,
-    })
+    }),
   );
 }
 
@@ -192,8 +193,8 @@ const element = React.createElement(
                 textAlign: "center",
               },
             },
-            String(count)
-          )
+            String(count),
+          ),
         ),
         React.createElement(
           "div",
@@ -209,7 +210,7 @@ const element = React.createElement(
               textAlign: "center",
             },
           },
-          "Hackathons Won"
+          "Hackathons Won",
         ),
         React.createElement(
           "div",
@@ -225,8 +226,8 @@ const element = React.createElement(
               textAlign: "center",
             },
           },
-          "And Counting"
-        )
+          "And Counting",
+        ),
       ),
       // Right Column (Competitions List)
       React.createElement(
@@ -262,7 +263,7 @@ const element = React.createElement(
               backgroundColor: "#a1a1aa",
             },
           }),
-          "COMPETITIONS"
+          "COMPETITIONS",
         ),
         ...hacks.slice(0, 4).map((hack, i) => {
           const t = trophyColor(hack.rank);
@@ -301,8 +302,8 @@ const element = React.createElement(
                     letterSpacing: "0.08em",
                   },
                 },
-                t.label
-              )
+                t.label,
+              ),
             ),
             React.createElement(
               "div",
@@ -323,7 +324,7 @@ const element = React.createElement(
                     lineHeight: 1.35,
                   },
                 },
-                cleanTitle(hack.title)
+                cleanTitle(hack.title),
               ),
               React.createElement(
                 "div",
@@ -335,7 +336,7 @@ const element = React.createElement(
                     letterSpacing: "0.04em",
                   },
                 },
-                shortEvent(hack.event)
+                shortEvent(hack.event),
               ),
               React.createElement(
                 "div",
@@ -347,12 +348,12 @@ const element = React.createElement(
                     letterSpacing: "0.06em",
                   },
                 },
-                eventDate(hack.event)
-              )
-            )
+                eventDate(hack.event),
+              ),
+            ),
           );
-        })
-      )
+        }),
+      ),
     ),
     // Footer
     React.createElement(
@@ -372,9 +373,9 @@ const element = React.createElement(
         },
       },
       React.createElement("span", null, "Competitions. Builds. Wins."),
-      React.createElement("span", null, "/hacks")
-    )
-  )
+      React.createElement("span", null, "/hacks"),
+    ),
+  ),
 );
 
 // 3. Generate Satori Vector SVG
@@ -421,8 +422,15 @@ try {
 const outputDir = join(rootDir, ".output/public/static/images");
 if (readFileSync) {
   try {
-    execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
-  } catch {}
+    execSync(
+      `mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`,
+      { stdio: "ignore" },
+    );
+  } catch {
+    // The optional output directory is unavailable in local builds.
+  }
 }
 
-console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-hacks.svg + 2K PNG & WebP!`);
+console.log(
+  `[OG Generator - Satori] Successfully generated TRUE Satori SVG og-hacks.svg + 2K PNG & WebP!`,
+);

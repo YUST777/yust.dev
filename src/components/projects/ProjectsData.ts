@@ -78,7 +78,16 @@ export const projectsData: Project[] = [
     poster: "/static/images/posters/spaceworth.webp",
     repoLink: "https://github.com/YUST777/spaceworth.site-ITI_AI_COURSE_PROJECT",
     siteLink: "https://spaceworth.site",
-    technologies: ["PyTorch", "LightGBM", "CatBoost", "FastAPI", "React 18", "TypeScript", "Konva", "Supabase"],
+    technologies: [
+      "PyTorch",
+      "LightGBM",
+      "CatBoost",
+      "FastAPI",
+      "React 18",
+      "TypeScript",
+      "Konva",
+      "Supabase",
+    ],
     drawerId: "spaceworth",
     features: [
       {
@@ -252,7 +261,15 @@ export const projectsData: Project[] = [
     poster: "/static/images/posters/monterminal.webp",
     repoLink: "https://github.com/YUST777/MonTerminal",
     siteLink: "https://www.monterminal.fun/",
-    technologies: ["Monad RPC", "Solidity", "TWAP Oracles", "Next.js", "TypeScript", "Tailwind CSS", "Web3"],
+    technologies: [
+      "Monad RPC",
+      "Solidity",
+      "TWAP Oracles",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Web3",
+    ],
     drawerId: "monterminal",
     features: [
       {

@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
@@ -45,7 +45,11 @@ function AboutPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-10 sm:space-y-16">
       <ProfileHeader />
       <AboutSection />
-      <Suspense fallback={<div className="h-48 w-full rounded-xl bg-zinc-900/50 border border-white/5 animate-pulse" />}>
+      <Suspense
+        fallback={
+          <div className="h-48 w-full rounded-xl bg-zinc-900/50 border border-white/5 animate-pulse" />
+        }
+      >
         <GithubContributions />
       </Suspense>
       <AchievementsSection />

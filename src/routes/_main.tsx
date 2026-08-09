@@ -64,15 +64,15 @@ function MainLayout() {
             </p>
           </div>
           <div className="text-zinc-400 pt-2 pb-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] sm:text-[11px]">
-            <span>v{typeof __APP_VERSION__ !== "undefined" ? __APP_VERSION__ : "0.4.0"}</span>
+            <span>v{import.meta.env.VITE_APP_VERSION}</span>
             <span className="text-zinc-800">·</span>
             <a
-              href={`https://github.com/YUST777/yust.dev/commit/${typeof __COMMIT_HASH__ !== "undefined" ? __COMMIT_HASH__ : "main"}`}
+              href={`https://github.com/YUST777/yust.dev/commit/${import.meta.env.VITE_COMMIT_HASH}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4 decoration-zinc-800 hover:decoration-zinc-500"
             >
-              commit {typeof __COMMIT_HASH__ !== "undefined" ? __COMMIT_HASH__ : "HEAD"}
+              commit {import.meta.env.VITE_COMMIT_HASH}
             </a>
             <span className="text-zinc-800">·</span>
             <span>© {mounted ? new Date().getFullYear() : "2026"} Yousef</span>

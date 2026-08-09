@@ -8,7 +8,8 @@ function SpaceWorthDrawer() {
           SpaceWorth — AI Real Estate Valuation & CAD Intelligence
         </h4>
         <p className="text-[12px] sm:text-sm text-gray-400">
-          <i className="fas fa-graduation-cap mr-2"></i>ITI Machine Learning & AI Engineering Final Project
+          <i className="fas fa-graduation-cap mr-2"></i>ITI Machine Learning & AI Engineering Final
+          Project
         </p>
         <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
           Status: <span className="text-green-400 font-bold">Live</span>
@@ -21,7 +22,10 @@ function SpaceWorthDrawer() {
           <i className="fas fa-exclamation-triangle mr-2"></i>The Problem
         </h4>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-          Traditional real estate pricing relies on manual inspections or simple linear heuristics that fail to capture location dynamics and architectural layout nuance. Converting engineering drawings, blueprints, or CAD floor-plan PDFs into valuation inputs requires tedious manual measurement.
+          Traditional real estate pricing relies on manual inspections or simple linear heuristics
+          that fail to capture location dynamics and architectural layout nuance. Converting
+          engineering drawings, blueprints, or CAD floor-plan PDFs into valuation inputs requires
+          tedious manual measurement.
         </p>
       </div>
 
@@ -31,7 +35,13 @@ function SpaceWorthDrawer() {
           <i className="fas fa-brain mr-2"></i>The Solution
         </h4>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-          SpaceWorth combines a custom-trained <strong className="text-white">90.64% R² Machine Learning price valuation ensemble</strong> (LightGBM + CatBoost + 3x PyTorch Entity Embedding Neural Networks) with multimodal CAD floor-plan OCR parsing (Gemini Flash) to deliver instant, verifiable real estate estimates.
+          SpaceWorth combines a custom-trained{" "}
+          <strong className="text-white">
+            90.64% R² Machine Learning price valuation ensemble
+          </strong>{" "}
+          (LightGBM + CatBoost + 3x PyTorch Entity Embedding Neural Networks) with multimodal CAD
+          floor-plan OCR parsing (Gemini Flash) to deliver instant, verifiable real estate
+          estimates.
         </p>
       </div>
 
@@ -42,16 +52,24 @@ function SpaceWorthDrawer() {
         </h4>
         <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
           <li>
-            <strong className="text-white">90.64% R² Custom ML Model Engine:</strong> Trained from scratch on 57,058 Indian real estate listings. Combines target encoding, LightGBM, CatBoost, and 3x PyTorch Entity Embedding NNs hosted on Hugging Face.
+            <strong className="text-white">90.64% R² Custom ML Model Engine:</strong> Trained from
+            scratch on 57,058 Indian real estate listings. Combines target encoding, LightGBM,
+            CatBoost, and 3x PyTorch Entity Embedding NNs hosted on Hugging Face.
           </li>
           <li>
-            <strong className="text-white">CAD Floor-Plan Intelligence:</strong> Upload blueprints, CAD drawings, or architectural PDFs (PNG, JPG, PDF up to 12MB). Gemini extracts room counts, dimensions, and sqft directly into our valuation engine.
+            <strong className="text-white">CAD Floor-Plan Intelligence:</strong> Upload blueprints,
+            CAD drawings, or architectural PDFs (PNG, JPG, PDF up to 12MB). Gemini extracts room
+            counts, dimensions, and sqft directly into our valuation engine.
           </li>
           <li>
-            <strong className="text-white">Interactive 2D/3D Konva Canvas:</strong> Dynamic floor-plan layout generator allowing users to add, drag, resize, measure, and preview room configurations in 2D and 3D.
+            <strong className="text-white">Interactive 2D/3D Konva Canvas:</strong> Dynamic
+            floor-plan layout generator allowing users to add, drag, resize, measure, and preview
+            room configurations in 2D and 3D.
           </li>
           <li>
-            <strong className="text-white">Developer API Key Manager:</strong> Full API key lifecycle management stored in Supabase PostgreSQL with secret hashing and rate limiting.
+            <strong className="text-white">Developer API Key Manager:</strong> Full API key
+            lifecycle management stored in Supabase PostgreSQL with secret hashing and rate
+            limiting.
           </li>
         </ul>
       </div>
@@ -62,11 +80,22 @@ function SpaceWorthDrawer() {
           <i className="fas fa-chart-line mr-2"></i>Model Performance & Benchmarks
         </h4>
         <ul className="space-y-2 text-[13px] sm:text-sm text-gray-300">
-          <li>• <strong className="text-white">Blended Ensemble (Selected):</strong> 90.64% R² Accuracy</li>
-          <li>• <strong className="text-white">CatBoost Model:</strong> 88.40% R²</li>
-          <li>• <strong className="text-white">PyTorch Entity Embedding NN:</strong> 86.90% R²</li>
-          <li>• <strong className="text-white">LightGBM Model:</strong> 85.12% R²</li>
-          <li>• <strong className="text-white">Ridge Regression Baseline:</strong> 79.59% R²</li>
+          <li>
+            • <strong className="text-white">Blended Ensemble (Selected):</strong> 90.64% R²
+            Accuracy
+          </li>
+          <li>
+            • <strong className="text-white">CatBoost Model:</strong> 88.40% R²
+          </li>
+          <li>
+            • <strong className="text-white">PyTorch Entity Embedding NN:</strong> 86.90% R²
+          </li>
+          <li>
+            • <strong className="text-white">LightGBM Model:</strong> 85.12% R²
+          </li>
+          <li>
+            • <strong className="text-white">Ridge Regression Baseline:</strong> 79.59% R²
+          </li>
         </ul>
       </div>
 

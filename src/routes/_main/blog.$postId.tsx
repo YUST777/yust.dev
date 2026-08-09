@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { posts } from "./blog.index";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
 export const Route = createFileRoute("/_main/blog/$postId")({
@@ -123,14 +122,6 @@ function PostPage() {
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Blog", url: `${SITE_URL}/blog` },
-          { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
-        ]}
-      />
-
       <div className="space-y-4">
         <h1 className="text-3xl md:text-5xl font-sans font-bold text-white tracking-tight leading-tight">
           {post.title}
@@ -167,9 +158,8 @@ function PostPage() {
           />
         </div>
       ) : (
-        post.images && post.images.length > 0 && (
-          <ImageCollage images={post.images} title={post.title} />
-        )
+        post.images &&
+        post.images.length > 0 && <ImageCollage images={post.images} title={post.title} />
       )}
 
       <div className="prose prose-invert prose-zinc max-w-none space-y-6">
@@ -283,14 +273,17 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
   const overflow = Math.max(0, images.length - 4);
   const thumbCount = visibleThumbs.length;
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setOpenIndex((i) => {
-      if (i === null) return null;
-      if (newDirection > 0) return (i + 1) % images.length;
-      return (i - 1 + images.length) % images.length;
-    });
-  };
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setDirection(newDirection);
+      setOpenIndex((i) => {
+        if (i === null) return null;
+        if (newDirection > 0) return (i + 1) % images.length;
+        return (i - 1 + images.length) % images.length;
+      });
+    },
+    [images.length],
+  );
 
   useEffect(() => {
     if (openIndex === null) return;
@@ -307,7 +300,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
       document.body.classList.remove("drawer-open");
       document.body.style.overflow = "";
     };
-  }, [openIndex, images.length]);
+  }, [openIndex, paginate]);
 
   return (
     <>
@@ -395,7 +388,13 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
             className="absolute top-4 right-4 sm:top-6 sm:right-6 z-40 w-10 h-10 rounded-full bg-zinc-900/80 hover:bg-white text-zinc-400 hover:text-black border border-white/10 hover:border-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center group"
             aria-label="Close gallery"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

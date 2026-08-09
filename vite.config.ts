@@ -20,14 +20,20 @@ function getCommitHash() {
 
 export default defineConfig({
   define: {
-    __COMMIT_HASH__: JSON.stringify(getCommitHash()),
-    __APP_VERSION__: JSON.stringify("0.4.0"),
+    "import.meta.env.VITE_COMMIT_HASH": JSON.stringify(getCommitHash()),
+    "import.meta.env.VITE_APP_VERSION": JSON.stringify("0.4.0"),
   },
   fmt: {
     ignorePatterns: ["src/routeTree.gen.ts"],
   },
   test: {
+    globals: true,
     passWithNoTests: true,
+    server: {
+      deps: {
+        external: ["react", "react-dom"],
+      },
+    },
   },
   lint: {
     plugins: ["oxc", "typescript", "unicorn", "react"],
@@ -111,6 +117,12 @@ export default defineConfig({
     },
     overrides: [
       {
+        files: ["**/*.{test,spec}.{ts,tsx,js,jsx,mjs,cjs}"],
+        rules: {
+          "no-undef": "off",
+        },
+      },
+      {
         files: ["**/*.{js,mjs}"],
         rules: {
           "no-unused-vars": "off",
@@ -129,18 +141,40 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  build: {},
-  plugins: [
-    tailwindcss(),
-    tanstackStart(),
-    nitro({
-      serverDir: "server",
-      rollupConfig: {
-        external: [/^better-auth/, /^@better-auth/, "better-call"],
-      },
-    }),
-    // React's Vite plugin must come after TanStack Start's plugin
-    viteReact(),
-    babel({ presets: [reactCompilerPreset()] }),
-  ],
+  build: {
+    sourcemap: true,
+  },
+  plugins: process.env.VITEST
+    ? []
+    : [
+        tailwindcss(),
+        tanstackStart(),
+        nitro({
+          serverDir: "server",
+          compressPublicAssets: true,
+          routeRules: {
+            "/assets/**": {
+              headers: { "cache-control": "public, max-age=31536000, immutable" },
+            },
+            "/certi/**": {
+              headers: { "cache-control": "public, max-age=31536000, immutable" },
+            },
+            "/fonts/**": {
+              headers: { "cache-control": "public, max-age=31536000, immutable" },
+            },
+            "/static/**": {
+              headers: { "cache-control": "public, max-age=31536000, immutable" },
+            },
+            "/videos/**": {
+              headers: { "cache-control": "public, max-age=31536000, immutable" },
+            },
+          },
+          rollupConfig: {
+            external: [/^better-auth/, /^@better-auth/, "better-call"],
+          },
+        }),
+        // React's Vite plugin must come after TanStack Start's plugin
+        viteReact(),
+        babel({ presets: [reactCompilerPreset()] }),
+      ],
 });

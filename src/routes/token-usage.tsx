@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import TokenUsageGraph from "@/components/token-usage/source";
+import { lazy, Suspense } from "react";
 import { fetchUsageData } from "@/components/token-usage/data";
 import { buildRouteHead } from "@/lib/seo";
+
+const TokenUsageGraph = lazy(() => import("@/components/token-usage/source"));
 
 const loadUsageData = createServerFn({ method: "GET" }).handler(() => {
   return fetchUsageData();
@@ -76,7 +78,11 @@ function TokenUsagePage() {
           </div>
         </div>
       </header>
-      <TokenUsageGraph data={data} />
+      <Suspense
+        fallback={<div className="min-h-screen bg-[#0c0c0c]" aria-label="Loading usage graph" />}
+      >
+        <TokenUsageGraph data={data} />
+      </Suspense>
     </>
   );
 }

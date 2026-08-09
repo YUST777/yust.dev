@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import { motion, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Certificates & Credentials | Yousef Mohammed Salah";
@@ -27,18 +26,19 @@ export const Route = createFileRoute("/_main/certificates")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/certificates",
-      image: `${SITE_URL}/static/images/og-certificates.png?v=1`,
+      image: `${SITE_URL}/static/images/og-certificates.png?v=2`,
     });
 
     return {
       ...base,
       links: [
         ...(base.links || []),
-        ...certificatePreviews.map((cert) => ({
+        {
           rel: "preload",
           as: "image",
-          href: cert.image,
-        })),
+          href: certificatePreviews[0].image,
+          fetchPriority: "high",
+        },
       ],
       scripts: [
         {
@@ -131,36 +131,19 @@ function CertificatesPage() {
 
   const selectedCertificate = certificatePreviews[activeIndex];
 
-  useEffect(() => {
-    // Warm-preload all certificate images in browser GPU texture memory
-    certificatePreviews.forEach((cert) => {
-      const img = new Image();
-      img.src = cert.image;
-    });
-  }, []);
-
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     const swipeThreshold = 40;
     if (info.offset.x < -swipeThreshold && activeIndex < certificatePreviews.length - 1) {
-      setActiveIndex((prev) => prev + 1);
+      setActiveIndex(activeIndex + 1);
     } else if (info.offset.x > swipeThreshold && activeIndex > 0) {
-      setActiveIndex((prev) => prev - 1);
+      setActiveIndex(activeIndex - 1);
     }
   };
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Certificates", url: `${SITE_URL}/certificates` },
-        ]}
-      />
-
       <div>
-        <h1 className="text-4xl font-pixel text-white uppercase">
-          CERTIFICATES
-        </h1>
+        <h1 className="text-4xl font-pixel text-white uppercase">CERTIFICATES</h1>
       </div>
 
       <div className="grid items-stretch gap-3 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
@@ -180,7 +163,10 @@ function CertificatesPage() {
         </section>
 
         {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
-        <section aria-label="Certificate folders carousel" className="block lg:hidden select-none overflow-hidden w-full">
+        <section
+          aria-label="Certificate folders carousel"
+          className="block lg:hidden select-none overflow-hidden w-full"
+        >
           <div className="relative flex flex-col items-center gap-1 w-full max-w-full">
             <motion.div
               drag="x"
@@ -203,6 +189,7 @@ function CertificatesPage() {
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex - 1]}
                       isOpen={false}
+                      showLabel={false}
                     />
                   </motion.div>
                 ) : (
@@ -235,6 +222,7 @@ function CertificatesPage() {
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex + 1]}
                       isOpen={false}
+                      showLabel={false}
                     />
                   </motion.div>
                 ) : (
@@ -323,9 +311,11 @@ function CertificateFolder({
 function CertificateFolderContent({
   certificate,
   isOpen,
+  showLabel = true,
 }: {
   certificate: CertificatePreview;
   isOpen: boolean;
+  showLabel?: boolean;
 }) {
   return (
     <>
@@ -334,7 +324,7 @@ function CertificateFolderContent({
           <span className="absolute -top-4 left-0 h-6 w-[42%] rounded-t-xl border-x border-t border-white/10 bg-[#17181a]" />
         </span>
 
-        {/* Certificate Paper Peek (Snappy Spring Animation) */}
+        {/* Real certificate paper peeking out of the folder. */}
         <motion.span
           initial={false}
           animate={{
@@ -343,17 +333,15 @@ function CertificateFolderContent({
             opacity: isOpen ? 1 : 0.75,
           }}
           transition={{ type: "spring", stiffness: 400, damping: 28 }}
-          className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] rounded-sm bg-[#e8e5de] p-1.5 text-[#242424] shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+          className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] overflow-hidden rounded-sm bg-[#e8e5de] p-1 shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
         >
-          <span className="flex h-full flex-col overflow-hidden border border-black/15">
-            <img
-              src={certificate.image}
-              alt={certificate.title}
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-          </span>
+          <img
+            src={certificate.image}
+            alt=""
+            loading={isOpen ? "eager" : "lazy"}
+            decoding="async"
+            className="h-full w-full rounded-[2px] border border-black/15 bg-white object-contain"
+          />
         </motion.span>
 
         {/* Top Folder Cover Flap (Snappy 3D Spring Animation) */}
@@ -370,10 +358,14 @@ function CertificateFolderContent({
         </motion.span>
       </span>
 
-      <span className="mt-3 block truncate text-sm font-semibold text-zinc-100">
-        {certificate.issuer}
-      </span>
-      <span className="mt-1 block text-[11px] text-zinc-400">{certificate.issued}</span>
+      {showLabel && (
+        <>
+          <span className="mt-3 block truncate text-sm font-semibold text-zinc-100">
+            {certificate.issuer}
+          </span>
+          <span className="mt-1 block text-[11px] text-zinc-400">{certificate.issued}</span>
+        </>
+      )}
     </>
   );
 }
@@ -386,19 +378,20 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="flex flex-col items-center justify-end h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0" aria-label="Selected certificate preview">
+    <aside
+      className="flex flex-col items-center justify-end h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0"
+      aria-label="Selected certificate preview"
+    >
       {/* 3D Scene Container */}
-      <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[580px] px-1 sm:px-0 [perspective:2000px] group cursor-pointer">
+      <div className="group relative mx-auto aspect-[1.4/1] w-full max-w-[580px] cursor-pointer px-1 sm:px-0 [perspective:2000px]">
         <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-500 ease-out">
-          
           {/* Folder Base (Back tray that holds the certificate) */}
           <div className="absolute inset-0 rounded-[18px] border border-[#2a2a2c] bg-[#1a1a1c] p-[2.5%] shadow-[0_30px_60px_rgba(0,0,0,0.9),inset_0_10px_20px_rgba(0,0,0,0.5)] z-10 flex flex-col">
             <div className="relative h-full w-full rounded-[10px] bg-[#0f0f11] p-[1.5%] shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] flex flex-col">
-              
               {/* Real Certificate Paper with Fast Pixelated Retro Intro Effect */}
               <div
                 onClick={onOpenFullscreen}
-                className="relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer flex items-center justify-center"
+                className="relative flex flex-1 w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] sm:p-3"
               >
                 <motion.div
                   key={certificate.id}
@@ -411,6 +404,7 @@ function CertificateViewer({
                     src={certificate.image}
                     alt={certificate.title}
                     loading="eager"
+                    fetchPriority="high"
                     decoding="async"
                     className="h-full w-full object-contain"
                   />
@@ -423,14 +417,11 @@ function CertificateViewer({
                   />
                 </motion.div>
               </div>
-
             </div>
           </div>
 
           {/* Folder Cover (The part that hinges open upwards - responsive rotateX) */}
-          <div
-            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
-          >
+          <div className="absolute inset-x-0 top-0 z-20 h-[85%] origin-top rounded-[18px] [transform:rotateX(98deg)] [transform-style:preserve-3d] shadow-[0_-20px_40px_rgba(0,0,0,0.5)] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)]">
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
               <div className="text-zinc-500 font-semibold tracking-wider text-xl uppercase font-mono">
@@ -441,7 +432,6 @@ function CertificateViewer({
             {/* Back Face (Inner Lining of Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#222] bg-[#111] [transform:rotateX(180deg)] [backface-visibility:hidden] shadow-[inset_0_0_40px_rgba(0,0,0,0.9)]" />
           </div>
-
         </div>
       </div>
     </aside>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Software, AI Security & Hackathon Stories | yust.dev";
@@ -366,13 +365,6 @@ function BlogPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Blog", url: `${SITE_URL}/blog` },
-        ]}
-      />
-
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-pixel text-white uppercase">blog</h1>
@@ -399,10 +391,7 @@ function BlogPage() {
         </div>
       </div>
 
-      <div
-        key={selectedCategory}
-        className="space-y-0 animate-in fade-in duration-150"
-      >
+      <div key={selectedCategory} className="space-y-0 animate-in fade-in duration-150">
         {filteredPosts.map((post) => (
           <article
             key={post.id}
@@ -434,39 +423,44 @@ function BlogPage() {
         ))}
       </div>
 
-      {hoveredPost && (hoveredPost.previewVideo || (hoveredPost.images && hoveredPost.images.length > 0)) && (
-        <div
-          ref={previewRef}
-          className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
-        >
-          <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
-            {hoveredPost.previewVideo ? (
-              <video
-                src={hoveredPost.previewVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={hoveredPost.previewImage}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <img
-                src={hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""}
-                alt={hoveredPost.title}
-                className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-4 right-4">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
-                {hoveredPost.category}
-              </span>
-              <p className="text-xs font-sans font-bold text-white truncate">{hoveredPost.title}</p>
+      {hoveredPost &&
+        (hoveredPost.previewVideo || (hoveredPost.images && hoveredPost.images.length > 0)) && (
+          <div
+            ref={previewRef}
+            className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
+          >
+            <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
+              {hoveredPost.previewVideo ? (
+                <video
+                  src={hoveredPost.previewVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={hoveredPost.previewImage}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={
+                    hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""
+                  }
+                  alt={hoveredPost.title}
+                  className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
+                  {hoveredPost.category}
+                </span>
+                <p className="text-xs font-sans font-bold text-white truncate">
+                  {hoveredPost.title}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       <div className="pt-4">
         <p className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">

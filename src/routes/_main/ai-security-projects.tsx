@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "AI Security Projects & Autonomous Agents | yust.dev";
@@ -114,13 +113,6 @@ export const Route = createFileRoute("/_main/ai-security-projects")({
 function AiSecurityProjectsPage() {
   return (
     <article className="mx-auto max-w-5xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "AI Security Projects", url: PAGE_URL },
-        ]}
-      />
-
       <header className="max-w-3xl">
         <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-500">
           AI security portfolio

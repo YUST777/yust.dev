@@ -2,10 +2,6 @@ import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-r
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
-import { AppThemeProvider } from "@/components/mode-toggle";
-import { QueryProvider } from "@/lib/query/providers";
-
-import { Toaster } from "sonner";
 import { Navbar } from "../components/navbar";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -85,7 +81,6 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: geistSansCss },
       { rel: "stylesheet", href: geistMonoCss },
       // Speed up known cross-origin connections (analytics, GitHub APIs, fonts).
-      { rel: "preconnect", href: "https://va.vercel-scripts.com" },
       { rel: "preconnect", href: "https://api.github.com", crossOrigin: "anonymous" },
       { rel: "dns-prefetch", href: "https://github-contributions-api.jogruber.de" },
       {
@@ -140,7 +135,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body className="antialiased bg-[#0c0c0c] text-zinc-400 font-mono min-h-screen relative">
         {/* Global Noise Grain Overlay */}
         <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.015]">
-          <svg className="w-full h-full opacity-20">
+          <svg aria-hidden="true" focusable="false" className="w-full h-full opacity-20">
             <filter id="noise">
               <feTurbulence
                 type="fractalNoise"
@@ -152,7 +147,7 @@ function RootDocument({ children }: { children: ReactNode }) {
             <rect width="100%" height="100%" filter="url(#noise)" />
           </svg>
         </div>
-        <RootProviders>{children}</RootProviders>
+        {children}
         <VercelTelemetry />
         <Scripts />
       </body>
@@ -176,17 +171,6 @@ function VercelTelemetry() {
     <>
       <Analytics />
       <SpeedInsights />
-    </>
-  );
-}
-
-function RootProviders({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <Toaster richColors />
-      <QueryProvider>
-        <AppThemeProvider>{children}</AppThemeProvider>
-      </QueryProvider>
     </>
   );
 }

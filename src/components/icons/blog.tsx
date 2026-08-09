@@ -1,12 +1,7 @@
 import type { SVGProps } from "react";
 
 const BlogIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="52 32 96 106"
-    className={className}
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="52 32 96 106" className={className} {...props}>
     <defs>
       <linearGradient
         id="new_blog_SVGID_1_"

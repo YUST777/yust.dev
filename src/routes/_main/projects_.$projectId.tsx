@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { archiveProjectsData, projectsData } from "@/components/projects/ProjectsData";
 import { DRAWER_COMPONENTS } from "@/components/projects/drawers";
 import type { Project } from "@/components/projects/types";
@@ -84,14 +83,6 @@ function ProjectPage() {
 
   return (
     <article className="mx-auto max-w-4xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Projects", url: `${SITE_URL}/projects` },
-          { name: project.title, url: `${SITE_URL}/projects/${project.slug}` },
-        ]}
-      />
-
       <header className="mt-8 border-b border-white/10 pb-10">
         {project.tag && (
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
@@ -113,8 +104,18 @@ function ProjectPage() {
               className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-85"
             >
               <span>Visit project</span>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5" />
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5"
+                />
               </svg>
             </a>
           )}
@@ -126,8 +127,18 @@ function ProjectPage() {
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-white/40 hover:text-white"
             >
               <span>Source code</span>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5" />
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 6H18m0 0v4.5M18 6l-7.5 7.5"
+                />
               </svg>
             </a>
           )}
@@ -164,7 +175,11 @@ function ProjectPage() {
       {/* Authentic Drawer Content Slider Info */}
       {DrawerComponent ? (
         <div className="mt-10 space-y-6">
-          <Suspense fallback={<div className="text-zinc-500 font-mono text-xs">Loading showcase details...</div>}>
+          <Suspense
+            fallback={
+              <div className="text-zinc-500 font-mono text-xs">Loading showcase details...</div>
+            }
+          >
             <DrawerComponent />
           </Suspense>
         </div>
