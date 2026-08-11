@@ -31,7 +31,7 @@ const featured = posts[0];
 const latest = posts.slice(0, 4);
 
 // Estimate read times
-const readTimes = { "6": 5, "1": 4, "4": 6, "3": 3, "2": 5, "5": 4 };
+const readTimes = { "9": 4, "7": 5, "6": 5, "1": 4, "4": 6, "3": 3, "2": 5, "5": 4 };
 
 console.log(`[OG Generator - Satori] Featured: "${featured.title}"`);
 

@@ -60,6 +60,58 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: "9",
+    slug: "designing-dcc-hub-comic-programming-contest-website",
+    title: "Building DCC Hub: A Comic-Style Contest Journey",
+    seoTitle: "Building DCC Hub: A Comic Contest Website | yust.dev",
+    date: "Aug 9, 2026",
+    iso: "2026-08-09",
+    category: "Software Engineering",
+    summary:
+      "How I turned a brand kit and comic concept into a clear contest journey for 36+ teams from five Egyptian programming communities.",
+    content: `Three days ago, [ICPCHue Community](https://eg.linkedin.com/in/icpchue) hosted the **DCC programming contest** at the Faculty of Artificial Intelligence, Horus University. The contest was organized by [ACPC Club Damietta University](https://www.linkedin.com/company/acpc-du/), bringing competitive programmers together for a full day of problem solving.
+
+More than **36 teams from five communities** took part: [ICPC MNU Community](https://www.linkedin.com/company/icpc-mnu-community/), [ICPCHue Community](https://eg.linkedin.com/in/icpchue), [ICPC Delta Community](https://www.linkedin.com/company/ducpc-delta-community/), [ACPC NDETI Community](https://eg.linkedin.com/company/acpc-ndeti-community), and [ACPC Club Damietta University](https://www.linkedin.com/company/acpc-du/).
+
+My role was to build the contest website, [DCC Hub](http://dcchub.xyz). This was the first time I deliberately stepped outside my design safe zone and tried to make something genuinely creative. At the beginning, all I had was the brand kit—the colors, typeface, logo, and one central direction: **comic books**.
+
+The challenge was not simply to make the interface look like a comic. I wanted every panel and section to help visitors understand what to do next. A strong visual theme is useless if people cannot follow the experience, so the site had to feel expressive without turning into decoration or generic AI-generated noise.
+
+I designed the journey as a clear sequence: contestants first submit their registration details, then move into the online qualification stage, and finally reach the offline contest. The comic language gave that sequence personality, while the information architecture kept each step readable and immediate.
+
+That balance became the main lesson from the project: **creativity works best when it strengthens clarity**. The brand gave the site its voice, but structure made it useful. Building both together pushed me beyond the familiar portfolio-style layouts I had used before.
+
+The event itself was a great day with the communities, organizers, and contestants. The gallery above includes all eleven photos from the original post, from the opening presentation and contest rooms to the teams and organizers who made the day happen.
+
+You can also view the [original LinkedIn post](https://www.linkedin.com/posts/yousefmsm1_%D9%85%D9%86-3-%D8%A3%D9%8A%D8%A7%D9%85-%D9%83%D9%88%D9%85%D9%8A%D9%88%D9%86%D8%AA%D9%8A-icpchue-community-%D8%A7%D8%B3%D8%AA%D8%B6%D8%A7%D9%81-ugcPost-7492088643826778112-OWTg/) for the original Arabic story.`,
+    previewImage: "/static/images/mems/mem_9/2.webp",
+    images: [
+      "/static/images/mems/mem_9/2.webp",
+      "/static/images/mems/mem_9/1.webp",
+      "/static/images/mems/mem_9/3.webp",
+      "/static/images/mems/mem_9/4.webp",
+      "/static/images/mems/mem_9/5.webp",
+      "/static/images/mems/mem_9/6.webp",
+      "/static/images/mems/mem_9/7.webp",
+      "/static/images/mems/mem_9/8.webp",
+      "/static/images/mems/mem_9/9.webp",
+      "/static/images/mems/mem_9/10.webp",
+      "/static/images/mems/mem_9/11.webp",
+    ],
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D9%85%D9%86-3-%D8%A3%D9%8A%D8%A7%D9%85-%D9%83%D9%88%D9%85%D9%8A%D9%88%D9%86%D8%AA%D9%8A-icpchue-community-%D8%A7%D8%B3%D8%AA%D8%B6%D8%A7%D9%81-ugcPost-7492088643826778112-OWTg/",
+      },
+      { label: "DCC Hub Contest Website", url: "http://dcchub.xyz" },
+      { label: "ICPCHue Community", url: "https://eg.linkedin.com/in/icpchue" },
+      {
+        label: "ACPC Club Damietta University",
+        url: "https://www.linkedin.com/company/acpc-du/",
+      },
+    ],
+  },
+  {
     id: "7",
     slug: "reddit-games-with-a-hook-hackathon-hellish-golf",
     title: "I Entered Reddit's Hackathon... and Built a Golf Game for Some Reason! ⛳",
@@ -345,7 +397,13 @@ Standing on that stage, surrounded by senior engineers from 20+ universities, ta
   },
 ];
 
-const CATEGORIES = ["All", "Hackathons", "AI & Security", "SaaS & Marketing"];
+const CATEGORIES = [
+  "All",
+  "Software Engineering",
+  "Hackathons",
+  "AI & Security",
+  "SaaS & Marketing",
+];
 
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -399,10 +457,7 @@ function BlogPage() {
         </div>
       </div>
 
-      <div
-        key={selectedCategory}
-        className="space-y-0 animate-in fade-in duration-150"
-      >
+      <div key={selectedCategory} className="space-y-0 animate-in fade-in duration-150">
         {filteredPosts.map((post) => (
           <article
             key={post.id}
@@ -434,39 +489,44 @@ function BlogPage() {
         ))}
       </div>
 
-      {hoveredPost && (hoveredPost.previewVideo || (hoveredPost.images && hoveredPost.images.length > 0)) && (
-        <div
-          ref={previewRef}
-          className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
-        >
-          <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
-            {hoveredPost.previewVideo ? (
-              <video
-                src={hoveredPost.previewVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={hoveredPost.previewImage}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <img
-                src={hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""}
-                alt={hoveredPost.title}
-                className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-4 right-4">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
-                {hoveredPost.category}
-              </span>
-              <p className="text-xs font-sans font-bold text-white truncate">{hoveredPost.title}</p>
+      {hoveredPost &&
+        (hoveredPost.previewVideo || (hoveredPost.images && hoveredPost.images.length > 0)) && (
+          <div
+            ref={previewRef}
+            className="fixed left-0 top-0 pointer-events-none z-50 hidden will-change-transform animate-in fade-in zoom-in-90 duration-150 md:block"
+          >
+            <div className="w-72 h-44 rounded-2xl overflow-hidden border border-white/20 bg-[#0c0c0c] shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative">
+              {hoveredPost.previewVideo ? (
+                <video
+                  src={hoveredPost.previewVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={hoveredPost.previewImage}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={
+                    hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""
+                  }
+                  alt={hoveredPost.title}
+                  className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-0.5">
+                  {hoveredPost.category}
+                </span>
+                <p className="text-xs font-sans font-bold text-white truncate">
+                  {hoveredPost.title}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       <div className="pt-4">
         <p className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-block">
