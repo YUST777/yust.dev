@@ -115,6 +115,7 @@ function MonTerminalDrawer() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/YUST777/MonTerminal"
+          aria-label="View MonTerminal source code on GitHub"
           className="bg-zinc-900 text-white border border-white/20 hover:bg-zinc-800 font-bold py-3.5 px-5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs sm:text-sm"
         >
           <i className="fab fa-github"></i>

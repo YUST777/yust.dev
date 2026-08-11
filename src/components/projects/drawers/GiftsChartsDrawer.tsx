@@ -93,7 +93,7 @@ function GiftsChartsDrawer() {
             target="_blank"
             rel="noopener noreferrer"
             href="https://t.me/giftsChartBot"
-            className="w-full bg-[#24A1DE] hover:bg-[#208bbd] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
+            className="w-full bg-[#006b9f] hover:bg-[#005b87] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
           >
             <span>Start Bot</span>
             <i className="fab fa-telegram-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>

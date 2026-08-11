@@ -105,7 +105,7 @@ function CollectableKitDrawer() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://t.me/CollectibleKITbot"
-          className="w-full bg-[#0088cc] text-white hover:bg-[#0077b5] font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-500/20"
+          className="w-full bg-[#006b9f] text-white hover:bg-[#005b87] font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-500/20"
         >
           <i className="fab fa-telegram-plane"></i>
           <span>Launch App on Telegram</span>

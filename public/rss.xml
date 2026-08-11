@@ -9,11 +9,18 @@
     <managingEditor>yousfmsm@hotmail.com (Yousef Mohammed Salah)</managingEditor>
     <webMaster>yousfmsm@hotmail.com (Yousef Mohammed Salah)</webMaster>
     <item>
+      <title>How I Turned a Kaggle Dataset into SpaceWorth</title>
+      <link>https://www.yust.dev/blog/building-spaceworth-kaggle-dataset-ai-real-estate-valuation</link>
+      <guid isPermaLink="true">https://www.yust.dev/blog/building-spaceworth-kaggle-dataset-ai-real-estate-valuation</guid>
+      <pubDate>Sun, 09 Aug 2026 12:00:00 GMT</pubDate>
+      <description>How I cleaned 187,531 property listings, trained a 0.9064 R² ensemble, deployed it with Docker, and added floor-plan analysis with Gemini.</description>
+    </item>
+    <item>
       <title>I Entered Reddit&apos;s Hackathon... and Built a Golf Game for Some Reason! ⛳</title>
       <link>https://www.yust.dev/blog/reddit-games-with-a-hook-hackathon-hellish-golf</link>
       <guid isPermaLink="true">https://www.yust.dev/blog/reddit-games-with-a-hook-hackathon-hellish-golf</guid>
       <pubDate>Sat, 08 Aug 2026 12:00:00 GMT</pubDate>
-      <description>My takeaways from participating in Reddit&apos;s &apos;Games with a Hook&apos; Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.</description>
+      <description>How I built Hellish Golf, a lightweight daily Reddit mini-game inspired by Wordle, for the Games with a Hook hackathon—without a traditional game engine.</description>
     </item>
     <item>
       <title>How I Won 3 Hackathons in My First Two Years of College</title>

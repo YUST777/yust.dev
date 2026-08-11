@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { archiveProjectsData, projectsData } from "@/components/projects/ProjectsData";
+import { YouTubeEmbed } from "@/components/projects/YouTubeEmbed";
 import { DRAWER_COMPONENTS } from "@/components/projects/drawers";
 import type { Project } from "@/components/projects/types";
 import { SITE_URL, buildRouteHead, jsonLdString, projectPageSchema } from "@/lib/seo";
@@ -85,7 +86,7 @@ function ProjectPage() {
     <article className="mx-auto max-w-4xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
       <header className="mt-8 border-b border-white/10 pb-10">
         {project.tag && (
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400">
             {project.tag}
           </p>
         )}
@@ -146,24 +147,22 @@ function ProjectPage() {
       </header>
 
       {/* Video / Showcase Media */}
-      {project.drawerId && (
+      {project.drawerId && (project.drawerId === "ICPCHUE" || project.video) && (
         <div className="mt-10 w-full aspect-video rounded-2xl overflow-hidden bg-black/50 border border-white/10 relative">
           {project.drawerId === "ICPCHUE" ? (
-            <iframe
-              src="https://www.youtube.com/embed/tH--wuGCMuM?autoplay=1&mute=1&loop=1&playlist=tH--wuGCMuM"
-              className="absolute inset-0 w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              title="ICPC HUE Showcase Video"
+            <YouTubeEmbed
+              videoId="tH--wuGCMuM"
+              title="ICPC HUE showcase video"
+              poster={project.poster}
             />
           ) : (
             <video
-              src={`/videos/${project.drawerId === "giftsCharts" ? "giftscharts" : project.drawerId}.webm`}
+              src={project.video}
+              poster={project.poster}
               preload="metadata"
-              autoPlay
               loop
               muted
+              controls
               playsInline
               className="w-full h-full object-cover"
               title={`${project.title} detailed showcase video`}
@@ -175,6 +174,8 @@ function ProjectPage() {
       {/* Authentic Drawer Content Slider Info */}
       {DrawerComponent ? (
         <div className="mt-10 space-y-6">
+          <h2 className="sr-only">{project.title} showcase</h2>
+          <h3 className="sr-only">Project details</h3>
           <Suspense
             fallback={
               <div className="text-zinc-500 font-mono text-xs">Loading showcase details...</div>
@@ -209,7 +210,7 @@ function ProjectPage() {
                 <span className="text-sm text-zinc-200 group-hover:text-white">
                   {relatedProject.title}
                 </span>
-                <span className="mt-2 block text-xs text-zinc-500">{relatedProject.tag}</span>
+                <span className="mt-2 block text-xs text-zinc-400">{relatedProject.tag}</span>
               </Link>
             </li>
           ))}

@@ -7,8 +7,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import globalsCss from "@/globals.css?url";
-import geistMonoCss from "geist/font/mono?url";
-import geistSansCss from "geist/font/sans?url";
 
 import {
   PERSON_NAME,
@@ -78,8 +76,6 @@ export const Route = createRootRoute({
       },
       { rel: "sitemap", type: "application/xml", href: `${SITE_URL}/sitemap.xml` },
       { rel: "stylesheet", href: globalsCss },
-      { rel: "stylesheet", href: geistSansCss },
-      { rel: "stylesheet", href: geistMonoCss },
       // Speed up known cross-origin connections (analytics, GitHub APIs, fonts).
       { rel: "preconnect", href: "https://api.github.com", crossOrigin: "anonymous" },
       { rel: "dns-prefetch", href: "https://github-contributions-api.jogruber.de" },
@@ -97,10 +93,7 @@ export const Route = createRootRoute({
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
-      { rel: "icon", type: "image/png", sizes: "any", href: "/favicon.png" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" },
-      { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon.png" },
-      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
       // Personal-name SEO: explicit social profile links.

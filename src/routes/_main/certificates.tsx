@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useRef, useState, type TouchEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
 
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
@@ -59,6 +58,7 @@ type CertificatePreview = {
   issued: string;
   credentialId: string;
   image: string;
+  thumbnail: string;
   accent: string;
 };
 
@@ -71,6 +71,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "Feb 2026",
     credentialId: "GDG-DELTA-2026-02",
     image: "/certi/gdg-delta-hackathon-4.webp",
+    thumbnail: "/certi/thumbs/gdg-delta-hackathon-4.webp",
     accent: "from-blue-400/20 to-sky-400/5",
   },
   {
@@ -81,6 +82,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "Mar 2026",
     credentialId: "LUXSAI-HACK-2026-03",
     image: "/certi/luxsai-ai-hackathon-winner.webp",
+    thumbnail: "/certi/thumbs/luxsai-ai-hackathon-winner.webp",
     accent: "from-purple-400/20 to-indigo-400/5",
   },
   {
@@ -91,6 +93,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "Aug 2025",
     credentialId: "TANTA-SUMMIT-2025-08",
     image: "/certi/tanta-sustainable-innovation-summit.webp",
+    thumbnail: "/certi/thumbs/tanta-sustainable-innovation-summit.webp",
     accent: "from-emerald-400/20 to-teal-400/5",
   },
   {
@@ -101,6 +104,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "Jul 2026",
     credentialId: "ITI-AI-ML-2026-07",
     image: "/certi/iti-ai-ml-course.webp",
+    thumbnail: "/certi/thumbs/iti-ai-ml-course.webp",
     accent: "from-amber-400/20 to-yellow-400/5",
   },
   {
@@ -111,6 +115,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "2025 – 2026",
     credentialId: "HUE-ENG-2026",
     image: "/certi/horus-university-excellence.webp",
+    thumbnail: "/certi/thumbs/horus-university-excellence.webp",
     accent: "from-sky-400/20 to-blue-400/5",
   },
   {
@@ -121,6 +126,7 @@ const certificatePreviews: CertificatePreview[] = [
     issued: "Mar 2026",
     credentialId: "LUXSAI-SUMMIT-2026",
     image: "/certi/luxsai-ai-summit-luxor.webp",
+    thumbnail: "/certi/thumbs/luxsai-ai-summit-luxor.webp",
     accent: "from-violet-400/20 to-fuchsia-400/5",
   },
 ];
@@ -128,14 +134,23 @@ const certificatePreviews: CertificatePreview[] = [
 function CertificatesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [fullscreenCert, setFullscreenCert] = useState<CertificatePreview | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const selectedCertificate = certificatePreviews[activeIndex];
 
-  const handleDragEnd = (_: unknown, info: PanInfo) => {
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+    const endX = event.changedTouches[0]?.clientX ?? touchStartX.current;
+    const offsetX = endX - touchStartX.current;
+    touchStartX.current = null;
     const swipeThreshold = 40;
-    if (info.offset.x < -swipeThreshold && activeIndex < certificatePreviews.length - 1) {
+    if (offsetX < -swipeThreshold && activeIndex < certificatePreviews.length - 1) {
       setActiveIndex(activeIndex + 1);
-    } else if (info.offset.x > swipeThreshold && activeIndex > 0) {
+    } else if (offsetX > swipeThreshold && activeIndex > 0) {
       setActiveIndex(activeIndex - 1);
     }
   };
@@ -162,74 +177,68 @@ function CertificatesPage() {
           ))}
         </section>
 
-        {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
+        {/* Mobile 3-item carousel (active center with dimmed adjacent folders). */}
         <section
           aria-label="Certificate folders carousel"
           className="block lg:hidden select-none overflow-hidden w-full"
         >
           <div className="relative flex flex-col items-center gap-1 w-full max-w-full">
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
+            <div
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
               className="relative flex w-full max-w-full items-center justify-center overflow-hidden py-1 touch-pan-y"
             >
               <div className="flex w-full max-w-full items-center justify-between gap-1 sm:gap-3 px-1">
                 {/* Left Folder (30% Opacity Inactive) */}
                 {activeIndex > 0 ? (
-                  <motion.div
+                  <button
+                    type="button"
                     key={`left-${activeIndex - 1}`}
                     onClick={() => setActiveIndex(activeIndex - 1)}
-                    animate={{ opacity: 0.3, scale: 0.85 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                    whileTap={{ scale: 0.82 }}
-                    className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
+                    aria-label={`Show ${certificatePreviews[activeIndex - 1].title}`}
+                    className="w-[24%] max-w-[105px] shrink-0 scale-[0.85] cursor-pointer text-left opacity-30 transition-transform duration-200 active:scale-[0.82]"
                   >
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex - 1]}
                       isOpen={false}
                       showLabel={false}
                     />
-                  </motion.div>
+                  </button>
                 ) : (
                   <div className="w-[24%] max-w-[105px] shrink-0 opacity-0 pointer-events-none" />
                 )}
 
                 {/* Center Active Folder (100% Opacity Active) */}
-                <motion.div
+                <div
                   key={`center-${activeIndex}`}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                  className="w-[48%] max-w-[190px] shrink-0 text-left"
+                  className="w-[48%] max-w-[190px] shrink-0 animate-in text-left fade-in zoom-in-95 duration-200"
                 >
                   <CertificateFolderContent
                     certificate={certificatePreviews[activeIndex]}
                     isOpen={true}
                   />
-                </motion.div>
+                </div>
 
                 {/* Right Folder (30% Opacity Inactive) */}
                 {activeIndex < certificatePreviews.length - 1 ? (
-                  <motion.div
+                  <button
+                    type="button"
                     key={`right-${activeIndex + 1}`}
                     onClick={() => setActiveIndex(activeIndex + 1)}
-                    animate={{ opacity: 0.3, scale: 0.85 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                    whileTap={{ scale: 0.82 }}
-                    className="w-[24%] max-w-[105px] shrink-0 cursor-pointer text-left opacity-30"
+                    aria-label={`Show ${certificatePreviews[activeIndex + 1].title}`}
+                    className="w-[24%] max-w-[105px] shrink-0 scale-[0.85] cursor-pointer text-left opacity-30 transition-transform duration-200 active:scale-[0.82]"
                   >
                     <CertificateFolderContent
                       certificate={certificatePreviews[activeIndex + 1]}
                       isOpen={false}
                       showLabel={false}
                     />
-                  </motion.div>
+                  </button>
                 ) : (
                   <div className="w-[24%] max-w-[105px] shrink-0 opacity-0 pointer-events-none" />
                 )}
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -295,16 +304,15 @@ function CertificateFolder({
   onActivate: () => void;
 }) {
   return (
-    <motion.button
+    <button
       type="button"
       aria-pressed={isOpen}
       aria-label={`Preview ${certificate.issuer} certificate folder`}
       onClick={onActivate}
-      whileTap={{ scale: 0.97 }}
-      className="group min-w-0 text-left outline-none"
+      className="group min-w-0 text-left outline-none transition-transform duration-150 active:scale-[0.97]"
     >
       <CertificateFolderContent certificate={certificate} isOpen={isOpen} />
-    </motion.button>
+    </button>
   );
 }
 
@@ -325,37 +333,31 @@ function CertificateFolderContent({
         </span>
 
         {/* Real certificate paper peeking out of the folder. */}
-        <motion.span
-          initial={false}
-          animate={{
-            y: isOpen ? "-22%" : "13%",
-            rotate: 0,
+        <span
+          style={{
+            transform: `translateY(${isOpen ? "-22%" : "13%"})`,
             opacity: isOpen ? 1 : 0.75,
           }}
-          transition={{ type: "spring", stiffness: 400, damping: 28 }}
-          className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] overflow-hidden rounded-sm bg-[#e8e5de] p-1 shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
+          className="absolute bottom-[8%] left-[10%] right-[10%] top-[10%] overflow-hidden rounded-sm bg-[#e8e5de] p-1 shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
         >
           <img
-            src={certificate.image}
-            alt=""
+            src={certificate.thumbnail}
+            alt={`${certificate.title} thumbnail`}
             loading={isOpen ? "eager" : "lazy"}
             decoding="async"
             className="h-full w-full rounded-[2px] border border-black/15 bg-white object-contain"
           />
-        </motion.span>
+        </span>
 
         {/* Top Folder Cover Flap (Snappy 3D Spring Animation) */}
-        <motion.span
-          initial={false}
-          animate={{
-            rotateX: isOpen ? -38 : 0,
-            y: isOpen ? 10 : 0,
+        <span
+          style={{
+            transform: `translateY(${isOpen ? "10px" : "0"}) rotateX(${isOpen ? "-38deg" : "0deg"})`,
           }}
-          transition={{ type: "spring", stiffness: 400, damping: 28 }}
           className={`absolute inset-x-1 bottom-0 top-5 flex origin-bottom flex-col items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${certificate.accent} bg-[#17181a] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_24px_rgba(0,0,0,0.32)]`}
         >
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        </motion.span>
+        </span>
       </span>
 
       {showLabel && (
@@ -389,16 +391,15 @@ function CertificateViewer({
           <div className="absolute inset-0 rounded-[18px] border border-[#2a2a2c] bg-[#1a1a1c] p-[2.5%] shadow-[0_30px_60px_rgba(0,0,0,0.9),inset_0_10px_20px_rgba(0,0,0,0.5)] z-10 flex flex-col">
             <div className="relative h-full w-full rounded-[10px] bg-[#0f0f11] p-[1.5%] shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] flex flex-col">
               {/* Real Certificate Paper with Fast Pixelated Retro Intro Effect */}
-              <div
+              <button
+                type="button"
                 onClick={onOpenFullscreen}
+                aria-label={`Open ${certificate.title} fullscreen`}
                 className="relative flex flex-1 w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] sm:p-3"
               >
-                <motion.div
+                <div
                   key={certificate.id}
-                  initial={{ opacity: 0.2, filter: "blur(8px) contrast(220%)", scale: 1.03 }}
-                  animate={{ opacity: 1, filter: "blur(0px) contrast(100%)", scale: 1 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="relative h-full w-full overflow-hidden rounded bg-white flex items-center justify-center"
+                  className="relative flex h-full w-full animate-in items-center justify-center overflow-hidden rounded bg-white fade-in zoom-in-[1.03] duration-200"
                 >
                   <img
                     src={certificate.image}
@@ -408,15 +409,8 @@ function CertificateViewer({
                     decoding="async"
                     className="h-full w-full object-contain"
                   />
-                  {/* Subtle pixel grid flash overlay on reveal */}
-                  <motion.div
-                    initial={{ opacity: 0.35 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ duration: 0.18 }}
-                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:4px_4px]"
-                  />
-                </motion.div>
-              </div>
+                </div>
+              </button>
             </div>
           </div>
 

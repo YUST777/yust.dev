@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { Link } from "@tanstack/react-router";
 import { SiReact, SiNextdotjs, SiSupabase, SiPython, SiTailwindcss } from "react-icons/si";
 
@@ -47,8 +46,6 @@ function MailIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
     </svg>
   );
 }
-
-const Tooltip = lazy(() => import("react-tooltip").then((m) => ({ default: m.Tooltip })));
 
 const SOCIAL_LINKS = [
   { icon: <TelegramIcon />, label: "Telegram", url: "https://t.me/yousefmsm1" },
@@ -132,8 +129,8 @@ export default function AboutSection() {
             {CORE_STACK.map(({ Icon, name, hoverClass }) => (
               <span
                 key={name}
-                data-tooltip-id="core-stack-tooltip"
-                data-tooltip-content={name}
+                title={name}
+                aria-label={name}
                 className={`inline-flex cursor-default ${hoverClass} transition-colors`}
               >
                 <Icon aria-hidden="true" focusable="false" className="w-5 h-5" />
@@ -143,14 +140,6 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-
-      <Suspense fallback={null}>
-        <Tooltip
-          id="core-stack-tooltip"
-          place="bottom"
-          className="!bg-zinc-900 !border !border-white/10 !rounded-md !text-xs !font-mono"
-        />
-      </Suspense>
 
       <div className="mt-6 sm:mt-12">
         <p className="text-zinc-400 text-[11px] sm:text-[13px] mb-3 sm:mb-6 font-mono uppercase tracking-widest">

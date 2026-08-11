@@ -114,7 +114,7 @@ function AiSecurityProjectsPage() {
   return (
     <article className="mx-auto max-w-5xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
       <header className="max-w-3xl">
-        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-500">
+        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-400">
           AI security portfolio
         </p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">

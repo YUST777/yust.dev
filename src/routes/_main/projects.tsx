@@ -27,6 +27,15 @@ export const Route = createFileRoute("/_main/projects")({
     });
     return {
       ...base,
+      links: [
+        ...(base.links || []),
+        {
+          rel: "preload",
+          as: "image",
+          href: projectsData[0].poster,
+          fetchPriority: "high",
+        },
+      ],
       scripts: [
         {
           type: "application/ld+json",

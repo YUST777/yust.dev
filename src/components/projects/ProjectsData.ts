@@ -66,7 +66,7 @@ export const projectsData: Project[] = [
     id: 18,
     title: "SpaceWorth",
     slug: "spaceworth",
-    seoTitle: "SpaceWorth — AI Real Estate Valuation & CAD Intelligence | yust.dev",
+    seoTitle: "SpaceWorth AI Real Estate Valuation Project | yust.dev",
     description: "Multimodal AI Real Estate Valuation Engine & CAD Floor-Plan OCR.",
     fullDescription:
       "SpaceWorth combines a custom-trained 90.64% R² Machine Learning price valuation ensemble (LightGBM + CatBoost + 3x PyTorch Entity Embedding Neural Networks) with multimodal CAD floor-plan OCR parsing (Gemini Flash) to deliver instant, verifiable real estate estimates.",
@@ -249,7 +249,7 @@ export const projectsData: Project[] = [
     id: 16,
     title: "MonTerminal",
     slug: "monterminal",
-    seoTitle: "MonTerminal Monad Onchain Trading & Automation Terminal | yust.dev",
+    seoTitle: "MonTerminal Monad Onchain Trading Project | yust.dev",
     description: "Memecoins trade 24/7. People don’t.",
     fullDescription:
       "MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives traders one place to discover new tokens, inspect real prices and liquidity, trade supported pools, bridge assets, monitor their portfolio, and protect positions without watching charts all day.",
@@ -293,7 +293,7 @@ export const projectsData: Project[] = [
     id: 17,
     title: "Hellish Golf",
     slug: "hellishgolf",
-    seoTitle: "Hellish Golf Daily Golf Challenge inside Reddit Feed | yust.dev",
+    seoTitle: "Hellish Golf Reddit Daily Challenge Game | yust.dev",
     description: "One hole. Each day. Infinite rage.",
     fullDescription:
       "A devilishly hard daily golf challenge, played right inside the Reddit feed. Built in 4 days for Reddit's Games with a Hook Hackathon. Designed to drive daily retention and community competition.",

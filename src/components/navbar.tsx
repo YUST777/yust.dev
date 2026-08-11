@@ -107,7 +107,7 @@ function NavLink({
   return (
     <Link
       to={to}
-      preload="render"
+      preload="intent"
       className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-[1rem] sm:rounded-full transition-all duration-300 relative group min-w-[50px] sm:min-w-0"
       activeProps={{
         className:

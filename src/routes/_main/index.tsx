@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
 import AchievementsSection from "@/components/about/AchievementsSection";
@@ -45,14 +45,49 @@ function AboutPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 space-y-10 sm:space-y-16">
       <ProfileHeader />
       <AboutSection />
-      <Suspense
-        fallback={
-          <div className="h-48 w-full rounded-xl bg-zinc-900/50 border border-white/5 animate-pulse" />
-        }
-      >
-        <GithubContributions />
-      </Suspense>
+      <DeferredGithubContributions />
       <AchievementsSection />
+    </div>
+  );
+}
+
+function DeferredGithubContributions() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="min-h-48 content-auto">
+      {shouldLoad ? (
+        <Suspense
+          fallback={
+            <div className="h-48 w-full animate-pulse rounded-xl border border-white/5 bg-zinc-900/50" />
+          }
+        >
+          <GithubContributions />
+        </Suspense>
+      ) : (
+        <div
+          className="h-48 w-full rounded-xl border border-white/5 bg-zinc-900/20"
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/_main/blog/")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/blog",
-      image: `${SITE_URL}/static/images/og-blog.png?v=2`,
+      image: `${SITE_URL}/static/images/og-blog.png?v=3`,
     });
     return {
       ...base,
@@ -59,6 +59,77 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: "8",
+    slug: "building-spaceworth-kaggle-dataset-ai-real-estate-valuation",
+    title: "How I Turned a Kaggle Dataset into SpaceWorth",
+    seoTitle: "Building SpaceWorth: AI Real Estate Valuation | yust.dev",
+    date: "Aug 9, 2026",
+    iso: "2026-08-09",
+    category: "Machine Learning",
+    summary:
+      "How I cleaned 187,531 property listings, trained a 0.9064 R² ensemble, deployed it with Docker, and added floor-plan analysis with Gemini.",
+    content: `I want to share the final project I built for the **ITI Machine Learning and AI scholarship**—and how I turned a Kaggle dataset into a complete product that can estimate a home's value from a single CAD floor-plan image.
+
+The original assignment was straightforward: use a dataset of Indian real estate listings to train a model that predicts property prices. I wanted to take it further. Instead of stopping at a notebook and a saved model, I built [SpaceWorth](https://spaceworth.site): an interactive valuation platform with a custom machine-learning ensemble, a CAD-style floor-plan editor, AI blueprint analysis, and a developer API.
+
+### Step 1 — Cleaning 187,531 Property Listings
+
+The raw dataset contained **187,531 listings and 21 columns** from the Indian property market. Before training anything, I removed listings priced in currencies other than Indian rupees, normalized prices written in formats such as **Lac** and **Crore**, removed duplicates, handled missing values, and filtered problematic outliers.
+
+That process reduced the dataset to **57,058 clean records** that were suitable for training. It was a large reduction, but keeping inconsistent data would have made every result after it less trustworthy.
+
+### Step 2 — Training the Valuation Ensemble
+
+This is a **regression** problem, not classification, so I evaluated the models using R² rather than treating the result as a traditional accuracy score.
+
+I split the cleaned data into **48,499 training records** and a completely isolated **8,559-record test set**, representing 15% of the data. I also removed leakage-prone features such as **price per square foot**, because they reveal part of the target and can make a model look far better than it really is.
+
+I began with Linear Regression as the baseline. Across five experiments with **LightGBM, CatBoost, and neural networks**, I improved the result from roughly **0.80 R² to 0.9064 R²**.
+
+The final model is a weighted blend of **LightGBM + CatBoost + three PyTorch entity-embedding neural networks**. On the untouched test set, it achieved **R² = 0.9064**. That is a strong result, but it still has a margin of error—real estate valuation is never perfectly predictable.
+
+### Step 3 — Getting the Model Online
+
+The next challenge was hosting. I considered running the model on my own Linux server, but it would not be available 24/7. Vercel's Python deployment limit was too small for the complete model stack, and my attempts with Render and Hugging Face did not fit the project reliably.
+
+I eventually packaged the service with **Docker** and deployed it on **Railway**. That gave the model a stable API instead of leaving it trapped inside a local notebook.
+
+### Step 4 — Making the UI Interactive
+
+For the product interface, I used **Vite and TanStack**. A prediction model needs structured inputs, but I did not want SpaceWorth to feel like a long, traditional data-entry form.
+
+Users can still enter property details manually, but the interface turns those inputs into a visual floor plan. If someone specifies five rooms, SpaceWorth draws five rooms. They can also design the layout directly using a CAD-inspired editor. In both cases, the interface collects the property data into JSON and sends it to the valuation model.
+
+### Step 5 — Connecting Generative AI to Machine Learning
+
+Then I asked a simpler question: what if the user does not want to type or draw anything?
+
+SpaceWorth lets the user upload a **PNG, JPG, or PDF floor plan**. The blueprint is analyzed by **Gemini Flash**, which extracts details such as room counts, dimensions, and total area into structured JSON. That JSON is then passed to the regression ensemble for the final price estimate.
+
+This creates a useful pipeline: **a floor-plan image goes into Gemini, structured property data comes out, and the custom ML model produces the valuation**.
+
+### Step 6 — Opening It to Developers
+
+I also added developer-facing API support, including API keys and endpoints for requesting property estimates programmatically. SpaceWorth is not only a demo interface—the goal is to make the valuation engine usable inside other products as well.
+
+You can try the live project at [spaceworth.site](https://spaceworth.site), read the detailed [model story and proof](https://spaceworth.site/proof), or inspect the [source code on GitHub](https://github.com/YUST777/spaceworth.site-ITI_AI_COURSE_PROJECT).
+
+Finally, thank you to every instructor who supported us throughout the last three weeks, with special thanks to [Dr. Eman Raslan](https://www.linkedin.com/in/eman-raslan-669273173/) for her guidance.
+
+You can find the rest of my projects and experience at [yust.dev](https://yust.dev/).`,
+    previewImage: "/static/images/posters/spaceworth.webp",
+    previewVideo: "/videos/spaceworth.webm",
+    images: ["/static/images/posters/spaceworth.webp"],
+    featured: [
+      { label: "Try SpaceWorth", url: "https://spaceworth.site" },
+      { label: "Model Story & Proof", url: "https://spaceworth.site/proof" },
+      {
+        label: "Source Code on GitHub",
+        url: "https://github.com/YUST777/spaceworth.site-ITI_AI_COURSE_PROJECT",
+      },
+    ],
+  },
+  {
     id: "7",
     slug: "reddit-games-with-a-hook-hackathon-hellish-golf",
     title: "I Entered Reddit's Hackathon... and Built a Golf Game for Some Reason! ⛳",
@@ -67,7 +138,7 @@ export const posts: BlogPost[] = [
     iso: "2026-08-08",
     category: "Hackathons",
     summary:
-      "My takeaways from participating in Reddit's 'Games with a Hook' Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.",
+      "How I built Hellish Golf, a lightweight daily Reddit mini-game inspired by Wordle, for the Games with a Hook hackathon—without a traditional game engine.",
     content: `I recently entered Reddit's **"Games with a Hook"** hackathon on Devpost, and... I ended up building a daily golf game!
 
 In this post, I want to share some of the core insights and technical takeaways I gained from participating in this sprint.
@@ -121,7 +192,7 @@ I completed the game on schedule and submitted the project on time. Unfortunatel
     id: "6",
     slug: "winning-3-hackathons-first-two-years",
     title: "How I Won 3 Hackathons in My First Two Years of College",
-    seoTitle: "How I Won 3 Hackathons in Two Years | yust.dev",
+    seoTitle: "How I Won 3 National Hackathons in Two Years | yust.dev",
     date: "Jul 23, 2026",
     iso: "2026-07-23",
     modifiedIso: "2026-07-23",
@@ -344,7 +415,7 @@ Standing on that stage, surrounded by senior engineers from 20+ universities, ta
   },
 ];
 
-const CATEGORIES = ["All", "Hackathons", "AI & Security", "SaaS & Marketing"];
+const CATEGORIES = ["All", "Machine Learning", "Hackathons", "AI & Security", "SaaS & Marketing"];
 
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");

@@ -36,7 +36,7 @@ function SketchzDrawer() {
         </p>
         <div className="space-y-4">
           <div className="flex gap-4">
-            <span className="text-zinc-500 font-mono font-bold">01</span>
+            <span className="text-zinc-400 font-mono font-bold">01</span>
             <div>
               <strong className="text-white block font-display text-xs tracking-wider uppercase mb-1">
                 Mint your canvas
@@ -47,7 +47,7 @@ function SketchzDrawer() {
             </div>
           </div>
           <div className="flex gap-4">
-            <span className="text-zinc-500 font-mono font-bold">02</span>
+            <span className="text-zinc-400 font-mono font-bold">02</span>
             <div>
               <strong className="text-white block font-display text-xs tracking-wider uppercase mb-1">
                 Draw in 3D game
@@ -58,7 +58,7 @@ function SketchzDrawer() {
             </div>
           </div>
           <div className="flex gap-4">
-            <span className="text-zinc-500 font-mono font-bold">03</span>
+            <span className="text-zinc-400 font-mono font-bold">03</span>
             <div>
               <strong className="text-white block font-display text-xs tracking-wider uppercase mb-1">
                 Own forever
@@ -84,25 +84,25 @@ function SketchzDrawer() {
             <span className="text-zinc-400 font-bold block text-xs uppercase tracking-wider">
               Common
             </span>
-            <span className="text-[10px] text-zinc-600 font-mono">Common Frame</span>
+            <span className="text-[10px] text-zinc-400 font-mono">Common Frame</span>
           </div>
           <div className="p-3 bg-zinc-950/50 border border-white/5 rounded-xl">
             <span className="text-blue-400 font-bold block text-xs uppercase tracking-wider">
               Rare
             </span>
-            <span className="text-[10px] text-zinc-600 font-mono">Rare Frame</span>
+            <span className="text-[10px] text-zinc-400 font-mono">Rare Frame</span>
           </div>
           <div className="p-3 bg-zinc-950/50 border border-white/5 rounded-xl">
             <span className="text-purple-400 font-bold block text-xs uppercase tracking-wider">
               Epic
             </span>
-            <span className="text-[10px] text-zinc-600 font-mono">Epic Frame</span>
+            <span className="text-[10px] text-zinc-400 font-mono">Epic Frame</span>
           </div>
           <div className="p-3 bg-zinc-950/50 border border-white/5 rounded-xl">
             <span className="text-amber-500 font-bold block text-xs uppercase tracking-wider">
               Legendary
             </span>
-            <span className="text-[10px] text-zinc-600 font-mono">Legendary Frame</span>
+            <span className="text-[10px] text-zinc-400 font-mono">Legendary Frame</span>
           </div>
         </div>
       </div>

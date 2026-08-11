@@ -88,7 +88,7 @@ export const VideoPlayer = memo(
             alt={title || "Project preview"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "auto"}
-            decoding="async"
+            decoding={isPriority ? "sync" : "async"}
             className={`absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none transition-opacity duration-300 ${
               videoLoaded ? "opacity-0" : "opacity-100"
             }`}

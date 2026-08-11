@@ -1,6 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { posts } from "./blog.index";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
@@ -116,17 +115,35 @@ function parseContent(text: string) {
   return elements;
 }
 
+function renderContentBlock(block: string, index: number) {
+  const heading = block.match(/^###\s+(.+)$/);
+
+  if (heading) {
+    return (
+      <h2 key={index} className="pt-5 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        {parseContent(heading[1])}
+      </h2>
+    );
+  }
+
+  return (
+    <p key={index} className="text-zinc-300 text-lg leading-relaxed font-sans">
+      {parseContent(block)}
+    </p>
+  );
+}
+
 function PostPage() {
   const post = Route.useLoaderData();
   const relatedPosts = posts.filter((candidate) => candidate.slug !== post.slug).slice(0, 2);
 
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12">
       <div className="space-y-4">
         <h1 className="text-3xl md:text-5xl font-sans font-bold text-white tracking-tight leading-tight">
           {post.title}
         </h1>
-        <div className="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest">
+        <div className="flex items-center gap-4 text-zinc-400 font-mono text-xs uppercase tracking-widest">
           <time dateTime={post.iso}>{post.date}</time>
           <span className="w-1 h-1 bg-zinc-800 rounded-full" />
           <span>Yousef Salah</span>
@@ -148,11 +165,12 @@ function PostPage() {
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] shadow-2xl">
           <video
             src={post.previewVideo}
-            autoPlay
+            aria-label={`${post.title} video preview`}
             loop
             muted
             controls
             playsInline
+            preload="metadata"
             poster={post.previewImage}
             className="w-full h-full object-cover"
           />
@@ -163,11 +181,7 @@ function PostPage() {
       )}
 
       <div className="prose prose-invert prose-zinc max-w-none space-y-6">
-        {post.content.split("\n\n").map((paragraph, i) => (
-          <p key={i} className="text-zinc-300 text-lg leading-relaxed font-sans">
-            {parseContent(paragraph)}
-          </p>
-        ))}
+        {post.content.split("\n\n").map(renderContentBlock)}
       </div>
 
       <nav aria-labelledby="related-posts-heading" className="border-t border-white/5 pt-10">
@@ -197,7 +211,7 @@ function PostPage() {
       {post.featured && post.featured.length > 0 && (
         <div className="pt-12 space-y-6">
           <div className="flex items-center gap-4">
-            <h2 className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em] whitespace-nowrap">
+            <h2 className="text-zinc-400 font-mono text-xs uppercase tracking-[0.3em] whitespace-nowrap">
               Featured In
             </h2>
             <div className="h-[1px] w-full bg-zinc-900" />
@@ -245,27 +259,17 @@ function PostPage() {
  *
  * Clicking any thumb opens a simple lightbox with prev/next/escape.
  */
-const imageVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 200 : direction < 0 ? -200 : 0,
-    opacity: 0,
-    scale: 0.96,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? 200 : direction > 0 ? -200 : 0,
-    opacity: 0,
-    scale: 0.96,
-  }),
-};
+function getOptimizedImage(image: string, width: 480 | 960) {
+  const prefix = "/static/images/mems/";
+  if (!image.startsWith(prefix)) return image;
+
+  const extensionIndex = image.lastIndexOf(".");
+  const relativePath = image.slice(prefix.length, extensionIndex);
+  return `${prefix}optimized/${relativePath}-${width}.webp`;
+}
 
 function ImageCollage({ images, title }: { images: string[]; title: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [direction, setDirection] = useState(0);
 
   // Up to 3 thumbnails after the hero. Anything beyond is a "+N" overlay on the last visible thumb.
   const hero = images[0];
@@ -275,7 +279,6 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
 
   const paginate = useCallback(
     (newDirection: number) => {
-      setDirection(newDirection);
       setOpenIndex((i) => {
         if (i === null) return null;
         if (newDirection > 0) return (i + 1) % images.length;
@@ -308,20 +311,21 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
         <button
           type="button"
           onClick={() => {
-            setDirection(0);
             setOpenIndex(0);
           }}
           className="block w-full overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 h-[250px] md:h-[500px] cursor-zoom-in"
           aria-label={`Open ${title} image 1 in fullscreen`}
         >
-          <img
-            src={hero}
-            alt={`${title} event photo 1`}
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
-          />
+          <picture className="block h-full w-full">
+            <source media="(min-width: 768px)" srcSet={getOptimizedImage(hero, 960)} />
+            <img
+              src={getOptimizedImage(hero, 480)}
+              alt={`${title} event photo 1`}
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+            />
+          </picture>
         </button>
 
         {thumbCount > 0 && (
@@ -339,7 +343,6 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
                   key={img}
                   type="button"
                   onClick={() => {
-                    setDirection(0);
                     setOpenIndex(absoluteIndex);
                   }}
                   className="relative aspect-video overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 cursor-zoom-in group"
@@ -350,7 +353,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
                   }
                 >
                   <img
-                    src={img}
+                    src={getOptimizedImage(img, 480)}
                     alt={`${title} event photo ${absoluteIndex + 1}`}
                     loading="lazy"
                     decoding="async"
@@ -451,30 +454,18 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex-1 min-h-0 flex items-center justify-center w-full relative overflow-hidden">
-              <AnimatePresence custom={direction} mode="wait">
-                <motion.img
-                  key={openIndex}
-                  src={images[openIndex]}
-                  alt={`${title} event photo ${openIndex + 1}`}
-                  custom={direction}
-                  variants={imageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: { type: "spring", stiffness: 350, damping: 32 },
-                    opacity: { duration: 0.2 },
-                    scale: { duration: 0.2 },
-                  }}
-                  decoding="async"
-                  className="max-w-full max-h-[70vh] sm:max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
-                />
-              </AnimatePresence>
+              <img
+                key={openIndex}
+                src={images[openIndex]}
+                alt={`${title} event photo ${openIndex + 1}`}
+                decoding="async"
+                className="h-auto max-h-[70vh] w-auto max-w-full animate-in rounded-xl object-contain opacity-100 shadow-2xl fade-in duration-150 sm:max-h-[75vh]"
+              />
             </div>
 
             {/* Caption & Counter Bar (100% visible on screen) */}
             <div className="flex flex-col items-center gap-1 shrink-0 max-w-xl text-center px-4 pb-2">
-              <span className="text-zinc-500 font-mono text-[11px] sm:text-xs tracking-widest uppercase">
+              <span className="text-zinc-400 font-mono text-[11px] sm:text-xs tracking-widest uppercase">
                 {openIndex + 1} / {images.length}
               </span>
               <p className="text-zinc-300 font-sans text-xs sm:text-sm leading-snug line-clamp-2">

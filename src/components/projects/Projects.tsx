@@ -2,10 +2,10 @@
 
 import { useEffect, useState, Suspense, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import BentoTilt from "./BentoTilt";
 import { VideoPlayer } from "./VideoPlayer";
+import { YouTubeEmbed } from "./YouTubeEmbed";
 import { projectsData, archiveProjectsData } from "./ProjectsData";
 import { Project } from "./types";
 import ProjectCard from "./ProjectCard";
@@ -196,6 +196,10 @@ export default function Projects() {
   };
 
   const drawerTitle = useMemo(() => DRAWER_TITLES[openDrawer || ""] || "", [openDrawer]);
+  const openDrawerProject = useMemo(
+    () => MAIN_PROJECTS.find((project) => project.drawerId === openDrawer),
+    [openDrawer],
+  );
 
   const DrawerContent = useMemo(() => {
     if (!openDrawer) return null;
@@ -333,99 +337,90 @@ export default function Projects() {
         </ul>
       </section>
 
-      <AnimatePresence>
-        {openDrawer && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {openDrawer && (
+        <>
+          <div
+            onClick={() => {
+              sounds.popOut();
+              setOpenDrawer(null);
+            }}
+            className="fixed inset-0 z-[55] animate-in bg-black/80 backdrop-blur-sm fade-in duration-200"
+          />
+          <div className="fixed inset-x-0 bottom-0 z-[60] mx-auto mb-0 flex max-h-[94vh] w-full max-w-3xl animate-in flex-col overflow-hidden rounded-t-[2.5rem] border-t border-white/20 bg-[#0c0c0c] px-4 pt-2 pb-[env(safe-area-inset-bottom,2rem)] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] slide-in-from-bottom-full duration-300 pointer-events-auto sm:px-6 sm:pb-12 md:px-10">
+            <div
+              className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-pointer hover:bg-white/30 transition-colors shrink-0"
               onClick={() => {
                 sounds.popOut();
                 setOpenDrawer(null);
               }}
-              className="fixed inset-0 bg-black/80 z-[55] backdrop-blur-sm"
             />
-            <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 32, stiffness: 300 }}
-              className="fixed inset-x-0 bottom-0 mx-auto w-full max-w-3xl z-[60] bg-[#0c0c0c] border-t border-white/20 rounded-t-[2.5rem] px-4 sm:px-6 md:px-10 pb-[env(safe-area-inset-bottom,2rem)] mb-0 sm:pb-12 pt-2 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] max-h-[94vh] overflow-hidden flex flex-col pointer-events-auto"
-            >
-              <div
-                className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-3 cursor-pointer hover:bg-white/30 transition-colors shrink-0"
+            <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-400 truncate">
+                  {openDrawer === "yousefdev" ? (
+                    <span className="font-mono">
+                      {currentText}
+                      <span className="animate-pulse">|</span>
+                    </span>
+                  ) : (
+                    openDrawer.charAt(0).toUpperCase() +
+                    openDrawer.slice(1).replace(CAMEL_CASE_REGEX, " $1")
+                  )}
+                </p>
+                <h3 className="text-lg sm:text-xl md:text-3xl font-display font-black text-white leading-tight mt-1 break-words">
+                  {drawerTitle}
+                </h3>
+              </div>
+              <button
                 onClick={() => {
                   sounds.popOut();
                   setOpenDrawer(null);
                 }}
-              />
-              <div className="flex items-start justify-between mb-4 sm:mb-6 flex-shrink-0 gap-3">
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 truncate">
-                    {openDrawer === "yousefdev" ? (
-                      <span className="font-mono">
-                        {currentText}
-                        <span className="animate-pulse">|</span>
-                      </span>
-                    ) : (
-                      openDrawer.charAt(0).toUpperCase() +
-                      openDrawer.slice(1).replace(CAMEL_CASE_REGEX, " $1")
-                    )}
-                  </p>
-                  <h3 className="text-lg sm:text-xl md:text-3xl font-display font-black text-white leading-tight mt-1 break-words">
-                    {drawerTitle}
-                  </h3>
-                </div>
-                <button
-                  onClick={() => {
-                    sounds.popOut();
-                    setOpenDrawer(null);
-                  }}
-                  className="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 active:scale-90 transition-all flex items-center justify-center shrink-0"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <Suspense
-                fallback={
-                  <div className="flex flex-1 items-center justify-center text-sm text-white/30">
-                    Loading project details...
-                  </div>
-                }
+                className="w-10 h-10 rounded-full border border-white/20 text-white hover:bg-white/10 active:scale-90 transition-all flex items-center justify-center shrink-0"
               >
-                <div className="overflow-y-auto overscroll-contain flex-1 pr-2 space-y-6 custom-scrollbar pb-24 sm:pb-8">
-                  <div className="w-full aspect-video rounded-xl overflow-hidden bg-black/50 border border-white/5 mb-6 flex-shrink-0 relative">
-                    {openDrawer === "ICPCHUE" ? (
-                      <iframe
-                        src="https://www.youtube.com/embed/tH--wuGCMuM?autoplay=1&mute=1&loop=1&playlist=tH--wuGCMuM"
-                        className="absolute inset-0 w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                        title="ICPC HUE Showcase Video"
-                      />
-                    ) : (
-                      <video
-                        src={`/videos/${openDrawer === "giftsCharts" ? "giftscharts" : openDrawer}.webm`}
-                        preload="metadata"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                        title={`${openDrawer} detailed showcase video`}
-                      />
-                    )}
-                  </div>
-                  {DrawerContent}
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <Suspense
+              fallback={
+                <div className="flex flex-1 items-center justify-center text-sm text-white/30">
+                  Loading project details...
                 </div>
-              </Suspense>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              }
+            >
+              <div className="overflow-y-auto overscroll-contain flex-1 pr-2 space-y-6 custom-scrollbar pb-24 sm:pb-8">
+                <div className="w-full aspect-video rounded-xl overflow-hidden bg-black/50 border border-white/5 mb-6 flex-shrink-0 relative">
+                  {openDrawer === "ICPCHUE" ? (
+                    <YouTubeEmbed
+                      videoId="tH--wuGCMuM"
+                      title="ICPC HUE showcase video"
+                      poster={openDrawerProject?.poster}
+                    />
+                  ) : openDrawerProject?.video ? (
+                    <video
+                      src={openDrawerProject.video}
+                      poster={openDrawerProject.poster}
+                      preload="metadata"
+                      loop
+                      muted
+                      controls
+                      playsInline
+                      className="w-full h-full object-cover"
+                      title={`${openDrawer} detailed showcase video`}
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-sm text-zinc-500">
+                      Preview unavailable
+                    </div>
+                  )}
+                </div>
+                {DrawerContent}
+              </div>
+            </Suspense>
+          </div>
+        </>
+      )}
     </>
   );
 }

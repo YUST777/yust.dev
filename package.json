@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.20.0",
   "scripts": {
     "dev": "vp dev --force",
     "build": "vp run og:generate && vp build",
@@ -53,15 +54,8 @@
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8"
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.20.0",
-      "onFail": "download"
-    }
-  },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   },
   "trustedDependencies": [
     "@tailwindcss/oxide",

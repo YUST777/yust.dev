@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Hackathons & Awards | Yousef Mohammed Salah · yust.dev";
@@ -369,38 +368,22 @@ function HacksPage() {
       </div>
 
       <div className="pt-4">
-        <motion.button
+        <button
           type="button"
           onClick={() => setShowFailed(!showFailed)}
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.99 }}
-          className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-flex items-center gap-2 select-none focus:outline-none"
+          className="inline-flex cursor-pointer select-none items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400 transition-transform duration-150 hover:scale-[1.01] hover:text-zinc-300 active:scale-[0.99] focus:outline-none"
         >
           <span>[ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]</span>
-          <motion.span
-            animate={{ rotate: showFailed ? 180 : 0 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="text-[9px] opacity-70"
+          <span
+            className={`text-[9px] opacity-70 transition-transform duration-300 ${showFailed ? "rotate-180" : "rotate-0"}`}
           >
             ▼
-          </motion.span>
-        </motion.button>
+          </span>
+        </button>
       </div>
 
-      <motion.div
-        initial={false}
-        animate={{
-          gridTemplateRows: showFailed ? "1fr" : "0fr",
-          opacity: showFailed ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.35,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        className="grid border-t border-white/5 overflow-hidden"
-        style={{
-          marginTop: showFailed ? "2rem" : "0rem",
-        }}
+      <div
+        className={`grid overflow-hidden border-t border-white/5 transition-[grid-template-rows,opacity,margin-top] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${showFailed ? "mt-8 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"}`}
       >
         <div className="min-h-0 overflow-hidden space-y-16 pt-8">
           {failedHacks.map((hack, i) => (
@@ -467,7 +450,7 @@ function HacksPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
