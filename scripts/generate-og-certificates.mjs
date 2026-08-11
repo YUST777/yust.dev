@@ -1,6 +1,5 @@
-import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, extname, join } from "node:path";
+import { basename, dirname, extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { Resvg } from "@resvg/resvg-js";
@@ -29,18 +28,14 @@ while ((match = certRegex.exec(routeSource)) !== null) {
 if (certs.length === 0) throw new Error("No certificates found for the certificates OG image");
 
 function localImageDataUrl(publicPath) {
-  const filePath = join(rootDir, "public", publicPath.replace(/^\//, ""));
+  let filePath = join(rootDir, "public", publicPath.replace(/^\//, ""));
   const extension = extname(filePath).slice(1);
   if (extension === "webp") {
-    const png = execFileSync(
-      "ffmpeg",
-      ["-i", filePath, "-f", "image2pipe", "-vcodec", "png", "pipe:1"],
-      { stdio: ["ignore", "pipe", "ignore"], maxBuffer: 20 * 1024 * 1024 },
-    );
-    return `data:image/png;base64,${png.toString("base64")}`;
+    filePath = join(dirname(filePath), "og", `${basename(filePath, ".webp")}.png`);
   }
 
-  const mime = extension === "jpg" ? "jpeg" : extension;
+  const resolvedExtension = extname(filePath).slice(1);
+  const mime = resolvedExtension === "jpg" ? "jpeg" : resolvedExtension;
   return `data:image/${mime};base64,${readFileSync(filePath).toString("base64")}`;
 }
 
@@ -348,20 +343,16 @@ const svg = await satori(element, {
 
 const imageDir = join(rootDir, "public/static/images");
 const pngTarget = join(imageDir, "og-certificates.png");
-const webpTarget = join(imageDir, "og-certificates.webp");
 const svgTarget = join(imageDir, "og-certificates.svg");
 const png = new Resvg(svg, { fitTo: { mode: "width", value: 2400 } }).render().asPng();
 
 writeFileSync(svgTarget, svg);
 writeFileSync(pngTarget, png);
-execFileSync("ffmpeg", ["-y", "-i", pngTarget, "-c:v", "libwebp", "-quality", "98", webpTarget], {
-  stdio: "ignore",
-});
 
 const outputDir = join(rootDir, ".output/public/static/images");
 if (existsSync(join(rootDir, ".output"))) {
   mkdirSync(outputDir, { recursive: true });
-  for (const target of [pngTarget, webpTarget, svgTarget]) {
+  for (const target of [pngTarget, svgTarget]) {
     writeFileSync(join(outputDir, target.slice(target.lastIndexOf("/") + 1)), readFileSync(target));
   }
 }
