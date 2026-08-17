@@ -408,7 +408,7 @@ function CertificateViewer({
               {/* Real Certificate Paper with Fast Pixelated Retro Intro Effect */}
               <div
                 onClick={onOpenFullscreen}
-                className="relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer flex items-center justify-center -translate-y-4 sm:-translate-y-8 transition-transform duration-300 z-30"
+                className="relative flex-1 w-full overflow-hidden rounded-[6px] bg-[#fcfcfc] p-2 sm:p-3 shadow-[0_4px_10px_rgba(0,0,0,0.3),inset_0_0_40px_rgba(0,0,0,0.03)] cursor-pointer flex items-center justify-center"
               >
                 <motion.div
                   key={certificate.id}
@@ -439,7 +439,7 @@ function CertificateViewer({
 
           {/* Folder Cover (The part that hinges open upwards - responsive rotateX) */}
           <div
-            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-10 [transform:rotateX(140deg)] sm:[transform:rotateX(150deg)] lg:[transform:rotateX(155deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)] pointer-events-none"
+            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
           >
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
