@@ -114,6 +114,16 @@ const certificatePreviews: CertificatePreview[] = [
     accent: "from-sky-400/20 to-blue-400/5",
   },
   {
+    id: "nvidia-building-rag-agents-llms",
+    issuer: "NVIDIA",
+    mark: "NVDA",
+    title: "Building RAG Agents with LLMs — Certificate of Competency",
+    issued: "Aug 2026",
+    credentialId: "-FSgrCQAUqN-DL-AaysPg",
+    image: "/certi/nvidia-rag-agents-llms.webp",
+    accent: "from-emerald-400/20 to-green-400/5",
+  },
+  {
     id: "luxsai-ai-summit",
     issuer: "Luxor University National Summit",
     mark: "SUM",
