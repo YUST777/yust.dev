@@ -396,7 +396,7 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="flex flex-col items-center justify-start lg:-translate-y-[28%] h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0" aria-label="Selected certificate preview">
+    <aside className="flex flex-col items-center justify-start lg:-translate-y-[10%] h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0" aria-label="Selected certificate preview">
       {/* 3D Scene Container */}
       <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[580px] px-1 sm:px-0 [perspective:2000px] group cursor-pointer">
         <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-500 ease-out">
