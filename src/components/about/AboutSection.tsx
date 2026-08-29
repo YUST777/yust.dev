@@ -34,6 +34,14 @@ function MailIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   );
 }
 
+function CvIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  );
+}
+
 const Tooltip = lazy(() => import("react-tooltip").then((m) => ({ default: m.Tooltip })));
 
 const SOCIAL_LINKS = [
@@ -44,7 +52,8 @@ const SOCIAL_LINKS = [
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/yousefmsm1/",
   },
-  { icon: <MailIcon />, label: "Email", url: "mailto:yousfmsm@hotmail.com" },
+  { icon: <MailIcon />, label: "Email", url: "mailto:yousefmsm@hotmail.com" },
+  { icon: <CvIcon />, label: "CV", url: "/cv.pdf" },
 ];
 
 const CORE_STACK = [
