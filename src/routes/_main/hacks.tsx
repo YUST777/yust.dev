@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_main/hacks")({
       title: TITLE,
       description: DESCRIPTION,
       path: "/hacks",
-      image: `${SITE_URL}/static/images/og-hacks.png?v=3`,
+      image: `${SITE_URL}/static/images/og-hacks.png?v=4`,
     });
     return {
       ...base,
@@ -125,6 +125,35 @@ const hacks = [
       {
         label: "Award Ceremony Video (2:13)",
         url: "https://www.facebook.com/reel/710000655405770",
+      },
+    ],
+  },
+
+  {
+    rank: "3RD PLACE",
+    color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
+    event: "GREEN LOOP HACKATHON • SEP 10, 2026 • HORUS UNIVERSITY",
+    title: "ReSpark (Green AI & E-Waste Platform)",
+    desc: (
+      <>
+        Won <strong className="text-zinc-200">3rd place</strong> in the Green Loop waste-recycling
+        competition at Horus University in an intense sprint, qualifying for the national finals.
+        Built <strong className="text-zinc-200">ReSpark</strong> alongside{" "}
+        <strong className="text-zinc-200">Abdelrahman Mohsen</strong> and{" "}
+        <strong className="text-zinc-200">Mostafa Kamal</strong>—tackling physical college hardware
+        e-waste and AI data center energy consumption.
+      </>
+    ),
+    linkText: "Project: respark.tech",
+    linkUrl: "https://respark.tech",
+    proofs: [
+      {
+        label: "Official Announcement",
+        url: "https://www.facebook.com/share/p/1cKjehsJfs/",
+      },
+      {
+        label: "Read Blog Story",
+        url: "/blog/winning-3rd-place-green-loop-respark",
       },
     ],
   },
