@@ -60,6 +60,292 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: "13",
+    slug: "winning-3rd-place-green-loop-respark",
+    title: "Winning 3rd Place at the Green Loop Competition with ReSpark 🥉",
+    seoTitle: "Green Loop Competition: 3rd Place with ReSpark | yust.dev",
+    date: "Sep 10, 2026",
+    iso: "2026-09-10",
+    category: "Hackathons",
+    summary:
+      "How our project ReSpark won 3rd place in Horus University's Green Loop waste recycling competition, tackling both college hardware e-waste and AI data center energy consumption.",
+    previewImage: "/static/images/mems/mem_13/1.webp",
+    images: [
+      "/static/images/mems/mem_13/1.webp",
+      "/static/images/mems/mem_13/2.webp",
+      "/static/images/mems/mem_13/3.webp",
+      "/static/images/mems/mem_13/4.webp",
+      "/static/images/mems/mem_13/5.webp",
+    ],
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D9%83%D8%B3%D8%A8%D9%86%D8%A7-%D9%85%D8%B1%D9%83%D8%B2-%D8%AA%D8%A7%D9%84%D8%AA-%D9%81%D9%8A-%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-green-loop-%D9%81%D9%8A-%D8%AC%D8%A7%D9%85%D8%B9%D8%A9-ugcPost-7503416845966888960-WPR4/",
+      },
+      { label: "Shortlink", url: "https://lnkd.in/p/e7Bd-trh" },
+      { label: "ReSpark Platform", url: "https://respark.tech" },
+      { label: "Horus University", url: "https://horus.edu.eg" },
+    ],
+    content: `We secured **3rd place** in the **Green Loop** competition at [Horus University](https://horus.edu.eg)! 🥉
+
+For those unfamiliar, **Green Loop** is a specialized sustainability and waste-recycling competition. This was the internal university qualifying stage at Horus, where the top three winning teams earned the privilege of representing Horus University at the national finals across all of Egypt.
+
+Our project is called **ReSpark** ([ReSpark.tech](https://respark.tech))—a unified web platform and application engineered to combat electronic waste through two fundamental pillars:
+
+**1. Physical E-Waste (Hardware Recycling Marketplace)**
+
+Think about all the embedded systems, Arduino shields, robotics kits, and hardware components students build for university coursework—only to leave them sitting in a drawer collecting dust after the semester ends. Instead of letting viable electronics end up in landfills, **ReSpark** provides a specialized student marketplace where you can disassemble previous projects, list microcontrollers, sensors, and components, and sell them affordably to other students who need them. It saves incoming students money while putting cash back into the creators' pockets.
+
+**2. Virtual E-Waste (Green AI Infrastructure)**
+
+State-of-the-art AI models and LLMs operate inside massive data centers that consume enormous amounts of electrical grid energy and millions of gallons of water for server cooling. Virtual e-waste and computational strain are rapidly becoming one of tech's biggest climate challenges. **ReSpark** introduces concrete architectural and software optimization strategies designed to streamline prompt payloads, cache semantic responses, and reduce unnecessary compute strain on models. By optimizing workload execution, we significantly reduce data center power draw and drop your overall AI API operating expenses.
+
+**Team & Community**
+
+I competed alongside my brilliant teammates [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and [Mostafa Kamal](https://www.linkedin.com/in/mostafa-kamal-681961230/)—absolute professionalism and dedication throughout the sprint. A special thank you to **Eng. Fatma Magdy** for her constant guidance and support with our team.
+
+My primary role was engineering the full landing page at [ReSpark.tech](https://respark.tech) and architecting the complete visual identity from scratch—from the project mascot to the flyers, presentation slide decks, and conference banners.
+
+Next stop: the nationwide Egypt finals! See you there :)`,
+  },
+  {
+    id: "12",
+    slug: "level-2-retrospective-hackathons-projects-community",
+    title: "Goodbye Sophomore Year: A Year of Shipping Products, Winning Hackathons, and Building Community",
+    seoTitle: "Sophomore Year Retrospective: Hackathons & Shipped Code | yust.dev",
+    date: "Aug 30, 2026",
+    iso: "2026-08-30",
+    category: "Software Engineering",
+    summary:
+      "Bidding farewell to Level 2 and entering Level 3: a complete retrospective of 3 national hackathon wins, founding ICPC HUE, training 300+ students, and shipping production apps.",
+    previewImage: "/static/images/mems/mem_12/1.webp",
+    images: [
+      "/static/images/mems/mem_12/1.webp",
+      "/static/images/mems/mem_12/2.webp",
+      "/static/images/mems/mem_12/3.webp",
+      "/static/images/mems/mem_12/4.webp",
+      "/static/images/mems/mem_12/5.webp",
+    ],
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D8%A8%D9%85%D8%A7-%D8%A5%D9%86%D9%86%D8%A7-%D8%AE%D9%84%D8%A7%D8%B5-%D8%A8%D9%86%D9%88%D8%AF%D8%B9-%D9%84%D9%8A%D9%81%D9%84-2-%D9%88%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D9%86-%D8%B1%D8%B3%D9%85%D9%8A-ugcPost-7499489407649931264-hDfT/",
+      },
+      { label: "Shortlink", url: "https://lnkd.in/p/eEVCVfR9" },
+      { label: "Portfolio Overview: yust.dev", url: "https://yust.dev" },
+      { label: "ICPC HUE Community", url: "https://icpchue.com" },
+    ],
+    content: `As we officially bid farewell to Level 2 (sophomore year) and step into Level 3 in Cybersecurity & AI at [Horus University](https://horus.edu.eg)... let me take you through what a full year of locking myself in a "cave" looked like: non-stop experiments, intense hackathon pressure, shipped products, and hard-earned certifications.
+
+**1. Activities & Community Leadership**
+
+• **Founding ICPC HUE:** At the start of the year, I co-founded Horus University's first competitive programming community, **ICPC HUE**. We built the training curriculum from scratch, coached hundreds of students, and qualified **8 teams** for the Egyptian Collegiate Programming Contest (ECPC) qualifications.
+
+• **Hosting DCC Contest:** We brought competitive programming to our campus by hosting the **DCC programming contest** at the Faculty of AI under the organization of [ACPC Club Damietta University](https://www.linkedin.com/company/acpc-du/), welcoming 36+ teams from 5 universities.
+
+• **Tech Creator on LinkedIn:** A whole year of documenting engineering builds, open-source architectures, and project breakdowns—crossing **+170,000 impressions** on LinkedIn!
+
+**2. Hackathons (3x National Wins) 🏆**
+
+We took home 3 national podium finishes across Egypt:
+
+• 🥉 **3rd Place** at the Sustainable Innovation National Summit in Tanta (competing as Level 1 freshmen against 20+ universities nationwide!) with **Zero Threat**.
+
+• 🥈 **2nd Place** at the **Google Developers Group (GDG Delta)** Hackathon out of 600+ developers and 122 teams with **SAST.TECH**.
+
+• 🥉 **3rd Place** at the **LUXSAI AI Hackathon** in Luxor (after an unforgettable 17-hour train ride 💀) with **SAST.TECH**.
+
+• Competed in the official **ECPC 2026 Contestant** qualifications.
+
+*(I wasn't alone in these wins—I built alongside [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) in all of them, and [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/) at GDG Delta).*
+
+**Embracing Failure as Part of the Equation:**
+
+Not everything was a win. We applied to the Kafr El-Sheikh and Damietta hackathons and were rejected without feedback. I also participated in international global hackathons like BuildAnything, Reddit, Band.ai, and Sui—and didn't win, largely because I tried to carry everything as a solo builder. Those setbacks taught me more about team balance and product scope than any easy win ever could.
+
+**3. Training & Professional Certifications 🎓**
+
+• **Information Technology Institute (ITI):** Completed Level 1 in Machine Learning & AI Engineering (mastering Pandas, mathematics, applied ML, and building [SpaceWorth.site](https://spaceworth.site)), and currently progressing through Level 2.
+
+• **NVIDIA DLI Certificate of Competency:** *Building RAG Agents with LLMs* (vector databases, stateful memory agents, and microservice architectures).
+
+• **Academic Honors:** Received the **Faculty of Artificial Intelligence Excellence Honor 3 times** from Horus University.
+
+• **SaaS Strategy Training:** Completed hands-on marketing, personal branding, and SaaS product strategy at **AZ Tech Solutions** with Eng. Akram Zeyada.
+
+**4. Shipped Products & Code 💻**
+
+• [Verdict.run](https://verdict.run): My first comprehensive full-stack product. A Codeforces mirror that transforms classic problem pages into a modern LeetCode IDE with automated server-side submissions via Playwright and Scrapling; drove 120k+ impressions on its launch post.
+
+• [icpchue.com](https://icpchue.com): Complete community learning platform featuring a library of recorded sessions, 650 curated problems, real-time leaderboard, and gamification badges (30k+ impressions).
+
+• [sast.tech](https://sast.tech): Autonomous AI security agent designed for the 'Vibe Coding' era—scanning web applications and auto-fixing vulnerabilities in real time.
+
+• [swrmz.tech](https://swrmz.tech): Want to sleep peacefully knowing your site is protected from DDoS? Automated Cloudflare Captcha orchestration that shields your endpoints while you sleep.
+
+• [hellishgolf.xyz](https://hellishgolf.xyz): Daily Reddit browser mini-app golf game built with Vite and open-source 2D assets.
+
+• [zerothreat.xyz](https://zerothreat.xyz): AI-powered antivirus featuring a native Windows WPF client and browser extension.
+
+• [dcchub.xyz](https://dcchub.xyz): Comic-inspired contest platform designed outside my comfort zone.
+
+• [spaceworth.site](https://spaceworth.site): ITI AI final project—real estate price regression model (90% accuracy) with interactive CAD drawing canvas and Gemini Vision parsing.
+
+• Other shipped experiments: \`acolite.xyz\`, \`hexless.xyz\`, \`sketchz.xyz\`, and \`yousefdev.xyz\`.
+
+All of these achievements are tied together in my portfolio at [yust.dev](https://yust.dev), backed by over **650+ GitHub commits** across the entire year.
+
+A heartfelt thank you to all the professors and mentors who supported me through this journey: Dr. Hossam El-Din Moustafa, Dr. Basma Mostafa, Dr. Eman Raslan, Eng. Fatma Magdy, and Eng. Akram Zeyada.
+
+Here's to an even bigger Level 3! 🚀`,
+  },
+  {
+    id: "11",
+    slug: "founding-icpc-hue-problem-solving-community",
+    title: "No ICPC at Our College? Fine, We'll Build It Ourselves: The Story of ICPC HUE",
+    seoTitle: "Founding ICPC HUE: From Zero to 8 ECPC Teams | yust.dev",
+    date: "Aug 22, 2026",
+    iso: "2026-08-22",
+    category: "Community & ICPC",
+    summary:
+      "How an empty campus sparked Horus University's first competitive programming community from scratch, trained 300+ students, qualified 8 teams for ECPC, and inspired Verdict.run.",
+    previewImage: "/static/images/mems/mem_11/1.webp",
+    images: [
+      "/static/images/mems/mem_11/1.webp",
+      "/static/images/mems/mem_11/2.webp",
+      "/static/images/mems/mem_11/3.webp",
+      "/static/images/mems/mem_11/4.webp",
+      "/static/images/mems/mem_11/5.webp",
+    ],
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D9%85%D9%81%D9%8A%D8%B4-icpc-%D9%81%D9%8A-%D9%83%D9%84%D9%8A%D8%AA%D9%86%D8%A7-%D8%AE%D9%84%D8%A7%D8%B5-%D9%87%D9%86%D8%B9%D9%85%D9%84%D9%87%D8%A7-%D8%A5%D8%AD%D9%86%D8%A7-%D9%85%D9%86-ugcPost-7496505059137130496-s-eU/",
+      },
+      { label: "Shortlink", url: "https://lnkd.in/p/e--z9__C" },
+      { label: "ICPC HUE Official Platform", url: "https://icpchue.com" },
+      { label: "Verdict.run IDE", url: "https://verdict.run" },
+    ],
+    content: `*"No ICPC in our college? Fine, we'll build it ourselves."*
+
+Eight months ago, that single sentence marked the beginning of a journey where we built an entire university engineering community from the ground up—and sparked a software tool that reached **120,000 impressions in just 24 hours**.
+
+**The Spark: An Empty Canvas**
+
+The story began at the Faculty of Artificial Intelligence at [Horus University](https://horus.edu.eg), which was newly established in 2024. We were the inaugural first batch. There were zero student clubs, zero technical societies, and nobody knew where to turn. At the start of sophomore year, my colleague **Khaled** introduced me to competitive programming and the **ICPC**—explaining how algorithmic mastery is the direct gateway to software roles at top tier companies like Noon and FAANG, where technical interviews revolve around data structures and problem solving.
+
+I asked myself a simple question: *Why don't we have this at Horus?*
+
+Right then and there, **ICPC HUE** was born.
+
+**Assembling the Founding Crew**
+
+We pitched the vision to our faculty leaders—Dean **Prof. Dr. Hossam El-Din Moustafa**, **Dr. Basma Mostafa**, **Dr. Yasser Elawady**, **Eng. Fatma Magdy**, **Eng. Raafat M. Elmenayar**, and **Eng. Sara Lotfy**. Their immediate enthusiasm and institutional backing gave us the green light. Despite the early hurdles of finding instructors and curriculum resources, within a month we had assembled our core leadership team:
+
+• **Ahmed Waleed:** Primary Instructor & Curriculum Architect.
+• **Abdelrahman Mohsen:** Fundraiser & Operations Manager.
+• **Yousef Mohammed Salah (Me):** Web Lead, Platform Developer, Media & Event Logistics.
+• **Omar Hisham Mohamed Elshayal** & **Ebrahim Matar:** Co-Instructors.
+• **Khaled Suleiman, Noha Kamal, Abdullah Shata, Mahmoud Elkholany:** Monitors and Academic Support.
+
+**Five Months in the Trenches: Training 300+ Students**
+
+Over 5 intense months, our single mission was spreading technical awareness and coaching students from zero. Our lead instructor, **Eng. Ahmed Waleed**, personally volunteered over **30 hours of foundational lectures** from scratch, complemented by daily problem-solving coaching in community chats.
+
+To make problem solving intuitive and modern, I built and launched [icpchue.com](https://icpchue.com). The platform hosted **650 curated problems** ordered progressively from beginner to advanced (based on the renowned Assiut University training sheets), a complete archive of recorded lectures, live contest leaderboards, gamified achievements, and seasonal prizes.
+
+We organized orientation days, online practice contests, offline collegiate scrimmages, and hosted the **DCC contest** on our campus in partnership with **ACPC Club Damietta University**.
+
+Special thanks to the leaders of **ACPC DU** who supported us along the way: *Asem Gado, Belal Elbably, Omar Badr, Anas Al-Horigy, Hossam Hassan, and Abdo Sleem.*
+
+**The Payoff: 8 Teams Qualified for ECPC**
+
+When registration closed, we had registered **8 official teams from our Faculty of AI** for the Egyptian Collegiate Programming Contest (ECPC) qualifications—**6 of which were Level 1 freshmen** in their first year of programming!
+
+**How ICPC Transformed My Engineering Career**
+
+On a personal level, immersing myself in competitive programming dramatically leveled up my system design and algorithmic execution. That directly fueled our hackathon performances: **2nd Place** out of 600 participants at the **GDG Delta Hackathon**, and **3rd Place** at the **LUXSAI Hackathon** in Luxor.
+
+Furthermore, when I noticed students hesitating to practice on Codeforces due to its dated 2000s interface, I engineered [Verdict.run](https://verdict.run)—a tool that allows you to change \`codeforces.com\` to \`codeforces.verdict.run\` in your URL bar and instantly renders the problem in a clean LeetCode IDE with headless server-side submissions via Playwright. When I posted the demo on LinkedIn, it exploded to **120,000 views within 24 hours**.
+
+While my personal team didn't qualify for ECPC this season, what we built along the way—3 hackathon wins, production platforms, and lifelong brothers in engineering—was the real victory.`,
+  },
+  {
+    id: "10",
+    slug: "nvidia-building-rag-agents-certification",
+    title: "Certified by NVIDIA: What I Learned Building Production RAG Agents with LLMs 🎓",
+    seoTitle: "NVIDIA DLI: Building Production RAG Agents | yust.dev",
+    date: "Aug 18, 2026",
+    iso: "2026-08-18",
+    category: "AI & Security",
+    summary:
+      "Key takeaways from earning the NVIDIA DLI Certificate of Competency in Building RAG Agents with LLMs: from vector search and stateful agents to LLM-as-a-Judge evaluation.",
+    previewImage: "/static/images/mems/mem_10/1.webp",
+    images: [
+      "/static/images/mems/mem_10/1.webp",
+      "/static/images/mems/mem_10/2.webp",
+      "/static/images/mems/mem_10/3.webp",
+      "/static/images/mems/mem_10/4.webp",
+      "/static/images/mems/mem_10/5.webp",
+    ],
+    featured: [
+      {
+        label: "Original LinkedIn Post",
+        url: "https://www.linkedin.com/posts/yousefmsm1_%D8%A7%D8%AE%D8%AF%D8%AA-%D8%B4%D9%87%D8%A7%D8%AF%D8%A9-%D9%85%D9%86-%D9%86%D9%8A%D9%81%D9%8A%D8%AF%D9%8A%D8%A7-building-rag-agents-ugcPost-7495168713294475264-18wt/",
+      },
+      { label: "Shortlink", url: "https://lnkd.in/p/eYrMWkdR" },
+      {
+        label: "Official NVIDIA Certificate Verification",
+        url: "https://learn.nvidia.com/certificates?id=-FSgrCQAQuqN-DL-AaysPg",
+      },
+      { label: "All Certificates on yust.dev", url: "https://yust.dev/certificates" },
+    ],
+    content: `I recently earned the **NVIDIA Deep Learning Institute (DLI) Certificate of Competency** in **Building RAG Agents with LLMs**! 🎓
+
+First, I want to express my deep gratitude to **Dr. Eman Raslan** for enabling this opportunity and mentoring us through the intensive program. Here is a breakdown of the core architectural lessons and practical takeaways I took away from the course:
+
+**1. Enterprise Microservices over Monoliths**
+
+Enterprise AI is not about dumping 3,000 lines of Python code into a single monolithic script. Real production systems decouple concerns into independently scalable microservices orchestrated via **Docker**: one service handles document ingestion and vectorization, another executes similarity search, a third hosts the agent loop, and another serves the user interface.
+
+**2. Modern Serving Frameworks & Tooling**
+
+I worked hands-on with enterprise AI platforms:
+• **NVIDIA NIM / API Endpoints:** Accelerating LLM inference with optimized TensorRT-LLM runtimes.
+• **AWS Infrastructure:** Cloud computing patterns for model serving.
+• **Gradio:** Rapidly prototyping interactive frontend interfaces with minimal boilerplate.
+• **LangServe:** Seamlessly deploying LangChain chains and agents as production-ready **REST APIs**.
+
+**3. The Core Optimization Triangle: Cost, Latency, & Quality**
+
+Every AI project balances three constraints: **Cost**, **Speed (Latency)**, and **Quality**. This trade-off is why **Retrieval-Augmented Generation (RAG)** has become the industry standard.
+
+Instead of retraining or fine-tuning massive models from scratch to understand new data—which alters model weights, risks catastrophic forgetting, and costs a fortune—RAG dynamically injects relevant context from an external database at query time without ever modifying the base model itself.
+
+**4. Vector Embeddings & Similarity Search with FAISS**
+
+To feed unstructured data to the LLM accurately:
+• Documents are split into semantic **Chunks** with defined token overlaps.
+• High-dimensional **Embedding Models** convert text into mathematical vector spaces.
+• **FAISS (Facebook AI Similarity Search)** indexes and retrieves nearest-neighbor vector chunks in sub-millisecond speeds.
+
+**5. Constructing Stateful, Tool-Using Agents**
+
+A static prompt-response chain is not an agent. We learned to build **Stateful Agents** equipped with conversational memory that:
+• Retain dialog context across multiple turns.
+• Intelligently extract parameters from user intent.
+• Autonomously invoke external APIs and SQL databases via function calling without getting stuck in execution loops.
+
+**6. Automated Evaluation via LLM-as-a-Judge**
+
+The ultimate benchmark of production AI: **Evaluation**. Using the **LLM-as-a-Judge** methodology, an independent evaluator LLM grades retrieval quality, checks for groundedness, and verifies whether the synthesized answers are 100% factual according to the retrieved documents—systematically hunting down hallucinations.
+
+It was an exceptional hands-on experience that directly shaped my approach to architecting AI agents and security tools.
+
+- **Verify Certificate:** [NVIDIA Verification Page](https://learn.nvidia.com/certificates?id=-FSgrCQAQuqN-DL-AaysPg)
+- **All Certificates:** [yust.dev/certificates](https://yust.dev/certificates)`,
+  },
+  {
     id: "9",
     slug: "designing-dcc-hub-comic-programming-contest-website",
     title: "Building DCC Hub: A Comic-Style Contest Journey",
@@ -402,6 +688,7 @@ const CATEGORIES = [
   "Software Engineering",
   "Hackathons",
   "AI & Security",
+  "Community & ICPC",
   "SaaS & Marketing",
 ];
 
