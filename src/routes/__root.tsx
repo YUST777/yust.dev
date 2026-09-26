@@ -91,6 +91,12 @@ export const Route = createRootRoute({
           href: `${SITE_URL}/rss.xml`,
         },
         { rel: "sitemap", type: "application/xml", href: `${SITE_URL}/sitemap.xml` },
+        {
+          rel: "alternate",
+          type: "text/plain",
+          title: "AI-readable site summary",
+          href: "/llms.txt",
+        },
         { rel: "stylesheet", href: globalsCss },
         { rel: "stylesheet", href: geistSansCss },
         { rel: "stylesheet", href: geistMonoCss },

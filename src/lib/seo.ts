@@ -85,6 +85,7 @@ export interface BlogPostMeta {
   iso: string; // ISO 8601 publish date (e.g. "2026-04-23")
   modifiedIso?: string;
   summary: string;
+  category?: string;
   image?: string; // absolute URL preferred
 }
 
@@ -109,6 +110,11 @@ export function personSchema() {
     url: SITE_URL,
     image: FAVICON,
     jobTitle: "Software Engineer",
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "AI and Cybersecurity Student and Full-Stack Developer",
+      occupationLocation: { "@type": "Country", name: "Egypt" },
+    },
     description:
       "Yousef Mohammed Salah (yust.dev) — L3 AI & Cybersecurity student and Full-Stack Developer. Creator of Verdict.run, Sast.tech, SWRMZ, and Lead Dev of ICPC HUE.",
     knowsAbout: [
@@ -135,6 +141,17 @@ export function personSchema() {
       name: "Horus University in Egypt",
       url: "https://horus.edu.eg",
     },
+    memberOf: {
+      "@id": ORGANIZATION_ID,
+      "@type": "Organization",
+      name: "ICPC HUE",
+      url: ICPCHUE_PRIMARY,
+    },
+    award: [
+      "2nd Place — GDG Delta Egypt Hackathon 4.0",
+      "3rd Place — LUXSAI AI Hackathon",
+      "3rd Place — Sustainable Innovation National Summit",
+    ],
     worksFor: {
       "@type": "Organization",
       name: "ICPC HUE",
@@ -238,6 +255,8 @@ export function blogPostingSchema(post: BlogPostMeta) {
     description: post.summary,
     datePublished: isoDateTime,
     dateModified: modifiedDateTime,
+    articleSection: post.category,
+    keywords: post.category,
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     image: [image],
@@ -264,6 +283,7 @@ export function projectPageSchema(opts: {
   description: string;
   category: string;
   technologies: string[];
+  sameAs?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -287,6 +307,8 @@ export function projectPageSchema(opts: {
         url: opts.url,
         applicationCategory: opts.category,
         applicationSubCategory: opts.technologies.join(", "),
+        keywords: opts.technologies.join(", "),
+        ...(opts.sameAs?.length ? { sameAs: opts.sameAs } : {}),
         author: { "@id": PERSON_ID },
         creator: { "@id": PERSON_ID },
       },

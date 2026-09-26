@@ -3,10 +3,21 @@ import { readFile } from "node:fs/promises";
 const localOrigin = process.env.SEO_BASE_URL ?? "http://127.0.0.1:3000";
 const productionOrigin = "https://www.yust.dev";
 const sitemapXml = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
+const robotsTxt = await readFile(new URL("../public/robots.txt", import.meta.url), "utf8");
+const llmsTxt = await readFile(new URL("../public/llms.txt", import.meta.url), "utf8");
 const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const sitemapPaths = sitemapUrls.map((url) => new URL(url).pathname);
 const errors = [];
 const pages = new Map();
+
+for (const crawler of ["OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot"]) {
+  if (!new RegExp(`User-agent: ${crawler}[\\s\\S]*?Allow: /`).test(robotsTxt)) {
+    errors.push(`robots.txt does not allow ${crawler} to discover the portfolio`);
+  }
+}
+if (!llmsTxt.includes("Yousef Mohammed Salah") || !llmsTxt.includes("https://www.yust.dev/")) {
+  errors.push("llms.txt is missing the canonical identity or homepage URL");
+}
 
 function decodeHtml(value) {
   return value

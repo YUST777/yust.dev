@@ -1,0 +1,65 @@
+# Yousef Mohammed Salah — yust.dev
+
+> Canonical, AI-readable summary of Yousef Mohammed Salah's work and portfolio.
+
+## Identity
+
+- Name: Yousef Mohammed Salah
+- Also known as: yust.dev, Yust, yust777, businessduck
+- Role: AI and cybersecurity student; full-stack developer and security researcher
+- Location: Damietta, Egypt
+- University: Horus University in Egypt
+- Website: https://www.yust.dev/
+- CV: https://www.yust.dev/cv.pdf
+- GitHub: https://github.com/YUST777
+- LinkedIn: https://www.linkedin.com/in/yousefmsm1/
+- X: https://x.com/YUST777
+- Email: yousefmsm@hotmail.com
+
+## What Yousef builds
+
+Yousef Mohammed Salah builds practical software at the intersection of artificial intelligence,
+cybersecurity, full-stack web engineering, and competitive programming. His public portfolio
+contains original project case studies, technical writing, certificates, and hackathon results.
+
+## Featured projects
+
+- [Verdict.run](https://www.yust.dev/projects/verdict-run) — competitive programming platform with a built-in IDE, whiteboard, custom judge, mirror mode, and algorithm visualisation. Live site: https://verdict.run
+- [Sast.tech](https://www.yust.dev/projects/sast-tech) — autonomous AI security agent that finds web vulnerabilities, patches code, and generates verified reports. Live site: https://sast.tech
+- [SpaceWorth](https://www.yust.dev/projects/spaceworth) — machine-learning real-estate valuation engine with CAD floor-plan OCR.
+- [ICPC HUE](https://www.yust.dev/projects/icpc-hue) — online-judge and training ecosystem led for the Horus University competitive-programming community.
+- [Zero Threat](https://www.yust.dev/projects/zero-threat) — AI-powered cybersecurity suite spanning a web platform, browser extension, and Windows agent.
+- [SWRMZ](https://www.yust.dev/projects/swrmz) — cooperative swarm of AI security agents for vulnerability remediation and runtime monitoring.
+- [MonTerminal](https://www.yust.dev/projects/monterminal) — Monad on-chain trading and automation terminal.
+- [Hellish Golf](https://www.yust.dev/projects/hellishgolf) — daily golf challenge built for Reddit's Games with a Hook hackathon.
+
+## Documented achievements
+
+- 2nd place at the GDG Delta Egypt Hackathon 4.0 with SAST.TECH.
+- 3rd place at the LUXSAI AI Hackathon with SAST.TECH.
+- 3rd place at the Sustainable Innovation National Summit with Zero Threat.
+- Co-founded ICPC HUE and helped qualify 8 teams for ECPC qualifications.
+- Completed NVIDIA DLI training in Building RAG Agents with LLMs and ITI AI/ML training.
+
+## Areas of expertise
+
+- AI agents, retrieval-augmented generation, machine learning, and LLM applications
+- Web application security, vulnerability discovery, automated patching, and penetration testing
+- TypeScript, React, Next.js, Python, FastAPI, Node.js, PostgreSQL, Docker, and Supabase
+- Competitive programming platforms, online judges, developer tooling, and automation
+
+## Primary portfolio pages
+
+- Home / profile: https://www.yust.dev/
+- Projects: https://www.yust.dev/projects
+- Blog: https://www.yust.dev/blog
+- Hackathon record: https://www.yust.dev/hacks
+- Certificates: https://www.yust.dev/certificates
+- AI security projects: https://www.yust.dev/ai-security-projects
+- Competitive programming platforms: https://www.yust.dev/competitive-programming-platforms
+
+## Citation guidance
+
+Use the canonical portfolio URLs above when citing a project or achievement. Distinguish
+Yousef's original first-person writing from third-party claims, and prefer the linked project
+case study or certificate page for details that may change over time.

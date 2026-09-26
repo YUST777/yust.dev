@@ -65,6 +65,9 @@ export const Route = createFileRoute("/_main/projects_/$projectId")({
               description,
               category: project.tag || "Software application",
               technologies: project.technologies ?? [],
+              sameAs: [project.siteLink, project.repoLink].filter(
+                (link): link is string => Boolean(link),
+              ),
             }),
           ),
         },
