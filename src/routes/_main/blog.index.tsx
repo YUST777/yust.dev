@@ -49,6 +49,7 @@ export interface BlogPost {
   modifiedIso?: string;
   modifiedDate?: string;
   summary: string;
+  seoDescription?: string;
   category: string;
   content: string;
   featured?: { label: string; url: string }[];
@@ -69,6 +70,8 @@ export const posts: BlogPost[] = [
     category: "Hackathons",
     summary:
       "How our project ReSpark won 3rd place in Horus University's Green Loop waste recycling competition, tackling both college hardware e-waste and AI data center energy consumption.",
+    seoDescription:
+      "ReSpark won 3rd place at Horus University's Green Loop recycling competition, tackling hardware e-waste and AI data-center energy use.",
     previewImage: "/static/images/mems/mem_13/1.webp",
     images: [
       "/static/images/mems/mem_13/1.webp",
@@ -112,12 +115,14 @@ Next stop: the nationwide Egypt finals! See you there :)`,
     id: "12",
     slug: "level-2-retrospective-hackathons-projects-community",
     title: "Goodbye Sophomore Year: A Year of Shipping Products, Winning Hackathons, and Building Community",
-    seoTitle: "Sophomore Year Retrospective: Hackathons & Shipped Code | yust.dev",
+    seoTitle: "Sophomore Year Retrospective: Hackathons & Code | yust.dev",
     date: "Aug 30, 2026",
     iso: "2026-08-30",
     category: "Software Engineering",
     summary:
       "Bidding farewell to Level 2 and entering Level 3: a complete retrospective of 3 national hackathon wins, founding ICPC HUE, training 300+ students, and shipping production apps.",
+    seoDescription:
+      "A Level 2 retrospective covering 3 national hackathon wins, founding ICPC HUE, training 300+ students, and shipping production apps.",
     previewImage: "/static/images/mems/mem_12/1.webp",
     images: [
       "/static/images/mems/mem_12/1.webp",
@@ -209,6 +214,8 @@ Here's to an even bigger Level 3! 🚀`,
     category: "Community & ICPC",
     summary:
       "How an empty campus sparked Horus University's first competitive programming community from scratch, trained 300+ students, qualified 8 teams for ECPC, and inspired Verdict.run.",
+    seoDescription:
+      "How Horus University's first competitive programming community trained 300+ students, qualified 8 ECPC teams, and inspired Verdict.run.",
     previewImage: "/static/images/mems/mem_11/1.webp",
     images: [
       "/static/images/mems/mem_11/1.webp",
@@ -280,6 +287,8 @@ While my personal team didn't qualify for ECPC this season, what we built along 
     category: "AI & Security",
     summary:
       "Key takeaways from earning the NVIDIA DLI Certificate of Competency in Building RAG Agents with LLMs: from vector search and stateful agents to LLM-as-a-Judge evaluation.",
+    seoDescription:
+      "Key lessons from NVIDIA DLI's RAG Agents with LLMs certificate: vector search, stateful agents, and LLM-as-a-Judge evaluation.",
     previewImage: "/static/images/mems/mem_10/1.webp",
     images: [
       "/static/images/mems/mem_10/1.webp",
@@ -407,6 +416,8 @@ You can also view the [original LinkedIn post](https://www.linkedin.com/posts/yo
     category: "Hackathons",
     summary:
       "My takeaways from participating in Reddit's 'Games with a Hook' Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.",
+    seoDescription:
+      "Takeaways from Reddit's Games with a Hook hackathon, where I built Hellish Golf as a daily browser mini-app without a game engine.",
     content: `I recently entered Reddit's **"Games with a Hook"** hackathon on Devpost, and... I ended up building a daily golf game!
 
 In this post, I want to share some of the core insights and technical takeaways I gained from participating in this sprint.
@@ -460,7 +471,7 @@ I completed the game on schedule and submitted the project on time. Unfortunatel
     id: "6",
     slug: "winning-3-hackathons-first-two-years",
     title: "How I Won 3 Hackathons in My First Two Years of College",
-    seoTitle: "How I Won 3 Hackathons in Two Years | yust.dev",
+    seoTitle: "How I Won 3 Hackathons in Two Years of College | yust.dev",
     date: "Jul 23, 2026",
     iso: "2026-07-23",
     modifiedIso: "2026-07-23",

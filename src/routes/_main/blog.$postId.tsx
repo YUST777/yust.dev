@@ -30,7 +30,7 @@ export const Route = createFileRoute("/_main/blog/$postId")({
     const isoDateTime = `${post.iso}T12:00:00+00:00`;
     const base = buildRouteHead({
       title,
-      description: post.summary,
+      description: post.seoDescription ?? post.summary,
       path: `/blog/${post.slug}`,
       type: "article",
       image: image ? `${SITE_URL}${image}` : undefined,
@@ -42,7 +42,9 @@ export const Route = createFileRoute("/_main/blog/$postId")({
       scripts: [
         {
           type: "application/ld+json",
-          children: jsonLdString(blogPostingSchema(post)),
+          children: jsonLdString(
+            blogPostingSchema({ ...post, summary: post.seoDescription ?? post.summary }),
+          ),
         },
       ],
     };

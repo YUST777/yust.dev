@@ -149,8 +149,27 @@ const internalTargets = new Set(
     .filter((pathname) => !pathname.includes(".")),
 );
 for (const pathname of internalTargets) {
+  if (pathname.startsWith("/projects/") && !sitemapPaths.includes(pathname)) {
+    errors.push(`${pathname} is linked internally but missing from the sitemap`);
+  }
   const { response } = await fetchPage(pathname);
   if (!response.ok) errors.push(`Internal link ${pathname} returned HTTP ${response.status}`);
+}
+
+const notFoundPath = "/__seo-audit-missing-route__";
+const notFoundPage = await fetchPage(notFoundPath);
+if (notFoundPage.response.status !== 404) {
+  errors.push(`${notFoundPath} returned HTTP ${notFoundPage.response.status} instead of 404`);
+}
+const notFoundRobots = matches(
+  notFoundPage.html,
+  /<meta name="robots" content="([^"]*)"\s*\/?>/g,
+)[0];
+if (!notFoundRobots?.includes("noindex")) {
+  errors.push(`${notFoundPath} is missing a server-rendered noindex directive`);
+}
+if (/<link rel="canonical"\b/i.test(notFoundPage.html)) {
+  errors.push(`${notFoundPath} should not emit a canonical URL`);
 }
 
 if (errors.length > 0) {
