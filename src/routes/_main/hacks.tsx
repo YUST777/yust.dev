@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
@@ -147,6 +147,10 @@ const hacks = [
     linkText: "Project: respark.tech",
     linkUrl: "https://respark.tech",
     proofs: [
+      {
+        label: "Horus University Green Loop Winners",
+        url: "https://horus.edu.eg/ar/hue_latest_news/green-loop-competition-2026-winners-ar/",
+      },
       {
         label: "Official Announcement",
         url: "https://www.facebook.com/share/p/1cKjehsJfs/",

@@ -44,7 +44,15 @@ export default function AchievementsSection() {
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
             <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              ICPC HUE — Community Builder.{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.facebook.com/icpchue"
+                className="underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
+              >
+                ICPC HUE
+              </a>{" "}
+              — Community Builder.{" "}
             </strong>
             Co-founded the ICPC HUE community and built{" "}
             <a
@@ -57,14 +65,6 @@ export default function AchievementsSection() {
             </a>
             —a training platform with <span className="text-white">650+ curated problems</span> that
             helped prepare <span className="text-white">8 teams</span> for the ECPC.
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.facebook.com/photo?fbid=122151688275113129"
-              className="mt-2 block w-fit text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
-            >
-              View ICPC HUE on Facebook
-            </a>
           </p>
         </div>
 

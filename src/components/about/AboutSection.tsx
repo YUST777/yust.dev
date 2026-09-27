@@ -686,7 +686,7 @@ export default function AboutSection() {
     <section>
       <div className="space-y-4 font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
         <p>
-          I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp;
+          I&apos;m <strong className="text-zinc-200">Yousef Mohammed Salah</strong>, an AI &amp;
           Cybersecurity student at{" "}
           <a
             href="https://horus.edu.eg"
@@ -696,10 +696,10 @@ export default function AboutSection() {
           >
             Horus University in Egypt
           </a>{" "}
-          and a Full-Stack dev who builds tools that stay in people&apos;s bookmarks.
+          and a full-stack developer building practical tools people keep using.
         </p>
         <p>
-          Most recently, I engineered{" "}
+          I recently engineered{" "}
           <a
             href="https://verdict.run"
             target="_blank"
@@ -708,26 +708,46 @@ export default function AboutSection() {
           >
             Verdict.run
           </a>
-          , a viral competitive programming platform that garnered{" "}
+          , a competitive-programming platform that reached{" "}
           <a
             href="https://www.linkedin.com/posts/yousefmsm1_icpc-softwareengineering-problemsolving-ugcPost-7418661841783943168-kJiu/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF4UUF8BkaOftBX4nvK7AWZaXUY_x4FtmsU"
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
           >
-            120k+ impressions
+            120k+ LinkedIn impressions
           </a>{" "}
-          and transformed the workflow for hundreds of developers.
+          .
         </p>
         <p>
-          Alongside building these, I have won{" "}
-          <Link
-            to="/hacks"
+          I&apos;ve also earned three national hackathon podium finishes in Egypt —{" "}
+          <a
+            href="https://www.facebook.com/share/p/1BGCYoPpDT/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
           >
-            3 national hackathons in Egypt
-          </Link>{" "}
-          so far.
+            GDG Delta
+          </a>
+          ,{" "}
+          <a
+            href="https://www.facebook.com/photo/?fbid=1348813887351864"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            LUXSAI
+          </a>
+          , and{" "}
+          <a
+            href="https://www.facebook.com/hue.eg/posts/pfbid0y73xcQuLyVuA5DroyFuMLtT51GDCifxroNXo7JJkXPtrqhcGJ6szkB3ugaSqPqr6l"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-zinc-200 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors"
+          >
+            Sustainable Innovation Summit
+          </a>
+          .
         </p>
 
         <div className="sr-only">

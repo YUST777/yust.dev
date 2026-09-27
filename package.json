@@ -60,6 +60,13 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    }
+  },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8"
   },
