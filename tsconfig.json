@@ -20,5 +20,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".content-collections/generated"],
-  "exclude": ["node_modules", "scripts", "mood", ".output", ".vinxi"]
+  "exclude": ["node_modules", "scripts", "mood", ".output", ".vinxi", "reference"]
 }

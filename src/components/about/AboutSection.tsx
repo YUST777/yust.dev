@@ -389,6 +389,8 @@ type PreviewLayer = {
   exitOffset: number;
 };
 
+const cubicOut = (progress: number) => 1 - (1 - progress) ** 3;
+
 function previewIndex(preview: SocialPreview) {
   return { github: 0, linkedin: 1, cv: 2 }[preview];
 }
@@ -410,17 +412,19 @@ function AnimatedPreviewLayer({
       className="social-preview-layer"
       aria-hidden={!layer.isActive}
       style={{ pointerEvents: layer.isActive ? "auto" : "none" }}
-      initial={reduceMotion ? { opacity: 0 } : { x: layer.enterOffset, opacity: 0 }}
+      initial={
+        reduceMotion ? { opacity: 0 } : { x: layer.enterOffset, opacity: 0, filter: "blur(2px)" }
+      }
       animate={
         layer.isActive
-          ? { x: 0, opacity: 1 }
+          ? { x: 0, opacity: 1, filter: "blur(0px)" }
           : reduceMotion
-            ? { x: 0, opacity: 0 }
-            : { x: layer.exitOffset, opacity: 0 }
+            ? { x: 0, opacity: 0, filter: "blur(0px)" }
+            : { x: layer.exitOffset, opacity: 0, filter: "blur(2px)" }
       }
       transition={{
-        duration: reduceMotion ? 0.14 : 0.42,
-        ease: [0.33, 1, 0.68, 1],
+        duration: reduceMotion ? 0.14 : 0.3,
+        ease: cubicOut,
       }}
       onAnimationComplete={() => {
         if (!layer.isActive) onExit(layer.key);
@@ -434,6 +438,7 @@ function AnimatedPreviewLayer({
 const ignorePreviewElement = () => {};
 
 function SocialContacts() {
+  const reduceMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const [activePreview, setActivePreview] = useState<SocialPreview | null>(null);
   const [previewLayers, setPreviewLayers] = useState<PreviewLayer[]>([]);
@@ -446,7 +451,6 @@ function SocialContacts() {
   const contactRef = useRef<HTMLDivElement>(null);
   const incomingContentRef = useRef<HTMLDivElement>(null);
   const activePreviewRef = useRef<SocialPreview>("github");
-  const lastDirectionRef = useRef<-1 | 0 | 1>(0);
   const renderIdRef = useRef(0);
   const isPanelOpenRef = useRef(false);
   const closeTimeoutRef = useRef<number | undefined>(undefined);
@@ -477,13 +481,6 @@ function SocialContacts() {
     if (!isPanelOpenRef.current) return;
     isPanelOpenRef.current = false;
     setIsPanelOpen(false);
-    const closingLayers = previewLayersRef.current.map((layer) =>
-      layer.isActive
-        ? { ...layer, isActive: false, exitOffset: -56 * lastDirectionRef.current }
-        : layer,
-    );
-    previewLayersRef.current = closingLayers;
-    setPreviewLayers(closingLayers);
     if (closeTimeoutRef.current !== undefined) {
       window.clearTimeout(closeTimeoutRef.current);
     }
@@ -493,7 +490,7 @@ function SocialContacts() {
       previewLayersRef.current = [];
       setPreviewLayers([]);
       closeTimeoutRef.current = undefined;
-    }, 420);
+    }, 150);
   };
 
   const openPreview = (node: HTMLAnchorElement, preview: SocialPreview) => {
@@ -524,17 +521,14 @@ function SocialContacts() {
       previousPreview !== preview
         ? (Math.sign(previewIndex(preview) - previewIndex(previousPreview)) as -1 | 1)
         : 0;
-    lastDirectionRef.current = direction;
-    const existingLayers = firstOpen
-      ? []
-      : previewLayersRef.current.map((layer) =>
-          layer.isActive ? { ...layer, isActive: false, exitOffset: -56 * direction } : layer,
-        );
+    const existingLayers = previewLayersRef.current.map((layer) =>
+      layer.isActive ? { ...layer, isActive: false, exitOffset: -200 * direction } : layer,
+    );
     const nextLayer: PreviewLayer = {
       type: preview,
       key: nextRenderId,
       isActive: true,
-      enterOffset: 56 * (direction || 1),
+      enterOffset: 200 * direction,
       exitOffset: 0,
     };
     const nextLayers = [...existingLayers, nextLayer];
@@ -644,15 +638,27 @@ function SocialContacts() {
           </a>
         ))}
         {isPanelMounted && activePreview && (
-          <div
-            className={`social-preview-panel absolute bottom-[calc(100%+8px)] left-0 z-30 flex translate-x-[-50%] items-end overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl ring-1 ring-white/10 ${isInstantResize ? "social-preview-panel-instant" : ""} ${isPanelOpen ? "social-preview-panel-open" : ""}`}
-            style={{
-              left: `${previewLeft}px`,
-              width: `${panelSize.width}px`,
-              height: `${panelSize.height}px`,
-              opacity: isPanelOpen ? 1 : 0,
-              pointerEvents: isPanelOpen ? "auto" : "none",
+          <motion.div
+            className="social-preview-panel absolute bottom-[calc(100%+8px)] left-0 z-30 flex translate-x-[-50%] items-end overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl ring-1 ring-white/10"
+            initial={{
+              left: previewLeft,
+              width: panelSize.width,
+              height: panelSize.height,
+              opacity: 0,
             }}
+            animate={{
+              left: previewLeft,
+              width: panelSize.width,
+              height: panelSize.height,
+              opacity: isPanelOpen ? 1 : 0,
+            }}
+            transition={{
+              left: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
+              width: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
+              height: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
+              opacity: { duration: reduceMotion ? 0.14 : 0.15, ease: "linear" },
+            }}
+            style={{ pointerEvents: isPanelOpen ? "auto" : "none" }}
             aria-hidden={!isPanelOpen}
           >
             {previewLayers.map((layer) => (
@@ -663,7 +669,7 @@ function SocialContacts() {
                 onExit={removeExitedPreview}
               />
             ))}
-          </div>
+          </motion.div>
         )}
         <div className="absolute inset-0 -top-[8px] z-0" aria-hidden="true" />
       </div>
