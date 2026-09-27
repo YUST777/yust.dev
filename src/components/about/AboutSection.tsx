@@ -693,7 +693,7 @@ function SocialContacts() {
             }}
             className="group relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           >
-            <span className="text-zinc-400 transition-colors group-hover:text-white [&>svg]:h-5 [&>svg]:w-5">
+            <span className="text-zinc-400 transition-colors group-hover:text-white [&>svg]:h-6 [&>svg]:w-6">
               {link.icon}
             </span>
           </a>
