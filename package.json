@@ -12,6 +12,7 @@
     "lint": "vp lint . && tsgo --noEmit",
     "typecheck": "tsgo --noEmit",
     "seo:audit": "node scripts/seo-audit.mjs",
+    "scrape:linkedin": "python3 scripts/scrape-linkedin-followers.py",
     "migrate": "turso db shell portfolio-local < lib/migrations.sql"
   },
   "dependencies": {

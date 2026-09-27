@@ -82,7 +82,7 @@ const AVATAR_URL = "https://avatars.githubusercontent.com/u/207382177?s=128&v=4"
 const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
 const GITHUB_REPOSITORIES_API = "https://api.github.com/users/YUST777/repos?per_page=100";
-const LINKEDIN_FOLLOWERS_FALLBACK = 1993;
+const LINKEDIN_FOLLOWERS_FALLBACK = 1994;
 const GITHUB_LEVEL_CLASSES = [
   "bg-zinc-800",
   "bg-green-400/20",
@@ -91,27 +91,37 @@ const GITHUB_LEVEL_CLASSES = [
   "bg-green-400/90",
 ] as const;
 
+type LinkedinStats = {
+  followers: number;
+  connections: string;
+  source: string;
+};
+
 let githubContributionsCache: GithubContributions | undefined;
 let githubContributionsRequest: Promise<GithubContributions> | undefined;
 let githubStarsCache: number | undefined;
 let githubStarsRequest: Promise<number> | undefined;
-let linkedinFollowersCache: number | undefined;
-let linkedinFollowersRequest: Promise<number | null> | undefined;
+let linkedinStatsCache: LinkedinStats | undefined;
+let linkedinStatsRequest: Promise<LinkedinStats | null> | undefined;
 
 function getLinkedinFollowers() {
-  linkedinFollowersRequest ??= fetch("/api/linkedin-followers", {
+  linkedinStatsRequest ??= fetch("/api/linkedin-followers", {
     headers: { Accept: "application/json" },
   })
     .then(async (response) => {
       if (!response.ok) return null;
-      const data = (await response.json()) as { followers?: unknown };
+      const data = (await response.json()) as { followers?: unknown; connections?: unknown; source?: unknown };
       if (!Number.isSafeInteger(data.followers) || Number(data.followers) < 0) return null;
-      linkedinFollowersCache = Number(data.followers);
-      return linkedinFollowersCache;
+      linkedinStatsCache = {
+        followers: Number(data.followers),
+        connections: typeof data.connections === "string" ? data.connections : "500+",
+        source: typeof data.source === "string" ? data.source : "unconfigured",
+      };
+      return linkedinStatsCache;
     })
     .catch(() => null);
 
-  return linkedinFollowersRequest;
+  return linkedinStatsRequest;
 }
 
 function getGithubContributions() {
@@ -340,20 +350,21 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
 }
 
 function LinkedinPreview() {
-  const [followers, setFollowers] = useState<number | null>(() => linkedinFollowersCache ?? null);
+  const [stats, setStats] = useState<LinkedinStats | null>(() => linkedinStatsCache ?? null);
 
   useEffect(() => {
     let mounted = true;
-    void getLinkedinFollowers().then((count) => {
-      if (mounted && count !== null) setFollowers(count);
+    void getLinkedinFollowers().then((res) => {
+      if (mounted && res !== null) setStats(res);
     });
     return () => {
       mounted = false;
     };
   }, []);
 
-  const isLive = followers !== null;
-  const displayedFollowers = followers ?? LINKEDIN_FOLLOWERS_FALLBACK;
+  const isLive = stats?.source === "linkedin-scrape" || stats?.source === "linkedin-api";
+  const displayedFollowers = stats?.followers ?? LINKEDIN_FOLLOWERS_FALLBACK;
+  const displayedConnections = stats?.connections ?? "500+";
 
   return (
     <div className="w-[320px] max-w-[calc(100vw-2rem)] text-left">
@@ -384,11 +395,11 @@ function LinkedinPreview() {
                 className="mt-[2px] whitespace-nowrap text-[12px] font-medium text-[#71b7fb]"
                 title={
                   isLive
-                    ? "Live count from LinkedIn Member Follower Statistics"
-                    : "Fallback count — configure the LinkedIn API token for a live count"
+                    ? `Live count from LinkedIn (${stats?.source === "linkedin-scrape" ? "Scraped" : "API"})`
+                    : "Fallback count — configure LINKEDIN_LI_AT_COOKIE for live count"
                 }
               >
-                {displayedFollowers.toLocaleString()} followers · 500+ connections
+                {displayedFollowers.toLocaleString()} followers · {displayedConnections} connections
               </p>
             </div>
             <a
