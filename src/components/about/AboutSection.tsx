@@ -10,6 +10,7 @@ import {
   type PointerEvent,
 } from "react";
 import { Link } from "@tanstack/react-router";
+import { motion, useReducedMotion } from "framer-motion";
 
 function GithubIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
@@ -392,26 +393,6 @@ function previewIndex(preview: SocialPreview) {
   return { github: 0, linkedin: 1, cv: 2 }[preview];
 }
 
-function getTranslateX(transform: string) {
-  if (transform === "none") return 0;
-  if (typeof DOMMatrixReadOnly !== "undefined") {
-    try {
-      return new DOMMatrixReadOnly(transform).m41;
-    } catch {
-      return 0;
-    }
-  }
-
-  const matrix3d = /^matrix3d\((.+)\)$/.exec(transform);
-  if (matrix3d) return Number(matrix3d[1].split(",")[12]) || 0;
-
-  const matrix2d = /^matrix\((.+)\)$/.exec(transform);
-  if (matrix2d) return Number(matrix2d[1].split(",")[4]) || 0;
-
-  const translate = /^translateX\((-?[\d.]+)px\)$/.exec(transform);
-  return translate ? Number(translate[1]) : 0;
-}
-
 function AnimatedPreviewLayer({
   layer,
   onElement,
@@ -421,107 +402,32 @@ function AnimatedPreviewLayer({
   onElement: (element: HTMLDivElement | null) => void;
   onExit: (key: number) => void;
 }) {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<Animation | null>(null);
-  const fallbackFrameRef = useRef<number | undefined>(undefined);
-  const fallbackTimerRef = useRef<number | undefined>(undefined);
-  const setElement = useCallback(
-    (element: HTMLDivElement | null) => {
-      elementRef.current = element;
-      onElement(element);
-    },
-    [onElement],
-  );
-
-  useLayoutEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
-
-    const computedStyle = window.getComputedStyle(element);
-    const currentX = getTranslateX(computedStyle.transform);
-    const currentOpacity = Number.parseFloat(computedStyle.opacity);
-    animationRef.current?.cancel();
-    if (fallbackFrameRef.current !== undefined)
-      window.cancelAnimationFrame(fallbackFrameRef.current);
-    if (fallbackTimerRef.current !== undefined) window.clearTimeout(fallbackTimerRef.current);
-
-    const from = layer.isActive
-      ? {
-          transform: `translateX(${layer.enterOffset}px)`,
-          opacity: 0,
-        }
-      : {
-          transform: `translateX(${currentX}px)`,
-          opacity: currentOpacity,
-        };
-    const to = layer.isActive
-      ? { transform: "translateX(0px)", opacity: 1 }
-      : {
-          transform: `translateX(${currentX + layer.exitOffset}px)`,
-          opacity: 0,
-        };
-
-    element.style.transform = from.transform;
-    element.style.opacity = String(from.opacity);
-
-    const reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const duration = reduceMotion ? 0 : 420;
-    const animateWithTransitions = () => {
-      element.style.transition = "none";
-      void element.offsetWidth;
-      element.style.transition = `transform ${duration}ms cubic-bezier(0.33, 1, 0.68, 1), opacity ${duration}ms cubic-bezier(0.33, 1, 0.68, 1)`;
-      fallbackFrameRef.current = window.requestAnimationFrame(() => {
-        element.style.transform = to.transform;
-        element.style.opacity = String(to.opacity);
-        fallbackFrameRef.current = undefined;
-      });
-
-      if (!layer.isActive) {
-        fallbackTimerRef.current = window.setTimeout(() => onExit(layer.key), duration + 50);
-      }
-    };
-
-    if (typeof element.animate === "function") {
-      try {
-        const animation = element.animate([from, to], {
-          duration: reduceMotion ? 0.01 : 420,
-          easing: "cubic-bezier(0.33, 1, 0.68, 1)",
-          fill: "forwards",
-        });
-        animationRef.current = animation;
-
-        if (!layer.isActive) {
-          animation.onfinish = () => onExit(layer.key);
-        }
-      } catch {
-        animateWithTransitions();
-      }
-    } else {
-      animateWithTransitions();
-    }
-  }, [layer.enterOffset, layer.exitOffset, layer.isActive, layer.key, onExit]);
-
-  useEffect(
-    () => () => {
-      animationRef.current?.cancel();
-      if (fallbackFrameRef.current !== undefined)
-        window.cancelAnimationFrame(fallbackFrameRef.current);
-      if (fallbackTimerRef.current !== undefined) window.clearTimeout(fallbackTimerRef.current);
-    },
-    [],
-  );
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div
-      ref={setElement}
+    <motion.div
+      ref={onElement}
       className="social-preview-layer"
       aria-hidden={!layer.isActive}
       style={{ pointerEvents: layer.isActive ? "auto" : "none" }}
+      initial={reduceMotion ? { opacity: 0 } : { x: layer.enterOffset, opacity: 0 }}
+      animate={
+        layer.isActive
+          ? { x: 0, opacity: 1 }
+          : reduceMotion
+            ? { x: 0, opacity: 0 }
+            : { x: layer.exitOffset, opacity: 0 }
+      }
+      transition={{
+        duration: reduceMotion ? 0.14 : 0.42,
+        ease: [0.33, 1, 0.68, 1],
+      }}
+      onAnimationComplete={() => {
+        if (!layer.isActive) onExit(layer.key);
+      }}
     >
       <SocialPreviewContent type={layer.type} />
-    </div>
+    </motion.div>
   );
 }
 
