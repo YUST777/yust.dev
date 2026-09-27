@@ -1,4 +1,4 @@
-import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { Outlet, createFileRoute, useRouterState } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 
 import LocationIcon from "../components/icons/location";
@@ -35,6 +35,7 @@ function LiveClock() {
 
 function MainLayout() {
   const [mounted, setMounted] = useState(false);
+  const isHomePage = useRouterState({ select: (state) => state.location.pathname === "/" });
 
   useEffect(() => {
     setMounted(true);
@@ -45,7 +46,9 @@ function MainLayout() {
       <main className="flex-1 w-full pb-8">
         <Outlet />
       </main>
-      <footer className="w-full max-w-5xl mx-auto pb-12 px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-400 flex flex-col font-mono mt-auto gap-2">
+      <footer
+        className={`w-full max-w-5xl mx-auto px-4 sm:px-6 text-[10px] sm:text-[11px] text-zinc-400 flex flex-col font-mono mt-auto gap-2 ${isHomePage ? "pb-[calc(6rem+env(safe-area-inset-bottom))] sm:pb-12" : "pb-12"}`}
+      >
         <div className="border-t border-white/5 pt-8 space-y-2">
           <p className="mb-1">
             <LiveClock />

@@ -1,13 +1,13 @@
 export default function AchievementsSection() {
   return (
     <section>
-      <h2 className="text-3xl font-pixel text-white mb-8 border-b border-white/5 pb-4">
+      <h2 className="mb-6 border-b border-white/5 pb-4 font-pixel text-[clamp(19px,5.5vw,24px)] text-white sm:mb-8 sm:text-3xl">
         Notable achievements
       </h2>
       <div className="space-y-6">
         <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
@@ -32,8 +32,8 @@ export default function AchievementsSection() {
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
               The01studio on TON.{" "}
             </strong>
             Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts,
@@ -42,8 +42,8 @@ export default function AchievementsSection() {
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
               ICPC Egypt Lead.{" "}
             </strong>
             Built and scaled{" "}
@@ -62,8 +62,8 @@ export default function AchievementsSection() {
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
               3x Hackathon Winner.{" "}
             </strong>
             Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI
@@ -81,8 +81,8 @@ export default function AchievementsSection() {
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="text-zinc-400 font-mono text-sm sm:text-base md:text-lg leading-relaxed">
-            <strong className="text-white font-sans text-base sm:text-lg opacity-90 font-bold tracking-tight">
+          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
               Tanta National Summit.{" "}
             </strong>
             Won <span className="text-white">3rd place</span> in my very first year, outperforming

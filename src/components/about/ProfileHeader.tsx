@@ -2,7 +2,7 @@ export default function ProfileHeader() {
   return (
     <header>
       <p className="font-mono text-zinc-400 mb-2">Hi I'm 👋</p>
-      <h1 className="text-4xl md:text-5xl font-pixel text-white mb-4">
+      <h1 className="mb-4 text-[36px] font-pixel text-white md:text-[42px]">
         <span data-goose-name>YOUSEF</span>
         <span className="sr-only">
           {" "}

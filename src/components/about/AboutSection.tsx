@@ -14,7 +14,11 @@ import { Link } from "@tanstack/react-router";
 function GithubIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
     <svg className={className} fill="currentColor" viewBox="2 2 20 20">
-      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+      />
     </svg>
   );
 }
@@ -29,8 +33,18 @@ function LinkedinIcon({ className = "w-[18px] h-[18px]" }: { className?: string 
 
 function MailIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+      />
     </svg>
   );
 }
@@ -58,9 +72,15 @@ type GithubContributions = {
   counts: number[];
 };
 
+type GithubRepository = {
+  fork: boolean;
+  stargazers_count: number;
+};
+
 const AVATAR_URL = "https://github.com/YUST777.png?size=128";
 const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
+const GITHUB_REPOSITORIES_API = "https://api.github.com/users/YUST777/repos?per_page=100";
 const GITHUB_LEVEL_CLASSES = [
   "bg-zinc-800",
   "bg-green-400/20",
@@ -71,6 +91,8 @@ const GITHUB_LEVEL_CLASSES = [
 
 let githubContributionsCache: GithubContributions | undefined;
 let githubContributionsRequest: Promise<GithubContributions> | undefined;
+let githubStarsCache: number | undefined;
+let githubStarsRequest: Promise<number> | undefined;
 
 function getGithubContributions() {
   githubContributionsRequest ??= fetch(`${GITHUB_API}/YUST777?y=last`)
@@ -96,6 +118,32 @@ function getGithubContributions() {
     });
 
   return githubContributionsRequest;
+}
+
+function getGithubProjectStars() {
+  githubStarsRequest ??= (async () => {
+    let nextPage: string | undefined = GITHUB_REPOSITORIES_API;
+    let totalStars = 0;
+
+    while (nextPage) {
+      const response: Response = await fetch(nextPage);
+      if (!response.ok) throw new Error(`GitHub repositories responded with ${response.status}`);
+      const repositories = (await response.json()) as GithubRepository[];
+      totalStars += repositories.reduce(
+        (sum, repository) => sum + (repository.fork ? 0 : repository.stargazers_count),
+        0,
+      );
+      nextPage = response.headers.get("Link")?.match(/<([^>]+)>;\s*rel="next"/)?.[1];
+    }
+
+    githubStarsCache = totalStars;
+    return totalStars;
+  })().catch((error: unknown) => {
+    githubStarsRequest = undefined;
+    throw error;
+  });
+
+  return githubStarsRequest;
 }
 
 function toGithubWeeks({ start, levels, counts }: GithubContributions) {
@@ -157,6 +205,8 @@ function GithubPreview() {
   const [contributions, setContributions] = useState<GithubContributions | null>(
     () => githubContributionsCache ?? null,
   );
+  const [projectStars, setProjectStars] = useState<number | null>(() => githubStarsCache ?? null);
+  const [starsUnavailable, setStarsUnavailable] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -166,6 +216,13 @@ function GithubPreview() {
       })
       .catch(() => {
         if (mounted) setContributions({ total: 0, start: "", levels: "", counts: [] });
+      });
+    void getGithubProjectStars()
+      .then((stars) => {
+        if (mounted) setProjectStars(stars);
+      })
+      .catch(() => {
+        if (mounted) setStarsUnavailable(true);
       });
     return () => {
       mounted = false;
@@ -186,11 +243,31 @@ function GithubPreview() {
         </div>
         <div className="flex min-w-0 flex-col">
           <span className="text-[16px] leading-[24px] text-zinc-100">YUST777</span>
-          <p className="text-[14px] leading-[20px] text-zinc-400">
-            {contributions?.total
-              ? `${contributions.total.toLocaleString()} contributions in the last year`
-              : "Loading contributions…"}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-[6px] text-[12px] leading-[18px] text-zinc-400">
+            <span>
+              {contributions?.total
+                ? `${contributions.total.toLocaleString()} contributions in the last year`
+                : "Loading contributions…"}
+            </span>
+            {projectStars !== null && !starsUnavailable && (
+              <>
+                <span aria-hidden="true" className="text-zinc-600">
+                  ·
+                </span>
+                <span className="inline-flex items-center gap-[3px] text-zinc-500">
+                  <svg
+                    aria-hidden="true"
+                    className="h-[10px] w-[10px]"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                  >
+                    <path d="M8 0.25a.75.75 0 0 1 .673.418l1.722 3.489 3.85.559a.75.75 0 0 1 .416 1.279l-2.786 2.716.658 3.835a.75.75 0 0 1-1.088.791L8 11.527l-3.445 1.81a.75.75 0 0 1-1.088-.791l.658-3.835L1.339 5.995a.75.75 0 0 1 .416-1.279l3.85-.559L7.327.668A.75.75 0 0 1 8 .25Z" />
+                  </svg>
+                  {projectStars.toLocaleString()} stars
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </div>
       <GithubGraph contributions={contributions} />
@@ -206,9 +283,7 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
           <p className="mb-[4px] text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">
             Curriculum vitae
           </p>
-          <p className="truncate text-[15px] leading-[22px] text-zinc-100">
-            Yousef Mohammed Salah
-          </p>
+          <p className="truncate text-[15px] leading-[22px] text-zinc-100">Yousef Mohammed Salah</p>
         </div>
         <a
           className="shrink-0 rounded-full bg-zinc-100 px-[12px] py-[6px] text-[12px] font-medium text-zinc-950 transition-colors hover:bg-white"
@@ -231,8 +306,7 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
             backgroundImage:
               "radial-gradient(circle at 120% 200%, #0000000a 0%, #0000000a 50%, #c5c5c50a 50%, #c5c5c50a 100%), radial-gradient(circle at 130% -10%, #4040400a 0%, #4040400a 50%, #ffffff0a 50%, #ffffff0a 100%), linear-gradient(to right, #0a66c2, #0a66c280)",
           }}
-        >
-        </div>
+        ></div>
         <div className="relative px-[12px] pb-[12px]">
           <div className="absolute left-[12px] top-0 -translate-y-1/2 rounded-full bg-zinc-900 p-[2px]">
             <img
@@ -244,9 +318,7 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
             />
           </div>
           <div className="flex flex-col gap-[4px] pt-[32px]">
-            <div className="text-[16px] leading-[24px] text-zinc-100">
-              Yousef Mohammed Salah
-            </div>
+            <div className="text-[16px] leading-[24px] text-zinc-100">Yousef Mohammed Salah</div>
             <div className="mt-[4px] flex items-end justify-between gap-[12px]">
               <div className="min-w-0 text-[14px] leading-[20px]">
                 <p className="text-zinc-300">AI &amp; Cybersecurity Developer</p>
@@ -315,19 +387,21 @@ function AnimatedPreviewLayer({
 }) {
   const elementRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
-  const setElement = useCallback((element: HTMLDivElement | null) => {
-    elementRef.current = element;
-    onElement(element);
-  }, [onElement]);
+  const setElement = useCallback(
+    (element: HTMLDivElement | null) => {
+      elementRef.current = element;
+      onElement(element);
+    },
+    [onElement],
+  );
 
   useLayoutEffect(() => {
     const element = elementRef.current;
     if (!element) return;
 
     const computedStyle = window.getComputedStyle(element);
-    const currentX = computedStyle.transform === "none"
-      ? 0
-      : new DOMMatrixReadOnly(computedStyle.transform).m41;
+    const currentX =
+      computedStyle.transform === "none" ? 0 : new DOMMatrixReadOnly(computedStyle.transform).m41;
     const currentOpacity = Number.parseFloat(computedStyle.opacity);
     const blurMatch = computedStyle.filter.match(/blur\(([\d.]+)px\)/);
     const currentBlur = blurMatch ? Number.parseFloat(blurMatch[1]) : 0;
@@ -463,16 +537,15 @@ function SocialContacts() {
 
     const previousPreview = activePreviewRef.current;
     const nextRenderId = renderIdRef.current + 1;
-    const direction = previousPreview !== preview
-      ? Math.sign(previewIndex(preview) - previewIndex(previousPreview)) as -1 | 1
-      : 0;
+    const direction =
+      previousPreview !== preview
+        ? (Math.sign(previewIndex(preview) - previewIndex(previousPreview)) as -1 | 1)
+        : 0;
     lastDirectionRef.current = direction;
     const existingLayers = firstOpen
       ? []
       : previewLayersRef.current.map((layer) =>
-          layer.isActive
-            ? { ...layer, isActive: false, exitOffset: -200 * direction }
-            : layer,
+          layer.isActive ? { ...layer, isActive: false, exitOffset: -200 * direction } : layer,
         );
     const nextLayer: PreviewLayer = {
       type: preview,
@@ -488,7 +561,6 @@ function SocialContacts() {
     renderIdRef.current = nextRenderId;
     setActivePreview(preview);
     setRenderId(nextRenderId);
-
   };
 
   useLayoutEffect(() => {
@@ -523,15 +595,15 @@ function SocialContacts() {
     };
   }, [activePreview, isInstantResize, isPanelMounted, renderId]);
 
-  useEffect(() => () => {
-    if (closeTimeoutRef.current !== undefined) window.clearTimeout(closeTimeoutRef.current);
-    if (resizeFrameRef.current !== undefined) window.cancelAnimationFrame(resizeFrameRef.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (closeTimeoutRef.current !== undefined) window.clearTimeout(closeTimeoutRef.current);
+      if (resizeFrameRef.current !== undefined) window.cancelAnimationFrame(resizeFrameRef.current);
+    },
+    [],
+  );
 
-  const handlePointerEnter = (
-    event: PointerEvent<HTMLAnchorElement>,
-    preview: SocialPreview,
-  ) => {
+  const handlePointerEnter = (event: PointerEvent<HTMLAnchorElement>, preview: SocialPreview) => {
     if (event.pointerType !== "mouse") return;
     openPreview(event.currentTarget, preview);
   };
@@ -614,7 +686,7 @@ function SocialContacts() {
 export default function AboutSection() {
   return (
     <section>
-      <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
+      <div className="space-y-4 font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
         <p>
           I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp;
           Cybersecurity student at{" "}
