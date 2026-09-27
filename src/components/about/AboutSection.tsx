@@ -10,7 +10,7 @@ import {
   type PointerEvent,
 } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 function GithubIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
@@ -404,26 +404,20 @@ function AnimatedPreviewLayer({
   onElement: (element: HTMLDivElement | null) => void;
   onExit: (key: number) => void;
 }) {
-  const reduceMotion = useReducedMotion();
-
   return (
     <motion.div
       ref={onElement}
       className="social-preview-layer"
       aria-hidden={!layer.isActive}
       style={{ pointerEvents: layer.isActive ? "auto" : "none" }}
-      initial={
-        reduceMotion ? { opacity: 0 } : { x: layer.enterOffset, opacity: 0, filter: "blur(2px)" }
-      }
+      initial={{ x: layer.enterOffset, opacity: 0, filter: "blur(2px)" }}
       animate={
         layer.isActive
           ? { x: 0, opacity: 1, filter: "blur(0px)" }
-          : reduceMotion
-            ? { x: 0, opacity: 0, filter: "blur(0px)" }
-            : { x: layer.exitOffset, opacity: 0, filter: "blur(2px)" }
+          : { x: layer.exitOffset, opacity: 0, filter: "blur(2px)" }
       }
       transition={{
-        duration: reduceMotion ? 0.14 : 0.3,
+        duration: 0.3,
         ease: cubicOut,
       }}
       onAnimationComplete={() => {
@@ -438,7 +432,6 @@ function AnimatedPreviewLayer({
 const ignorePreviewElement = () => {};
 
 function SocialContacts() {
-  const reduceMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const [activePreview, setActivePreview] = useState<SocialPreview | null>(null);
   const [previewLayers, setPreviewLayers] = useState<PreviewLayer[]>([]);
@@ -653,10 +646,10 @@ function SocialContacts() {
               opacity: isPanelOpen ? 1 : 0,
             }}
             transition={{
-              left: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
-              width: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
-              height: { duration: isInstantResize || reduceMotion ? 0 : 0.3, ease: cubicOut },
-              opacity: { duration: reduceMotion ? 0.14 : 0.15, ease: "linear" },
+              left: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
+              width: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
+              height: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
+              opacity: { duration: 0.15, ease: "linear" },
             }}
             style={{ pointerEvents: isPanelOpen ? "auto" : "none" }}
             aria-hidden={!isPanelOpen}
