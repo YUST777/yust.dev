@@ -77,7 +77,7 @@ type GithubRepository = {
   stargazers_count: number;
 };
 
-const AVATAR_URL = "https://github.com/YUST777.png?size=128";
+const AVATAR_URL = "https://avatars.githubusercontent.com/u/207382177?s=128&v=4";
 const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
 const GITHUB_REPOSITORIES_API = "https://api.github.com/users/YUST777/repos?per_page=100";
@@ -278,7 +278,13 @@ function GithubPreview() {
 function SocialPreviewContent({ type }: { type: SocialPreview }) {
   if (type === "cv") {
     return (
-      <div className="relative h-[108px] w-[288px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl bg-zinc-950 text-left">
+      <a
+        className="group relative block h-[108px] w-[288px] max-w-[calc(100vw-2rem)] cursor-pointer overflow-hidden rounded-2xl bg-zinc-950 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        href="/cv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Yousef Mohammed Salah's CV"
+      >
         <div className="absolute inset-x-0 top-0 h-[64px] overflow-hidden bg-white">
           <img
             src="/static/images/cv-preview.webp"
@@ -299,16 +305,11 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
             </p>
             <p className="truncate text-[12px] leading-4 text-zinc-100">Yousef Mohammed Salah</p>
           </div>
-          <a
-            className="flex shrink-0 items-center rounded-full border border-white/10 px-2 py-1 text-[9px] font-medium text-zinc-300 transition-colors hover:border-white/20 hover:bg-white/5 hover:text-white"
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <span className="flex shrink-0 items-center rounded-full border border-white/10 px-2 py-1 text-[9px] font-medium text-zinc-300 transition-colors group-hover:border-white/20 group-hover:bg-white/5 group-hover:text-white">
             Open CV
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
     );
   }
 
@@ -391,6 +392,26 @@ function previewIndex(preview: SocialPreview) {
   return { github: 0, linkedin: 1, cv: 2 }[preview];
 }
 
+function getTranslateX(transform: string) {
+  if (transform === "none") return 0;
+  if (typeof DOMMatrixReadOnly !== "undefined") {
+    try {
+      return new DOMMatrixReadOnly(transform).m41;
+    } catch {
+      return 0;
+    }
+  }
+
+  const matrix3d = /^matrix3d\((.+)\)$/.exec(transform);
+  if (matrix3d) return Number(matrix3d[1].split(",")[12]) || 0;
+
+  const matrix2d = /^matrix\((.+)\)$/.exec(transform);
+  if (matrix2d) return Number(matrix2d[1].split(",")[4]) || 0;
+
+  const translate = /^translateX\((-?[\d.]+)px\)$/.exec(transform);
+  return translate ? Number(translate[1]) : 0;
+}
+
 function AnimatedPreviewLayer({
   layer,
   onElement,
@@ -402,6 +423,8 @@ function AnimatedPreviewLayer({
 }) {
   const elementRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<Animation | null>(null);
+  const fallbackFrameRef = useRef<number | undefined>(undefined);
+  const fallbackTimerRef = useRef<number | undefined>(undefined);
   const setElement = useCallback(
     (element: HTMLDivElement | null) => {
       elementRef.current = element;
@@ -415,10 +438,12 @@ function AnimatedPreviewLayer({
     if (!element) return;
 
     const computedStyle = window.getComputedStyle(element);
-    const currentX =
-      computedStyle.transform === "none" ? 0 : new DOMMatrixReadOnly(computedStyle.transform).m41;
+    const currentX = getTranslateX(computedStyle.transform);
     const currentOpacity = Number.parseFloat(computedStyle.opacity);
     animationRef.current?.cancel();
+    if (fallbackFrameRef.current !== undefined)
+      window.cancelAnimationFrame(fallbackFrameRef.current);
+    if (fallbackTimerRef.current !== undefined) window.clearTimeout(fallbackTimerRef.current);
 
     const from = layer.isActive
       ? {
@@ -439,20 +464,54 @@ function AnimatedPreviewLayer({
     element.style.transform = from.transform;
     element.style.opacity = String(from.opacity);
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const animation = element.animate([from, to], {
-      duration: reduceMotion ? 0.01 : 420,
-      easing: "cubic-bezier(0.33, 1, 0.68, 1)",
-      fill: "forwards",
-    });
-    animationRef.current = animation;
+    const reduceMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const duration = reduceMotion ? 0 : 420;
+    const animateWithTransitions = () => {
+      element.style.transition = "none";
+      void element.offsetWidth;
+      element.style.transition = `transform ${duration}ms cubic-bezier(0.33, 1, 0.68, 1), opacity ${duration}ms cubic-bezier(0.33, 1, 0.68, 1)`;
+      fallbackFrameRef.current = window.requestAnimationFrame(() => {
+        element.style.transform = to.transform;
+        element.style.opacity = String(to.opacity);
+        fallbackFrameRef.current = undefined;
+      });
 
-    if (!layer.isActive) {
-      animation.onfinish = () => onExit(layer.key);
+      if (!layer.isActive) {
+        fallbackTimerRef.current = window.setTimeout(() => onExit(layer.key), duration + 50);
+      }
+    };
+
+    if (typeof element.animate === "function") {
+      try {
+        const animation = element.animate([from, to], {
+          duration: reduceMotion ? 0.01 : 420,
+          easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+          fill: "forwards",
+        });
+        animationRef.current = animation;
+
+        if (!layer.isActive) {
+          animation.onfinish = () => onExit(layer.key);
+        }
+      } catch {
+        animateWithTransitions();
+      }
+    } else {
+      animateWithTransitions();
     }
   }, [layer.enterOffset, layer.exitOffset, layer.isActive, layer.key, onExit]);
 
-  useEffect(() => () => animationRef.current?.cancel(), []);
+  useEffect(
+    () => () => {
+      animationRef.current?.cancel();
+      if (fallbackFrameRef.current !== undefined)
+        window.cancelAnimationFrame(fallbackFrameRef.current);
+      if (fallbackTimerRef.current !== undefined) window.clearTimeout(fallbackTimerRef.current);
+    },
+    [],
+  );
 
   return (
     <div
@@ -594,8 +653,8 @@ function SocialContacts() {
     };
 
     measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(content);
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(measure);
+    observer?.observe(content);
 
     if (isInstantResize) {
       resizeFrameRef.current = window.requestAnimationFrame(() => {
@@ -605,7 +664,7 @@ function SocialContacts() {
     }
 
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       if (resizeFrameRef.current !== undefined) {
         window.cancelAnimationFrame(resizeFrameRef.current);
         resizeFrameRef.current = undefined;
@@ -662,6 +721,11 @@ function SocialContacts() {
             title={link.label}
             onPointerEnter={(event) => {
               if (link.preview) handlePointerEnter(event, link.preview);
+            }}
+            onMouseEnter={(event) => {
+              if (typeof window.PointerEvent === "undefined" && link.preview) {
+                openPreview(event.currentTarget, link.preview);
+              }
             }}
             onFocus={(event) => {
               if (link.preview) handleFocus(event, link.preview);
