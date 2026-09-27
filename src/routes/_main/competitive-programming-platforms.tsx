@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Competitive Programming Tools & Platforms | yust.dev";
@@ -51,10 +50,6 @@ const pageSchema = {
       name: TITLE,
       description: DESCRIPTION,
       type: "CollectionPage",
-      breadcrumbs: [
-        { name: "Home", url: SITE_URL },
-        { name: "Competitive Programming Platforms", url: PAGE_URL },
-      ],
     }),
     {
       "@type": "ItemList",
@@ -103,13 +98,6 @@ export const Route = createFileRoute("/_main/competitive-programming-platforms")
 function CpPlatformsPage() {
   return (
     <article className="mx-auto max-w-5xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Competitive Programming Platforms", url: PAGE_URL },
-        ]}
-      />
-
       <header className="max-w-3xl">
         <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-zinc-500">
           Competitive programming portfolio

@@ -12,7 +12,6 @@ import ProjectCard from "./ProjectCard";
 import { sounds } from "@/lib/sounds";
 
 const ProjectModal = lazy(() => import("./ProjectModal"));
-const ScopedSmoothScroll = lazy(() => import("./ScopedSmoothScroll"));
 
 // Hoisted regex to module scope per React best practices (avoids recreation each render)
 const CAMEL_CASE_REGEX = /([A-Z])/g;

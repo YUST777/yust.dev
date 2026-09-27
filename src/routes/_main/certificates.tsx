@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Certificates & Credentials | Yousef Mohammed Salah";
@@ -15,10 +14,6 @@ const certificatesPageSchema = webPageSchema({
   name: TITLE,
   description: DESCRIPTION,
   type: "CollectionPage",
-  breadcrumbs: [
-    { name: "Home", url: SITE_URL },
-    { name: "Certificates", url: `${SITE_URL}/certificates` },
-  ],
 });
 
 export const Route = createFileRoute("/_main/certificates")({
@@ -170,13 +165,6 @@ function CertificatesPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Certificates", url: `${SITE_URL}/certificates` },
-        ]}
-      />
-
       <div>
         <h1 className="text-4xl font-pixel text-white uppercase">CERTIFICATES</h1>
       </div>

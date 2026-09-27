@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, memo, useCallback } from "react";
 import gsap from "gsap";
 import SvgIcon from "./SvgIcon";
-import ScopedSmoothScroll from "./ScopedSmoothScroll";
 
 // Sub-components for better performance and readability
 const FeatureCard = memo(({ feature }: { feature: any }) => (
@@ -71,9 +70,15 @@ const ProjectModal = memo(({ isOpen, onClose, project }: ProjectModalProps) => {
     setLoadingImages(true);
     try {
       const response = await fetch("/api/sticker-collections");
-      const data = await response.json();
-      if (data.collections) {
-        const images = data.collections.map((col: { imageUrl: string }) => col.imageUrl);
+      if (!response.ok) {
+        throw new Error(`Sticker collections responded with ${response.status}`);
+      }
+
+      const data = (await response.json()) as {
+        collections?: Array<{ imageUrl: string }>;
+      };
+      if (Array.isArray(data.collections)) {
+        const images = data.collections.map((collection) => collection.imageUrl);
         setCdnImages(images);
       }
     } catch (error) {

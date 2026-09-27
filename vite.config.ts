@@ -20,8 +20,8 @@ function getCommitHash() {
 
 export default defineConfig({
   define: {
-    __COMMIT_HASH__: JSON.stringify(getCommitHash()),
-    __APP_VERSION__: JSON.stringify("0.4.0"),
+    "import.meta.env.VITE_COMMIT_HASH": JSON.stringify(getCommitHash()),
+    "import.meta.env.VITE_APP_VERSION": JSON.stringify("0.4.0"),
   },
   fmt: {
     ignorePatterns: ["src/routeTree.gen.ts"],

@@ -20,7 +20,6 @@ const SPRITE_COLS = 10;
 const SPRITE_ROWS = 8;
 const ASPECT_RATIO = 1;
 const GOOSE_SPRITE_URL = "/static/images/goose-sprite-final.webp";
-const DPR = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
 
 const ANIM = {
   idle: [0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
@@ -177,9 +176,13 @@ function startGooseCanvas(
   spriteImg: HTMLImageElement,
   commands?: GooseCommands,
 ) {
-  const ctx = canvas.getContext("2d", { alpha: true })!;
+  const context = canvas.getContext("2d", { alpha: true });
+  if (!context) return () => {};
+  const ctx: CanvasRenderingContext2D = context;
+
   let running = true;
   let frameTickRef = 0;
+  let frameId: number | null = null;
 
   // ── State (all mutable, no React) ──
   let brainState: GooseBrainState = "idle";
@@ -236,11 +239,12 @@ function startGooseCanvas(
 
   // ── Resize canvas to viewport ──
   function resize() {
-    canvas.width = window.innerWidth * DPR;
-    canvas.height = window.innerHeight * DPR;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
     canvas.style.width = `${window.innerWidth}px`;
     canvas.style.height = `${window.innerHeight}px`;
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const clamped = clampGoosePos(pos.x, pos.y);
     pos.x = clamped.x;
     pos.y = clamped.y;
@@ -253,6 +257,17 @@ function startGooseCanvas(
       clearTimeout(actionTimer);
       actionTimer = null;
     }
+  }
+
+  function defer(callback: () => void, delay: number) {
+    let timer: ReturnType<typeof setTimeout>;
+    timer = setTimeout(() => {
+      const index = deferredTimers.indexOf(timer);
+      if (index >= 0) deferredTimers.splice(index, 1);
+      if (running) callback();
+    }, delay);
+    deferredTimers.push(timer);
+    return timer;
   }
 
   function pickTarget() {
@@ -278,12 +293,11 @@ function startGooseCanvas(
       born: Date.now(),
     });
     if (notes.length > 5) notes.shift();
-    const len = notes.length;
-    const tid = setTimeout(() => {
-      const idx = notes.findIndex((n) => n === notes[len - 1]);
+    const note = notes[notes.length - 1];
+    defer(() => {
+      const idx = notes.findIndex((n) => n === note);
       if (idx >= 0) notes.splice(idx, 1);
     }, 8000);
-    deferredTimers.push(tid);
   }
 
   function leaveFootprint() {
@@ -294,12 +308,11 @@ function startGooseCanvas(
       born: Date.now(),
     });
     if (footprints.length > 16) footprints.shift();
-    const len = footprints.length;
-    const tid = setTimeout(() => {
-      const idx = footprints.findIndex((f) => f === footprints[len - 1]);
+    const footprint = footprints[footprints.length - 1];
+    defer(() => {
+      const idx = footprints.findIndex((f) => f === footprint);
       if (idx >= 0) footprints.splice(idx, 1);
     }, 6000);
-    deferredTimers.push(tid);
   }
 
   // ── Draw functions ──
@@ -547,10 +560,10 @@ function startGooseCanvas(
           ns.phase = "grab_name";
           isHonking = true;
           playHonkSound();
-          setTimeout(() => {
+          defer(() => {
             isHonking = false;
           }, 600);
-          setTimeout(() => {
+          defer(() => {
             if (ns.nameEl) ns.nameEl.style.visibility = "hidden";
             ns.phase = "drag_offscreen";
             facingRight = ns.exitX > pos.x;
@@ -570,12 +583,11 @@ function startGooseCanvas(
         if (Math.abs(dx) < 20 || pos.x < -150 || pos.x > window.innerWidth + 150) {
           ns.phase = "wait_offscreen";
           ns.carriedText = "hire yousef pls";
-          const tid = setTimeout(() => {
-            if (!running || !nameSteal) return;
+          defer(() => {
+            if (!nameSteal) return;
             ns.phase = "return_with_hire";
             facingRight = ns.returnTarget.x > pos.x;
           }, 1200);
-          deferredTimers.push(tid);
         } else {
           pos.x += Math.sign(dx) * spd * dt;
           footprintAccum += spd * dt;
@@ -615,20 +627,19 @@ function startGooseCanvas(
             ns.nameEl.style.color = "#f97316";
             ns.nameEl.style.transition = "color 3s ease";
           }
-          setTimeout(() => {
+          defer(() => {
             isHonking = false;
             ns.phase = "done";
-            nameSteal = null;
             hasStoleName = true;
             brainState = "idle";
-            const tid2 = setTimeout(() => {
+            defer(() => {
               if (ns.nameEl) {
                 ns.nameEl.textContent = ns.originalText;
                 ns.nameEl.style.color = "";
                 ns.nameEl.style.transition = "";
               }
+              nameSteal = null;
             }, 8000);
-            deferredTimers.push(tid2);
             actionTimer = setTimeout(scheduleAction, 1500);
           }, 800);
         }
@@ -690,15 +701,14 @@ function startGooseCanvas(
         }
         if (Math.abs(pos.x - mb.exitX) < 30 || pos.x < -150 || pos.x > window.innerWidth + 150) {
           mb.phase = "wait_offscreen";
-          const tid = setTimeout(
+          defer(
             () => {
-              if (!running || !memeBring) return;
+              if (!memeBring) return;
               mb.phase = "return_with_meme";
               facingRight = mb.dropTarget.x > pos.x;
             },
             1000 + Math.random() * 800,
           );
-          deferredTimers.push(tid);
         }
         break;
       }
@@ -732,7 +742,7 @@ function startGooseCanvas(
             born: Date.now(),
           });
           if (droppedMemes.length > 4) droppedMemes.shift();
-          setTimeout(() => {
+          defer(() => {
             isHonking = false;
             mb.phase = "done";
             memeBring = null;
@@ -941,7 +951,7 @@ function startGooseCanvas(
             dropNote();
             isHonking = true;
             playHonkSound();
-            setTimeout(() => {
+            defer(() => {
               isHonking = false;
             }, 500);
           }
@@ -978,7 +988,7 @@ function startGooseCanvas(
     drawSprite(currentFrame);
     drawNotes();
 
-    requestAnimationFrame(gameLoop);
+    frameId = requestAnimationFrame(gameLoop);
   }
 
   // ── Event handlers (raw DOM, no React) ──
@@ -1022,7 +1032,7 @@ function startGooseCanvas(
       playHonkSound();
       isHonking = true;
       dropNote();
-      setTimeout(() => {
+      defer(() => {
         isHonking = false;
       }, 800);
     }
@@ -1082,14 +1092,18 @@ function startGooseCanvas(
 
   clearActionTimer();
   actionTimer = setTimeout(scheduleAction, 500);
-  requestAnimationFrame(gameLoop);
+  frameId = requestAnimationFrame(gameLoop);
 
   // ── Cleanup function ──
   return () => {
     running = false;
     clearActionTimer();
+    if (frameId !== null) {
+      cancelAnimationFrame(frameId);
+      frameId = null;
+    }
     for (const t of deferredTimers) clearTimeout(t);
-    canvas.removeEventListener("pointermove", onPointerMove);
+    deferredTimers.length = 0;
     window.removeEventListener("pointermove", onPointerMove);
     window.removeEventListener("pointerdown", onPointerDown);
     window.removeEventListener("pointerup", onPointerUp);
@@ -1100,6 +1114,13 @@ function startGooseCanvas(
       nameSteal.nameEl.style.visibility = "visible";
       nameSteal.nameEl.style.color = "";
       nameSteal.nameEl.style.transition = "";
+    }
+    if (commands) {
+      commands.stealName = () => {};
+      commands.bringMeme = () => {};
+      commands.chaseCursor = () => {};
+      commands.dropNote = () => {};
+      commands.wander = () => {};
     }
   };
 }
@@ -1121,7 +1142,7 @@ export function DesktopGoose({ initiallyActive = false }: { initiallyActive?: bo
     wander: () => {},
   });
 
-  const isDev = process.env.NODE_ENV !== "production";
+  const isDev = import.meta.env.DEV;
 
   // Load sprite image once
   const spriteImgRef = useRef<HTMLImageElement | null>(null);
@@ -1139,17 +1160,21 @@ export function DesktopGoose({ initiallyActive = false }: { initiallyActive?: bo
     const img = spriteImgRef.current;
 
     // Wait for sprite to load if not ready
+    let cancelled = false;
     const start = () => {
+      if (cancelled) return;
       cleanupRef.current = startGooseCanvas(canvas, img, commandsRef.current);
     };
 
-    if (img.complete) {
+    if (img.complete && img.naturalWidth > 0) {
       start();
     } else {
       img.onload = start;
     }
 
     return () => {
+      cancelled = true;
+      if (img.onload === start) img.onload = null;
       if (cleanupRef.current) {
         cleanupRef.current();
         cleanupRef.current = null;

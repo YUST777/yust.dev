@@ -331,6 +331,11 @@ try {
 const outputDir = join(rootDir, ".output/public/static/images");
 try {
   execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
-} catch {}
+} catch (error) {
+  console.warn(
+    "[OG Generator - Certificates] Could not copy generated images to the build output:",
+    error instanceof Error ? error.message : error,
+  );
+}
 
 console.log(`[OG Generator - Certificates] Successfully generated og-certificates.png + og-certificates.webp + og-certificates.svg!`);

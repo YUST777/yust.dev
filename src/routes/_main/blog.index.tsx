@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { posts, type BlogPost } from "@/data/blog";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Software, AI Security & Hackathon Stories | yust.dev";
@@ -13,10 +12,6 @@ const blogIndexSchema = webPageSchema({
   name: TITLE,
   description: DESCRIPTION,
   type: "CollectionPage",
-  breadcrumbs: [
-    { name: "Home", url: SITE_URL },
-    { name: "Blog", url: `${SITE_URL}/blog` },
-  ],
 });
 
 export const Route = createFileRoute("/_main/blog/")({
@@ -68,13 +63,6 @@ function BlogPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Blog", url: `${SITE_URL}/blog` },
-        ]}
-      />
-
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-pixel text-white uppercase">blog</h1>

@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { posts } from "@/data/blog";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
 export const Route = createFileRoute("/_main/blog/$postId")({
@@ -125,14 +124,6 @@ function PostPage() {
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Blog", url: `${SITE_URL}/blog` },
-          { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
-        ]}
-      />
-
       <div className="space-y-4">
         <h1 className="text-3xl md:text-5xl font-sans font-bold text-white tracking-tight leading-tight">
           {post.title}
@@ -285,14 +276,17 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
   const overflow = Math.max(0, images.length - 4);
   const thumbCount = visibleThumbs.length;
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setOpenIndex((i) => {
-      if (i === null) return null;
-      if (newDirection > 0) return (i + 1) % images.length;
-      return (i - 1 + images.length) % images.length;
-    });
-  };
+  const paginate = useCallback(
+    (newDirection: number) => {
+      setDirection(newDirection);
+      setOpenIndex((i) => {
+        if (i === null) return null;
+        if (newDirection > 0) return (i + 1) % images.length;
+        return (i - 1 + images.length) % images.length;
+      });
+    },
+    [images.length],
+  );
 
   useEffect(() => {
     if (openIndex === null) return;
@@ -309,7 +303,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
       document.body.classList.remove("drawer-open");
       document.body.style.overflow = "";
     };
-  }, [openIndex, images.length]);
+  }, [openIndex, paginate]);
 
   return (
     <>

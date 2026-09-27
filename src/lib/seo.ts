@@ -72,11 +72,6 @@ export const KEYWORDS = [
   "AI cybersecurity Egypt",
 ].join(", ");
 
-export interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
-
 export interface BlogPostMeta {
   slug: string;
   title: string;
@@ -185,12 +180,11 @@ export function siteGraph() {
   };
 }
 
-/** WebPage with a stable @id and breadcrumb trail. */
+/** WebPage with a stable @id. */
 export function webPageSchema(opts: {
   url: string;
   name: string;
   description: string;
-  breadcrumbs: BreadcrumbItem[];
   type?: "WebPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 }) {
   const type = opts.type ?? "WebPage";
@@ -210,19 +204,6 @@ export function webPageSchema(opts: {
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     ...entityFields,
-    breadcrumb: breadcrumbSchema(opts.breadcrumbs),
-  };
-}
-
-export function breadcrumbSchema(items: BreadcrumbItem[]) {
-  return {
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
   };
 }
 
@@ -261,11 +242,6 @@ export function blogPostingSchema(post: BlogPostMeta) {
     publisher: { "@id": PERSON_ID },
     image: [image],
     mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#webpage` },
-    breadcrumb: breadcrumbSchema([
-      { name: "Home", url: SITE_URL },
-      { name: "Blog", url: `${SITE_URL}/blog` },
-      { name: post.title, url },
-    ]),
     inLanguage: "en",
     url,
   };
@@ -292,11 +268,6 @@ export function projectPageSchema(opts: {
         url: opts.url,
         name: opts.name,
         description: opts.description,
-        breadcrumbs: [
-          { name: "Home", url: SITE_URL },
-          { name: "Projects", url: `${SITE_URL}/projects` },
-          { name: opts.name, url: opts.url },
-        ],
         type: "WebPage",
       }),
       {
@@ -327,10 +298,6 @@ export function projectsCollectionSchema(items: ProjectListItem[]) {
     inLanguage: "en",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
-    breadcrumb: breadcrumbSchema([
-      { name: "Home", url: SITE_URL },
-      { name: "Projects", url },
-    ]),
     mainEntity: {
       "@type": "ItemList",
       itemListElement: items.map((p, i) => ({

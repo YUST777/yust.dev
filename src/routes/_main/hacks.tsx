@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
 const TITLE = "Hackathons & Awards | Yousef Mohammed Salah · yust.dev";
@@ -12,10 +11,6 @@ const hacksPageSchema = webPageSchema({
   url: `${SITE_URL}/hacks`,
   name: TITLE,
   description: DESCRIPTION,
-  breadcrumbs: [
-    { name: "Home", url: SITE_URL },
-    { name: "Hackathons", url: `${SITE_URL}/hacks` },
-  ],
 });
 
 export const Route = createFileRoute("/_main/hacks")({
@@ -325,12 +320,6 @@ function HacksPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Hackathons", url: `${SITE_URL}/hacks` },
-        ]}
-      />
       <div>
         <h1 className="text-4xl font-pixel text-white uppercase">
           HACKATHONS WON ( {hacks.length} )

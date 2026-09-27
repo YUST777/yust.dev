@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Projects from "../../components/projects/Projects";
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, buildRouteHead, jsonLdString, projectsCollectionSchema } from "@/lib/seo";
 
 const TITLE = "Yousef's Projects | AI, Security & Full-Stack Builds";

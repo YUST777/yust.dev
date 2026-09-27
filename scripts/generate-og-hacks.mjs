@@ -419,10 +419,13 @@ try {
 
 // Copy to .output if build directory exists
 const outputDir = join(rootDir, ".output/public/static/images");
-if (readFileSync) {
-  try {
-    execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
-  } catch {}
+try {
+  execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
+} catch (error) {
+  console.warn(
+    "[OG Generator - Hacks] Could not copy generated images to the build output:",
+    error instanceof Error ? error.message : error,
+  );
 }
 
 console.log(`[OG Generator - Satori] Successfully generated TRUE Satori SVG og-hacks.svg + 2K PNG & WebP!`);

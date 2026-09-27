@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
-import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { archiveProjectsData, projectsData } from "@/components/projects/ProjectsData";
 import { DRAWER_COMPONENTS } from "@/components/projects/drawers";
 import type { Project } from "@/components/projects/types";
@@ -87,14 +86,6 @@ function ProjectPage() {
 
   return (
     <article className="mx-auto max-w-4xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
-      <Breadcrumbs
-        items={[
-          { name: "Home", url: SITE_URL },
-          { name: "Projects", url: `${SITE_URL}/projects` },
-          { name: project.title, url: `${SITE_URL}/projects/${project.slug}` },
-        ]}
-      />
-
       <header className="mt-8 border-b border-white/10 pb-10">
         {project.tag && (
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">

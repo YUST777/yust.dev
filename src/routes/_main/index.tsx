@@ -13,7 +13,6 @@ const aboutPageSchema = webPageSchema({
   name: TITLE,
   description: DESCRIPTION,
   type: "ProfilePage",
-  breadcrumbs: [{ name: "Home", url: SITE_URL }],
 });
 
 export const Route = createFileRoute("/_main/")({

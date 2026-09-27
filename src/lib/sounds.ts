@@ -117,6 +117,10 @@ export const sounds = {
         loading = true;
         try {
           const resp = await fetch("/static/goose-honk.mp3");
+          if (!resp.ok) {
+            throw new Error(`Goose honk asset responded with ${resp.status}`);
+          }
+
           const arrayBuf = await resp.arrayBuffer();
           honkBuffer = await ctx.decodeAudioData(arrayBuf);
         } catch (err) {
