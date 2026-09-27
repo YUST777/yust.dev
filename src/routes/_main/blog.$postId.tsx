@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { posts } from "./blog.index";
+import { posts } from "@/data/blog";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { SITE_URL, blogPostingSchema, buildRouteHead, jsonLdString } from "@/lib/seo";
 
