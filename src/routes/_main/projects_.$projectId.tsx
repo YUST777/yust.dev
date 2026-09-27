@@ -1,10 +1,16 @@
 import { Suspense } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 
-import { archiveProjectsData, projectsData } from "@/components/projects/ProjectsData";
+import {
+  archiveProjectsData,
+  isWeb3Project,
+  projectsData,
+} from "@/components/projects/ProjectsData";
 import { DRAWER_COMPONENTS } from "@/components/projects/drawers";
 import type { Project } from "@/components/projects/types";
 import { SITE_URL, buildRouteHead, jsonLdString, projectPageSchema } from "@/lib/seo";
+import { isEgyptRequest } from "@/lib/server-geo";
 
 const projectPages = [...projectsData, ...archiveProjectsData].filter(
   (project): project is Project & { slug: string; seoTitle: string } =>
@@ -27,14 +33,21 @@ function getMetaDescription(project: Project) {
   return description.length <= 155 ? description : `${description.slice(0, 152).trimEnd()}…`;
 }
 
+const loadProject = createServerFn({ method: "GET" })
+  .validator((input: { projectId: string }) => input)
+  .handler(({ data }) => ({
+    project: getProject(data.projectId) ?? null,
+    hideWeb3: isEgyptRequest(),
+  }));
+
 export const Route = createFileRoute("/_main/projects_/$projectId")({
-  loader: ({ params }) => {
-    const project = getProject(params.projectId);
-    if (!project) throw notFound();
-    return project;
+  loader: async ({ params }) => {
+    const { project, hideWeb3 } = await loadProject({ data: { projectId: params.projectId } });
+    if (!project || (hideWeb3 && isWeb3Project(project))) throw notFound();
+    return { project, hideWeb3 };
   },
-  head: ({ params }) => {
-    const project = getProject(params.projectId);
+  head: ({ params, loaderData }) => {
+    const project = loaderData?.project;
     if (!project) {
       return buildRouteHead({
         title: "Project Not Found | yust.dev",
@@ -77,9 +90,11 @@ export const Route = createFileRoute("/_main/projects_/$projectId")({
 });
 
 function ProjectPage() {
-  const project = Route.useLoaderData();
+  const { project, hideWeb3 } = Route.useLoaderData();
   const relatedProjects = projectPages
-    .filter((candidate) => candidate.slug !== project.slug)
+    .filter(
+      (candidate) => candidate.slug !== project.slug && (!hideWeb3 || !isWeb3Project(candidate)),
+    )
     .slice(0, 3);
 
   const DrawerComponent = project.drawerId ? DRAWER_COMPONENTS[project.drawerId] : null;

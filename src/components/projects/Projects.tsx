@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import BentoTilt from "./BentoTilt";
 import { VideoPlayer } from "./VideoPlayer";
-import { projectsData, archiveProjectsData } from "./ProjectsData";
+import { isWeb3Project, projectsData, archiveProjectsData } from "./ProjectsData";
 import { Project } from "./types";
 import ProjectCard from "./ProjectCard";
 import { sounds } from "@/lib/sounds";
@@ -124,7 +124,7 @@ function getDynamicSpan(project: Project, category: string): string {
   return project.span || "md:col-span-3 md:row-span-1";
 }
 
-export default function Projects() {
+export default function Projects({ hideWeb3 = false }: { hideWeb3?: boolean }) {
   const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -132,15 +132,41 @@ export default function Projects() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Featured");
 
+  const visibleCategories = useMemo(
+    () => (hideWeb3 ? CATEGORIES.filter((category) => category !== "Web3") : CATEGORIES),
+    [hideWeb3],
+  );
+
+  const visibleMainProjects = useMemo(
+    () => (hideWeb3 ? MAIN_PROJECTS.filter((project) => !isWeb3Project(project)) : MAIN_PROJECTS),
+    [hideWeb3],
+  );
+
+  const visibleArchiveProjects = useMemo(
+    () =>
+      hideWeb3
+        ? archiveProjectsData.filter((project) => !isWeb3Project(project))
+        : archiveProjectsData,
+    [hideWeb3],
+  );
+
+  const visibleCaseStudies = useMemo(
+    () =>
+      hideWeb3
+        ? PROJECT_CASE_STUDIES.filter((project) => !isWeb3Project(project))
+        : PROJECT_CASE_STUDIES,
+    [hideWeb3],
+  );
+
   const filteredProjects = useMemo(() => {
     if (selectedCategory === "Featured") {
-      return MAIN_PROJECTS.filter((p) => isFeaturedProject(p));
+      return visibleMainProjects.filter((p) => isFeaturedProject(p));
     }
-    return MAIN_PROJECTS.filter((p) => {
+    return visibleMainProjects.filter((p) => {
       if (p.isArchive || p.isMinimal) return false;
       return belongsToCategory(p, selectedCategory);
     });
-  }, [selectedCategory]);
+  }, [selectedCategory, visibleMainProjects]);
 
   // Typing animation state
   const [currentText, setCurrentText] = useState("");
@@ -224,7 +250,7 @@ export default function Projects() {
       {/* Category Filter Pills & View GitHub Button Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap shrink min-w-0">
-          {CATEGORIES.map((category) => {
+          {visibleCategories.map((category) => {
             const isActive = selectedCategory === category;
             return (
               <button
@@ -271,7 +297,7 @@ export default function Projects() {
         ))}
 
         {isExpanded &&
-          archiveProjectsData.map((project) => (
+          visibleArchiveProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -321,7 +347,7 @@ export default function Projects() {
           </p>
         </div>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PROJECT_CASE_STUDIES.map((project) => (
+          {visibleCaseStudies.map((project) => (
             <li key={project.id}>
               <Link
                 to="/projects/$projectId"

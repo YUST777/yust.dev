@@ -1,12 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import Projects from "../../components/projects/Projects";
 import { SITE_URL, buildRouteHead, jsonLdString, projectsCollectionSchema } from "@/lib/seo";
+import { isEgyptRequest } from "@/lib/server-geo";
 
 const TITLE = "Yousef's Projects | AI, Security & Full-Stack Builds";
 const DESCRIPTION =
   "Explore Yousef Mohammed Salah's full-stack, AI security, Web3, and competitive programming projects, including Verdict.run and Sast.tech.";
+const EGYPT_DESCRIPTION =
+  "Explore Yousef Mohammed Salah's full-stack, AI security, and competitive programming projects, including Verdict.run and Sast.tech.";
 
-const projectsSchema = projectsCollectionSchema([
+const projectsSchemaItems = [
   {
     name: "Verdict.run",
     url: "https://verdict.run",
@@ -61,13 +65,29 @@ const projectsSchema = projectsCollectionSchema([
     description:
       "Telegram Mini App for collectors: portfolio tracking, design tools, and play-to-earn games on TON.",
   },
+];
+
+const EGYPT_HIDDEN_PROJECT_NAMES = new Set([
+  "10K Runner",
+  "Gifts Charts",
+  "Sketchz",
+  "Collectable Kit",
 ]);
 
+const loadProjectVisibility = createServerFn({ method: "GET" }).handler(() => {
+  return { hideWeb3: isEgyptRequest() };
+});
+
 export const Route = createFileRoute("/_main/projects")({
-  head: () => {
+  loader: () => loadProjectVisibility(),
+  head: ({ loaderData }) => {
+    const hideWeb3 = loaderData?.hideWeb3 ?? false;
+    const visibleSchemaItems = hideWeb3
+      ? projectsSchemaItems.filter(({ name }) => !EGYPT_HIDDEN_PROJECT_NAMES.has(name))
+      : projectsSchemaItems;
     const base = buildRouteHead({
       title: TITLE,
-      description: DESCRIPTION,
+      description: hideWeb3 ? EGYPT_DESCRIPTION : DESCRIPTION,
       path: "/projects",
       image: `${SITE_URL}/static/images/og-projects.png?v=2`,
     });
@@ -76,7 +96,7 @@ export const Route = createFileRoute("/_main/projects")({
       scripts: [
         {
           type: "application/ld+json",
-          children: jsonLdString(projectsSchema),
+          children: jsonLdString(projectsCollectionSchema(visibleSchemaItems)),
         },
       ],
     };
@@ -85,6 +105,8 @@ export const Route = createFileRoute("/_main/projects")({
 });
 
 function ProjectsPage() {
+  const { hideWeb3 } = Route.useLoaderData();
+
   return (
     <div className="bg-transparent text-white pt-16 sm:pt-44">
       <section id="projects" className="bg-dark px-4 pb-20 md:px-6 md:pb-32">
@@ -93,7 +115,7 @@ function ProjectsPage() {
             <h1 className="font-pixel text-4xl uppercase text-white">PROJECTS</h1>
           </div>
 
-          <Projects />
+          <Projects hideWeb3={hideWeb3} />
         </div>
       </section>
     </div>

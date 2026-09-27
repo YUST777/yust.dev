@@ -1,4 +1,4 @@
-export default function AchievementsSection() {
+export default function AchievementsSection({ hideWeb3 = false }: { hideWeb3?: boolean }) {
   return (
     <section>
       <h2 className="mb-6 border-b border-white/5 pb-4 font-pixel text-[clamp(19px,5.5vw,24px)] text-white sm:mb-8 sm:text-3xl">
@@ -31,15 +31,18 @@ export default function AchievementsSection() {
           </p>
         </div>
 
-        <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
-            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              The01Studio — Web3 Products.{" "}
-            </strong>
-            Founded a TON-focused studio and shipped Telegram mini-apps including @giftscharts and
-            @collectablekit, reaching <span className="text-white">2,000+ daily active users</span>.
-          </p>
-        </div>
+        {!hideWeb3 && (
+          <div className="border-l border-zinc-800 pl-4 py-1">
+            <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
+              <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
+                The01Studio — Web3 Products.{" "}
+              </strong>
+              Founded a TON-focused studio and shipped Telegram mini-apps including @giftscharts and
+              @collectablekit, reaching{" "}
+              <span className="text-white">2,000+ daily active users</span>.
+            </p>
+          </div>
+        )}
 
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">

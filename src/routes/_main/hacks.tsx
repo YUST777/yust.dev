@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import { motion } from "framer-motion";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
+import { isEgyptRequest } from "@/lib/server-geo";
 
 const TITLE = "Hackathons & Awards | Yousef Mohammed Salah · yust.dev";
 const DESCRIPTION =
@@ -13,7 +15,12 @@ const hacksPageSchema = webPageSchema({
   description: DESCRIPTION,
 });
 
+const loadVisitorVisibility = createServerFn({ method: "GET" }).handler(() => ({
+  hideWeb3: isEgyptRequest(),
+}));
+
 export const Route = createFileRoute("/_main/hacks")({
+  loader: () => loadVisitorVisibility(),
   head: () => {
     const base = buildRouteHead({
       title: TITLE,
@@ -321,7 +328,11 @@ function PixelDeny({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { className
 }
 
 function HacksPage() {
+  const { hideWeb3 } = Route.useLoaderData();
   const [showFailed, setShowFailed] = useState(false);
+  const visibleFailedHacks = hideWeb3
+    ? failedHacks.filter((hack) => !hack.title.toLowerCase().includes("monterminal"))
+    : failedHacks;
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -432,7 +443,7 @@ function HacksPage() {
         }}
       >
         <div className="min-h-0 overflow-hidden space-y-16 pt-8">
-          {failedHacks.map((hack, i) => (
+          {visibleFailedHacks.map((hack, i) => (
             <div key={i} className="flex flex-col gap-3">
               <h2
                 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}

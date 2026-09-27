@@ -1,5 +1,25 @@
 import { Project } from "./types";
 
+const WEB3_PROJECT_MARKERS = [
+  "10k",
+  "collectable",
+  "gifts",
+  "sketchz",
+  "monterminal",
+  "ethereum",
+  "onchain",
+  "web3",
+  "play-to-earn",
+];
+
+export function isWeb3Project(project: Pick<Project, "tag" | "title" | "slug">): boolean {
+  const searchableText = [project.tag, project.title, project.slug]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return WEB3_PROJECT_MARKERS.some((marker) => searchableText.includes(marker));
+}
+
 export const projectsData: Project[] = [
   {
     id: 7,
