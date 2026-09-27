@@ -278,21 +278,36 @@ function GithubPreview() {
 function SocialPreviewContent({ type }: { type: SocialPreview }) {
   if (type === "cv") {
     return (
-      <div className="flex w-[320px] max-w-[calc(100vw-2rem)] items-center justify-between gap-[16px] p-[16px] text-left">
-        <div className="min-w-0">
-          <p className="mb-[4px] text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">
-            Curriculum vitae
-          </p>
-          <p className="truncate text-[15px] leading-[22px] text-zinc-100">Yousef Mohammed Salah</p>
+      <div className="relative h-[108px] w-[288px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl bg-zinc-950 text-left">
+        <div className="absolute inset-x-0 top-0 h-[64px] overflow-hidden bg-white">
+          <img
+            src="/static/images/cv-preview.webp"
+            alt=""
+            className="absolute inset-x-0 top-0 h-auto w-full object-cover object-top"
+            width="640"
+            height="905"
+          />
         </div>
-        <a
-          className="shrink-0 rounded-full bg-zinc-100 px-[12px] py-[6px] text-[12px] font-medium text-zinc-950 transition-colors hover:bg-white"
-          href="/cv.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open
-        </a>
+        <div
+          className="absolute inset-x-0 top-[52px] h-[12px] bg-gradient-to-b from-zinc-950/0 via-zinc-950/30 to-zinc-950/85 backdrop-blur-[2px]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-x-0 bottom-0 flex h-[48px] items-center justify-between gap-3 bg-gradient-to-b from-zinc-950/85 via-zinc-950 to-zinc-950 px-3">
+          <div className="min-w-0">
+            <p className="text-[8px] font-medium uppercase tracking-[0.16em] text-zinc-500">
+              Curriculum vitae
+            </p>
+            <p className="truncate text-[12px] leading-4 text-zinc-100">Yousef Mohammed Salah</p>
+          </div>
+          <a
+            className="flex shrink-0 items-center rounded-full border border-white/10 px-2 py-1 text-[9px] font-medium text-zinc-300 transition-colors hover:border-white/20 hover:bg-white/5 hover:text-white"
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open CV
+          </a>
+        </div>
       </div>
     );
   }
@@ -526,7 +541,17 @@ function SocialContacts() {
     setIsPanelMounted(true);
     setIsPanelOpen(true);
     setIsInstantResize(firstOpen);
-    setPreviewLeft(node.offsetLeft + node.offsetWidth / 2);
+    const parentBounds = contactRef.current?.getBoundingClientRect();
+    const panelWidth = Math.min(
+      preview === "github" ? 376 : preview === "cv" ? 288 : 320,
+      window.innerWidth - 32,
+    );
+    const anchorCenter = node.getBoundingClientRect().left + node.offsetWidth / 2;
+    const clampedCenter = Math.min(
+      Math.max(anchorCenter, 16 + panelWidth / 2),
+      window.innerWidth - 16 - panelWidth / 2,
+    );
+    setPreviewLeft(clampedCenter - (parentBounds?.left ?? 0));
 
     const previousPreview = activePreviewRef.current;
     const nextRenderId = renderIdRef.current + 1;
