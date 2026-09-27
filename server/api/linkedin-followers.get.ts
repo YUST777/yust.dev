@@ -19,7 +19,9 @@ function jsonResponse(payload: Record<string, unknown>, status: number, cacheCon
   });
 }
 
-async function scrapeLinkedInProfile(cookie: string): Promise<{ followers: number; connections?: string } | null> {
+async function scrapeLinkedInProfile(
+  cookie: string,
+): Promise<{ followers: number; connections?: string } | null> {
   const cookieHeader = cookie.includes("=") ? cookie : `li_at=${cookie}`;
   try {
     const response = await fetch(LINKEDIN_PROFILE_URL, {

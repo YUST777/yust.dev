@@ -73,10 +73,7 @@ function belongsToCategory(project: Project, category: string): boolean {
   }
 
   if (category === "AI") {
-    return (
-      title.includes("spaceworth") ||
-      slug.includes("spaceworth")
-    );
+    return title.includes("spaceworth") || slug.includes("spaceworth");
   }
 
   if (category === "CP") {

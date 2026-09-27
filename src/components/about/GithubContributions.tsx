@@ -68,7 +68,9 @@ export default function GithubContributions() {
     <section className="font-mono pb-4">
       <div className="flex items-center justify-between mb-4">
         <p className="text-zinc-400 text-[13px] uppercase tracking-widest">Contributions</p>
-        <span className="text-[10px] text-zinc-400 sm:hidden lowercase">Scroll / swipe for more →</span>
+        <span className="text-[10px] text-zinc-400 sm:hidden lowercase">
+          Scroll / swipe for more →
+        </span>
       </div>
       <div
         ref={scrollRef}

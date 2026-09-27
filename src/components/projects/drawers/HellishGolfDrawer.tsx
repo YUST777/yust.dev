@@ -11,7 +11,10 @@ function HellishGolfDrawer() {
           <i className="fas fa-gamepad mr-2"></i>Game Developer & Reddit Devvit Architect
         </p>
         <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
-          Status: <span className="text-amber-500 font-bold">Reddit’s Games with a Hook Hackathon Entry</span>
+          Status:{" "}
+          <span className="text-amber-500 font-bold">
+            Reddit’s Games with a Hook Hackathon Entry
+          </span>
         </p>
       </div>
 
@@ -21,7 +24,9 @@ function HellishGolfDrawer() {
           <i className="fas fa-fire mr-2"></i>One hole. Each day. Infinite rage.
         </h4>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed font-medium">
-          A devilishly hard daily golf challenge, played right inside the Reddit feed. Built in 4 days for Reddit's Games with a Hook Hackathon. Designed to drive daily retention and community competition without play-to-earn gimmicks.
+          A devilishly hard daily golf challenge, played right inside the Reddit feed. Built in 4
+          days for Reddit's Games with a Hook Hackathon. Designed to drive daily retention and
+          community competition without play-to-earn gimmicks.
         </p>
       </div>
 
@@ -32,13 +37,18 @@ function HellishGolfDrawer() {
         </h4>
         <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
           <li>
-            <strong className="text-white font-display">One Shared Hole Per Day:</strong> Every player in the subreddit gets the same map, picked deterministically from the date, so the whole community competes on equal footing.
+            <strong className="text-white font-display">One Shared Hole Per Day:</strong> Every
+            player in the subreddit gets the same map, picked deterministically from the date, so
+            the whole community competes on equal footing.
           </li>
           <li>
-            <strong className="text-white font-display">2D Physics & Powerups:</strong> Bouncy walls, hazards, precise shot control, and an in-game coin shop to buy powerup buffs mid-round.
+            <strong className="text-white font-display">2D Physics & Powerups:</strong> Bouncy
+            walls, hazards, precise shot control, and an in-game coin shop to buy powerup buffs
+            mid-round.
           </li>
           <li>
-            <strong className="text-white font-display">Playable Directly in Feed:</strong> The Reddit post expands into the full game—no app install, no leaving Reddit.
+            <strong className="text-white font-display">Playable Directly in Feed:</strong> The
+            Reddit post expands into the full game—no app install, no leaving Reddit.
           </li>
         </ul>
       </div>
@@ -49,8 +59,18 @@ function HellishGolfDrawer() {
           <i className="fas fa-microchip mr-2"></i>How It Was Built
         </h4>
         <div className="flex flex-wrap gap-2">
-          {["Phaser.js", "Rapier2D Physics", "Reddit Devvit CLI", "Supabase", "TypeScript", "AI Pair Programming"].map((tech) => (
-            <span key={tech} className="px-3 py-1 text-xs font-mono bg-zinc-900 border border-white/5 text-zinc-300 rounded-full">
+          {[
+            "Phaser.js",
+            "Rapier2D Physics",
+            "Reddit Devvit CLI",
+            "Supabase",
+            "TypeScript",
+            "AI Pair Programming",
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 text-xs font-mono bg-zinc-900 border border-white/5 text-zinc-300 rounded-full"
+            >
               {tech}
             </span>
           ))}

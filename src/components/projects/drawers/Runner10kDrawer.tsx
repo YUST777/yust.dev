@@ -8,7 +8,8 @@ function Runner10kDrawer() {
           10K Runner – Infinite 3D Runner Web3 Game
         </h4>
         <p className="text-[12px] sm:text-sm text-gray-400">
-          <i className="fas fa-trophy text-amber-500 mr-2"></i>3rd Place Winner • 10k Squad International Contest
+          <i className="fas fa-trophy text-amber-500 mr-2"></i>3rd Place Winner • 10k Squad
+          International Contest
         </p>
         <p className="text-[12px] sm:text-sm text-gray-400 mt-1">
           Status: <span className="text-green-400 font-bold">Live</span>
@@ -33,7 +34,8 @@ function Runner10kDrawer() {
           contest.
         </p>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed italic border-l-2 border-orange-500 pl-3">
-          "https://10krunner.fun is live now! It's an infinite runner game that makes you EARN & fun. Play &gt; Collect coins &gt; Earn."
+          "https://10krunner.fun is live now! It's an infinite runner game that makes you EARN &
+          fun. Play &gt; Collect coins &gt; Earn."
         </p>
       </div>
 
@@ -44,13 +46,18 @@ function Runner10kDrawer() {
         </h4>
         <ul className="space-y-4 text-[13px] sm:text-sm text-gray-300">
           <li>
-            <strong className="text-white">First International Competition:</strong> My very first time competing on a global stage, going head-to-head with international developers.
+            <strong className="text-white">First International Competition:</strong> My very first
+            time competing on a global stage, going head-to-head with international developers.
           </li>
           <li>
-            <strong className="text-white">First Web3 Game:</strong> Stepped out of my comfort zone to integrate Web3 mechanisms (Play-to-Earn logic, coin collection and distributed earning dynamics).
+            <strong className="text-white">First Web3 Game:</strong> Stepped out of my comfort zone
+            to integrate Web3 mechanisms (Play-to-Earn logic, coin collection and distributed
+            earning dynamics).
           </li>
           <li>
-            <strong className="text-white">Built in 3 Days Solo:</strong> Handled the entire development process including frontend layout, game physics, logic, 3D world creation, and UI.
+            <strong className="text-white">Built in 3 Days Solo:</strong> Handled the entire
+            development process including frontend layout, game physics, logic, 3D world creation,
+            and UI.
           </li>
         </ul>
       </div>
@@ -61,17 +68,22 @@ function Runner10kDrawer() {
           <i className="fas fa-lightbulb mr-2"></i>What I've Learned
         </h4>
         <div className="flex flex-wrap gap-2 mb-4">
-          {["3D Modeling", "Three.js", "React Three Fiber", "Web3 Mechanics", "Game Physics"].map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-white/10 rounded-full text-[10px] text-white border border-white/20 uppercase tracking-widest"
-            >
-              {tech}
-            </span>
-          ))}
+          {["3D Modeling", "Three.js", "React Three Fiber", "Web3 Mechanics", "Game Physics"].map(
+            (tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 bg-white/10 rounded-full text-[10px] text-white border border-white/20 uppercase tracking-widest"
+              >
+                {tech}
+              </span>
+            ),
+          )}
         </div>
         <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed">
-          Through this intense sprint, I mastered custom <strong>3D modeling</strong> pipelines for browsers and how to optimize complex three-dimensional scenes using <strong>Three.js / React Three Fiber</strong> to maintain 60 FPS on both mobile and desktop devices.
+          Through this intense sprint, I mastered custom <strong>3D modeling</strong> pipelines for
+          browsers and how to optimize complex three-dimensional scenes using{" "}
+          <strong>Three.js / React Three Fiber</strong> to maintain 60 FPS on both mobile and
+          desktop devices.
         </p>
       </div>
 

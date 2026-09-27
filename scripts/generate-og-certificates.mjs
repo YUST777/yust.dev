@@ -14,7 +14,8 @@ const rootDir = join(__dirname, "..");
 const certsContent = readFileSync(join(rootDir, "src/routes/_main/certificates.tsx"), "utf8");
 
 // Parse certificate entries (id, issuer, title, issued)
-const certRegex = /\{\s*id:\s*["']([^"']+)["'][\s\S]*?issuer:\s*["']([^"']+)["'][\s\S]*?mark:\s*["']([^"']+)["'][\s\S]*?title:\s*["']([^"']+)["'][\s\S]*?issued:\s*["']([^"']+)["']/g;
+const certRegex =
+  /\{\s*id:\s*["']([^"']+)["'][\s\S]*?issuer:\s*["']([^"']+)["'][\s\S]*?mark:\s*["']([^"']+)["'][\s\S]*?title:\s*["']([^"']+)["'][\s\S]*?issued:\s*["']([^"']+)["']/g;
 const certs = [];
 let m;
 while ((m = certRegex.exec(certsContent)) !== null) {
@@ -26,7 +27,7 @@ console.log(`[OG Generator - Certificates] Detected ${certs.length} official cer
 // Load TrueType fonts
 const fontSilkscreen = readFileSync(join(rootDir, "public/fonts/silkscreen-700.ttf"));
 const fontGeistMono = readFileSync(
-  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf")
+  join(rootDir, "node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf"),
 );
 
 // 2. Build Satori Vercel OG Node Tree
@@ -105,8 +106,8 @@ const element = React.createElement(
                   letterSpacing: "0.15em",
                 },
               },
-              "VERIFIED CREDENTIALS"
-            )
+              "VERIFIED CREDENTIALS",
+            ),
           ),
           // Giant Title
           React.createElement(
@@ -120,7 +121,7 @@ const element = React.createElement(
                 letterSpacing: "0.04em",
               },
             },
-            "CERTIFICATES"
+            "CERTIFICATES",
           ),
           // Subtitle
           React.createElement(
@@ -132,8 +133,8 @@ const element = React.createElement(
                 lineHeight: "1.6",
               },
             },
-            "Official credentials, national hackathon wins, and academic honors in AI & Cybersecurity."
-          )
+            "Official credentials, national hackathon wins, and academic honors in AI & Cybersecurity.",
+          ),
         ),
         // Stylized 3D Folder Illustration Card
         React.createElement(
@@ -158,7 +159,7 @@ const element = React.createElement(
                 color: "#22c55e",
               },
             },
-            `${certs.length} CREDENTIALS`
+            `${certs.length} CREDENTIALS`,
           ),
           React.createElement(
             "div",
@@ -168,9 +169,9 @@ const element = React.createElement(
                 color: "#a1a1aa",
               },
             },
-            "Interactive 3D File Cabinet Preview"
-          )
-        )
+            "Interactive 3D File Cabinet Preview",
+          ),
+        ),
       ),
 
       // Right Column (Certificate Grid Cards)
@@ -195,7 +196,10 @@ const element = React.createElement(
                 justifyContent: "space-between",
                 padding: "16px 20px",
                 backgroundColor: index === 0 ? "#1e1e22" : "#171719",
-                border: index === 0 ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(255,255,255,0.05)",
+                border:
+                  index === 0
+                    ? "1px solid rgba(255,255,255,0.15)"
+                    : "1px solid rgba(255,255,255,0.05)",
                 borderRadius: "14px",
               },
             },
@@ -218,7 +222,7 @@ const element = React.createElement(
                     fontWeight: "bold",
                   },
                 },
-                cert.title
+                cert.title,
               ),
               React.createElement(
                 "span",
@@ -228,8 +232,8 @@ const element = React.createElement(
                     color: "#888888",
                   },
                 },
-                cert.issuer
-              )
+                cert.issuer,
+              ),
             ),
             React.createElement(
               "div",
@@ -244,11 +248,11 @@ const element = React.createElement(
                   border: "1px solid rgba(255,255,255,0.05)",
                 },
               },
-              cert.issued
-            )
-          )
-        )
-      )
+              cert.issued,
+            ),
+          ),
+        ),
+      ),
     ),
 
     // Footer Bar
@@ -273,18 +277,18 @@ const element = React.createElement(
         React.createElement(
           "span",
           { style: { color: "#ffffff", fontWeight: "bold" } },
-          "Yousef Mohammed Salah"
+          "Yousef Mohammed Salah",
         ),
         React.createElement("span", {}, "•"),
-        React.createElement("span", {}, "yust.dev/certificates")
+        React.createElement("span", {}, "yust.dev/certificates"),
       ),
       React.createElement(
         "div",
         { style: { color: "#a1a1aa" } },
-        "AI • Cybersecurity • Full-Stack"
-      )
-    )
-  )
+        "AI • Cybersecurity • Full-Stack",
+      ),
+    ),
+  ),
 );
 
 // Render Satori SVG
@@ -330,7 +334,10 @@ try {
 // Copy to .output if build directory exists
 const outputDir = join(rootDir, ".output/public/static/images");
 try {
-  execSync(`mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`, { stdio: "ignore" });
+  execSync(
+    `mkdir -p ${outputDir} && cp ${pngTarget} ${webpTarget} ${svgTarget} ${outputDir}/ 2>/dev/null`,
+    { stdio: "ignore" },
+  );
 } catch (error) {
   console.warn(
     "[OG Generator - Certificates] Could not copy generated images to the build output:",
@@ -338,4 +345,6 @@ try {
   );
 }
 
-console.log(`[OG Generator - Certificates] Successfully generated og-certificates.png + og-certificates.webp + og-certificates.svg!`);
+console.log(
+  `[OG Generator - Certificates] Successfully generated og-certificates.png + og-certificates.webp + og-certificates.svg!`,
+);

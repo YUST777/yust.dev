@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState, memo, useCallback } from "react";
 import gsap from "gsap";
 import SvgIcon from "./SvgIcon";
+import type { ProjectFeature } from "./types";
 
 // Sub-components for better performance and readability
-const FeatureCard = memo(({ feature }: { feature: any }) => (
+const FeatureCard = memo(({ feature }: { feature: ProjectFeature }) => (
   <div className="bg-[#0c0c0c] rounded-xl p-4 sm:p-6 border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all shadow-lg">
     <div className="flex items-center gap-3 mb-4">
       {feature.svgIcon ? (

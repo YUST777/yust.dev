@@ -167,8 +167,12 @@ const failedHacks = [
     iconType: "deny",
     desc: (
       <>
-        MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives traders one place to discover new tokens, inspect real prices and liquidity, trade supported pools, bridge assets, monitor their portfolio, and protect positions without watching charts all day.
-        Features a non-custodial onchain order engine for limit buys, limit sells, stop-losses, and take-profit ladders with permissionless execution and TWAP oracle validation.
+        MonTerminal is a live trading and automation terminal built for Monad Mainnet. It gives
+        traders one place to discover new tokens, inspect real prices and liquidity, trade supported
+        pools, bridge assets, monitor their portfolio, and protect positions without watching charts
+        all day. Features a non-custodial onchain order engine for limit buys, limit sells,
+        stop-losses, and take-profit ladders with permissionless execution and TWAP oracle
+        validation.
       </>
     ),
     linkText: "Live Terminal: monterminal.fun",
@@ -224,7 +228,12 @@ const failedHacks = [
     iconType: "deny",
     desc: (
       <>
-        Built a daily mini-app browser game inspired by Wordle and Kinda Hard Golf for Reddit&apos;s &quot;Games with a Hook&quot; hackathon on Devpost. Built from scratch with Vite (without traditional game engines like Unity or Godot) using open-source itch.io textures. Designed to test high-retention mini-app mechanics for Reddit community engagement. Didn&apos;t take home a prize, but gained great hands-on experience building lightweight game loops and open-source mini-apps.
+        Built a daily mini-app browser game inspired by Wordle and Kinda Hard Golf for Reddit&apos;s
+        &quot;Games with a Hook&quot; hackathon on Devpost. Built from scratch with Vite (without
+        traditional game engines like Unity or Godot) using open-source itch.io textures. Designed
+        to test high-retention mini-app mechanics for Reddit community engagement. Didn&apos;t take
+        home a prize, but gained great hands-on experience building lightweight game loops and
+        open-source mini-apps.
       </>
     ),
     linkText: "Live Game: hellishgolf.xyz",
@@ -246,12 +255,14 @@ const failedHacks = [
   },
 ];
 
-function PixelTrophy({ rank, className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { rank: string; className?: string }) {
-  const color = rank.includes("1ST")
-    ? "#FFD700"
-    : rank.includes("2ND")
-    ? "#C0C0C0"
-    : "#CD7F32";
+function PixelTrophy({
+  rank,
+  className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0",
+}: {
+  rank: string;
+  className?: string;
+}) {
+  const color = rank.includes("1ST") ? "#FFD700" : rank.includes("2ND") ? "#C0C0C0" : "#CD7F32";
 
   return (
     <svg
@@ -284,15 +295,9 @@ function PixelClock({ className = "w-5 h-6 sm:w-6 sm:h-7 shrink-0" }: { classNam
         fill="#ef4444"
       />
       {/* Inner Chamber Cutout */}
-      <path
-        d="M2 1h3v1H2z M3 2h1v1H3z M3 5h1v1H3z M2 6h3v1H2z"
-        fill="#111110"
-      />
+      <path d="M2 1h3v1H2z M3 2h1v1H3z M3 5h1v1H3z M2 6h3v1H2z" fill="#111110" />
       {/* Falling Sand in Gold */}
-      <path
-        d="M3 3h1v3H3z M2 6h3v1H2z"
-        fill="#fbbf24"
-      />
+      <path d="M3 3h1v3H3z M2 6h3v1H2z" fill="#fbbf24" />
     </svg>
   );
 }
@@ -329,7 +334,9 @@ function HacksPage() {
       <div className="space-y-16">
         {hacks.map((hack, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+            <h2
+              className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}
+            >
               <PixelTrophy rank={hack.rank} />
               <span>{hack.rank}</span>
             </h2>
@@ -427,7 +434,9 @@ function HacksPage() {
         <div className="min-h-0 overflow-hidden space-y-16 pt-8">
           {failedHacks.map((hack, i) => (
             <div key={i} className="flex flex-col gap-3">
-              <h2 className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}>
+              <h2
+                className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}
+              >
                 {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
                 <span>{hack.status}</span>
               </h2>

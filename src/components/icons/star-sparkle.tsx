@@ -1,12 +1,7 @@
 import type { SVGProps } from "react";
 
 const StarSparkleIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="6 0 116 128"
-    className={className}
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 116 128" className={className} {...props}>
     <defs>
       <linearGradient
         id="new_hacks_SVGID_1_"

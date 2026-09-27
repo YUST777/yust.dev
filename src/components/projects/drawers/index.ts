@@ -1,4 +1,4 @@
-import { lazy, LazyExoticComponent, ComponentType } from "react";
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
 
 export const Drawers = {
   VerdictDrawer: lazy(() => import("./VerdictDrawer")),
@@ -38,7 +38,7 @@ export const DRAWER_TITLES: Record<string, string> = {
   spaceworth: "SpaceWorth – AI Real Estate Valuation & CAD Intelligence",
 };
 
-export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType<any>>> = {
+export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>> = {
   verdict: Drawers.VerdictDrawer,
   runner10k: Drawers.Runner10kDrawer,
   sast: Drawers.SastDrawer,

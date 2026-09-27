@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 import ProfileHeader from "@/components/about/ProfileHeader";
 import AboutSection from "@/components/about/AboutSection";
 import AchievementsSection from "@/components/about/AchievementsSection";

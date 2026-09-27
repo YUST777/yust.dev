@@ -110,7 +110,11 @@ function getLinkedinFollowers() {
   })
     .then(async (response) => {
       if (!response.ok) return null;
-      const data = (await response.json()) as { followers?: unknown; connections?: unknown; source?: unknown };
+      const data = (await response.json()) as {
+        followers?: unknown;
+        connections?: unknown;
+        source?: unknown;
+      };
       if (!Number.isSafeInteger(data.followers) || Number(data.followers) < 0) return null;
       linkedinStatsCache = {
         followers: Number(data.followers),

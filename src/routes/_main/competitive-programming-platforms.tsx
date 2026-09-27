@@ -162,14 +162,14 @@ function CpPlatformsPage() {
         </h2>
         <div className="mt-5 space-y-5 text-base leading-8 text-zinc-400">
           <p>
-            Building code judgment engines requires sub-second latency and sandboxed execution. Verdict.run
-            uses real-time WebSocket state synchronization so competitors feel instantaneous feedback during
-            1v1 battles.
+            Building code judgment engines requires sub-second latency and sandboxed execution.
+            Verdict.run uses real-time WebSocket state synchronization so competitors feel
+            instantaneous feedback during 1v1 battles.
           </p>
           <p>
-            Structured curriculum design boosts user retention. ICPC HUE breaks complex algorithms into
-            level-based progression tracks so university students can step up from basic data structures to
-            advanced graph theory and dynamic programming.
+            Structured curriculum design boosts user retention. ICPC HUE breaks complex algorithms
+            into level-based progression tracks so university students can step up from basic data
+            structures to advanced graph theory and dynamic programming.
           </p>
         </div>
       </section>
