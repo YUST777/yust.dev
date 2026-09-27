@@ -162,9 +162,9 @@
 
   .social-preview-panel {
     transition:
-      left 300ms cubic-bezier(0.33, 1, 0.68, 1),
-      width 300ms cubic-bezier(0.33, 1, 0.68, 1),
-      height 300ms cubic-bezier(0.33, 1, 0.68, 1),
+      left 420ms cubic-bezier(0.33, 1, 0.68, 1),
+      width 420ms cubic-bezier(0.33, 1, 0.68, 1),
+      height 420ms cubic-bezier(0.33, 1, 0.68, 1),
       opacity 150ms linear;
   }
 
@@ -181,6 +181,7 @@
     top: 0;
     left: 0;
     width: max-content;
+    will-change: transform, opacity;
   }
 }
 

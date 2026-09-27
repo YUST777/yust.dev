@@ -403,37 +403,30 @@ function AnimatedPreviewLayer({
     const currentX =
       computedStyle.transform === "none" ? 0 : new DOMMatrixReadOnly(computedStyle.transform).m41;
     const currentOpacity = Number.parseFloat(computedStyle.opacity);
-    const blurMatch = computedStyle.filter.match(/blur\(([\d.]+)px\)/);
-    const currentBlur = blurMatch ? Number.parseFloat(blurMatch[1]) : 0;
-
     animationRef.current?.cancel();
 
     const from = layer.isActive
       ? {
           transform: `translateX(${layer.enterOffset}px)`,
           opacity: 0,
-          filter: "blur(2px)",
         }
       : {
           transform: `translateX(${currentX}px)`,
           opacity: currentOpacity,
-          filter: `blur(${currentBlur}px)`,
         };
     const to = layer.isActive
-      ? { transform: "translateX(0px)", opacity: 1, filter: "blur(0px)" }
+      ? { transform: "translateX(0px)", opacity: 1 }
       : {
           transform: `translateX(${currentX + layer.exitOffset}px)`,
           opacity: 0,
-          filter: "blur(2px)",
         };
 
     element.style.transform = from.transform;
     element.style.opacity = String(from.opacity);
-    element.style.filter = from.filter;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const animation = element.animate([from, to], {
-      duration: reduceMotion ? 0.01 : 300,
+      duration: reduceMotion ? 0.01 : 420,
       easing: "cubic-bezier(0.33, 1, 0.68, 1)",
       fill: "forwards",
     });
@@ -506,7 +499,7 @@ function SocialContacts() {
     setIsPanelOpen(false);
     const closingLayers = previewLayersRef.current.map((layer) =>
       layer.isActive
-        ? { ...layer, isActive: false, exitOffset: -200 * lastDirectionRef.current }
+        ? { ...layer, isActive: false, exitOffset: -56 * lastDirectionRef.current }
         : layer,
     );
     previewLayersRef.current = closingLayers;
@@ -520,7 +513,7 @@ function SocialContacts() {
       previewLayersRef.current = [];
       setPreviewLayers([]);
       closeTimeoutRef.current = undefined;
-    }, 300);
+    }, 420);
   };
 
   const openPreview = (node: HTMLAnchorElement, preview: SocialPreview) => {
@@ -545,13 +538,13 @@ function SocialContacts() {
     const existingLayers = firstOpen
       ? []
       : previewLayersRef.current.map((layer) =>
-          layer.isActive ? { ...layer, isActive: false, exitOffset: -200 * direction } : layer,
+          layer.isActive ? { ...layer, isActive: false, exitOffset: -56 * direction } : layer,
         );
     const nextLayer: PreviewLayer = {
       type: preview,
       key: nextRenderId,
       isActive: true,
-      enterOffset: 200 * direction,
+      enterOffset: 56 * (direction || 1),
       exitOffset: 0,
     };
     const nextLayers = [...existingLayers, nextLayer];
@@ -619,17 +612,17 @@ function SocialContacts() {
   };
 
   return (
-    <div className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4" aria-label="Connect with me">
+    <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3" aria-label="Connect with me">
       <button
         type="button"
         onClick={handleCopyEmail}
-        className="relative z-10 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-[1.25rem] bg-zinc-100 px-6 text-base font-medium text-zinc-950 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-8 sm:text-lg"
+        className="relative z-10 inline-flex min-h-10 cursor-pointer items-center justify-center rounded-xl bg-zinc-100 px-4 text-sm font-medium text-zinc-950 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-5 sm:text-base"
       >
         {copied ? "Copied!" : "Copy my email"}
       </button>
       <div
         ref={contactRef}
-        className="relative flex flex-wrap items-center gap-3 sm:gap-4"
+        className="relative flex flex-wrap items-center gap-2 sm:gap-3"
         aria-label="Social links"
         onMouseLeave={closePreview}
         onBlur={handleBlur}
@@ -648,9 +641,9 @@ function SocialContacts() {
             onFocus={(event) => {
               if (link.preview) handleFocus(event, link.preview);
             }}
-            className="group relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full text-zinc-500 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            className="group relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           >
-            <span className="text-zinc-400 transition-colors group-hover:text-white [&>svg]:h-8 [&>svg]:w-8">
+            <span className="text-zinc-400 transition-colors group-hover:text-white [&>svg]:h-6 [&>svg]:w-6">
               {link.icon}
             </span>
           </a>
