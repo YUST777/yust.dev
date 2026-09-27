@@ -82,6 +82,7 @@ const AVATAR_URL = "https://avatars.githubusercontent.com/u/207382177?s=128&v=4"
 const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
 const GITHUB_REPOSITORIES_API = "https://api.github.com/users/YUST777/repos?per_page=100";
+const LINKEDIN_FOLLOWERS_FALLBACK = 1993;
 const GITHUB_LEVEL_CLASSES = [
   "bg-zinc-800",
   "bg-green-400/20",
@@ -94,6 +95,24 @@ let githubContributionsCache: GithubContributions | undefined;
 let githubContributionsRequest: Promise<GithubContributions> | undefined;
 let githubStarsCache: number | undefined;
 let githubStarsRequest: Promise<number> | undefined;
+let linkedinFollowersCache: number | undefined;
+let linkedinFollowersRequest: Promise<number | null> | undefined;
+
+function getLinkedinFollowers() {
+  linkedinFollowersRequest ??= fetch("/api/linkedin-followers", {
+    headers: { Accept: "application/json" },
+  })
+    .then(async (response) => {
+      if (!response.ok) return null;
+      const data = (await response.json()) as { followers?: unknown };
+      if (!Number.isSafeInteger(data.followers) || Number(data.followers) < 0) return null;
+      linkedinFollowersCache = Number(data.followers);
+      return linkedinFollowersCache;
+    })
+    .catch(() => null);
+
+  return linkedinFollowersRequest;
+}
 
 function getGithubContributions() {
   githubContributionsRequest ??= fetch(`${GITHUB_API}/YUST777?y=last`)
@@ -314,51 +333,77 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
   }
 
   if (type === "linkedin") {
-    return (
-      <div className="w-[320px] max-w-[calc(100vw-2rem)] text-left">
-        <div
-          className="relative h-[64px] w-full bg-gradient-to-br from-[#0a66c2] to-[#0a66c280]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 120% 200%, #0000000a 0%, #0000000a 50%, #c5c5c50a 50%, #c5c5c50a 100%), radial-gradient(circle at 130% -10%, #4040400a 0%, #4040400a 50%, #ffffff0a 50%, #ffffff0a 100%), linear-gradient(to right, #0a66c2, #0a66c280)",
-          }}
-        ></div>
-        <div className="relative px-[12px] pb-[12px]">
-          <div className="absolute left-[12px] top-0 -translate-y-1/2 rounded-full bg-zinc-900 p-[2px]">
-            <img
-              src={LINKEDIN_AVATAR_URL}
-              alt="Yousef Mohammed Salah"
-              className="h-[56px] w-[56px] rounded-full object-cover"
-              width="56"
-              height="56"
-            />
-          </div>
-          <div className="flex flex-col gap-[4px] pt-[32px]">
-            <div className="text-[16px] leading-[24px] text-zinc-100">Yousef Mohammed Salah</div>
-            <div className="mt-[4px] flex items-end justify-between gap-[12px]">
-              <div className="min-w-0 text-[14px] leading-[20px]">
-                <p className="text-zinc-300">AI &amp; Cybersecurity Developer</p>
-                <p className="text-[12px] text-zinc-500">Damietta, Egypt</p>
-                <p className="mt-[2px] whitespace-nowrap text-[12px] font-medium text-[#71b7fb]">
-                  1,993 followers · 500+ connections
-                </p>
-              </div>
-              <a
-                className="h-fit shrink-0 rounded-full bg-[#0a66c2] px-[12px] py-[4px] text-[14px] leading-[20px] text-white transition-[filter] hover:brightness-125"
-                href="https://www.linkedin.com/in/yousefmsm1/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Connect
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <LinkedinPreview />;
   }
 
   return <GithubPreview />;
+}
+
+function LinkedinPreview() {
+  const [followers, setFollowers] = useState<number | null>(() => linkedinFollowersCache ?? null);
+
+  useEffect(() => {
+    let mounted = true;
+    void getLinkedinFollowers().then((count) => {
+      if (mounted && count !== null) setFollowers(count);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const isLive = followers !== null;
+  const displayedFollowers = followers ?? LINKEDIN_FOLLOWERS_FALLBACK;
+
+  return (
+    <div className="w-[320px] max-w-[calc(100vw-2rem)] text-left">
+      <div
+        className="relative h-[64px] w-full bg-gradient-to-br from-[#0a66c2] to-[#0a66c280]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 120% 200%, #0000000a 0%, #0000000a 50%, #c5c5c50a 50%, #c5c5c50a 100%), radial-gradient(circle at 130% -10%, #4040400a 0%, #4040400a 50%, #ffffff0a 50%, #ffffff0a 100%), linear-gradient(to right, #0a66c2, #0a66c280)",
+        }}
+      ></div>
+      <div className="relative px-[12px] pb-[12px]">
+        <div className="absolute left-[12px] top-0 -translate-y-1/2 rounded-full bg-zinc-900 p-[2px]">
+          <img
+            src={LINKEDIN_AVATAR_URL}
+            alt="Yousef Mohammed Salah"
+            className="h-[56px] w-[56px] rounded-full object-cover"
+            width="56"
+            height="56"
+          />
+        </div>
+        <div className="flex flex-col gap-[4px] pt-[32px]">
+          <div className="text-[16px] leading-[24px] text-zinc-100">Yousef Mohammed Salah</div>
+          <div className="mt-[4px] flex items-end justify-between gap-[12px]">
+            <div className="min-w-0 text-[14px] leading-[20px]">
+              <p className="text-zinc-300">AI &amp; Cybersecurity Developer</p>
+              <p className="text-[12px] text-zinc-500">Damietta, Egypt</p>
+              <p
+                className="mt-[2px] whitespace-nowrap text-[12px] font-medium text-[#71b7fb]"
+                title={
+                  isLive
+                    ? "Live count from LinkedIn Member Follower Statistics"
+                    : "Fallback count — configure the LinkedIn API token for a live count"
+                }
+              >
+                {displayedFollowers.toLocaleString()} followers · 500+ connections
+              </p>
+            </div>
+            <a
+              className="h-fit shrink-0 rounded-full bg-[#0a66c2] px-[12px] py-[4px] text-[14px] leading-[20px] text-white transition-[filter] hover:brightness-125"
+              href="https://www.linkedin.com/in/yousefmsm1/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Connect
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const Tooltip = lazy(() => import("react-tooltip").then((m) => ({ default: m.Tooltip })));
@@ -451,6 +496,7 @@ function SocialContacts() {
 
   useEffect(() => {
     prefetchGithubData();
+    void getLinkedinFollowers();
   }, []);
 
   const handleCopyEmail = async () => {
