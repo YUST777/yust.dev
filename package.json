@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev --force",
-    "build": "npm run og:generate && vp build",
+    "build": "pnpm run og:generate && vp build",
     "og:generate": "node scripts/generate-og-hacks.mjs && node scripts/generate-og-blog.mjs && node scripts/generate-og-projects.mjs && node scripts/generate-og-certificates.mjs",
     "preview": "vp preview",
     "start": "vp preview",
