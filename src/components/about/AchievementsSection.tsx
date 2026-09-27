@@ -2,7 +2,7 @@ export default function AchievementsSection() {
   return (
     <section>
       <h2 className="mb-6 border-b border-white/5 pb-4 font-pixel text-[clamp(19px,5.5vw,24px)] text-white sm:mb-8 sm:text-3xl">
-        Notable achievements
+        Selected outcomes
       </h2>
       <div className="space-y-6">
         <div className="border-l border-zinc-800 pl-4 py-1">
@@ -14,11 +14,11 @@ export default function AchievementsSection() {
                 href="https://verdict.run"
                 className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
               >
-                Verdict.run
+                Verdict.run — Product Launch
               </a>
               .{" "}
             </strong>
-            Engineered and launched a competitive programming platform that went viral, generating{" "}
+            Built and launched a competitive programming platform that generated{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -34,19 +34,19 @@ export default function AchievementsSection() {
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
             <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              The01studio on TON.{" "}
+              The01Studio — Web3 Products.{" "}
             </strong>
-            Founded a Web3 studio. Shipped multiple Telegram mini-apps (@giftscharts,
-            @collectablekit) driving <span className="text-white">2,000+ daily active users</span>.
+            Founded a TON-focused studio and shipped Telegram mini-apps including @giftscharts and
+            @collectablekit, reaching <span className="text-white">2,000+ daily active users</span>.
           </p>
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
             <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              ICPC Egypt Lead.{" "}
+              ICPC HUE — Community Builder.{" "}
             </strong>
-            Built and scaled{" "}
+            Co-founded the ICPC HUE community and built{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -55,19 +55,26 @@ export default function AchievementsSection() {
             >
               icpchue.com
             </a>
-            —a gamified LeetCode-style training platform housing{" "}
-            <span className="text-white">650+ curated algorithms</span> to prepare students
-            nationwide for the ECPC.
+            —a training platform with <span className="text-white">650+ curated problems</span> that
+            helped prepare <span className="text-white">8 teams</span> for the ECPC.
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.facebook.com/photo?fbid=122151688275113129"
+              className="mt-2 block w-fit text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
+            >
+              View ICPC HUE on Facebook
+            </a>
           </p>
         </div>
 
         <div className="border-l border-zinc-800 pl-4 py-1">
           <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
             <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              3x Hackathon Winner.{" "}
+              Hackathons — 3 Podium Finishes.{" "}
             </strong>
-            Secured <span className="text-white">70k+ EGP</span> in prize money. Built complex AI
-            tools including{" "}
+            Earned <span className="text-white">70k+ EGP</span> in prizes, including a 2nd-place
+            finish at GDG Delta and 3rd place at LUXSAI. Built AI and security products such as{" "}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -76,17 +83,7 @@ export default function AchievementsSection() {
             >
               sast.tech
             </a>
-            —an automated secure code generator.
-          </p>
-        </div>
-
-        <div className="border-l border-zinc-800 pl-4 py-1">
-          <p className="font-mono text-[14px] leading-relaxed text-zinc-400 md:text-[15px] lg:text-[16px]">
-            <strong className="text-[16px] font-sans font-bold tracking-tight text-white opacity-90 md:text-[17px] lg:text-[18px]">
-              Tanta National Summit.{" "}
-            </strong>
-            Won <span className="text-white">3rd place</span> in my very first year, outperforming
-            senior-level (Level 4 &amp; 5) university competitors.
+            —an AI-assisted secure code generator.
           </p>
         </div>
       </div>

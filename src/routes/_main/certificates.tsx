@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence, type PanInfo } from "framer-motion";
+import { motion, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -65,9 +65,9 @@ type CertificatePreview = {
 const certificatePreviews: CertificatePreview[] = [
   {
     id: "gdg-delta-hackathon",
-    issuer: "Google Developers Group (GDG) Delta",
+    issuer: "Google Developer Groups Delta",
     mark: "GDG",
-    title: "2nd Place Winner — Egypt Hackathon 4.0",
+    title: "Egypt Hackathon 4.0 — Certificate of Participation",
     issued: "Feb 2026",
     credentialId: "GDG-DELTA-2026-02",
     image: "/certi/gdg-delta-hackathon-4.webp",
@@ -75,9 +75,9 @@ const certificatePreviews: CertificatePreview[] = [
   },
   {
     id: "luxsai-ai-hackathon",
-    issuer: "Luxor University & Ministry of Higher Education",
-    mark: "LUX",
-    title: "3rd Place Winner — LUXSAI AI Hackathon",
+    issuer: "Horus University — Egypt",
+    mark: "HUE",
+    title: "3rd Place — LUXSAI AI Hackathon",
     issued: "Mar 2026",
     credentialId: "LUXSAI-HACK-2026-03",
     image: "/certi/luxsai-ai-hackathon-winner.webp",
@@ -87,7 +87,7 @@ const certificatePreviews: CertificatePreview[] = [
     id: "sustainable-innovation-summit",
     issuer: "Tanta University",
     mark: "TNU",
-    title: "3rd Place Nationwide — Sustainable Innovation Summit",
+    title: "First Sustainable Innovation Summit 2025 — Certificate of Thanks",
     issued: "Aug 2025",
     credentialId: "TANTA-SUMMIT-2025-08",
     image: "/certi/tanta-sustainable-innovation-summit.webp",
@@ -105,9 +105,9 @@ const certificatePreviews: CertificatePreview[] = [
   },
   {
     id: "ecpc-2026-qualifications",
-    issuer: "ICPC & ECPC Foundation",
-    mark: "ECPC",
-    title: "The 2026 ICPC ECPC Qualifications Contestant — Honorable Mention",
+    issuer: "ICPC Foundation",
+    mark: "ICPC",
+    title: "2026 ICPC ECPC Qualifications Contest — Honorable Mention",
     issued: "Aug 2026",
     credentialId: "ECPC-2026-Q7-HONOR",
     image: "/certi/ecpc-2026-qualifications.webp",
@@ -115,9 +115,9 @@ const certificatePreviews: CertificatePreview[] = [
   },
   {
     id: "horus-university-excellence",
-    issuer: "Horus University In Egypt (HUE)",
+    issuer: "Horus University — Egypt",
     mark: "HUE",
-    title: "Academic & Competitive Programming Excellence",
+    title: "Third Place — First Sustainable Innovation Summit",
     issued: "2025 – 2026",
     credentialId: "HUE-ENG-2026",
     image: "/certi/horus-university-excellence.webp",
@@ -135,9 +135,9 @@ const certificatePreviews: CertificatePreview[] = [
   },
   {
     id: "luxsai-ai-summit",
-    issuer: "Luxor University National Summit",
-    mark: "SUM",
-    title: "LUXSAI AI Summit Honor & Appreciation",
+    issuer: "LuxsAI Summit — Luxor University",
+    mark: "LUXSAI",
+    title: "LUXSAI AI Hackathon — AI Track Participation",
     issued: "Mar 2026",
     credentialId: "LUXSAI-SUMMIT-2026",
     image: "/certi/luxsai-ai-summit-luxor.webp",
@@ -178,9 +178,7 @@ function CertificatesPage() {
       />
 
       <div>
-        <h1 className="text-4xl font-pixel text-white uppercase">
-          CERTIFICATES
-        </h1>
+        <h1 className="text-4xl font-pixel text-white uppercase">CERTIFICATES</h1>
       </div>
 
       <div className="grid items-stretch gap-3 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">
@@ -200,7 +198,10 @@ function CertificatesPage() {
         </section>
 
         {/* Mobile Framer Motion 3-Item Carousel (1 Center 100%, 2 Sides 30% Opacity) */}
-        <section aria-label="Certificate folders carousel" className="block lg:hidden select-none overflow-hidden w-full">
+        <section
+          aria-label="Certificate folders carousel"
+          className="block lg:hidden select-none overflow-hidden w-full"
+        >
           <div className="relative flex flex-col items-center gap-1 w-full max-w-full">
             <motion.div
               drag="x"
@@ -406,15 +407,16 @@ function CertificateViewer({
   onOpenFullscreen: () => void;
 }) {
   return (
-    <aside className="flex flex-col items-center justify-start lg:translate-y-0 h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0" aria-label="Selected certificate preview">
+    <aside
+      className="flex flex-col items-center justify-start lg:translate-y-0 h-full w-full mt-2 sm:mt-4 lg:mt-0 pt-0"
+      aria-label="Selected certificate preview"
+    >
       {/* 3D Scene Container */}
       <div className="relative mx-auto aspect-[1.4/1] w-full max-w-[580px] px-1 sm:px-0 [perspective:2000px] group cursor-pointer">
         <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-500 ease-out">
-          
           {/* Folder Base (Back tray that holds the certificate) */}
           <div className="absolute inset-0 rounded-[18px] border border-[#2a2a2c] bg-[#1a1a1c] p-[2.5%] shadow-[0_30px_60px_rgba(0,0,0,0.9),inset_0_10px_20px_rgba(0,0,0,0.5)] z-10 flex flex-col">
             <div className="relative h-full w-full rounded-[10px] bg-[#0f0f11] p-[1.5%] shadow-[inset_0_5px_15px_rgba(0,0,0,0.8)] flex flex-col">
-              
               {/* Real Certificate Paper with Fast Pixelated Retro Intro Effect */}
               <div
                 onClick={onOpenFullscreen}
@@ -443,14 +445,11 @@ function CertificateViewer({
                   />
                 </motion.div>
               </div>
-
             </div>
           </div>
 
           {/* Folder Cover (The part that hinges open upwards - responsive rotateX) */}
-          <div
-            className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]"
-          >
+          <div className="absolute inset-x-0 top-0 h-[85%] origin-top rounded-[18px] [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-20 [transform:rotateX(98deg)] sm:[transform:rotateX(108deg)] lg:[transform:rotateX(118deg)] shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
             {/* Front Face (Outer Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#333] bg-gradient-to-br from-[#222225] to-[#151518] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.05)] [backface-visibility:hidden] flex items-center justify-center">
               <div className="text-zinc-500 font-semibold tracking-wider text-xl uppercase font-mono">
@@ -461,7 +460,6 @@ function CertificateViewer({
             {/* Back Face (Inner Lining of Cover) */}
             <div className="absolute inset-0 rounded-[18px] border border-[#222] bg-[#111] [transform:rotateX(180deg)] [backface-visibility:hidden] shadow-[inset_0_0_40px_rgba(0,0,0,0.9)]" />
           </div>
-
         </div>
       </div>
     </aside>

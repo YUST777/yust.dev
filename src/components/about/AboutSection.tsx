@@ -147,6 +147,11 @@ function getGithubProjectStars() {
   return githubStarsRequest;
 }
 
+function prefetchGithubData() {
+  void getGithubContributions().catch(() => undefined);
+  void getGithubProjectStars().catch(() => undefined);
+}
+
 function toGithubWeeks({ start, levels, counts }: GithubContributions) {
   const startDate = new Date(`${start}T00:00:00Z`);
   const weeks: (GithubContributionDay | undefined)[][] = [];
@@ -248,7 +253,7 @@ function GithubPreview() {
             <span>
               {contributions?.total
                 ? `${contributions.total.toLocaleString()} contributions in the last year`
-                : "Loading contributions…"}
+                : "GitHub activity"}
             </span>
             {projectStars !== null && !starsUnavailable && (
               <>
@@ -280,34 +285,28 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
   if (type === "cv") {
     return (
       <a
-        className="group relative block h-[108px] w-[288px] max-w-[calc(100vw-2rem)] cursor-pointer overflow-hidden rounded-2xl bg-zinc-950 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        className="group block w-[320px] max-w-[calc(100vw-2rem)] overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
         href="/cv.pdf"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Open Yousef Mohammed Salah's CV"
       >
-        <div className="absolute inset-x-0 top-0 h-[64px] overflow-hidden bg-white">
+        <div className="relative h-[72px] overflow-hidden bg-zinc-100">
           <img
             src="/static/images/cv-preview.webp"
             alt=""
-            className="absolute inset-x-0 top-0 h-auto w-full object-cover object-top"
+            className="absolute inset-x-0 top-0 h-auto w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             width="640"
             height="905"
           />
         </div>
-        <div
-          className="absolute inset-x-0 top-[52px] h-[12px] bg-gradient-to-b from-zinc-950/0 via-zinc-950/30 to-zinc-950/85 backdrop-blur-[2px]"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-x-0 bottom-0 flex h-[48px] items-center justify-between gap-3 bg-gradient-to-b from-zinc-950/85 via-zinc-950 to-zinc-950 px-3">
+        <div className="flex items-center justify-between gap-3 bg-zinc-900 px-3 py-3">
           <div className="min-w-0">
-            <p className="text-[8px] font-medium uppercase tracking-[0.16em] text-zinc-500">
-              Curriculum vitae
-            </p>
-            <p className="truncate text-[12px] leading-4 text-zinc-100">Yousef Mohammed Salah</p>
+            <p className="truncate text-[14px] leading-5 text-zinc-100">Yousef Mohammed Salah</p>
+            <p className="mt-0.5 text-[11px] leading-4 text-zinc-400">Curriculum vitae · PDF</p>
           </div>
-          <span className="flex shrink-0 items-center rounded-full border border-white/10 px-2 py-1 text-[9px] font-medium text-zinc-300 transition-colors group-hover:border-white/20 group-hover:bg-white/5 group-hover:text-white">
-            Open CV
+          <span className="flex shrink-0 items-center rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-zinc-900 transition-colors group-hover:bg-zinc-200">
+            Open
           </span>
         </div>
       </a>
@@ -450,11 +449,15 @@ function SocialContacts() {
   const previewLayersRef = useRef<PreviewLayer[]>([]);
   const resizeFrameRef = useRef<number | undefined>(undefined);
 
+  useEffect(() => {
+    prefetchGithubData();
+  }, []);
+
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText("yousefmsm@hotmail.com");
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
+      window.setTimeout(() => setCopied(false), 3000);
     } catch {
       window.location.href = "mailto:yousefmsm@hotmail.com";
     }
@@ -497,10 +500,7 @@ function SocialContacts() {
     setIsPanelOpen(true);
     setIsInstantResize(firstOpen);
     const parentBounds = contactRef.current?.getBoundingClientRect();
-    const panelWidth = Math.min(
-      preview === "github" ? 376 : preview === "cv" ? 288 : 320,
-      window.innerWidth - 32,
-    );
+    const panelWidth = Math.min(preview === "github" ? 376 : 320, window.innerWidth - 32);
     const anchorCenter = node.getBoundingClientRect().left + node.offsetWidth / 2;
     const clampedCenter = Math.min(
       Math.max(anchorCenter, 16 + panelWidth / 2),
@@ -593,9 +593,20 @@ function SocialContacts() {
       <button
         type="button"
         onClick={handleCopyEmail}
-        className="relative z-10 inline-flex min-h-10 cursor-pointer items-center justify-center rounded-xl bg-zinc-100 px-4 text-sm font-medium text-zinc-950 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-5 sm:text-base"
+        className="group relative z-10 inline-flex min-h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl bg-zinc-100 px-4 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-white active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-5 sm:text-base"
+        aria-live="polite"
       >
-        {copied ? "Copied!" : "Copy my email"}
+        <span
+          className={`transition-all duration-500 ${copied ? "blur-[3px] opacity-0" : "blur-0 opacity-100"}`}
+        >
+          Copy my email
+        </span>
+        <span
+          className={`absolute transition-all duration-500 ${copied ? "blur-0 opacity-100" : "blur-[3px] opacity-0"}`}
+          aria-hidden={!copied}
+        >
+          Copied!
+        </span>
       </button>
       <div
         ref={contactRef}
