@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, "..");
 
-// 1. Extract blog posts data from blog.index.tsx
-const blogContent = readFileSync(join(rootDir, "src/routes/_main/blog.index.tsx"), "utf8");
+// 1. Extract blog post data from its source module
+const blogContent = readFileSync(join(rootDir, "src/data/blog.ts"), "utf8");
 
 // Parse posts from the source
 const postBlocks = [...blogContent.matchAll(/\{\s*id:\s*["'](\d+)["'][\s\S]*?title:\s*["']([^"']+)["'][\s\S]*?date:\s*["']([^"']+)["'][\s\S]*?category:\s*["']([^"']+)["'][\s\S]*?summary:\s*\n?\s*["']([^"']+)["']/g)];
