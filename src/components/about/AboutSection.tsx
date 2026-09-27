@@ -10,7 +10,6 @@ import {
   type PointerEvent,
 } from "react";
 import { Link } from "@tanstack/react-router";
-import { SiReact, SiNextdotjs, SiSupabase, SiTailwindcss } from "react-icons/si";
 
 function GithubIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
@@ -60,6 +59,7 @@ type GithubContributions = {
 };
 
 const AVATAR_URL = "https://github.com/YUST777.png?size=128";
+const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
 const GITHUB_LEVEL_CLASSES = [
   "bg-zinc-800",
@@ -69,6 +69,7 @@ const GITHUB_LEVEL_CLASSES = [
   "bg-green-400/90",
 ] as const;
 
+let githubContributionsCache: GithubContributions | undefined;
 let githubContributionsRequest: Promise<GithubContributions> | undefined;
 
 function getGithubContributions() {
@@ -80,12 +81,18 @@ function getGithubContributions() {
         contributions: GithubContributionDay[];
       };
       const days = data.contributions;
-      return {
+      const contributions = {
         total: data.total.lastYear ?? 0,
         start: days[0]?.date ?? "",
         levels: days.map((day) => day.level).join(""),
         counts: days.map((day) => day.count),
       };
+      githubContributionsCache = contributions;
+      return contributions;
+    })
+    .catch((error: unknown) => {
+      githubContributionsRequest = undefined;
+      throw error;
     });
 
   return githubContributionsRequest;
@@ -147,7 +154,9 @@ function GithubGraph({ contributions }: { contributions: GithubContributions | n
 }
 
 function GithubPreview() {
-  const [contributions, setContributions] = useState<GithubContributions | null>(null);
+  const [contributions, setContributions] = useState<GithubContributions | null>(
+    () => githubContributionsCache ?? null,
+  );
 
   useEffect(() => {
     let mounted = true;
@@ -174,9 +183,6 @@ function GithubPreview() {
             width="40"
             height="40"
           />
-          <div className="absolute -bottom-[6px] -right-[6px] flex h-[20px] w-[20px] items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-[13px] shadow-sm">
-            🎧
-          </div>
         </div>
         <div className="flex min-w-0 flex-col">
           <span className="text-[16px] leading-[24px] text-zinc-100">YUST777</span>
@@ -192,38 +198,25 @@ function GithubPreview() {
   );
 }
 
-function LinkedinShieldIcon() {
-  return (
-    <svg className="inline h-[1em] w-[1em] -translate-y-0.5 text-zinc-400" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 3.25 19 6v5.1c0 4.47-2.94 8.51-7 9.65-4.06-1.14-7-5.18-7-9.65V6l7-2.75Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <path d="m9.25 12.2 1.75 1.75 3.75-3.9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function SocialPreviewContent({ type }: { type: SocialPreview }) {
   if (type === "cv") {
     return (
-      <div className="flex w-[288px] max-w-[calc(100vw-2rem)] items-center gap-[12px] p-[16px] text-left">
-        <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-100 ring-1 ring-white/10">
-          <CvIcon className="h-[30px] w-[30px]" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-[15px] leading-[22px] text-zinc-100">Yousef Mohammed Salah</p>
-          <p className="text-[13px] leading-[19px] text-zinc-400">CV · PDF document</p>
+      <div className="flex w-[320px] max-w-[calc(100vw-2rem)] items-center justify-between gap-[16px] p-[16px] text-left">
+        <div className="min-w-0">
+          <p className="mb-[4px] text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">
+            Curriculum vitae
+          </p>
+          <p className="truncate text-[15px] leading-[22px] text-zinc-100">
+            Yousef Mohammed Salah
+          </p>
         </div>
         <a
-          className="shrink-0 rounded-full bg-zinc-100 px-[12px] py-[6px] text-[13px] font-medium text-zinc-950 transition-colors hover:bg-white"
+          className="shrink-0 rounded-full bg-zinc-100 px-[12px] py-[6px] text-[12px] font-medium text-zinc-950 transition-colors hover:bg-white"
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open CV
+          Open
         </a>
       </div>
     );
@@ -243,8 +236,8 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
         <div className="relative px-[12px] pb-[12px]">
           <div className="absolute left-[12px] top-0 -translate-y-1/2 rounded-full bg-zinc-900 p-[2px]">
             <img
-              src={AVATAR_URL}
-              alt=""
+              src={LINKEDIN_AVATAR_URL}
+              alt="Yousef Mohammed Salah"
               className="h-[56px] w-[56px] rounded-full object-cover"
               width="56"
               height="56"
@@ -252,7 +245,7 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
           </div>
           <div className="flex flex-col gap-[4px] pt-[32px]">
             <div className="text-[16px] leading-[24px] text-zinc-100">
-              Yousef Mohammed Salah <LinkedinShieldIcon />
+              Yousef Mohammed Salah
             </div>
             <div className="mt-[4px] flex items-end justify-between gap-[12px]">
               <div className="min-w-0 text-[14px] leading-[20px]">
@@ -298,13 +291,6 @@ const SOCIAL_LINKS = [
   { icon: <MailIcon />, label: "Email", url: "mailto:yousefmsm@hotmail.com" },
   { icon: <CvIcon />, label: "CV", url: "/cv.pdf", preview: "cv" as const },
 ];
-
-const CORE_STACK = [
-  { Icon: SiReact, name: "React", hoverClass: "hover:text-[#61DAFB]" },
-  { Icon: SiNextdotjs, name: "Next.js", hoverClass: "hover:text-white" },
-  { Icon: SiSupabase, name: "Supabase", hoverClass: "hover:text-[#3ECF8E]" },
-  { Icon: SiTailwindcss, name: "Tailwind CSS", hoverClass: "hover:text-[#06B6D4]" },
-] as const;
 
 type PreviewLayer = {
   type: SocialPreview;
@@ -628,25 +614,6 @@ function SocialContacts() {
 export default function AboutSection() {
   return (
     <section>
-      <div className="mb-8 flex flex-col gap-4 border-b border-white/5 pb-4 sm:flex-row sm:items-baseline sm:justify-between">
-        <h2 className="mb-0 shrink-0 text-3xl font-pixel text-white">About Me</h2>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500 sm:justify-end sm:text-xs">
-          <span className="font-bold text-zinc-400">Core stack:</span>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 normal-case tracking-normal text-zinc-400">
-            {CORE_STACK.map(({ Icon, name, hoverClass }) => (
-              <span
-                key={name}
-                data-tooltip-id="core-stack-tooltip"
-                data-tooltip-content={name}
-                className={`inline-flex items-center gap-1.5 whitespace-nowrap ${hoverClass} transition-colors`}
-              >
-                <Icon className="h-4 w-4" />
-                <span>{name}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
       <div className="space-y-4 text-zinc-400 leading-relaxed font-mono text-sm sm:text-base md:text-lg">
         <p>
           I am <strong className="text-zinc-200">Yousef Mohammed Salah</strong>. AI &amp;
