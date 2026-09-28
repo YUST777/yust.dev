@@ -81,6 +81,8 @@ export interface BlogPostMeta {
   modifiedIso?: string;
   summary: string;
   category?: string;
+  keywords?: string[];
+  content?: string;
   image?: string; // absolute URL preferred
 }
 
@@ -219,6 +221,18 @@ function toIsoDateTime(date: string): string {
   return `${date}T12:00:00+00:00`;
 }
 
+/** Keep articleBody useful to crawlers while removing the small markdown subset
+ * used by the portfolio's renderer. This mirrors the visible article copy. */
+function plainTextFromMarkdown(markdown: string): string {
+  return markdown
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/[*_>#-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function blogPostingSchema(post: BlogPostMeta) {
   const url = `${SITE_URL}/blog/${post.slug}`;
   const image = post.image
@@ -228,6 +242,8 @@ export function blogPostingSchema(post: BlogPostMeta) {
     : SOCIAL_IMAGE;
   const isoDateTime = toIsoDateTime(post.iso);
   const modifiedDateTime = toIsoDateTime(post.modifiedIso ?? post.iso);
+  const articleBody = post.content ? plainTextFromMarkdown(post.content) : undefined;
+  const keywords = [post.category, ...(post.keywords ?? [])].filter(Boolean);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -237,7 +253,18 @@ export function blogPostingSchema(post: BlogPostMeta) {
     datePublished: isoDateTime,
     dateModified: modifiedDateTime,
     articleSection: post.category,
-    keywords: post.category,
+    ...(keywords.length ? { keywords: keywords.join(", ") } : {}),
+    ...(articleBody
+      ? {
+          articleBody,
+          wordCount: articleBody.split(/\s+/).filter(Boolean).length,
+        }
+      : {}),
+    ...(post.keywords?.length
+      ? {
+          about: post.keywords.slice(0, 6).map((name) => ({ "@type": "Thing", name })),
+        }
+      : {}),
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     image: [image],

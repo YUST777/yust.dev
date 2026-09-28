@@ -78,7 +78,7 @@ function MainLayout() {
               rel="noopener noreferrer"
               className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4 decoration-zinc-800 hover:decoration-zinc-500"
             >
-              commit {COMMIT_HASH}
+              Commit {COMMIT_HASH}
             </a>
             <span className="text-zinc-800">·</span>
             <span>© {mounted ? new Date().getFullYear() : "2026"} Yousef</span>

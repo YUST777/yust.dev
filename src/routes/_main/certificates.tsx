@@ -59,34 +59,14 @@ type CertificatePreview = {
 
 const certificatePreviews: CertificatePreview[] = [
   {
-    id: "gdg-delta-hackathon",
-    issuer: "Google Developer Groups Delta",
-    mark: "GDG",
-    title: "Egypt Hackathon 4.0 — Certificate of Participation",
-    issued: "Feb 2026",
-    credentialId: "GDG-DELTA-2026-02",
-    image: "/certi/gdg-delta-hackathon-4.webp",
-    accent: "from-blue-400/20 to-sky-400/5",
-  },
-  {
-    id: "luxsai-ai-hackathon",
-    issuer: "Horus University — Egypt",
-    mark: "HUE",
-    title: "3rd Place — LUXSAI AI Hackathon",
-    issued: "Mar 2026",
-    credentialId: "LUXSAI-HACK-2026-03",
-    image: "/certi/luxsai-ai-hackathon-winner.webp",
-    accent: "from-purple-400/20 to-indigo-400/5",
-  },
-  {
-    id: "sustainable-innovation-summit",
-    issuer: "Tanta University",
-    mark: "TNU",
-    title: "First Sustainable Innovation Summit 2025 — Certificate of Thanks",
-    issued: "Aug 2025",
-    credentialId: "TANTA-SUMMIT-2025-08",
-    image: "/certi/tanta-sustainable-innovation-summit.webp",
-    accent: "from-emerald-400/20 to-teal-400/5",
+    id: "nvidia-building-rag-agents-llms",
+    issuer: "NVIDIA",
+    mark: "NVDA",
+    title: "Building RAG Agents with LLMs — Certificate of Competency",
+    issued: "Aug 2026",
+    credentialId: "-FSgrCQAUqN-DL-AaysPg",
+    image: "/certi/nvidia-rag-agents-llms.webp",
+    accent: "from-emerald-400/20 to-green-400/5",
   },
   {
     id: "iti-ai-ml-course",
@@ -99,14 +79,14 @@ const certificatePreviews: CertificatePreview[] = [
     accent: "from-red-500/20 to-rose-400/5",
   },
   {
-    id: "ecpc-2026-qualifications",
-    issuer: "ICPC Foundation",
-    mark: "ICPC",
-    title: "2026 ICPC ECPC Qualifications Contest — Honorable Mention",
-    issued: "Aug 2026",
-    credentialId: "ECPC-2026-Q7-HONOR",
-    image: "/certi/ecpc-2026-qualifications.webp",
-    accent: "from-amber-400/20 to-orange-400/5",
+    id: "luxsai-ai-hackathon",
+    issuer: "Horus University — Egypt",
+    mark: "HUE",
+    title: "3rd Place — LUXSAI AI Hackathon",
+    issued: "Mar 2026",
+    credentialId: "LUXSAI-HACK-2026-03",
+    image: "/certi/luxsai-ai-hackathon-winner.webp",
+    accent: "from-purple-400/20 to-indigo-400/5",
   },
   {
     id: "horus-university-excellence",
@@ -119,14 +99,34 @@ const certificatePreviews: CertificatePreview[] = [
     accent: "from-sky-400/20 to-blue-400/5",
   },
   {
-    id: "nvidia-building-rag-agents-llms",
-    issuer: "NVIDIA",
-    mark: "NVDA",
-    title: "Building RAG Agents with LLMs — Certificate of Competency",
+    id: "ecpc-2026-qualifications",
+    issuer: "ICPC Foundation",
+    mark: "ICPC",
+    title: "2026 ICPC ECPC Qualifications Contest — Honorable Mention",
     issued: "Aug 2026",
-    credentialId: "-FSgrCQAUqN-DL-AaysPg",
-    image: "/certi/nvidia-rag-agents-llms.webp",
-    accent: "from-emerald-400/20 to-green-400/5",
+    credentialId: "ECPC-2026-Q7-HONOR",
+    image: "/certi/ecpc-2026-qualifications.webp",
+    accent: "from-amber-400/20 to-orange-400/5",
+  },
+  {
+    id: "gdg-delta-hackathon",
+    issuer: "Google Developer Groups Delta",
+    mark: "GDG",
+    title: "Egypt Hackathon 4.0 — Certificate of Participation",
+    issued: "Feb 2026",
+    credentialId: "GDG-DELTA-2026-02",
+    image: "/certi/gdg-delta-hackathon-4.webp",
+    accent: "from-blue-400/20 to-sky-400/5",
+  },
+  {
+    id: "sustainable-innovation-summit",
+    issuer: "Tanta University",
+    mark: "TNU",
+    title: "First Sustainable Innovation Summit 2025 — Certificate of Thanks",
+    issued: "Aug 2025",
+    credentialId: "TANTA-SUMMIT-2025-08",
+    image: "/certi/tanta-sustainable-innovation-summit.webp",
+    accent: "from-emerald-400/20 to-teal-400/5",
   },
   {
     id: "luxsai-ai-summit",
@@ -166,7 +166,7 @@ function CertificatesPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 sm:space-y-12 pb-40 sm:pb-32 overflow-x-clip">
       <div>
-        <h1 className="text-4xl font-pixel text-white uppercase">CERTIFICATES</h1>
+        <h1 className="text-4xl font-pixel text-white uppercase">Certificates</h1>
       </div>
 
       <div className="grid items-stretch gap-3 sm:gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-14">

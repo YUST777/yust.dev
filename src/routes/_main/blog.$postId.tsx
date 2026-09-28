@@ -42,7 +42,11 @@ export const Route = createFileRoute("/_main/blog/$postId")({
         {
           type: "application/ld+json",
           children: jsonLdString(
-            blogPostingSchema({ ...post, summary: post.seoDescription ?? post.summary }),
+            blogPostingSchema({
+              ...post,
+              image: image ? `${SITE_URL}${image}` : undefined,
+              summary: post.seoDescription ?? post.summary,
+            }),
           ),
         },
       ],

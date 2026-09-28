@@ -43,20 +43,20 @@ export const Route = createFileRoute("/_main/hacks")({
 
 const hacks = [
   {
-    rank: "3RD PLACE",
+    rank: "3rd Place",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "LUXSAI AI HACKATHON • MAR 29, 2026 • LUXOR UNIVERSITY",
-    title: "sast.tech (Pentesting/IDE AI Agent)",
+    event: "LuxSAI AI Hackathon · Mar 29, 2026 · Luxor University",
+    title: "sast.tech — AI Pentesting Agent",
     desc: (
       <>
-        Achieved a distinguished <strong className="text-zinc-200">3rd place finish</strong> among
-        67 teams from 17 universities and higher institutes. Officially represented the Faculty of
-        Artificial Intelligence at Horus University alongside my colleague{" "}
+        Won <strong className="text-zinc-200">3rd place</strong> among 67 teams from 17 universities
+        and higher institutes. Officially represented the Faculty of Artificial Intelligence at
+        Horus University alongside my colleague{" "}
         <strong className="text-zinc-200">Abdelrahman Mohsen</strong>, competing with{" "}
         <strong className="text-zinc-200">sast.tech</strong>—an autonomous Pentesting AI Agent.
       </>
     ),
-    linkText: "Project Waitlist: sast.tech",
+    linkText: "Visit sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
       {
@@ -75,35 +75,35 @@ const hacks = [
   },
 
   {
-    rank: "2ND PLACE",
+    rank: "2nd Place",
     color: "text-white hover:text-[#9ab8d6] transition-colors duration-300",
-    event: "GDG DELTA HACKATHON • FEB 18, 2026 • GOOGLE DEVELOPER GROUPS",
-    title: "sast.tech (Pentesting/IDE AI Agent)",
+    event: "GDG Delta Hackathon · Feb 18, 2026 · Google Developer Groups",
+    title: "sast.tech — AI Pentesting Agent",
     desc: (
       <>
-        Secured <strong className="text-zinc-200">2nd place</strong> out of 122 teams (610
-        competitors) following an intense 49-hour development sprint. This marked the inception of{" "}
+        Won <strong className="text-zinc-200">2nd place</strong> out of 122 teams (610 competitors)
+        following an intense 49-hour development sprint. This marked the inception of{" "}
         <strong className="text-zinc-200">sast.tech</strong>, where we co-developed the
         comprehensive Pentesting AI Agent to secure rapidly generated code using static analysis and
         Playwright.
       </>
     ),
-    linkText: "Project Waitlist: sast.tech",
+    linkText: "Visit sast.tech",
     linkUrl: "https://sast.tech",
     proofs: [
-      { label: "GDG DELTA", url: "https://www.facebook.com/share/p/1BGCYoPpDT/" },
+      { label: "GDG Delta", url: "https://www.facebook.com/share/p/1BGCYoPpDT/" },
       {
-        label: "AI FACULTY HORUS",
+        label: "AI Faculty at Horus University",
         url: "https://www.facebook.com/share/p/1J1uzVockT/?mibextid=wwXIfr",
       },
     ],
   },
 
   {
-    rank: "3RD PLACE",
+    rank: "3rd Place",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "SUSTAINABLE INNOVATION NATIONAL SUMMIT • AUGUST 1–28, 2025 • TANTA UNIVERSITY",
-    title: "Zero Threat (AI-Powered Antivirus)",
+    event: "Sustainable Innovation National Summit · Aug 1–28, 2025 · Tanta University",
+    title: "Zero Threat — AI-Powered Antivirus",
     desc: (
       <>
         Won <strong className="text-zinc-200">3rd place</strong> at the Tanta National Summit in my
@@ -132,10 +132,10 @@ const hacks = [
   },
 
   {
-    rank: "3RD PLACE",
+    rank: "3rd Place",
     color: "text-white hover:text-[#cd7f32] transition-colors duration-300",
-    event: "GREEN LOOP HACKATHON • SEP 10, 2026 • HORUS UNIVERSITY",
-    title: "ReSpark (Green AI & E-Waste Platform)",
+    event: "Green Loop Hackathon · Sep 10, 2026 · Horus University",
+    title: "ReSpark — Green AI & E-Waste Platform",
     desc: (
       <>
         Won <strong className="text-zinc-200">3rd place</strong> in the Green Loop waste-recycling
@@ -146,7 +146,7 @@ const hacks = [
         e-waste and AI data center energy consumption.
       </>
     ),
-    linkText: "Project: respark.tech",
+    linkText: "Visit respark.tech",
     linkUrl: "https://respark.tech",
     proofs: [
       {
@@ -167,10 +167,10 @@ const hacks = [
 
 const failedHacks = [
   {
-    status: "DIDN'T WIN",
+    status: "No Award",
     color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
-    event: "BUILDANYTHING HACKATHON • JULY 24, 2026 • MONAD MAINNET",
-    title: "MonTerminal (Monad Onchain Terminal)",
+    event: "BuildAnything Hackathon · Jul 24, 2026 · Monad Mainnet",
+    title: "MonTerminal — Monad Onchain Terminal",
     iconType: "deny",
     desc: (
       <>
@@ -182,7 +182,7 @@ const failedHacks = [
         validation.
       </>
     ),
-    linkText: "Live Terminal: monterminal.fun",
+    linkText: "Visit monterminal.fun",
     linkUrl: "https://www.monterminal.fun/",
     proofs: [
       {
@@ -194,16 +194,16 @@ const failedHacks = [
         url: "https://github.com/YUST777/MonTerminal",
       },
       {
-        label: "X / Twitter Announcement",
+        label: "X Announcement",
         url: "https://x.com/yust_dev/status/2078523331481870739?s=20",
       },
     ],
   },
   {
-    status: "MISSED SUBMISSION",
+    status: "Missed Submission",
     color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
-    event: "LABLAB X BAND.AI HACKATHON • JUNE 19, 2026 • BAND.AI",
-    title: "SWRMZ (swrmz.tech)",
+    event: "LabLab x Band.ai Hackathon · Jun 19, 2026 · Band.ai",
+    title: "SWRMZ — AI Security Agent Swarm",
     iconType: "clock",
     desc: (
       <>
@@ -213,7 +213,7 @@ const failedHacks = [
         beautiful, but the clock won.
       </>
     ),
-    linkText: "Project Waitlist: swrmz.tech",
+    linkText: "Visit swrmz.tech",
     linkUrl: "https://swrmz.tech",
     proofs: [
       {
@@ -228,10 +228,10 @@ const failedHacks = [
   },
 
   {
-    status: "DIDN'T WIN",
+    status: "No Award",
     color: "text-zinc-400 hover:text-red-400/80 transition-colors duration-300",
-    event: "REDDIT GAMES WITH A HOOK HACKATHON • DEVPOST",
-    title: "Hellish Golf (hellishgolf.xyz)",
+    event: "Reddit Games with a Hook Hackathon · Devpost",
+    title: "Hellish Golf — Browser Game",
     iconType: "deny",
     desc: (
       <>
@@ -243,7 +243,7 @@ const failedHacks = [
         open-source mini-apps.
       </>
     ),
-    linkText: "Live Game: hellishgolf.xyz",
+    linkText: "Visit hellishgolf.xyz",
     linkUrl: "https://hellishgolf.xyz",
     proofs: [
       {
@@ -269,7 +269,12 @@ function PixelTrophy({
   rank: string;
   className?: string;
 }) {
-  const color = rank.includes("1ST") ? "#FFD700" : rank.includes("2ND") ? "#C0C0C0" : "#CD7F32";
+  const normalizedRank = rank.toUpperCase();
+  const color = normalizedRank.includes("1ST")
+    ? "#FFD700"
+    : normalizedRank.includes("2ND")
+      ? "#C0C0C0"
+      : "#CD7F32";
 
   return (
     <svg
@@ -338,7 +343,7 @@ function HacksPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <div>
         <h1 className="text-4xl font-pixel text-white uppercase">
-          HACKATHONS WON ( {hacks.length} )
+          Hackathons Won ({hacks.length})
         </h1>
       </div>
 
@@ -346,7 +351,7 @@ function HacksPage() {
         {hacks.map((hack, i) => (
           <div key={i} className="flex flex-col gap-3">
             <h2
-              className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}
+              className={`text-2xl sm:text-3xl font-pixel uppercase flex items-center gap-2.5 ${hack.color}`}
             >
               <PixelTrophy rank={hack.rank} />
               <span>{hack.rank}</span>
@@ -416,7 +421,7 @@ function HacksPage() {
           whileTap={{ scale: 0.99 }}
           className="text-zinc-400 text-[11px] font-mono uppercase tracking-[0.2em] hover:text-zinc-300 cursor-pointer transition-colors inline-flex items-center gap-2 select-none focus:outline-none"
         >
-          <span>[ {showFailed ? "Hide Failed Attempts" : "Failed Hacks"} ]</span>
+          <span>[ {showFailed ? "Hide Other Attempts" : "Other Attempts"} ]</span>
           <motion.span
             animate={{ rotate: showFailed ? 180 : 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
@@ -446,7 +451,7 @@ function HacksPage() {
           {visibleFailedHacks.map((hack, i) => (
             <div key={i} className="flex flex-col gap-3">
               <h2
-                className={`text-2xl sm:text-3xl font-pixel flex items-center gap-2.5 ${hack.color}`}
+                className={`text-2xl sm:text-3xl font-pixel uppercase flex items-center gap-2.5 ${hack.color}`}
               >
                 {hack.iconType === "clock" ? <PixelClock /> : <PixelDeny />}
                 <span>{hack.status}</span>

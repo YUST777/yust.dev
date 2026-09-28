@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AnimatePresence, motion } from "framer-motion";
 import { posts, type BlogPost } from "@/data/blog";
 import { SITE_URL, buildRouteHead, jsonLdString, webPageSchema } from "@/lib/seo";
 
@@ -7,12 +8,26 @@ const TITLE = "Software, AI Security & Hackathon Stories | yust.dev";
 const DESCRIPTION =
   "Yousef Mohammed Salah writes about AI security, software engineering, hackathons, and building for Egypt's ICPC community.";
 
-const blogIndexSchema = webPageSchema({
-  url: `${SITE_URL}/blog`,
-  name: TITLE,
-  description: DESCRIPTION,
-  type: "CollectionPage",
-});
+const blogIndexSchema = {
+  ...webPageSchema({
+    url: `${SITE_URL}/blog`,
+    name: TITLE,
+    description: DESCRIPTION,
+    type: "CollectionPage",
+  }),
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      name: post.title,
+      description: post.seoDescription ?? post.summary,
+    })),
+  },
+};
 
 export const Route = createFileRoute("/_main/blog/")({
   head: () => {
@@ -47,6 +62,7 @@ const CATEGORIES = [
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredPost, setHoveredPost] = useState<BlogPost | null>(null);
+  const [previewImageIndex, setPreviewImageIndex] = useState(0);
   const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -58,14 +74,31 @@ function BlogPage() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    const images = hoveredPost?.images ?? [];
+    if (!hoveredPost || hoveredPost.previewVideo || images.length < 2) return;
+
+    const interval = window.setInterval(() => {
+      setPreviewImageIndex((currentIndex) => (currentIndex + 1) % images.length);
+    }, 3500);
+
+    return () => window.clearInterval(interval);
+  }, [hoveredPost]);
+
   const filteredPosts =
     selectedCategory === "All" ? posts : posts.filter((post) => post.category === selectedCategory);
+  const previewImages = hoveredPost?.images?.length
+    ? hoveredPost.images
+    : hoveredPost?.previewImage
+      ? [hoveredPost.previewImage]
+      : [];
+  const currentPreviewImage = previewImages[previewImageIndex % previewImages.length];
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-44 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-pixel text-white uppercase">blog</h1>
+          <h1 className="text-4xl font-pixel text-white uppercase">Blog</h1>
         </div>
 
         {/* Category Filters */}
@@ -94,7 +127,14 @@ function BlogPage() {
           <article
             key={post.id}
             className="border-b border-white/10 group"
-            onMouseEnter={() => setHoveredPost(post)}
+            onMouseEnter={() => {
+              setPreviewImageIndex(0);
+              post.images?.slice(1).forEach((src) => {
+                const image = new Image();
+                image.src = src;
+              });
+              setHoveredPost(post);
+            }}
             onMouseLeave={() => setHoveredPost(null)}
           >
             <Link
@@ -139,13 +179,18 @@ function BlogPage() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <img
-                  src={
-                    hoveredPost.previewImage || (hoveredPost.images && hoveredPost.images[0]) || ""
-                  }
-                  alt={hoveredPost.title}
-                  className={`w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
-                />
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={`${hoveredPost.id}-${currentPreviewImage}`}
+                    src={currentPreviewImage}
+                    alt={hoveredPost.title}
+                    initial={{ opacity: 0, x: 18, scale: 1.025 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -18, scale: 1.01 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className={`absolute inset-0 w-full h-full object-cover ${hoveredPost.imagePosition || "object-center"}`}
+                  />
+                </AnimatePresence>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-4 right-4">

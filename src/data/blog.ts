@@ -9,6 +9,7 @@ export interface BlogPost {
   modifiedDate?: string;
   summary: string;
   seoDescription?: string;
+  keywords?: string[];
   category: string;
   content: string;
   featured?: { label: string; url: string }[];
@@ -31,6 +32,15 @@ export const posts: BlogPost[] = [
       "How our project ReSpark won 3rd place in Horus University's Green Loop waste recycling competition, tackling both college hardware e-waste and AI data center energy consumption.",
     seoDescription:
       "ReSpark won 3rd place at Horus University's Green Loop recycling competition, tackling hardware e-waste and AI data-center energy use.",
+    keywords: [
+      "ReSpark",
+      "Green Loop Competition",
+      "electronic waste recycling",
+      "e-waste marketplace",
+      "green AI",
+      "Horus University",
+      "AI data center energy",
+    ],
     previewImage: "/static/images/mems/mem_13/1.webp",
     images: [
       "/static/images/mems/mem_13/1.webp",
@@ -83,6 +93,15 @@ Next stop: the nationwide Egypt finals! See you there :)`,
       "Bidding farewell to Level 2 and entering Level 3: a complete retrospective of 3 national hackathon wins, founding ICPC HUE, training 300+ students, and shipping production apps.",
     seoDescription:
       "A Level 2 retrospective covering 3 national hackathon wins, founding ICPC HUE, training 300+ students, and shipping production apps.",
+    keywords: [
+      "software engineering student portfolio",
+      "Egypt hackathon wins",
+      "ICPC HUE",
+      "competitive programming community",
+      "AI security projects",
+      "full-stack development",
+      "Horus University",
+    ],
     previewImage: "/static/images/mems/mem_12/1.webp",
     images: [
       "/static/images/mems/mem_12/1.webp",
@@ -176,6 +195,15 @@ Here's to an even bigger Level 3! 🚀`,
       "How an empty campus sparked Horus University's first competitive programming community from scratch, trained 300+ students, qualified 8 teams for ECPC, and inspired Verdict.run.",
     seoDescription:
       "How Horus University's first competitive programming community trained 300+ students, qualified 8 ECPC teams, and inspired Verdict.run.",
+    keywords: [
+      "ICPC HUE",
+      "Horus University competitive programming",
+      "ECPC qualification",
+      "competitive programming community",
+      "Verdict.run",
+      "algorithm training",
+      "Egypt programming contests",
+    ],
     previewImage: "/static/images/mems/mem_11/1.webp",
     images: [
       "/static/images/mems/mem_11/1.webp",
@@ -249,6 +277,15 @@ While my personal team didn't qualify for ECPC this season, what we built along 
       "Key takeaways from earning the NVIDIA DLI Certificate of Competency in Building RAG Agents with LLMs: from vector search and stateful agents to LLM-as-a-Judge evaluation.",
     seoDescription:
       "Key lessons from NVIDIA DLI's RAG Agents with LLMs certificate: vector search, stateful agents, and LLM-as-a-Judge evaluation.",
+    keywords: [
+      "NVIDIA DLI certificate",
+      "building RAG agents with LLMs",
+      "retrieval augmented generation",
+      "FAISS vector search",
+      "LangChain agents",
+      "LLM evaluation",
+      "AI microservices",
+    ],
     previewImage: "/static/images/mems/mem_10/1.webp",
     images: [
       "/static/images/mems/mem_10/1.webp",
@@ -324,11 +361,23 @@ It was an exceptional hands-on experience that directly shaped my approach to ar
     category: "Software Engineering",
     summary:
       "How I turned a brand kit and comic concept into a clear contest journey for 36+ teams from five Egyptian programming communities.",
+    seoDescription:
+      "A case study of DCC Hub, the comic-style contest website built for 36+ teams from five Egyptian programming communities at Horus University.",
+    keywords: [
+      "DCC Hub",
+      "programming contest website",
+      "comic-style web design",
+      "Horus University",
+      "competitive programming events",
+      "React web design",
+    ],
     content: `Three days ago, [ICPCHue Community](https://eg.linkedin.com/in/icpchue) hosted the **DCC programming contest** at the Faculty of Artificial Intelligence, Horus University. The contest was organized by [ACPC Club Damietta University](https://www.linkedin.com/company/acpc-du/), bringing competitive programmers together for a full day of problem solving.
 
 More than **36 teams from five communities** took part: [ICPC MNU Community](https://www.linkedin.com/company/icpc-mnu-community/), [ICPCHue Community](https://eg.linkedin.com/in/icpchue), [ICPC Delta Community](https://www.linkedin.com/company/ducpc-delta-community/), [ACPC NDETI Community](https://eg.linkedin.com/company/acpc-ndeti-community), and [ACPC Club Damietta University](https://www.linkedin.com/company/acpc-du/).
 
 My role was to build the contest website, [DCC Hub](http://dcchub.xyz). This was the first time I deliberately stepped outside my design safe zone and tried to make something genuinely creative. At the beginning, all I had was the brand kit—the colors, typeface, logo, and one central direction: **comic books**.
+
+**DCC Hub** was more than a visual landing page: it gave teams one place to understand the contest format, register, follow the qualification path, and find the event information they needed. I treated the project as a small information architecture exercise, using the comic panels to make a multi-stage programming contest feel approachable to first-time participants.
 
 The challenge was not simply to make the interface look like a comic. I wanted every panel and section to help visitors understand what to do next. A strong visual theme is useless if people cannot follow the experience, so the site had to feel expressive without turning into decoration or generic AI-generated noise.
 
@@ -378,6 +427,15 @@ You can also view the [original LinkedIn post](https://www.linkedin.com/posts/yo
       "My takeaways from participating in Reddit's 'Games with a Hook' Devpost hackathon, building Hellish Golf as a daily browser mini-app without traditional game engines.",
     seoDescription:
       "Takeaways from Reddit's Games with a Hook hackathon, where I built Hellish Golf as a daily browser mini-app without a game engine.",
+    keywords: [
+      "Hellish Golf",
+      "Reddit Games with a Hook",
+      "browser game development",
+      "Vite React game",
+      "daily retention loop",
+      "Devpost hackathon",
+      "mini-app design",
+    ],
     content: `I recently entered Reddit's **"Games with a Hook"** hackathon on Devpost, and... I ended up building a daily golf game!
 
 In this post, I want to share some of the core insights and technical takeaways I gained from participating in this sprint.
@@ -391,6 +449,8 @@ Reddit's main objective for this hackathon was boosting daily active user retent
 ### The Development Journey & Game Mechanics
 
 When I discovered the hackathon on Devpost, I decided to build a **daily challenge game** inspired by Wordle's daily retention loop. I drew conceptual inspiration from *Kinda Hard Golf* and hit the ground running:
+
+**Hellish Golf** is a lightweight browser game built around one repeatable action: return each day, solve a short course, and compare your result with the community. That constraint made the retention problem concrete and kept the product small enough to finish during a hackathon sprint.
 
 - **No Heavy Game Engines:** I deliberately chose not to use traditional engines like Unity or Godot since I didn't have extensive experience with them. Instead, I relied strictly on a lightweight **Vite + React** stack for both the frontend and backend logic.
 - **Open-Source Assets:** For textures and visual elements, I leveraged open-source 2D asset packs from [itch.io](https://itch.io).
@@ -440,6 +500,16 @@ I completed the game on schedule and submitted the project on time. Unfortunatel
     imagePosition: "object-top",
     summary:
       "Lessons, late nights, and project building: how we won 3 national hackathons in our first two years of university.",
+    seoDescription:
+      "The practical lessons behind three national hackathon podium finishes in Egypt, from competitive programming and teamwork to shipping under pressure.",
+    keywords: [
+      "winning hackathons in Egypt",
+      "national hackathon strategy",
+      "GDG Delta Hackathon",
+      "LUXSAI AI Hackathon",
+      "Sustainable Innovation Summit",
+      "hackathon teamwork",
+    ],
     content: `How did I win 3 national hackathons in my first two years of college?
 
 First, blessings and grace. Second: locking yourself in a cave for 3 months to build non-stop.
@@ -447,6 +517,8 @@ First, blessings and grace. Second: locking yourself in a cave for 3 months to b
 In reality, it's the result of compounding knowledge built project after project. For example, when building [Verdict.run](https://verdict.run), I was literally just learning how to handle authentication cookies. Competitive problem solving with the [ICPC HUE Community](https://icpchue.xyz) was another major foundation.
 
 The journey started when my teammate [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and I competed in the summer of our freshman year, securing 3rd place nationwide at the Sustainable Innovation National Summit in Tanta.
+
+Across those competitions, our process stayed consistent: identify a problem with a clear user, build the smallest convincing demo, test the risky technical path early, and use the final hours for reliability and storytelling. The projects were different, but the same loop—research, prototype, validate, and present—made each following hackathon faster and more focused.
 
 We kept pushing and won 2 more national hackathons in our sophomore year:
 - **2nd Place** at the Google Developers Group (GDG Delta) Hackathon (February 18, 2026).
@@ -475,11 +547,23 @@ We kept pushing and won 2 more national hackathons in our sophomore year:
     category: "AI & Security",
     summary:
       "How I returned to the Horus Technology Forum to demonstrate Sast.tech, an AI security agent that tests and patches web vulnerabilities.",
+    seoDescription:
+      "At Horus Technology Forum, I demonstrated Sast.tech, an AI-powered pentesting agent that finds, tests, and helps patch web application vulnerabilities.",
+    keywords: [
+      "Sast.tech",
+      "AI pentesting agent",
+      "web application security",
+      "Horus Technology Forum",
+      "Playwright security testing",
+      "AI vulnerability remediation",
+    ],
     content: `Today I was at the Technology Forum event at [Horus University](https://horus.edu.eg). This forum holds a very special place in my heart because it reminds me of my beginnings—it was the first place I ever showcased a project during my first semester.
 
 Returning a year later feels like a major milestone. This time, we came back to present our latest project, [Sast.tech](https://sast.tech), which recently secured 2nd place at **GDG Delta** and 3rd place at **LuxsAI**, alongside my colleague [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/).
 
 For those who missed the updates, [Sast.tech](https://sast.tech) is an automated security ecosystem built for the 'Vibe Coding' era. While AI has made writing code incredibly fast, security remains a slow, manual bottleneck. We built an IDE-integrated Pentesting AI Agent that bridges this gap. You provide your [GitHub](https://github.com) repository and site link, and the agent uses [Playwright](https://playwright.dev) to navigate your app, identify vulnerabilities, and test them in real-time.
+
+The forum demo focused on the complete developer workflow: connect a repository, point the agent at a running web app, reproduce a finding in a real browser, and return an understandable remediation path. That makes Sast.tech relevant to developers using AI code-generation tools as well as security teams reviewing fast-moving prototypes.
 
 It doesn't just hand you a report; it uses AI to automatically patch the vulnerabilities and provides detailed tips so developers can learn from the process.`,
     featured: [
@@ -514,9 +598,21 @@ It doesn't just hand you a report; it uses AI to automatically patch the vulnera
     category: "SaaS & Marketing",
     summary:
       "Practical SaaS marketing lessons from AZ Tech Solutions on awareness, trust, audience filtering, and converting interest into a win-win offer.",
+    seoDescription:
+      "Practical SaaS marketing lessons from AZ Tech Solutions in Egypt: building awareness, earning trust, filtering an audience, and creating a clear offer.",
+    keywords: [
+      "SaaS marketing strategy",
+      "AZ Tech Solutions",
+      "personal branding for developers",
+      "audience segmentation",
+      "startup product marketing",
+      "Egypt software startups",
+    ],
     content: `Today I was at **AZ Tech Solutions** in Mansoura with my colleagues [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) and [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/). We were there for marketing training—learning how to sell your SaaS and generate profit—as a result of our 2nd place win at the **GDG Delta** hackathon.
 
 I learned many powerful concepts, but the one that stuck with me most was what I call **"The Filter"** (Al-Musaffa). The idea is simple: to sell your product, you start with an audience representing 100% of the market. Most of them don't know who you are. Your job is to build awareness and your **Personal Brand** so they trust you. After this phase, that 100% is 'filtered' down to roughly 60% who are actually interested and ready for your offer, leading to a true **Win-Win Situation**.
+
+For an early-stage SaaS product, this means turning a broad message into a specific promise: name the audience, show the problem in their language, demonstrate the product, and make the next step obvious. The lesson applies directly to developer tools, where technical quality only matters after the right users understand the value.
 
 Special thanks to [Eng. Akram Zeyada](https://www.linkedin.com/in/akram-zeyada-2468a0a8/) for his amazing hospitality and detailed explanation 🤍.`,
     featured: [
@@ -536,11 +632,23 @@ Special thanks to [Eng. Akram Zeyada](https://www.linkedin.com/in/akram-zeyada-2
     category: "Hackathons",
     summary:
       "The 850 km journey from Damietta to Luxor, how Sast.tech evolved into a desktop security IDE, and what earned third place at LuxsAI.",
+    seoDescription:
+      "How Sast.tech evolved into an AI security IDE during an 850 km journey from Damietta to Luxor and earned 3rd place at the LUXSAI AI Hackathon.",
+    keywords: [
+      "LUXSAI AI Hackathon",
+      "Sast.tech",
+      "AI security IDE",
+      "automated pentesting",
+      "Damietta to Luxor hackathon",
+      "desktop developer security tools",
+    ],
     content: `I traveled 17 hours from Damietta to Luxor and came back with 3rd place :).
 
 Yeah, me and [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/) went to **LUXSAI** in Luxor—about 850 km away 💀—and thankfully, we secured 3rd place in the AI Hackathon category.
 
 The project was [SAST.TECH](https://sast.tech). After we developed the standalone \`.EXE\` version, it became clear: code is being written faster than ever, but security is still lagging behind. That's why we built **SAST.TECH**.
+
+The LuxsAI build combined a desktop-style coding experience with automated security checks. We focused on making the security loop visible: scan a project, reproduce a vulnerability against the running application, explain the risk, and suggest a fix a developer can apply immediately.
 
 Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` within the same application; it's a fully functional IDE. The application is now available on the website for free; you can try the beta version for 24 hours only.`,
     featured: [
@@ -575,11 +683,23 @@ Note: You can code normally in \`SAST_AI\` and monitor security in \`SAST_SEC\` 
     imagePosition: "object-cover",
     summary:
       "Inside the 49-hour build that took Sast.tech to second place at the GDG Delta hackathon, from the security problem to the final demo.",
+    seoDescription:
+      "Inside the 49-hour GDG Delta hackathon build where Sast.tech earned 2nd place with browser-based pentesting, Playwright automation, and AI remediation.",
+    keywords: [
+      "GDG Delta Hackathon",
+      "Sast.tech",
+      "AI security agent",
+      "Playwright automation",
+      "automated penetration testing",
+      "49-hour hackathon",
+    ],
     content: `Don't sleep until you hold the win in your hand. This was me at 1 AM, after staying awake for 49 hours straight in the service area 😂.
 
 We were at the **Google Developers Group - GDG Delta** hackathon. Alongside my colleagues [Khaled Suleiman](https://www.linkedin.com/in/khaled-slueiman/) and [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/), we set out to build something that solves a real problem for the modern developer.
 
 We built an application for the 'Vibe Coding' era. In a world where AI allows code to be written at lightning speed, security often falls behind, remaining slow and manual. Our solution was a **Pentesting AI Agent**.
+
+The 49-hour sprint was also a practical test of product scope. We prioritized one complete path—from GitHub repository to browser-based verification and actionable remediation—instead of presenting disconnected security features. That focus made the final demo easy for judges and developers to evaluate.
 
 The process is simple: you provide your [GitHub](https://github.com) code and the website link. The agent reads the code, identifies vulnerabilities, and then uses [Playwright](https://playwright.dev) to control the browser and actively test for security gaps. It doesn't just hand you a report; it uses the AI Agent to solve the problems and gives you actionable tips so you can learn exactly what it did and why.`,
     featured: [
@@ -613,11 +733,23 @@ The process is simple: you provide your [GitHub](https://github.com) code and th
     imagePosition: "object-cover",
     summary:
       "From Level 1 to the Top 3 — Zero Threat, our cybersecurity ecosystem, beat senior teams at Tanta National Summit.",
+    seoDescription:
+      "How Zero Threat, an AI-powered antivirus and web security ecosystem, won 3rd place at Egypt's Sustainable Innovation National Summit in Tanta.",
+    keywords: [
+      "Zero Threat antivirus",
+      "Sustainable Innovation National Summit",
+      "Tanta University hackathon",
+      "AI cybersecurity project",
+      "YARA malware detection",
+      "Egypt student hackathon",
+    ],
     content: `🎉 From Level 1 to the Top 3! 🎉
 
 Proud to share that our project [Zero Threat](https://zerothreat.yousefdev.xyz/)—a cybersecurity website & AI-powered desktop app—won **3rd place** at the First **Sustainable Innovation National Summit** in **Tanta**, among 20 universities nationwide. 🚀
 
 What makes this win special? Our team are all **Level 1 students**… competing (and winning!) against Level 4 & Level 5 engineers. 💪 Passion and teamwork beat seniority every time.
+
+**Zero Threat** was designed as a layered security product rather than a single antivirus screen: a web dashboard for analysis, a browser extension for safer downloads, and a Windows client for local protection. The project gave me an early foundation in malware analysis, endpoint tooling, and explaining security findings to non-specialist users.
 
 This was the project that started everything for me. Built end-to-end with my colleague [Abdelrahman Mohsen](https://www.linkedin.com/in/abdelrahmanmohsen147/), [Zero Threat](https://zerothreat.yousefdev.xyz/) combines an AI-powered web platform, a browser extension for safe-download checks, and a Windows agent using the **YARA protocol** to deliver a 90% malware detection rate across our test suite—outperforming several traditional signature-based antivirus solutions.
 

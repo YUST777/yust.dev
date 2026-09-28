@@ -55,7 +55,7 @@ export function Navbar() {
           icon={<CertificateIcon className="h-[19px] w-[19px] object-contain" />}
           label="Certs"
         />
-        <NavLink to="/blog" icon={<BlogIcon width="18" height="18" />} label="blog" />
+        <NavLink to="/blog" icon={<BlogIcon width="18" height="18" />} label="Blog" />
 
         <div className="w-[1px] h-6 shrink-0 bg-white/10 mx-1 sm:mx-2" />
 
