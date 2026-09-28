@@ -29,6 +29,56 @@ function jsonResponse(payload: Record<string, unknown>, cacheControl: string) {
   });
 }
 
+/**
+ * 1. Apify - Permanent $5/mo free recurring tier. Zero cookies needed.
+ * Uses harvestapi/linkedin-profile-scraper Actor with built-in residential proxies.
+ */
+async function getApifyFollowers(
+  token: string,
+): Promise<{ followers: number; connections: string } | null> {
+  try {
+    const url = `https://api.apify.com/v2/acts/harvestapi~linkedin-profile-scraper/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        queries: ["https://www.linkedin.com/in/yousefmsm1"],
+      }),
+      signal: AbortSignal.timeout(25000),
+    });
+
+    if (!response.ok) return null;
+    const items = (await response.json()) as Array<Record<string, unknown>>;
+    if (!Array.isArray(items) || items.length === 0) return null;
+
+    const item = items[0];
+    const followerCount = item.followerCount;
+    const connectionsCount = item.connectionsCount;
+
+    if (
+      typeof followerCount !== "number" ||
+      !Number.isSafeInteger(followerCount) ||
+      followerCount < 0
+    ) {
+      return null;
+    }
+
+    const connections =
+      typeof connectionsCount === "number" && connectionsCount > 500
+        ? "500+"
+        : typeof connectionsCount === "number"
+          ? String(connectionsCount)
+          : "500+";
+
+    return { followers: followerCount, connections };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 2. Direct authenticated scrape with session cookie (free, unlimited).
+ */
 async function scrapeLinkedInProfile(
   cookie: string,
 ): Promise<{ followers: number; connections: string } | null> {
@@ -67,60 +117,29 @@ async function scrapeLinkedInProfile(
   }
 }
 
-async function getScrapingdogFollowers(
-  apiKey: string,
-): Promise<{ followers: number; connections: string } | null> {
-  try {
-    const url = new URL("https://api.scrapingdog.com/profile");
-    url.searchParams.set("api_key", apiKey);
-    url.searchParams.set("id", "yousefmsm1");
-    url.searchParams.set("type", "profile");
-    url.searchParams.set("premium", "true");
-    url.searchParams.set("webhook", "false");
-    url.searchParams.set("fresh", "false");
-
-    const response = await fetch(url.toString(), {
-      headers: { Accept: "application/json" },
-      signal: AbortSignal.timeout(25000),
-    });
-    if (!response.ok) return null;
-
-    const data = (await response.json()) as unknown;
-    const item = Array.isArray(data) ? (data[0] as Record<string, unknown>) : (data as Record<string, unknown>);
-    if (!item || typeof item !== "object") return null;
-
-    const rawFollowers = item.followers;
-    let followers: number | null = null;
-    if (typeof rawFollowers === "number" && Number.isSafeInteger(rawFollowers)) {
-      followers = rawFollowers;
-    } else if (typeof rawFollowers === "string") {
-      const match = rawFollowers.match(/^([\d.,]+)\s*([kmb])?/i);
-      if (match) {
-        const num = parseFloat(match[1].replace(/,/g, ""));
-        const unit = match[2]?.toLowerCase();
-        const mult = unit === "k" ? 1000 : unit === "m" ? 1000000 : 1;
-        followers = Math.round(num * mult);
-      }
-    }
-
-    if (!followers || !Number.isSafeInteger(followers) || followers < 0) return null;
-
-    const rawConn = typeof item.connections === "string" ? item.connections : "500+";
-    const connections = rawConn.replace(/\s*connections/i, "").trim() || "500+";
-    return { followers, connections };
-  } catch {
-    return null;
-  }
-}
-
 export default defineHandler(async () => {
+  const apifyToken =
+    process.env.APIFY_API_TOKEN?.trim() || process.env.APIFY_TOKEN?.trim();
   const cookie =
     process.env.LINKEDIN_LI_AT_COOKIE?.trim() ||
     process.env.LINKEDIN_COOKIE?.trim();
-  const scrapingdogApiKey = process.env.SCRAPINGDOG_API_KEY?.trim();
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN?.trim();
 
-  // 1. Direct cookie scraping (fast, unlimited, self-hosted on Vercel)
+  // Tier 1: Apify (automated, residential proxy, permanent free $5/mo, zero cookies)
+  if (apifyToken) {
+    const apifyData = await getApifyFollowers(apifyToken);
+    if (apifyData) {
+      const result: FollowerCount = {
+        followers: apifyData.followers,
+        connections: apifyData.connections,
+        source: "linkedin-api",
+        fetchedAt: new Date().toISOString(),
+      };
+      return jsonResponse(result, CDN_CACHE_3_HOURS);
+    }
+  }
+
+  // Tier 2: Direct session cookie scraping
   if (cookie) {
     const scraped = await scrapeLinkedInProfile(cookie);
     if (scraped) {
@@ -134,21 +153,7 @@ export default defineHandler(async () => {
     }
   }
 
-  // 2. Scrapingdog provider backup (if configured and credits available)
-  if (scrapingdogApiKey) {
-    const dog = await getScrapingdogFollowers(scrapingdogApiKey);
-    if (dog) {
-      const result: FollowerCount = {
-        followers: dog.followers,
-        connections: dog.connections,
-        source: "linkedin-scrape",
-        fetchedAt: new Date().toISOString(),
-      };
-      return jsonResponse(result, CDN_CACHE_3_HOURS);
-    }
-  }
-
-  // 3. Official LinkedIn REST API if access token is configured
+  // Tier 3: Official LinkedIn REST API
   if (accessToken) {
     try {
       const response = await fetch(LINKEDIN_FOLLOWERS_URL, {
@@ -185,7 +190,7 @@ export default defineHandler(async () => {
     }
   }
 
-  // 4. Resilient baseline fallback (guarantees accurate count even if remote fails)
+  // Tier 4: Resilient verified baseline fallback
   const result: FollowerCount = {
     followers: linkedinBaseline.followers,
     connections: linkedinBaseline.connections,
