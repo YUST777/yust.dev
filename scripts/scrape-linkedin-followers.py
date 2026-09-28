@@ -3,16 +3,20 @@
 LinkedIn Follower & Connection Scraper for yust.dev
 Extracts live followers and connection count for https://www.linkedin.com/in/yousefmsm1/
 Supports:
-1. Environment variable LINKEDIN_LI_AT_COOKIE
-2. Reading from local Google Chrome / Brave profiles on Linux via SecretService
+1. Reading from local Google Chrome / Brave profiles on Linux via SecretService
+2. Environment variable LINKEDIN_LI_AT_COOKIE
 3. Command-line argument --cookie
+4. --sync flag to write directly to src/data/linkedin.json
+5. --save-env flag to persist the cookie in .env
 """
 
 import sys
 import os
 import re
+import json
 import argparse
 import urllib.request
+from datetime import datetime, timezone
 
 PROFILE_URL = "https://www.linkedin.com/in/yousefmsm1/"
 DEFAULT_FALLBACK_COUNT = 1994
@@ -141,6 +145,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape LinkedIn followers for yust.dev")
     parser.add_argument("--cookie", help="li_at session cookie", default=None)
     parser.add_argument("--save-env", action="store_true", help="Save extracted cookie to .env")
+    parser.add_argument("--sync", action="store_true", help="Sync follower count to src/data/linkedin.json")
     args = parser.parse_args()
 
     cookie = args.cookie or os.environ.get("LINKEDIN_LI_AT_COOKIE")
@@ -152,7 +157,7 @@ def main():
             print("[+] Found active session cookie in local browser!")
 
     if not cookie:
-        print("[-] No li_at cookie found. Please pass --cookie or set LINKEDIN_LI_AT_COOKIE.")
+        print("[-] No li_at cookie found. Please pass --cookie or set LINKEDIN_LI_AT_COOKIE.", file=sys.stderr)
         sys.exit(1)
 
     print(f"[*] Scraping {PROFILE_URL} ...")
@@ -167,17 +172,32 @@ def main():
     print(f"  Connections: {res.get('connections')}")
     print("==========================================\n")
 
-    if args.save_env or not os.path.exists(".env"):
-        env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    if args.sync:
+        json_path = os.path.join(root_dir, "src", "data", "linkedin.json")
+        os.makedirs(os.path.dirname(json_path), exist_ok=True)
+        data = {
+            "followers": res["followers"],
+            "connections": res["connections"],
+            "updatedAt": datetime.now(timezone.utc).isoformat(),
+        }
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+            f.write("\n")
+        print(f"[+] Successfully synced LinkedIn stats to {json_path}")
+
+    if args.save_env or not os.path.exists(os.path.join(root_dir, ".env")):
+        env_path = os.path.join(root_dir, ".env")
         lines = []
         if os.path.exists(env_path):
-            with open(env_path, "r") as f:
+            with open(env_path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
 
         new_lines = [l for l in lines if not l.startswith("LINKEDIN_LI_AT_COOKIE=")]
         new_lines.append(f"LINKEDIN_LI_AT_COOKIE={cookie}\n")
 
-        with open(env_path, "w") as f:
+        with open(env_path, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
         print(f"[+] Saved LINKEDIN_LI_AT_COOKIE to {env_path}")
 

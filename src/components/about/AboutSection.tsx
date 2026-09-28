@@ -11,6 +11,7 @@ import {
 } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import linkedinBaseline from "@/data/linkedin.json";
 
 function GithubIcon({ className = "w-[18px] h-[18px]" }: { className?: string }) {
   return (
@@ -82,7 +83,6 @@ const AVATAR_URL = "https://avatars.githubusercontent.com/u/207382177?s=128&v=4"
 const LINKEDIN_AVATAR_URL = "/static/images/yousef-profile.webp";
 const GITHUB_API = "https://github-contributions-api.jogruber.de/v4";
 const GITHUB_REPOSITORIES_API = "https://api.github.com/users/YUST777/repos?per_page=100";
-const LINKEDIN_FOLLOWERS_FALLBACK = 1994;
 const GITHUB_LEVEL_CLASSES = [
   "bg-zinc-800",
   "bg-green-400/20",
@@ -95,6 +95,14 @@ type LinkedinStats = {
   followers: number;
   connections: string;
   source: string;
+  fetchedAt?: string;
+};
+
+const DEFAULT_LINKEDIN_STATS: LinkedinStats = {
+  followers: linkedinBaseline.followers,
+  connections: linkedinBaseline.connections,
+  source: "cached",
+  fetchedAt: linkedinBaseline.updatedAt,
 };
 
 let githubContributionsCache: GithubContributions | undefined;
@@ -103,27 +111,41 @@ let githubStarsCache: number | undefined;
 let githubStarsRequest: Promise<number> | undefined;
 let linkedinStatsCache: LinkedinStats | undefined;
 let linkedinStatsRequest: Promise<LinkedinStats | null> | undefined;
+let linkedinStatsRetryAfter = 0;
 
 function getLinkedinFollowers() {
-  linkedinStatsRequest ??= fetch("/api/linkedin-followers", {
+  if (linkedinStatsCache) return Promise.resolve(linkedinStatsCache);
+  if (linkedinStatsRequest) return linkedinStatsRequest;
+  if (Date.now() < linkedinStatsRetryAfter) return Promise.resolve(DEFAULT_LINKEDIN_STATS);
+
+  linkedinStatsRequest = fetch("/api/linkedin-followers", {
     headers: { Accept: "application/json" },
+    signal: AbortSignal.timeout(10_000),
   })
     .then(async (response) => {
-      if (!response.ok) return null;
+      if (!response.ok) throw new Error(`LinkedIn count request responded with ${response.status}`);
       const data = (await response.json()) as {
         followers?: unknown;
         connections?: unknown;
         source?: unknown;
+        fetchedAt?: unknown;
       };
-      if (!Number.isSafeInteger(data.followers) || Number(data.followers) < 0) return null;
+      if (!Number.isSafeInteger(data.followers) || Number(data.followers) < 0) {
+        throw new Error("LinkedIn did not return a valid follower count");
+      }
       linkedinStatsCache = {
         followers: Number(data.followers),
         connections: typeof data.connections === "string" ? data.connections : "500+",
-        source: typeof data.source === "string" ? data.source : "unconfigured",
+        source: typeof data.source === "string" ? data.source : "cached",
+        fetchedAt: typeof data.fetchedAt === "string" ? data.fetchedAt : undefined,
       };
       return linkedinStatsCache;
     })
-    .catch(() => null);
+    .catch(() => {
+      linkedinStatsRequest = undefined;
+      linkedinStatsRetryAfter = Date.now() + 5 * 60_000;
+      return DEFAULT_LINKEDIN_STATS;
+    });
 
   return linkedinStatsRequest;
 }
@@ -354,21 +376,23 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
 }
 
 function LinkedinPreview() {
-  const [stats, setStats] = useState<LinkedinStats | null>(() => linkedinStatsCache ?? null);
+  const [stats, setStats] = useState<LinkedinStats>(() => linkedinStatsCache ?? DEFAULT_LINKEDIN_STATS);
 
   useEffect(() => {
     let mounted = true;
     void getLinkedinFollowers().then((res) => {
-      if (mounted && res !== null) setStats(res);
+      if (mounted && res) setStats(res);
     });
     return () => {
       mounted = false;
     };
   }, []);
 
-  const isLive = stats?.source === "linkedin-scrape" || stats?.source === "linkedin-api";
-  const displayedFollowers = stats?.followers ?? LINKEDIN_FOLLOWERS_FALLBACK;
-  const displayedConnections = stats?.connections ?? "500+";
+  const isLive =
+    stats.source === "linkedin-scrape" ||
+    stats.source === "linkedin-provider" ||
+    stats.source === "linkedin-api";
+  const displayedConnections = stats.connections || "500+";
 
   return (
     <div className="w-[320px] max-w-[calc(100vw-2rem)] text-left">
@@ -399,11 +423,17 @@ function LinkedinPreview() {
                 className="mt-[2px] whitespace-nowrap text-[12px] font-medium text-[#71b7fb]"
                 title={
                   isLive
-                    ? `Live count from LinkedIn (${stats?.source === "linkedin-scrape" ? "Scraped" : "API"})`
-                    : "Fallback count — configure LINKEDIN_LI_AT_COOKIE for live count"
+                    ? `Live count from LinkedIn (${
+                        stats.source === "linkedin-scrape"
+                          ? "Scraped"
+                          : stats.source === "linkedin-provider"
+                            ? "Provider"
+                            : "API"
+                      }${stats.fetchedAt ? ` · ${new Date(stats.fetchedAt).toLocaleDateString()}` : ""})`
+                    : `Verified LinkedIn stats: ${stats.followers.toLocaleString()} followers · ${displayedConnections} connections`
                 }
               >
-                {displayedFollowers.toLocaleString()} followers · {displayedConnections} connections
+                {stats.followers.toLocaleString()} followers · {displayedConnections} connections
               </p>
             </div>
             <a
@@ -448,7 +478,7 @@ type PreviewLayer = {
   exitOffset: number;
 };
 
-const cubicOut = (progress: number) => 1 - (1 - progress) ** 3;
+const previewEase = [0.22, 1, 0.36, 1] as const;
 
 function previewIndex(preview: SocialPreview) {
   return { github: 0, linkedin: 1, cv: 2 }[preview];
@@ -469,15 +499,11 @@ function AnimatedPreviewLayer({
       className="social-preview-layer"
       aria-hidden={!layer.isActive}
       style={{ pointerEvents: layer.isActive ? "auto" : "none" }}
-      initial={{ x: layer.enterOffset, opacity: 0, filter: "blur(2px)" }}
-      animate={
-        layer.isActive
-          ? { x: 0, opacity: 1, filter: "blur(0px)" }
-          : { x: layer.exitOffset, opacity: 0, filter: "blur(2px)" }
-      }
+      initial={{ x: layer.enterOffset, opacity: 0 }}
+      animate={layer.isActive ? { x: 0, opacity: 1 } : { x: layer.exitOffset, opacity: 0 }}
       transition={{
-        duration: 0.3,
-        ease: cubicOut,
+        duration: 0.22,
+        ease: previewEase,
       }}
       onAnimationComplete={() => {
         if (!layer.isActive) onExit(layer.key);
@@ -576,13 +602,13 @@ function SocialContacts() {
         ? (Math.sign(previewIndex(preview) - previewIndex(previousPreview)) as -1 | 1)
         : 0;
     const existingLayers = previewLayersRef.current.map((layer) =>
-      layer.isActive ? { ...layer, isActive: false, exitOffset: -200 * direction } : layer,
+      layer.isActive ? { ...layer, isActive: false, exitOffset: -28 * direction } : layer,
     );
     const nextLayer: PreviewLayer = {
       type: preview,
       key: nextRenderId,
       isActive: true,
-      enterOffset: 200 * direction,
+      enterOffset: 28 * direction,
       exitOffset: 0,
     };
     const nextLayers = [...existingLayers, nextLayer];
@@ -704,26 +730,26 @@ function SocialContacts() {
         ))}
         {isPanelMounted && activePreview && (
           <motion.div
+            layout="size"
             className="social-preview-panel absolute bottom-[calc(100%+8px)] left-0 z-30 flex translate-x-[-50%] items-end overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl ring-1 ring-white/10"
             initial={{
-              left: previewLeft,
-              width: panelSize.width,
-              height: panelSize.height,
+              x: previewLeft,
               opacity: 0,
             }}
             animate={{
-              left: previewLeft,
-              width: panelSize.width,
-              height: panelSize.height,
+              x: previewLeft,
               opacity: isPanelOpen ? 1 : 0,
             }}
             transition={{
-              left: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
-              width: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
-              height: { duration: isInstantResize ? 0 : 0.3, ease: cubicOut },
+              x: { duration: isInstantResize ? 0 : 0.24, ease: previewEase },
+              layout: { duration: isInstantResize ? 0 : 0.28, ease: previewEase },
               opacity: { duration: 0.15, ease: "linear" },
             }}
-            style={{ pointerEvents: isPanelOpen ? "auto" : "none" }}
+            style={{
+              width: panelSize.width,
+              height: panelSize.height,
+              pointerEvents: isPanelOpen ? "auto" : "none",
+            }}
             aria-hidden={!isPanelOpen}
           >
             {previewLayers.map((layer) => (

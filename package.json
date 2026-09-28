@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev --force",
-    "build": "pnpm run og:generate && vp build",
+    "build": "node scripts/sync-linkedin.mjs && pnpm run og:generate && vp build",
     "og:generate": "node scripts/generate-og-hacks.mjs && node scripts/generate-og-blog.mjs && node scripts/generate-og-projects.mjs && node scripts/generate-og-certificates.mjs",
     "preview": "vp preview",
     "start": "vp preview",
     "lint": "vp lint . && tsgo --noEmit",
     "typecheck": "tsgo --noEmit",
     "seo:audit": "node scripts/seo-audit.mjs",
-    "scrape:linkedin": "python3 scripts/scrape-linkedin-followers.py",
+    "scrape:linkedin": "python3 scripts/scrape-linkedin-followers.py --sync",
     "migrate": "turso db shell portfolio-local < lib/migrations.sql"
   },
   "dependencies": {

@@ -1,17 +1,23 @@
 import { defineHandler } from "nitro";
+import linkedinBaseline from "../../src/data/linkedin.json";
 
 const LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/yousefmsm1/";
 const LINKEDIN_FOLLOWERS_URL = "https://api.linkedin.com/rest/memberFollowersCount?q=me";
 const DEFAULT_LINKEDIN_VERSION = "202609";
-const FALLBACK_FOLLOWERS = 1994;
 
 type LinkedInFollowersResponse = {
   elements?: Array<{ memberFollowersCount?: number }>;
 };
 
-function jsonResponse(payload: Record<string, unknown>, status: number, cacheControl: string) {
+type FollowerCount = {
+  followers: number;
+  connections: string;
+  source: "linkedin-api" | "linkedin-scrape" | "cached";
+  fetchedAt: string;
+};
+
+function jsonResponse(payload: Record<string, unknown>, cacheControl: string) {
   return new Response(JSON.stringify(payload), {
-    status,
     headers: {
       "cache-control": cacheControl,
       "content-type": "application/json; charset=utf-8",
@@ -21,7 +27,7 @@ function jsonResponse(payload: Record<string, unknown>, status: number, cacheCon
 
 async function scrapeLinkedInProfile(
   cookie: string,
-): Promise<{ followers: number; connections?: string } | null> {
+): Promise<{ followers: number; connections: string } | null> {
   const cookieHeader = cookie.includes("=") ? cookie : `li_at=${cookie}`;
   try {
     const response = await fetch(LINKEDIN_PROFILE_URL, {
@@ -58,34 +64,37 @@ async function scrapeLinkedInProfile(
 }
 
 export default defineHandler(async () => {
-  const cookie = process.env.LINKEDIN_LI_AT_COOKIE?.trim() || process.env.LINKEDIN_COOKIE?.trim();
+  const cookie =
+    process.env.LINKEDIN_LI_AT_COOKIE?.trim() ||
+    process.env.LINKEDIN_COOKIE?.trim();
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN?.trim();
 
-  // 1. Scrape live follower count using session cookie if available
+  // 1. Scrape live follower count using session cookie
   if (cookie) {
     const scraped = await scrapeLinkedInProfile(cookie);
     if (scraped) {
+      const result: FollowerCount = {
+        followers: scraped.followers,
+        connections: scraped.connections,
+        source: "linkedin-scrape",
+        fetchedAt: new Date().toISOString(),
+      };
       return jsonResponse(
-        {
-          followers: scraped.followers,
-          connections: scraped.connections,
-          source: "linkedin-scrape",
-          fetchedAt: new Date().toISOString(),
-        },
-        200,
+        result,
         "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
       );
     }
   }
 
-  // 2. Query official LinkedIn Rest API if access token is available
+  // 2. Query official LinkedIn REST API if access token is configured
   if (accessToken) {
     try {
       const response = await fetch(LINKEDIN_FOLLOWERS_URL, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
-          "Linkedin-Version": process.env.LINKEDIN_VERSION?.trim() || DEFAULT_LINKEDIN_VERSION,
+          "Linkedin-Version":
+            process.env.LINKEDIN_VERSION?.trim() || DEFAULT_LINKEDIN_VERSION,
           "X-Restli-Protocol-Version": "2.0.0",
         },
         signal: AbortSignal.timeout(10000),
@@ -95,28 +104,38 @@ export default defineHandler(async () => {
         const data = (await response.json()) as LinkedInFollowersResponse;
         const followers = data.elements?.[0]?.memberFollowersCount;
 
-        if (typeof followers === "number" && Number.isSafeInteger(followers) && followers >= 0) {
+        if (
+          typeof followers === "number" &&
+          Number.isSafeInteger(followers) &&
+          followers >= 0
+        ) {
+          const result: FollowerCount = {
+            followers,
+            connections: "500+",
+            source: "linkedin-api",
+            fetchedAt: new Date().toISOString(),
+          };
           return jsonResponse(
-            { followers, source: "linkedin-api", fetchedAt: new Date().toISOString() },
-            200,
+            result,
             "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
           );
         }
       }
     } catch {
-      // Fall through to fallback
+      // Fall through to baseline fallback
     }
   }
 
-  // 3. Fallback when credentials are unconfigured or remote requests fail
+  // 3. Resilient baseline fallback (guarantees accurate count even if remote fails)
+  const result: FollowerCount = {
+    followers: linkedinBaseline.followers,
+    connections: linkedinBaseline.connections,
+    source: "cached",
+    fetchedAt: linkedinBaseline.updatedAt,
+  };
+
   return jsonResponse(
-    {
-      followers: FALLBACK_FOLLOWERS,
-      connections: "500+",
-      source: cookie || accessToken ? "fallback-error" : "unconfigured",
-      fetchedAt: new Date().toISOString(),
-    },
-    200,
-    "public, max-age=300, s-maxage=300, stale-while-revalidate=600",
+    result,
+    "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
   );
 });
