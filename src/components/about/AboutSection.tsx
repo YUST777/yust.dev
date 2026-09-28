@@ -118,9 +118,9 @@ function getLinkedinFollowers() {
   if (linkedinStatsRequest) return linkedinStatsRequest;
   if (Date.now() < linkedinStatsRetryAfter) return Promise.resolve(DEFAULT_LINKEDIN_STATS);
 
-  linkedinStatsRequest = fetch("/api/linkedin-followers", {
+  linkedinStatsRequest = fetch("/api/linkedin-followers?v=2", {
     headers: { Accept: "application/json" },
-    signal: AbortSignal.timeout(10_000),
+    signal: AbortSignal.timeout(15_000),
   })
     .then(async (response) => {
       if (!response.ok) throw new Error(`LinkedIn count request responded with ${response.status}`);
@@ -376,7 +376,9 @@ function SocialPreviewContent({ type }: { type: SocialPreview }) {
 }
 
 function LinkedinPreview() {
-  const [stats, setStats] = useState<LinkedinStats>(() => linkedinStatsCache ?? DEFAULT_LINKEDIN_STATS);
+  const [stats, setStats] = useState<LinkedinStats>(
+    () => linkedinStatsCache ?? DEFAULT_LINKEDIN_STATS,
+  );
 
   useEffect(() => {
     let mounted = true;
@@ -390,7 +392,7 @@ function LinkedinPreview() {
 
   const isLive =
     stats.source === "linkedin-scrape" ||
-    stats.source === "linkedin-provider" ||
+    stats.source === "linkedin-apify" ||
     stats.source === "linkedin-api";
   const displayedConnections = stats.connections || "500+";
 
@@ -426,11 +428,11 @@ function LinkedinPreview() {
                     ? `Live count from LinkedIn (${
                         stats.source === "linkedin-scrape"
                           ? "Scraped"
-                          : stats.source === "linkedin-provider"
-                            ? "Provider"
+                          : stats.source === "linkedin-apify"
+                            ? "Apify"
                             : "API"
                       }${stats.fetchedAt ? ` · ${new Date(stats.fetchedAt).toLocaleDateString()}` : ""})`
-                    : `Verified LinkedIn stats: ${stats.followers.toLocaleString()} followers · ${displayedConnections} connections`
+                    : `Last saved LinkedIn stats, updated ${stats.fetchedAt ? new Date(stats.fetchedAt).toLocaleDateString() : "date unavailable"}`
                 }
               >
                 {stats.followers.toLocaleString()} followers · {displayedConnections} connections
