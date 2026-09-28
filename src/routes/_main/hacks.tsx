@@ -357,7 +357,7 @@ function HacksPage() {
             <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
               {hack.title}
             </h3>
-            <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+            <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed">
               {hack.desc}
             </div>
 
@@ -457,7 +457,7 @@ function HacksPage() {
               <h3 className="text-[15px] sm:text-[17px] font-sans font-bold text-white tracking-tight mt-1">
                 {hack.title}
               </h3>
-              <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed max-w-3xl">
+              <div className="text-[12px] sm:text-[13px] font-mono text-zinc-400 leading-relaxed">
                 {hack.desc}
               </div>
 

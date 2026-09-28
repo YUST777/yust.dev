@@ -100,7 +100,7 @@ function ProjectPage() {
   const DrawerComponent = project.drawerId ? DRAWER_COMPONENTS[project.drawerId] : null;
 
   return (
-    <article className="mx-auto max-w-4xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
+    <article className="mx-auto max-w-5xl px-4 pb-32 pt-8 sm:px-6 sm:pt-32">
       <header className="mt-8 border-b border-white/10 pb-10">
         {project.tag && (
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
@@ -164,7 +164,7 @@ function ProjectPage() {
       </header>
 
       {/* Video / Showcase Media */}
-      {project.drawerId && (
+      {(project.drawerId || project.video) && (
         <div className="mt-10 w-full aspect-video rounded-2xl overflow-hidden bg-black/50 border border-white/10 relative">
           {project.drawerId === "ICPCHUE" ? (
             <iframe

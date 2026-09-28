@@ -123,7 +123,7 @@ function PostPage() {
   const relatedPosts = posts.filter((candidate) => candidate.slug !== post.slug).slice(0, 2);
 
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <article className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-32 pb-32 space-y-12 animate-in fade-in slide-in-from-bottom-2 duration-300">
       <div className="space-y-4">
         <h1 className="text-3xl md:text-5xl font-sans font-bold text-white tracking-tight leading-tight">
           {post.title}

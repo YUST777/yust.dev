@@ -83,6 +83,43 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: 19,
+    title: "Acolite",
+    slug: "acolite",
+    seoTitle: "Acolite Talent Platform UI Project | yust.dev",
+    description: "A polished talent platform frontend built for high-velocity teams.",
+    fullDescription:
+      "A frontend talent platform concept designed to showcase polished interface systems, responsive composition, and product motion. The experience helps teams discover vetted specialists and move from exploration to a confident match.",
+    tag: "Frontend & UI",
+    icon: "fa-palette",
+    span: "md:col-span-3 md:row-span-1",
+    delay: "delay-200",
+    video: "/videos/acolite.webm",
+    poster: "/static/images/posters/acolite.webp",
+    siteLink: "https://acolite.xyz",
+    drawerId: "acolite",
+    technologies: [
+      "React 19",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Design Systems",
+    ],
+    features: [
+      {
+        category: "Interface Design",
+        svgIcon: "palette",
+        items: ["Clear visual hierarchy", "Responsive layouts", "Consistent component system"],
+      },
+      {
+        category: "Product Experience",
+        svgIcon: "code",
+        items: ["Talent discovery flow", "Fast matching journey", "Motion-led interactions"],
+      },
+    ],
+  },
+  {
     id: 18,
     title: "SpaceWorth",
     slug: "spaceworth",

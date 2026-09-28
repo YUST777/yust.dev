@@ -17,6 +17,7 @@ export const Drawers = {
   MonTerminalDrawer: lazy(() => import("./MonTerminalDrawer")),
   HellishGolfDrawer: lazy(() => import("./HellishGolfDrawer")),
   SpaceWorthDrawer: lazy(() => import("./SpaceWorthDrawer")),
+  AcoliteDrawer: lazy(() => import("./AcoliteDrawer")),
 };
 
 export const DRAWER_TITLES: Record<string, string> = {
@@ -36,6 +37,7 @@ export const DRAWER_TITLES: Record<string, string> = {
   monterminal: "MonTerminal – Monad Onchain Trading Terminal",
   hellishgolf: "Hellish Golf – Daily Golf Challenge inside Reddit Feed",
   spaceworth: "SpaceWorth – AI Real Estate Valuation & CAD Intelligence",
+  acolite: "Acolite – High-Velocity Talent Platform UI",
 };
 
 export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>> = {
@@ -55,4 +57,5 @@ export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType
   monterminal: Drawers.MonTerminalDrawer,
   hellishgolf: Drawers.HellishGolfDrawer,
   spaceworth: Drawers.SpaceWorthDrawer,
+  acolite: Drawers.AcoliteDrawer,
 };
