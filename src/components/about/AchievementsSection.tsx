@@ -14,9 +14,9 @@ export default function AchievementsSection() {
                 href="https://verdict.run"
                 className="text-white underline decoration-zinc-600 underline-offset-4 hover:text-zinc-300 transition-colors"
               >
-                Verdict.run — Product Launch
-              </a>
-              .{" "}
+                Verdict.run
+              </a>{" "}
+              — Product Launch.{" "}
             </strong>
             Built and launched a competitive programming platform that generated{" "}
             <a
