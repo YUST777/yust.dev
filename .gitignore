@@ -53,3 +53,4 @@ temp/agent-skills-main/
 
 # Large media sources
 public/videos/bunny.mp4
+.vitest/
