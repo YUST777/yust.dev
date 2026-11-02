@@ -40,6 +40,8 @@ export const posts: BlogPost[] = [
       "Horus University",
       "competitive programming platform",
     ],
+    previewImage: "/static/images/mems/mem_16/1.webp",
+    previewVideo: "/videos/achievements-45.webm",
     featured: [{ label: "ICPCHUE.com", url: "https://icpchue.com" }],
     content: `New update for [ICPCHUE.com](https://icpchue.com): I added **45 new achievements** to the platform. 🏅
 
