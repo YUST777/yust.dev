@@ -24,7 +24,7 @@ const PROJECT_CASE_STUDIES = [...projectsData, ...archiveProjectsData].filter(
   (project) => project.slug && !project.isMinimal && !project.isLarge,
 );
 
-const CATEGORIES = ["Featured", "Security", "AI", "CP", "Web3", "Games"];
+const CATEGORIES = ["Featured", "Security", "AI", "CP", "UI/UX", "Web3", "Games"];
 
 function isFeaturedProject(project: Project): boolean {
   if (project.isArchive || project.isMinimal) return true;
@@ -82,6 +82,15 @@ function belongsToCategory(project: Project, category: string): boolean {
       title.includes("icpc") ||
       slug.includes("verdict") ||
       slug.includes("icpc")
+    );
+  }
+
+  if (category === "UI/UX") {
+    return (
+      title.includes("acolite") ||
+      title.includes("topy") ||
+      slug.includes("acolite") ||
+      slug.includes("topy")
     );
   }
 
