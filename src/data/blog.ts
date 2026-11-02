@@ -117,6 +117,14 @@ Read how the community started in [the founding story](/blog/founding-icpc-hue-p
       "RAG",
       "NVIDIA certification",
     ],
+    previewImage: "/static/images/mems/mem_14/1.webp",
+    images: [
+      "/static/images/mems/mem_14/1.webp",
+      "/static/images/mems/mem_14/2.webp",
+      "/static/images/mems/mem_14/3.webp",
+      "/static/images/mems/mem_14/4.webp",
+      "/static/images/mems/mem_14/5.webp",
+    ],
     featured: [{ label: "SpaceWorth", url: "https://spaceworth.site" }],
     content: `I finished the **AI track at ITI**, alhamdulillah, with more than **200 training hours**. :)
 
