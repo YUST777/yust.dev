@@ -120,6 +120,7 @@ Read how the community started in [the founding story](/blog/founding-icpc-hue-p
       "NVIDIA certification",
     ],
     previewImage: "/static/images/mems/mem_14/1.webp",
+    imagePosition: "object-[50%_20%]",
     images: [
       "/static/images/mems/mem_14/1.webp",
       "/static/images/mems/mem_14/2.webp",

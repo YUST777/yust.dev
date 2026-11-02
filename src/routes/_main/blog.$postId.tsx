@@ -165,7 +165,7 @@ function PostPage() {
         </div>
       ) : (
         post.images &&
-        post.images.length > 0 && <ImageCollage images={post.images} title={post.title} />
+        post.images.length > 0 && <ImageCollage images={post.images} title={post.title} position={post.imagePosition} />
       )}
 
       <div className="prose prose-invert prose-zinc max-w-none space-y-6">
@@ -269,7 +269,15 @@ const imageVariants = {
   }),
 };
 
-function ImageCollage({ images, title }: { images: string[]; title: string }) {
+function ImageCollage({
+  images,
+  title,
+  position,
+}: {
+  images: string[];
+  title: string;
+  position?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState(0);
 
@@ -326,7 +334,7 @@ function ImageCollage({ images, title }: { images: string[]; title: string }) {
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+            className={`w-full h-full object-cover ${position ?? ""} hover:scale-[1.02] transition-transform duration-700`}
           />
         </button>
 
