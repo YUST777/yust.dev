@@ -69,6 +69,17 @@ The rest of my work lives at [yust.dev](https://yust.dev).`,
       "Season 2027",
       "Faculty of AI",
     ],
+    previewImage: "/static/images/mems/mem_15/1.webp",
+    images: [
+      "/static/images/mems/mem_15/1.webp",
+      "/static/images/mems/mem_15/2.webp",
+      "/static/images/mems/mem_15/3.webp",
+      "/static/images/mems/mem_15/4.webp",
+      "/static/images/mems/mem_15/5.webp",
+      "/static/images/mems/mem_15/6.webp",
+      "/static/images/mems/mem_15/7.webp",
+      "/static/images/mems/mem_15/8.webp",
+    ],
     featured: [{ label: "ICPC HUE Platform", url: "https://icpchue.com" }],
     content: `Alhamdulillah, after a week of preparation we pulled off the **ICPC HUE Orientation Day**. 🥹
 
