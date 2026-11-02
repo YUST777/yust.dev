@@ -52,11 +52,30 @@
   <url><loc>https://www.yust.dev/projects/icpc-hue</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.yust.dev/projects/zero-threat</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.yust.dev/projects/sketchz</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yust.dev/projects/topy</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.yust.dev/projects/spaceworth</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.yust.dev/projects/monterminal</loc><lastmod>2026-07-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.yust.dev/projects/hellishgolf</loc><lastmod>2026-07-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
 
+  <url>
+    <loc>https://www.yust.dev/blog/icpchue-45-new-achievements-update</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.yust.dev/blog/icpc-hue-orientation-day-season-2027</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.yust.dev/blog/iti-ai-track-completed-three-certificates</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.yust.dev/blog/winning-3rd-place-green-loop-respark</loc>
     <lastmod>2026-09-10</lastmod>

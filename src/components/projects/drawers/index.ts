@@ -18,6 +18,7 @@ export const Drawers = {
   HellishGolfDrawer: lazy(() => import("./HellishGolfDrawer")),
   SpaceWorthDrawer: lazy(() => import("./SpaceWorthDrawer")),
   AcoliteDrawer: lazy(() => import("./AcoliteDrawer")),
+  TopyDrawer: lazy(() => import("./TopyDrawer")),
 };
 
 export const DRAWER_TITLES: Record<string, string> = {
@@ -38,6 +39,7 @@ export const DRAWER_TITLES: Record<string, string> = {
   hellishgolf: "Hellish Golf – Daily Golf Challenge inside Reddit Feed",
   spaceworth: "SpaceWorth – AI Real Estate Valuation & CAD Intelligence",
   acolite: "Acolite – High-Velocity Talent Platform UI",
+  topy: "Topy – Video Editor Landing Page",
 };
 
 export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>> = {
@@ -58,4 +60,5 @@ export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType
   hellishgolf: Drawers.HellishGolfDrawer,
   spaceworth: Drawers.SpaceWorthDrawer,
   acolite: Drawers.AcoliteDrawer,
+  topy: Drawers.TopyDrawer,
 };

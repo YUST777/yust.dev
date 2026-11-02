@@ -21,6 +21,103 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: "16",
+    slug: "icpchue-45-new-achievements-update",
+    title: "ICPCHUE.com Update: 45 New Achievements 🏅",
+    seoTitle: "ICPCHUE.com Update: 45 New Achievements | yust.dev",
+    date: "Oct 30, 2026",
+    iso: "2026-10-30",
+    category: "Community & ICPC",
+    summary:
+      "A new ICPCHUE.com release adds 45 achievements to the Horus University competitive programming platform, a year after the last big update.",
+    seoDescription:
+      "ICPCHUE.com ships 45 new achievements for Horus University's ICPC HUE community platform after a year without a major update.",
+    keywords: [
+      "ICPCHUE",
+      "ICPC HUE",
+      "achievements",
+      "gamification",
+      "Horus University",
+      "competitive programming platform",
+    ],
+    featured: [{ label: "ICPCHUE.com", url: "https://icpchue.com" }],
+    content: `New update for [ICPCHUE.com](https://icpchue.com): I added **45 new achievements** to the platform. 🏅
+
+I had wanted to refresh the site for about a year, but honestly I saw little interest in it. This year is different. The people in **ICPC HUE** are genuinely excited, and that energy is what pushed me to build the achievements system out properly.
+
+Achievements are part of what makes the platform feel like a game rather than just a problem archive, alongside the leaderboard and rewards. They give members a reason to keep solving and something to chase beyond the next problem.
+
+The rest of my work lives at [yust.dev](https://yust.dev).`,
+  },
+  {
+    id: "15",
+    slug: "icpc-hue-orientation-day-season-2027",
+    title: "ICPC HUE Orientation Day: One Year of Our Community 🥹",
+    seoTitle: "ICPC HUE Orientation Day and Season 2027 | yust.dev",
+    date: "Oct 26, 2026",
+    iso: "2026-10-26",
+    category: "Community & ICPC",
+    summary:
+      "After a week of preparation we ran the ICPC HUE Orientation Day, the one-year anniversary of Horus University's competitive programming community, and kicked off Season 2027.",
+    seoDescription:
+      "ICPC HUE held its Orientation Day at Horus University on the community's first anniversary, opening Season 2027 to a hall full of new students.",
+    keywords: [
+      "ICPC HUE",
+      "Orientation Day",
+      "Horus University",
+      "competitive programming community",
+      "Season 2027",
+      "Faculty of AI",
+    ],
+    featured: [{ label: "ICPC HUE Platform", url: "https://icpchue.com" }],
+    content: `Alhamdulillah, after a week of preparation we pulled off the **ICPC HUE Orientation Day**. 🥹
+
+It also marks the **anniversary of our community**. We started exactly a year ago, and we're now continuing into **Season 2027**.
+
+Last year ICPC HUE was just a small idea. Today the hall was full of students who want to start the path, and that is the biggest achievement we could ask for.
+
+**Thank you**
+
+Special thanks to **Prof. Hossam El-Din Moustafa**, Dean of the Faculty of AI, **Dr. Shahenda Serhan**, Vice Dean, **Dr. Basma Mostafa** and **Dr. Yasser Elawady** for their support and attendance.
+
+Thanks as well to **Eng. Fatma Magdy**, **Eng. Raafat M. Elmenayar** and **Eng. Sara Lotfy** for all their effort with us throughout the season.
+
+And thank you to the whole board, who worked incredibly hard, and to everyone who showed up. The day wouldn't have worked without you.
+
+Read how the community started in [the founding story](/blog/founding-icpc-hue-problem-solving-community).`,
+  },
+  {
+    id: "14",
+    slug: "iti-ai-track-completed-three-certificates",
+    title: "Finishing the ITI AI Track: 200+ Hours and 3 Certificates 🎓",
+    seoTitle: "ITI AI Track Completed: 200+ Hours, 3 Certificates | yust.dev",
+    date: "Oct 19, 2026",
+    iso: "2026-10-19",
+    category: "Certifications",
+    summary:
+      "I completed the Information Technology Institute (ITI) AI track with more than 200 training hours and three certificates, including NVIDIA's Building RAG Agents with LLMs.",
+    seoDescription:
+      "Completed the ITI AI track: 200+ training hours, ITI Level 1 and Level 2 certificates, and NVIDIA's Building RAG Agents with LLMs.",
+    keywords: [
+      "ITI",
+      "Information Technology Institute",
+      "AI track",
+      "machine learning",
+      "RAG",
+      "NVIDIA certification",
+    ],
+    featured: [{ label: "SpaceWorth", url: "https://spaceworth.site" }],
+    content: `I finished the **AI track at ITI**, alhamdulillah, with more than **200 training hours**. :)
+
+I received three certificates:
+
+• **ITI Level 1:** AI and Machine Learning Foundations
+• **ITI Level 2:** Applied AI Development: Computer Vision, NLP, LLMs, and RAG Applications
+• **NVIDIA:** Building RAG Agents with LLMs
+
+My Level 1 final project was [SpaceWorth](https://spaceworth.site), a house price predictor. More on the NVIDIA course is in [its own write-up](/blog/nvidia-building-rag-agents-certification).`,
+  },
+  {
     id: "13",
     slug: "winning-3rd-place-green-loop-respark",
     title: "Winning 3rd Place at the Green Loop Competition with ReSpark 🥉",

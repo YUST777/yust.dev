@@ -120,6 +120,36 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: 20,
+    title: "Topy",
+    slug: "topy",
+    seoTitle: "Topy Video Editor Landing Page | yust.dev",
+    description: "A landing page for a video editor and motion graphics artist.",
+    fullDescription:
+      "A single-page Arabic (RTL) landing page for Topy, a video editor making reels and ads. It showcases his work by style, explains why clients pick him, and sends them straight to Instagram or Telegram.",
+    tag: "Landing Page",
+    icon: "fa-film",
+    span: "md:col-span-3 md:row-span-1",
+    delay: "delay-200",
+    video: "/videos/topy.webm",
+    poster: "/static/images/posters/topy.webp",
+    siteLink: "https://topy.yust.dev",
+    drawerId: "topy",
+    technologies: ["Landing Page", "Arabic / RTL", "Responsive UI", "Motion"],
+    features: [
+      {
+        category: "Portfolio",
+        svgIcon: "palette",
+        items: ["Reels grouped by style", "Before / after demos", "Product ad showcases"],
+      },
+      {
+        category: "Conversion",
+        svgIcon: "code",
+        items: ["Direct Instagram & Telegram links", "Clear value pitch", "Mobile-first layout"],
+      },
+    ],
+  },
+  {
     id: 18,
     title: "SpaceWorth",
     slug: "spaceworth",
