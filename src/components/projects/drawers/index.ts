@@ -19,6 +19,7 @@ export const Drawers = {
   SpaceWorthDrawer: lazy(() => import("./SpaceWorthDrawer")),
   AcoliteDrawer: lazy(() => import("./AcoliteDrawer")),
   TopyDrawer: lazy(() => import("./TopyDrawer")),
+  WaddleDrawer: lazy(() => import("./WaddleDrawer")),
 };
 
 export const DRAWER_TITLES: Record<string, string> = {
@@ -40,6 +41,7 @@ export const DRAWER_TITLES: Record<string, string> = {
   spaceworth: "SpaceWorth – AI Real Estate Valuation & CAD Intelligence",
   acolite: "Acolite – High-Velocity Talent Platform UI",
   topy: "Topy – Video Editor Landing Page",
+  waddle: "Waddle – Learn Web Dev With a Duck",
 };
 
 export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType>> = {
@@ -61,4 +63,5 @@ export const DRAWER_COMPONENTS: Record<string, LazyExoticComponent<ComponentType
   spaceworth: Drawers.SpaceWorthDrawer,
   acolite: Drawers.AcoliteDrawer,
   topy: Drawers.TopyDrawer,
+  waddle: Drawers.WaddleDrawer,
 };

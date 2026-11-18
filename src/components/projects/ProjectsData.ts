@@ -83,6 +83,36 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: 21,
+    title: "Waddle",
+    slug: "waddle",
+    seoTitle: "Waddle Mobile App for Learning Web Development | yust.dev",
+    description: "Learn web development five minutes a day, with a duck.",
+    fullDescription:
+      "A mobile app that teaches web development in five-minute lessons. Each lesson shows a concept, then has you try it with a live preview. Streaks, XP, 3D badges and a duck pond you grow as you learn keep you coming back, and Waddle AI answers questions with code you can run.",
+    tag: "Mobile App",
+    icon: "fa-mobile-alt",
+    span: "md:col-span-3 md:row-span-1",
+    delay: "delay-150",
+    video: "/videos/waddle.webm",
+    poster: "/static/images/posters/waddle.webp",
+    repoLink: "https://github.com/YUST777/waddle",
+    technologies: ["React", "Capacitor", "Supabase", "Three.js", "Tailwind CSS"],
+    drawerId: "waddle",
+    features: [
+      {
+        category: "Learning",
+        svgIcon: "code",
+        items: ["Five-minute lessons", "Live code preview", "Waddle AI help"],
+      },
+      {
+        category: "Motivation",
+        svgIcon: "bolt",
+        items: ["Streaks & XP", "3D badges", "Duck pond to grow"],
+      },
+    ],
+  },
+  {
     id: 19,
     title: "Acolite",
     slug: "acolite",
