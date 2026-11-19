@@ -16,7 +16,7 @@ type LinkedInFollowersResponse = {
 type FollowerCount = {
   followers: number;
   connections: string;
-  source: "linkedin-api" | "linkedin-apify" | "linkedin-scrape" | "cached";
+  source: "linkedin-public" | "linkedin-api" | "linkedin-apify" | "linkedin-scrape" | "cached";
   fetchedAt: string;
 };
 
@@ -27,6 +27,25 @@ function jsonResponse(payload: Record<string, unknown>, cacheControl: string) {
       "content-type": "application/json; charset=utf-8",
     },
   });
+}
+
+/**
+ * 0. Public profile page. LinkedIn serves it to link-preview bots with schema.org data
+ * ("FollowAction" userInteractionCount), so no cookie or key that can expire is needed.
+ */
+async function getPublicFollowers(): Promise<number | null> {
+  try {
+    const response = await fetch(LINKEDIN_PROFILE_URL, {
+      headers: { "User-Agent": "Twitterbot/1.0", "Accept-Language": "en-US,en;q=0.9" },
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!response.ok) return null;
+    const match = (await response.text()).match(/FollowAction"[^}]*?"userInteractionCount":(\d+)/);
+    const count = match ? Number(match[1]) : NaN;
+    return Number.isSafeInteger(count) && count >= 0 ? count : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -153,6 +172,18 @@ export default defineHandler(async () => {
   const apifyToken = process.env.APIFY_API_TOKEN?.trim() || process.env.APIFY_TOKEN?.trim();
   const cookie = process.env.LINKEDIN_LI_AT_COOKIE?.trim() || process.env.LINKEDIN_COOKIE?.trim();
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN?.trim();
+
+  // Tier 0: public profile page (free, no credentials)
+  const publicFollowers = await getPublicFollowers();
+  if (publicFollowers !== null) {
+    const result: FollowerCount = {
+      followers: publicFollowers,
+      connections: linkedinBaseline.connections,
+      source: "linkedin-public",
+      fetchedAt: new Date().toISOString(),
+    };
+    return jsonResponse(result, CDN_CACHE_3_HOURS);
+  }
 
   // Tier 1: Apify (automated profile extraction, no LinkedIn session cookie)
   if (apifyToken) {
