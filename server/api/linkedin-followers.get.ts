@@ -30,19 +30,20 @@ function jsonResponse(payload: Record<string, unknown>, cacheControl: string) {
 }
 
 /**
- * 0. Public profile page. LinkedIn serves it to link-preview bots with schema.org data
- * ("FollowAction" userInteractionCount), so no cookie or key that can expire is needed.
+ * 0. Count published daily by the GitHub profile Action (github.com/YUST777/YUST777, stats.json).
+ * It reads LinkedIn's public profile page, which blocks Cloudflare but not GitHub Actions,
+ * so this needs no cookie or key that can expire.
  */
-async function getPublicFollowers(): Promise<number | null> {
+const PROFILE_STATS_URL = "https://raw.githubusercontent.com/YUST777/YUST777/main/stats.json";
+
+async function getPublishedFollowers(): Promise<{ followers: number; fetchedAt: string } | null> {
   try {
-    const response = await fetch(LINKEDIN_PROFILE_URL, {
-      headers: { "User-Agent": "Twitterbot/1.0", "Accept-Language": "en-US,en;q=0.9" },
-      signal: AbortSignal.timeout(10_000),
-    });
+    const response = await fetch(PROFILE_STATS_URL, { signal: AbortSignal.timeout(5_000) });
     if (!response.ok) return null;
-    const match = (await response.text()).match(/FollowAction"[^}]*?"userInteractionCount":(\d+)/);
-    const count = match ? Number(match[1]) : NaN;
-    return Number.isSafeInteger(count) && count >= 0 ? count : null;
+    const data = (await response.json()) as { linkedinFollowers?: unknown; updatedAt?: unknown };
+    const count = data.linkedinFollowers;
+    if (typeof count !== "number" || !Number.isSafeInteger(count) || count < 0) return null;
+    return { followers: count, fetchedAt: typeof data.updatedAt === "string" ? data.updatedAt : new Date().toISOString() };
   } catch {
     return null;
   }
@@ -173,14 +174,14 @@ export default defineHandler(async () => {
   const cookie = process.env.LINKEDIN_LI_AT_COOKIE?.trim() || process.env.LINKEDIN_COOKIE?.trim();
   const accessToken = process.env.LINKEDIN_ACCESS_TOKEN?.trim();
 
-  // Tier 0: public profile page (free, no credentials)
-  const publicFollowers = await getPublicFollowers();
-  if (publicFollowers !== null) {
+  // Tier 0: count published by the GitHub profile Action (free, no credentials)
+  const published = await getPublishedFollowers();
+  if (published) {
     const result: FollowerCount = {
-      followers: publicFollowers,
+      followers: published.followers,
       connections: linkedinBaseline.connections,
       source: "linkedin-public",
-      fetchedAt: new Date().toISOString(),
+      fetchedAt: published.fetchedAt,
     };
     return jsonResponse(result, CDN_CACHE_3_HOURS);
   }
